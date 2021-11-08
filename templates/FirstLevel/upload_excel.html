@@ -1,0 +1,144 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial- scale 1.0">
+    <title>ESSENCCIA OUTSOURCING</title>
+    <link rel="stylesheet" href="{% static 'FirstLevel/css/upload_excel.css' %}">
+    <style>
+        UL LI{
+            FLOAT:left;
+            WIDTH:160PX;
+            HEIGHT:33PX;
+            BACKGROUND:NONE;
+            OPACITY:.8;
+            LINE-HEIGHT:31PX;
+            MARGIN-RIGHT: 3PX
+            }
+
+        UL LI A{
+            TEXT-DECORATION: NONE;
+            COLOR:WHITE;
+            DISPLAY: BLOCK;
+            TEXT-ALIGN: CENTER;
+            FONT-SIZE: 15PX;
+            }
+    </style>
+</head>
+<p3 style="color:white">{{Salary_Condition}}</p3>
+<br>
+{% if DEPARTMENT == 'OTR' %}
+<p3 style="color:white">Please Upload file for FULLERTON-OTR</p3>
+<br>
+<form method="post", action="{% url 'basic_app:FULLERTON_OTR_MIS' %}", enctype="multipart/form-data">
+    {% csrf_token %}
+    <label style="background-color:white;">Allocation_File</label>
+    <input type="file" name="Allocation12" style="color:white;">
+    <label style="background-color:white;">Paid_File</label>
+    <input type="file" name="Paid_File12"style="color:white;">
+    <button type="submit"style="background-color:white;">Upload</button>
+</form>
+<p3 style="color:white;">Please Upload file for FULLERTON-FR</p3>
+<br>
+<form method="post", action="{% url 'basic_app:FULLERTON_FR_MIS' %}", enctype="multipart/form-data">
+    {% csrf_token %}
+    <label style="color:white;">Allocation_File</label>
+    <input type="file" name="Allocation" style="color:white;">
+    <label style="color:white;">Paid_File</label>
+    <input type="file" name="Paid_File" style="color:white;">
+    <button type="submit" style="color:white;">Upload</button>
+</form>
+<p3 style="color:white;">MIS for FULLERTON-FR</p3>
+{{FR}}
+<table>
+    <tr style="color:black;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
+    {% for col in columns1 %}
+        <th style="color:black;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px;" >{{col}}</th>
+    {% endfor %}
+    </tr>
+    {% for row in excel1 %}
+        <tr style="color:black;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
+        {% for j in row %}
+            <td style="color:black;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">{{j}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p3 style="color:white;">Please Upload file ( for {{PROCESS}}-{{DEPARTMENT}} ) </p3>
+<br>
+<br>
+<form method="post", enctype="multipart/form-data">
+    {% csrf_token %}
+    <label style="color:white;">Allocation_File</label>
+    <input type="file" name="Allocation" style="color:white;">
+    <label style="color:white;">Paid_File</label>
+    <input type="file" name="Paid_File" style="color:white;">
+    <button class="button1" type="submit" style="color:white;color:black;">Upload</button>
+</form>
+
+{% endif %}
+<br>
+<div class="center">
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">MIS {{PROCESS}}-{{DEPARTMENT}}</p3>
+<p3 >{{OTR}}</p3>
+</div>
+<BR>
+<table class="center">
+    <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+    {% for col in columns %}
+        <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px" >{{col}}</th>
+    {% endfor %}
+    </tr>
+    {% for row in excel %}
+        <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+        {% for j in row %}
+            <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:100px; height:17px">{{j}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<br>
+<p3 style="color:white;">{{error}}</p3>
+
+{% if DEPARTMENT == 'HL' %}
+    {% if PROCESS == 'IDFC' %}
+        <a class="button" href="{% url 'basic_app:IDFC_HL_DOWNLOAD' %}">DOWNLOAD</a>
+    {% endif %}
+{% endif %}
+
+{% if DEPARTMENT == 'TW' %}
+    {% if PROCESS == 'L&T' %}
+        <a class="button"href="{% url 'basic_app:L_T_DOWNLOAD' %}">DOWNLOAD</a>
+    {% endif %}
+{% endif %}
+
+{% if DEPARTMENT == 'TW' %}
+    {% if PROCESS == 'IDFC' %}
+        <a class="button"href="{% url 'basic_app:IDFC_TW_DOWNLOAD' %}">DOWNLOAD</a>
+    {% endif %}
+{% endif %}
+
+{% if DEPARTMENT == 'OTR' %}
+    {% if PROCESS == 'FULLERTON' %}
+        <a class="button"href="{% url 'basic_app:FULLERTON_OTR_DOWNLOAD' %}">DOWNLOAD</a>
+    {% endif %}
+{% endif %}
+
+{% if DEPARTMENT == 'RECOVERY' %}
+    {% if PROCESS == 'FULLERTON' %}
+        <a class="button"href="{% url 'basic_app:FULLERTON_RECOVERY_DOWNLOAD' %}">DOWNLOAD</a>
+    {% endif %}
+{% endif %}
+
+{% if DEPARTMENT == 'CD' %}
+    {% if PROCESS == 'BAJAJ' %}
+        <a class="button"href="{% url 'basic_app:BAJAJ_CD_DOWNLOAD' %}">DOWNLOAD</a>
+    {% endif %}
+{% endif %}
+</body>
+</html>

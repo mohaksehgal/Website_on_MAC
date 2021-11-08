@@ -1,0 +1,78 @@
+table {
+   border-collapse: collapse;
+   border-spacing: 0;
+   border: 1px solid #ddd;
+   width : 100%;
+ }
+
+.A3,.A1,.A4{
+width:53%;
+margin-left:165px;
+}
+
+.A5{
+width:133%;
+}
+
+
+ th, td {
+   text-align: centre;
+   padding: 8px;
+ }
+
+ tr:nth-child(even){background-color: #f2f2f2}
+
+
+ .center {
+   margin-left: auto;
+   margin-right: auto;
+
+   width: 60%;
+   padding: 10px;
+     text-align:center;
+     }
+
+ .button{
+   display: inline-block;
+   padding: 10px 20px;
+   font-size: 14px;
+   cursor: pointer;
+   text-align: center;
+   text-decoration: none;
+   outline: none;
+   color: black;
+   background-color:#d3ae6d ;
+   border: 1px solid black;
+   border-radius: 15px;
+   box-shadow: 0 3px #f1d88b;
+ }
+
+ .button:hover {background-color:#d3ae6d; }
+
+ .button:active {
+   background-color: #d3ae6d;
+   /** box-shadow: 0 5px #f1d88b; **/
+   transform: translateY(4px);
+ }
+
+ .button1{
+   display: inline-block;
+   padding: 2px 25px;
+   font-size: 15px;
+   cursor: pointer;
+   text-align: center;
+   text-decoration: none;
+   outline: none;
+   color: black;
+   background-color:#d3ae6d ;
+   border: 1;
+   border-radius: 15px;
+ }
+
+ .button1:active {
+   background-color: #d3ae6d;
+   box-shadow: 0 5px BLACK;
+   transform: translateY(4px);
+ }
+
+

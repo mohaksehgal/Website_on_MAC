@@ -1,0 +1,16 @@
+body{
+    background-color: black;
+    background-attachment: fixed;
+    background-position: 50% 50% ;
+    background-size: 500px 450px;
+    color: white;
+}
+
+h1{
+    font-family: Accidental Presidency;
+    font-size: 36px;
+}
+
+.frames::-webkit-scrollbar{width:0;
+display:none;
+}

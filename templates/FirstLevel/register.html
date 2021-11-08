@@ -1,0 +1,46 @@
+{% extends 'FirstLevel/base.html' %}
+{% load static %}
+{% block body_block %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'FirstLevel/css/register.css' %}">
+    <style>
+        @font-face {
+            font-family: Accidental Presidency ;
+            src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+            }
+
+        @font-face {
+            font-family: Arial Narrow;
+            src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+            }
+    </style>
+</head>
+<body bgcolor="black">
+
+        <H1 class="go" style="margin-top:140px;margin-right:150px;margin-left:615px;top:0%">REGISTER HERE!</H1>
+
+    <FORM class="boxs" style="padding-top: 10px; padding-left:10px; padding-bottom:0px; width:504px; height:435px;" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="rohan">
+            {{user_form.as_p}}
+        </div>
+        <INPUT style="margin-left:170px; margin-right:200px; height:42px; width:139px; font-size: large; text-align:center; padding-left:35px;padding-top:8px;" type="submit" name="" value="Register">
+    </FORM>
+
+    <div class="error">
+        {{Error}}
+    </div>
+</body>
+</html>
+{% endblock %}
+
+
+

@@ -1,0 +1,250 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+body{
+  background-color: BLACK;
+}
+nav{
+  margin-top: 15px;
+}
+ul.nav{
+  margin-top: 22px;
+}
+nav img{
+  top:10px;
+  left:0px;
+  height: auto;
+  max-width: 100px;
+  width:13%;
+}
+.princ{
+  position: absolute;
+  bottom: 25px;
+  right: 10px;
+  max-width:200px;
+  width:25%;
+  height:auto;
+}
+
+.nav li ul li{
+  text-align: center;
+}
+ UL
+ {
+  float: right;
+  list-style: none;
+  margin-right: 20px;
+  position: relative;
+}
+
+UL LI
+{  float: left;
+  display: inline-block;
+  background:none;
+  margin:0 5px;
+    width:161px;
+     TEXT-ALIGN: CENTER;
+
+}
+UL LI A
+{
+ TEXT-DECORATION: NONE;
+ COLOR:white;
+ FONT-SIZE: 13.5PX;
+ padding:8px 15px;
+ line-height: 30px;
+
+
+}
+nav ul ul li{
+  position: relative;
+  margin:0px;
+  width:161px;
+  float:none;
+  display: list-item;
+}
+ul li::after
+{
+ content:'';
+ width:0%;
+ height:2px;
+ background:rgba(211,174,109,255);
+ display: block;
+ transition: 1s;
+}
+nav ul li ul{
+  position:absolute;
+  top:70px;
+  opacity:0.8;
+    visibility:hidden;
+  transition: top .3s;
+  font-size:13px;
+}
+nav ul li:hover>ul{
+  top:30px;
+  opacity:1;
+  visibility: visible;
+}
+.show,.icon{
+color: white;
+display:none;
+}
+#btn-1 , #btn-2 ,#btn{
+display:none;
+}
+  ul li:hover::after
+  {
+    width:100%;
+ }
+ UL LI:HOVER UL LI {
+   DISPLAY: BLOCK;
+ }
+
+ul.log a{
+ text-decoration: none;
+ height: 30px;
+ width: 74px;
+  display:block;
+  padding: 3px 13px;
+  color: black;
+  font-size: 14px;
+  border-radius: 20px;
+  background:linear-gradient(-45deg, #FFE000 ,#e65c00);
+  cursor: pointer;
+  padding-top: 6px;
+  padding-bottom: 0px;
+}
+
+UL LI :HOVER UL LI {
+  DISPLAY: none;
+}
+ .text-box{
+     width:90;
+     color:rgb(242, 217, 56);
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform:translate(-50%,-50%);
+     text-align: center;
+ }
+ .text-box h1{
+   font-size: 40px;
+   color: rgba(211,174,109,255);
+   text-shadow:2px 3px black;
+ }
+ .text-box p{
+   margin:26px 0px 40px;
+   font-size: 18px;
+   color: white;
+ }
+ .hero-btn{
+   display: inline-block;
+   text-decoration:none;
+   color:black;
+   border: 1px solid black;
+   padding: 11px 10px;
+   font-size: 13px;
+   background: #d3ae6d;
+   position: relative;
+   cursor: pointer;
+ }
+ .hero-btn:hover{
+   border:1px solid black;
+   border-radius: 85px;
+   background: #d3ae6d;
+   transition: 1.5s;
+ }
+
+@media all and (max-width:808px) {
+  body{
+    overflow: hidden;
+  }
+  nav ul{
+    margin-right:0px;
+    float:right;
+  }
+  nav ul li,nav ul ul li{
+    display:block;
+    width:100%;
+  }
+  .nav li ul li a{
+    font-family:Accidental Presidency;
+  }
+
+  nav ul li ul{
+    top: 70px;
+    position: static;
+    border-top:none;
+    float:none;
+    opacity: 1;
+    visibility: visible;
+
+  }
+  ul li a{
+    font-size: 13px;
+  }
+  ul.nav{
+    width: 200px;
+    text-align: center;
+
+  }
+  .show{
+    display:block;
+    color:white;
+    font-size: 13px;
+    line-height: 30px;
+    cursor: pointer;
+    font-family: Times New Roman;
+    font-weight: bold;
+  }
+  label.show{
+    height:30px;
+  }
+  .icon{
+    display:block;
+    color:white;
+    position: absolute;
+    right:20px;
+    line-height: 10px;
+    font-size: 25px;
+    cursor:pointer;
+  }
+  .show+a{
+    display: none;
+  }
+  ul li ul{
+    display:none;
+  }
+  .nav{
+    display: none;
+  }
+  [id^=btn]:checked+ul{
+    display:block;
+  }
+  ul.log{
+  margin-top:6px;
+  }
+  ul.log a{
+    margin-right:66px;
+    font-size: 12.5px;
+    padding-top: 7px;
+    padding-left:7px;
+    padding-right:7px;
+    width: 65px;
+    height:26px;
+  }
+    ul li::after{
+      display: none;
+    }
+  ul.nav{
+    margin-top:30px;
+  }
+  .bar {
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  margin: 6px 0;
+}
+}

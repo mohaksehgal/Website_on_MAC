@@ -1,0 +1,362 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial- scale 1.0">
+    <title>ESSENCCIA OUTSOURCING</title>
+    <link rel="stylesheet" href="{% static 'FirstLevel/css/home_base.css' %}">
+    <style>
+        UL LI{
+            FLOAT:left;
+            WIDTH:160PX;
+            HEIGHT:33PX;
+            BACKGROUND:NONE;
+            OPACITY:.8;
+            LINE-HEIGHT:31PX;
+            MARGIN-RIGHT: 3PX
+            }
+
+        UL LI A{
+            TEXT-DECORATION: NONE;
+            COLOR:WHITE;
+            DISPLAY: BLOCK;
+            TEXT-ALIGN: CENTER;
+            FONT-SIZE: 15PX;
+            }
+    </style>
+</head>
+<body>
+<style>
+    /* width */
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+
+                table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+                table.one {
+          border-collapse: collapse;
+          width: 263%;
+        }
+
+                table.two {
+          border-collapse: collapse;
+          width: 90%;
+        }
+
+          table.three {
+          border-collapse: collapse;
+          width: 130%;
+        }
+
+        table.four {
+          border-collapse: collapse;
+          width: 90%;
+        }
+
+        table.five {
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        th, td {
+          text-align:center;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<!--OK SEEN-->
+{% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'MANAGER' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="{% url 'basic_app:IDFC_TW_SALARY' %}" target="AB"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:IDFC_TW_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
+            </LI>
+            <LI>
+                <A href="{% url 'basic_app:IDFC_TW_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:IDFC_TW_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:IDFC_TW_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--OK SEEN & NO EMPLOYEE TAB-->
+{% elif PROCESS == 'L&T' and DEPARTMENT == 'TW' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="{% url 'basic_app:L_T_TW' %}" target="AB"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:L_T_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
+            </LI>
+            <LI>
+                <A href=#><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:L_T_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:employee_database' %}"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--NOT OK & NO EMPLOYEE TAB-->
+{% elif DEPARTMENT == 'OTR' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="#"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:FULLERTON_OTR_BILLING' %}"><STRONG>BILLING</STRONG></A>
+            </LI>
+            <LI>
+                <A href=#><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:FULLERTON_OTR_MIS' %}"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:employee_database' %}"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--OK SEEN-->
+{% elif DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="{% url 'basic_app:MASTER_SALARY_FULLERTON' %}" target="AB"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--OK SEEN-->
+{% elif PROCESS == 'IDFC' and DEPARTMENT == 'HL' and Emp_Status == 'MANAGER' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="{% url 'basic_app:IDFC_HL_SALARY' %}" target="AB"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:IDFC_HL_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:IDFC_HL_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:IDFC_HL_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:IDFC_HL_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--OK SEEN-->
+{% elif PROCESS == 'BAJAJ' and DEPARTMENT == 'CD' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="{% url 'basic_app:BAJAJ_SALARY' %}" target="AB"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:BAJAJ_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:BAJAJ_CD_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:BAJAJ_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:BAJAJ_CD_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--NOT OK-->
+{% elif PROCESS == 'HERO' and DEPARTMENT == 'RECOVERY' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="{% url 'basic_app:BAJAJ_SALARY' %}" target="AB"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:BAJAJ_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
+            </LI>
+            <LI>
+                <A href=#><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:BAJAJ_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:employee_database' %}"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--NOT OK-->
+{% elif DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TL' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="{% url 'basic_app:IDFC_TW_TL_SALARY' %}" target="AB"><STRONG>SALARY</STRONG></A>
+            </LI>
+            <LI>
+                <A href="{% url 'basic_app:IDFC_TW_TL_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--NOT OK-->
+{% elif DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TC' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A href=#><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+<!--OK SEEN-->
+{% elif Emp_Status == 'FOS' %}
+    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
+            <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A href=#><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
+        </UL>
+    </NAV>
+
+{% endif %}
+{% block body_block %}
+
+{% endblock %}
+</body>
+</html>

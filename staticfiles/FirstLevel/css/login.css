@@ -1,0 +1,165 @@
+body{
+    background: #34495e;
+    background-size: cover;
+    margin:0px;
+    padding:0px;
+    height: 700px ;
+    color: black;
+    opacity:550%;
+}
+
+H1{
+    COLOR:WHITE;
+    text-align: center;
+}
+
+.boxx{
+    color:white;
+    width: 40%;
+    max-width:445px;
+    padding:40px;
+    padding-top:30px;
+    padding-bottom:20px;
+    position:absolute;
+    top: 55% ;
+    left:50% ;
+    transform:translate(-50% , -50%);
+    background:#191919;
+    opacity: 50%;
+    border-radius: 15px;
+    text-align:center;
+}
+
+.boxx h1{
+    color: white;
+}
+
+a{
+    text-decoration: none ;
+    color: white;
+}
+
+.boxx input[type="text"] , .boxx input[type="password"]{
+    border:0;
+    background:none;
+    display: block;
+    margin:20px auto;
+    text-align: center;
+    border:2px solid #3498db;
+    background:#010101;
+    padding:14px 10px;
+    width:200px;
+    outline:none;
+    color:white;
+    border-radius: 24px;
+    transition:0.30s;
+}
+
+.gos{
+    font-size:40px;
+    margin-top:0px;
+    font-family:Accidental Presidency;
+}
+
+.boxx input[type="text"]:focus , .boxx input[type="password"]:focus{
+    width:280px;
+    border-color:#2ecc71;
+}
+
+.boxx input[type = "submit"]{
+    border:0;
+    background:none;
+    display: block;
+    margin:20px auto;
+    text-align: center;
+    border:2px solid #2ecc71;
+    padding:14px 40px;
+    outline:none;
+    color: white;
+    border-radius: 24px;
+    transition:0.25s;
+    cursor: pointer;
+}
+
+.boxx input[type="submit"]:hover{
+    background:#2ecc71;
+}
+
+input::placeholder{
+    color:white;
+}
+/*
+UL{
+    MARGIN:0PX;
+    PADDING: 2PX;
+    LIST-STYLE: NONE;
+    float:left;
+    background:none;
+}
+
+.nav{
+    float:right;
+    padding:34px 38px;
+}
+
+.img{
+    width:50px;
+    padding-left: 8px;
+    padding-top: 8px;
+}
+
+UL LI{
+    FLOAT:left;
+    WIDTH: 165PX;
+    HEIGHT: 33PX;
+    BACKGROUND:none;
+    OPACITY:.8;
+    LINE-HEIGHT:31PX;
+    MARGIN-RIGHT: 3PX
+}
+
+UL LI A{
+    TEXT-DECORATION: NONE;
+    COLOR:WHITE;
+    DISPLAY: BLOCK;
+    TEXT-ALIGN: CENTER;
+    FONT-SIZE: 14PX;
+}
+
+ul li::after{
+    content:'';
+    width:0%;
+    height:2px;
+    background:rgba(211,174,109,255);
+    display: block;
+    transition: 1s;
+}
+
+ul li:hover::after{
+    width:100%;
+}
+
+UL LI A:HOVER{
+    BACKGROUND-COLOR:NONE;
+}
+
+UL LI UL LI{
+    DISPLAY:NONE;
+}
+
+UL LI:HOVER UL LI{
+    DISPLAY: BLOCK;
+}
+
+ul .log a{
+    text-decoration: none;
+    display:block;
+    padding: 3px 13px;
+    color: black;
+    font-size: 17px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background:linear-gradient(-45deg, #FFE000 ,#e65c00);
+    transition: 0.25s;
+    cursor: pointer;
+}

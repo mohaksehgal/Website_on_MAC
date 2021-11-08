@@ -1,0 +1,141 @@
+body{
+    background: #34495e;
+    background-size: cover;
+    margin:0px;
+    padding:0px;
+    height: 700px ;
+    color: black;
+    opacity:550%;
+}
+
+.boxs{
+    width: 600px;
+    padding:40px;
+    position:absolute;
+    top: 54% ;
+    left:50% ;
+    transform:translate(-50% , -50%);
+    background:#191919;
+    opacity: 50%;
+    border-radius: 15px;
+    text-align:left;
+    color:white;
+}
+
+.boxs input[type="submit"]{
+    border:0;
+    background:none;
+    display: block;
+    margin:25px auto;
+    text-align: center;
+    border:2px solid #2ecc71;
+    padding:14px 40px;
+    outline:none;
+    color: white;
+    border-radius: 24px;
+    transition:0.25s;
+    cursor: pointer;
+}
+
+.go{
+    font-family: Accidental Presidency;
+    font-size:40px;
+    color:white;
+    left:50% ;
+}
+
+.boxs input[type="submit"]:hover{
+    background:#2ecc71;
+}
+
+.error{
+    text-align:center;
+    margin-top:470px;
+    color:white;
+}
+.rohan{
+    font-size:18px;
+}
+.rohan input[type="text"] {
+    border-radius:50px;
+    margin-left:50px;
+    margin-top:10px;
+}
+.rohan input[type="password"]{
+    border-radius:50px;
+    margin-left:65px;
+    height:25px;
+    margin-top:20px;
+}
+
+.rohan input[type="email"]{
+    border-radius:50px;
+    height:25px;
+    margin-top:20px;
+
+}
+#id_First_Name{
+    height:25px;
+    margin-top:10px;
+    margin-left:60px;
+}
+#id_Last_Name{
+    height:25px;
+        margin-top:10px;
+        margin-left:62px;
+
+}
+#id_username{
+    margin-left:60px;
+    height:25px;
+    margin-top:15px;
+
+}
+
+#id_email{
+    margin-left:90px;
+        height:25px;
+    margin-top:15px;
+
+}
+
+#id_confirm_email{
+    margin-left:27px;
+     height:25px;
+    margin-top:15px;
+
+}
+
+#id_confirm_password{
+    margin-left:2px;
+        height:25px;
+    margin-top:15px;
+
+}
+
+#id_password{
+    margin-left:64px;
+        height:25px;
+    margin-top:15px;
+
+}
+
+#id_Emp_ID{
+    margin-left:83px;
+    height:25px;
+        margin-top:15px;
+
+}
+
+#id_birth_date_month{
+    margin-left:66px;
+        margin-top:15px;
+        height:25px;
+
+}
+
+@media all and (max-width:968px){
+.go h1{
+position:static;
+}
+}

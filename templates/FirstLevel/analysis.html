@@ -1,0 +1,307 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial- scale 1.0">
+    <title>ESSENCCIA OUTSOURCING</title>
+    <link rel="stylesheet" href="{% static 'FirstLevel/css/analysis.css' %}">
+    <style>
+        UL LI{
+            FLOAT:left;
+            WIDTH:160PX;
+            HEIGHT:33PX;
+            BACKGROUND:NONE;
+            OPACITY:.8;
+            LINE-HEIGHT:31PX;
+            MARGIN-RIGHT: 3PX
+            }
+
+        UL LI A{
+            TEXT-DECORATION: NONE;
+            COLOR:WHITE;
+            DISPLAY: BLOCK;
+            TEXT-ALIGN: CENTER;
+            FONT-SIZE: 15PX;
+            }
+    </style>
+</head>
+{% if Designation == 'MANAGER'  and DEPARTMENT == 'TW' and PROCESS == 'IDFC' %}
+<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW TC INCENTIVE</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TC_INCENTIVE}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW FIXED COSTING FOS</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_FOS}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW INCENTIVE COSTING FOS</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{INCENTIVE_COSTING_FOS}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW FIXED COSTING OFFICE</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_OFFICE}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW TOTAL FOS COSTING</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TOTAL_FOS_COSTING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW FINAL COSTING INCLUSIVE OF ALL</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FINAL_COSTING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW TOTAL BILLING</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TOTAL_BILLING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW FINAL P&L</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{P_L_IDFC_TW}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW FINAL P&L%</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{P_L_IDFC_TW_PERCENTAGE}}</p3>
+<br>
+<br>
+<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">*This does not count overhead costing of the process</p3>
+{% endif %}
+
+{% if Designation == 'MANAGER'  and DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' %}
+<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON RECOVERY FIXED COSTING FOS</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_FOS}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON RECOVERY INCENTIVE COSTING FOS</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{INCENTIVE_COSTING_FOS}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON RECOVERY TOTAL FOS COSTING</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TOTAL_FOS_COSTING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON RECOVERY FIXED COSTING OFFICE</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_OFFICE}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON RECOVERY FINAL COSTING INCLUSIVE OF ALL</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FINAL_COSTING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON RECOVERY TOTAL BILLING</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TOTAL_BILLING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON_RECOVERY P&L</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{P_L_FULLERTON_RECOVERY}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON RECOVERY P&L%</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{P_L_FULLERTON_RECOVERY_PERCENTAGE}}</p3>
+<br>
+<br>
+<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">*This does not count overhead costing of the process</p3>
+{% endif %}
+
+{% if Designation == 'TL'  and DEPARTMENT == 'CD' and PROCESS == 'BAJAJ' %}
+<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BAJAJ CD TC INCENTIVE</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TC_INCENTIVE}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BAJAJ CD FIXED COSTING OFFICE</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_OFFICE}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BAJAJ CD FINAL COSTING INCLUSIVE OF ALL</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FINAL_COSTING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BAJAJ CD TOTAL BILLING</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TOTAL_BILLING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BAJAJ CD FINAL P&L</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{P_L_BAJAJ_CD}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BAJAJ CD FINAL P&L%</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{P_L_BAJAJ_CD_PERCENTAGE}}</p3>
+<br>
+<br>
+<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">*This does not count overhead costing of the process</p3>
+{% endif %}
+
+{% if Designation == 'MANAGER'  and DEPARTMENT == 'HL' and PROCESS == 'IDFC' %}
+<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL FIXED COSTING FOS</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_FOS}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL INCENTIVE COSTING FOS</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{INCENTIVE_COSTING_FOS}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL FIXED COSTING OFFICE</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_OFFICE}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL TOTAL FOS COSTING</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TOTAL_FOS_COSTING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL FINAL COSTING INCLUSIVE OF ALL</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FINAL_COSTING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL TOTAL BILLING</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TOTAL_BILLING}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL FINAL P&L</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{P_L_IDFC_HL}}</p3>
+<br>
+<br>
+<br>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL FINAL P&L%</p3>
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{P_L_IDFC_HL_PERCENTAGE}}</p3>
+<br>
+<br>
+<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">*This does not count overhead costing of the process</p3>
+{% endif %}
+
+{% if Designation == 'TL' and DEPARTMENT == 'TW' and PROCESS == 'IDFC' %}
+<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{Status}}</p3>
+<div class="center">
+    <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">MIS for FOS {{PROCESS}}-{{DEPARTMENT}}</p3>
+</div>
+<br>
+<table>
+    <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+    {% for col in columns %}
+        <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">{{col}}</th>
+    {% endfor %}
+    </tr>
+    {% for row in excel %}
+        <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+        {% for j in row %}
+            <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:100px; height:17px">{{j}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<div class="center">
+    <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">MIS for {{PROCESS}}-{{DEPARTMENT}}</p3>
+</div>
+<br>
+<table>
+    <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+    {% for col in columns1 %}
+        <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">{{col}}</th>
+    {% endfor %}
+    </tr>
+    {% for row in excel1 %}
+        <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+        {% for j in row %}
+            <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:100px; height:17px">{{j}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<div class="center">
+    <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">MIS for TC {{PROCESS}}-{{DEPARTMENT}}</p3>
+</div>
+<br>
+<table>
+    <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+    {% for col in columns2 %}
+        <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">{{col}}</th>
+    {% endfor %}
+    </tr>
+    {% for row in excel2 %}
+        <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+        {% for j in row %}
+            <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:100px; height:17px">{{j}}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% if DEPARTMENT == 'HL' %}
+    {% if PROCESS == 'IDFC' %}
+        <a class="button" href="{% url 'basic_app:IDFC_HL_DOWNLOAD' %}">DOWNLOAD</a>
+    {% endif %}
+{% endif %}
+
+{% if DEPARTMENT == 'TW' %}
+    {% if PROCESS == 'L&T' %}
+        <a class="button"href="{% url 'basic_app:L_T_DOWNLOAD' %}">DOWNLOAD</a>
+    {% endif %}
+{% endif %}
+
+{% if DEPARTMENT == 'TW' %}
+    {% if PROCESS == 'IDFC' %}
+        {% if Designation == 'TL' %}
+            <a class="button" href="{% url 'basic_app:IDFC_TW_DOWNLOAD' %}">DOWNLOAD</a>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+<!--{% if DEPARTMENT == 'OTR' %}-->
+<!--    {% if PROCESS == 'FULLERTON' %}-->
+<!--        <a class="button"href="{% url 'basic_app:FULLERTON_OTR_DOWNLOAD' %}">DOWNLOAD</a>-->
+<!--    {% endif %}-->
+<!--{% endif %}-->
+
+<!--{% if DEPARTMENT == 'RECOVERY' %}-->
+<!--    {% if PROCESS == 'FULLERTON' %}-->
+<!--        <a class="button"href="{% url 'basic_app:FULLERTON_RECOVERY_DOWNLOAD' %}">DOWNLOAD</a>-->
+<!--    {% endif %}-->
+<!--{% endif %}-->
+
+<!--{% if DEPARTMENT == 'CD' %}-->
+<!--    {% if PROCESS == 'BAJAJ' %}-->
+<!--        <a class="button"href="{% url 'basic_app:BAJAJ_CD_DOWNLOAD' %}">DOWNLOAD</a>-->
+<!--    {% endif %}-->
+<!--{% endif %}-->
+</body>
+</html>
