@@ -131,10 +131,10 @@ def user_login(request):
                     return (Salary)
 
                 if (Emp_Status == 'TC') or (Emp_Status == 'FOS'):
-                    if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
-                        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx'):
-                            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
-                                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
+                    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+                        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx'):
+                            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
+                                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
                                     fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                                     fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                                     fs3 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
@@ -720,9 +720,9 @@ def user_login(request):
                             #     else:
                             #         continue
                     else:
-                        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx'):
-                            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
-                                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
+                        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx'):
+                            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
+                                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
                                     # fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                                     fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                                     fs3 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
@@ -1161,8 +1161,8 @@ def user_login(request):
                                 #     else:
                                 #         continue
                         else:
-                            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
-                                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
+                            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
+                                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
                                     # fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                                     # fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                                     fs3 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
@@ -1456,7 +1456,7 @@ def user_login(request):
                                     #     else:
                                     #         continue
                             else:
-                                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
+                                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
                                     # fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                                     # fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                                     # fs3 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
@@ -2157,7 +2157,7 @@ def L_T_MIS(request):
         A.to_excel('media/L_T/FOS Salary/MASTER FILE L_T.xlsx', index=False)
         A.to_excel('media/L_T/TC Incentive/MASTER FILE L_T.xlsx', index=False)
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/Performance_L_T.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/Performance_L_T.xlsx'):
             fs = FileSystemStorage(location='media/L_T/MIS')
             AA = fs.open('Performance_L_T.xlsx')
             F1 = pd.read_excel(AA)
@@ -2184,7 +2184,7 @@ def L_T_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/Billing/MASTER FILE L_T.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/MASTER FILE L_T.xlsx'):
             fs = FileSystemStorage(location='media/L_T/Billing')
             AA = fs.open('Performance_L_T.xlsx')
             AA1 = fs.open('MASTER FILE L_T.xlsx')
@@ -2434,12 +2434,12 @@ def L_T_BILLING(request):
 
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/Billing/Final_Billing_L_T.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/Final_Billing_L_T.xlsx'):
             fs = FileSystemStorage(location='media/L_T/Billing')
             AA = fs.open('BKT_Billing_L_T.xlsx')
             F2 = pd.read_excel(AA)
             Total_Payout = round(sum(F2['PAYOUT']), 2)
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/Billing/MASTER FILE L_T.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/MASTER FILE L_T.xlsx'):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -2724,7 +2724,7 @@ def IDFC_TW_MIS(request):
         A.to_excel(r'media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx', index=False)
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'):
             fs = FileSystemStorage(location='media/IDFC_TW/MIS')
             AA = fs.open('Performance_IDFC_TW.xlsx')
             F1 = pd.read_excel(AA)
@@ -2753,7 +2753,7 @@ def IDFC_TW_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/Billing/MASTER FILE IDFC_TW.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/Billing/MASTER FILE IDFC_TW.xlsx'):
             fs = FileSystemStorage(location='media/IDFC_TW/Billing')
             AA = fs.open('Performance_IDFC_TW.xlsx')
             AA1 = fs.open('MASTER FILE IDFC_TW.xlsx')
@@ -3784,7 +3784,7 @@ def IDFC_TW_BILLING(request):
             return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx'):
             fs = FileSystemStorage(location='media/IDFC_TW/Billing')
             AA = fs.open('BKT_Billing_IDFC_TW.xlsx')
             F2 = pd.read_excel(AA)
@@ -4158,7 +4158,7 @@ def IDFC_HL_MIS(request):
 
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/MIS/Performance_IDFC_HL.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/Performance_IDFC_HL.xlsx'):
             fs = FileSystemStorage(location='media/IDFC_HL/MIS')
             AA = fs.open('Performance_IDFC_HL.xlsx')
             F1 = pd.read_excel(AA)
@@ -4187,7 +4187,7 @@ def IDFC_HL_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/Billing/MASTER_FILE_IDFC_HL.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/Billing/MASTER_FILE_IDFC_HL.xlsx'):
             fs = FileSystemStorage(location='media/IDFC_HL/Billing')
             AA = fs.open('Performance_IDFC_HL.xlsx')
             AA1 = fs.open('MASTER_FILE_IDFC_HL.xlsx')
@@ -7438,7 +7438,7 @@ def IDFC_HL_BILLING(request):
             return HttpResponseRedirect(reverse('basic_app:IDFC_HL_MIS'))
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/Billing/Final_Billing_IDFC_HL.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/Billing/Final_Billing_IDFC_HL.xlsx'):
             fs = FileSystemStorage(location='media/IDFC_HL/Billing')
             AA = fs.open('BKT_Billing_IDFC_HL.xlsx')
             F2 = pd.read_excel(AA)
@@ -7651,7 +7651,7 @@ def FULLERTON_OTR_MIS(request):
         A.to_excel('media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
         A.to_excel('media/FULLERTON_OTR/FOS Salary/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
 
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
             AA = fs.open('MIS_FULLERTON_FR.xlsx')
             F11 = pd.read_excel(AA)
@@ -7660,7 +7660,7 @@ def FULLERTON_OTR_MIS(request):
             QQ2 = 'Please Upload File for FULLERTON_FR'
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
             fs11 = FileSystemStorage(location='media/FULLERTON_FR/MIS')
             AA = fs.open('MIS_FULLERTON_OTR.xlsx')
@@ -7669,13 +7669,13 @@ def FULLERTON_OTR_MIS(request):
             F11 = pd.read_excel(AA11)
             status = 'There is a data Frame'
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
             AA = fs.open('MIS_FULLERTON_OTR.xlsx')
             F1 = pd.read_excel(AA)
             QQ2 = 'Please Upload File for FULLERTON_FR'
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
             AA = fs.open('MIS_FULLERTON_FR.xlsx')
             F11 = pd.read_excel(AA)
@@ -7727,14 +7727,14 @@ def FULLERTON_OTR_BILLING(request):
 
     if request.method == 'POST':
         if os.path.exists(
-                r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/Billing/MASTER_FILE_FULLERTON_OTR.xlsx'):
+                r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/MASTER_FILE_FULLERTON_OTR.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')
             fs1 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
             AA = fs.open('MASTER_FILE_FULLERTON_OTR.xlsx')
             AA1 = fs1.open('MIS_FULLERTON_OTR.xlsx')
             for i in range(1, 32, -1):
                 if os.path.exists(
-                        r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/FULLERTON_OTR_PAID FILE_' + i + 'SEP21.xlsx'):
+                        r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/FULLERTON_OTR_PAID FILE_' + i + 'SEP21.xlsx'):
                     AA122 = fs1.open('FULLERTON_OTR_PAID FILE_' + i + 'SEP21.xlsx')
                     PAID_FILE = pd.read_excel(AA122)
                 else:
@@ -8012,7 +8012,7 @@ def FULLERTON_OTR_BILLING(request):
             line2 = 'Total Payout for OTR = '
             QQ1 = 'Please click Billing button for FULLERTON_OTR'
 
-            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx'):
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx'):
                 fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
                 AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
                 F2 = pd.read_excel(AA2)  # OTR
@@ -8027,8 +8027,8 @@ def FULLERTON_OTR_BILLING(request):
             return HttpResponseRedirect(reverse('basic_app:FULLERTON_OTR_MIS'))
 
     elif request.method != 'POST':
-        if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+        if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
                 fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # FR
                 fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
                 AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # FR
@@ -8042,7 +8042,7 @@ def FULLERTON_OTR_BILLING(request):
                 Total_Payout = round(sum(F2['PAYOUT']), 2)  # FR
                 Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
 
-            elif os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+            elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
                 fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
                 AA3 = fs.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
                 F3 = pd.read_excel(AA3)  # OTR
@@ -8051,7 +8051,7 @@ def FULLERTON_OTR_BILLING(request):
                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
                 line2 = 'Total Payout for OTR = '
 
-            elif os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
+            elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
                 fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
                 AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
                 F2 = pd.read_excel(AA2)  # OTR
@@ -8069,8 +8069,8 @@ def FULLERTON_OTR_BILLING(request):
                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
                 return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+        elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
                 fs1 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
                 AA1 = fs1.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
                 F3 = pd.read_excel(AA1)  # OTR
@@ -8087,8 +8087,8 @@ def FULLERTON_OTR_BILLING(request):
                 QQ1 = 'Please click billing button for FULLERTON_OTR'
                 return render(request, 'FirstLevel/Billing.html', {'FR': QQ, 'OTR': QQ1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
+        elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx'):
+            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
                 fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # FR
                 AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # FR
                 F2 = pd.read_excel(AA3)  # OTR
@@ -8300,12 +8300,12 @@ def FULLERTON_FR_MIS(request):
         A.to_excel('media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
         A.to_excel('media/FULLERTON_FR/FOS Salary/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
 
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MIS_FULLERTON_OTR.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_OTR.xlsx'):
             True
         else:
             QQ1 = 'Please Upload File for FULLERTON_OTR'
 
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
             fs11 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
             AA11 = fs11.open('MIS_FULLERTON_OTR.xlsx')
             F11 = pd.read_excel(AA11)  # OTR
@@ -8315,7 +8315,7 @@ def FULLERTON_FR_MIS(request):
             status1 = 'There is no otr file'
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
             fs11 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
             AA = fs.open('MIS_FULLERTON_FR.xlsx')
@@ -8324,7 +8324,7 @@ def FULLERTON_FR_MIS(request):
             F11 = pd.read_excel(AA11) #OTR
             status = 'There is a data Frame'
             status1 = 'There is otr file'
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
             AA11 = fs.open('MIS_FULLERTON_OTR.xlsx')
             F11 = pd.read_excel(AA11)
@@ -8368,13 +8368,13 @@ def FULLERTON_FR_BILLING(request):
     QQ = ''
     QQ1 = ''
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')
             fs1 = FileSystemStorage(location='media/FULLERTON_FR/MIS')
             AA = fs.open('MASTER_FILE_FULLERTON_FR.xlsx')
             AA1 = fs1.open('MIS_FULLERTON_FR.xlsx')
             for i in range(1, 32, -1):
-                if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/FULLERTON_FR_PAID FILE_' + i + 'SEP21.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/FULLERTON_FR_PAID FILE_' + i + 'SEP21.xlsx'):
                     AA122 = fs1.open('FULLERTON_FR_PAID FILE_' + i + 'SEP21.xlsx')
                     PAID_FILE = pd.read_excel(AA122)
                 else:
@@ -8463,8 +8463,8 @@ def FULLERTON_FR_BILLING(request):
             Total_Payout = round(sum(A['PAYOUT']), 2)
             line = 'Total Payout for FR = '
 
-            if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-                if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
                     fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
                     AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
                     F3 = pd.read_excel(AA2)  # OTR
@@ -8483,8 +8483,8 @@ def FULLERTON_FR_BILLING(request):
             return HttpResponseRedirect(reverse('basic_app:FULLERTON_OTR_MIS'))
 
     elif request.method != 'POST':
-        if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+        if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
                 fs = FileSystemStorage(location='media/FULLERTON_FR/Billing') #FR
                 fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing') #OTR
                 AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx') #FR
@@ -8498,7 +8498,7 @@ def FULLERTON_FR_BILLING(request):
                 line2 = 'Total Payout for OTR = '
                 Total_Payout1 = round(sum(F3['PAYOUT']), 2) #OTR
 
-            elif os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+            elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
                 fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
                 AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
                 F3 = pd.read_excel(AA2)  # OTR
@@ -8507,7 +8507,7 @@ def FULLERTON_FR_BILLING(request):
                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
                 line2 = 'Total Payout for OTR = '
 
-            elif os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
+            elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
                 fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
                 AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
                 F3 = pd.read_excel(AA3)  # OTR
@@ -8526,8 +8526,8 @@ def FULLERTON_FR_BILLING(request):
                 return render(request, 'FirstLevel/Billing.html',
                               {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+        elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
                 fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
                 AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
                 F3 = pd.read_excel(AA2)  # OTR
@@ -8545,8 +8545,8 @@ def FULLERTON_FR_BILLING(request):
                 return render(request, 'FirstLevel/Billing.html',
                               {'OTR': QQ1, 'FR':QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
+        elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx'):
+            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
                 fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
                 AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
                 F2 = pd.read_excel(AA3)  # OTR
@@ -8837,7 +8837,7 @@ def FULLERTON_RECOVERY_MIS(request):
         A.to_excel('media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx', index=False)
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/MIS')
             AA = fs.open('MIS_FULLERTON_RECOVERY.xlsx')
             F1 = pd.read_excel(AA)
@@ -8866,7 +8866,7 @@ def FULLERTON_RECOVERY_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
             AA = fs.open('PAYOUT_FULLERTON_RECOVERY.xlsx')
             A = pd.read_excel(AA)
@@ -8881,7 +8881,7 @@ def FULLERTON_RECOVERY_BILLING(request):
         final_process = COMPANY_PROCESS()
         Designation = Employee_Designation()
 
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
             AA = fs.open('PAYOUT_FULLERTON_RECOVERY.xlsx')
             F2 = pd.read_excel(AA)
@@ -8914,7 +8914,7 @@ def MASTER_SALARY_TW(request):
     a=0
 
     if request.method == 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/MASTER FILE L_T.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx')):
 
             fs = FileSystemStorage(location='media/L_T/MIS')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
@@ -8925,35 +8925,35 @@ def MASTER_SALARY_TW(request):
             E = fs2.open('Employee_Database.xlsx')
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
                     AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
                     continue
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
                     AA123 = fs.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
                     PAID_FILE_L_T = pd.read_excel(AA123)
                 else:
                     continue
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/L_T Allocation ' + str(i) + ' AUG 21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T Allocation ' + str(i) + ' AUG 21.xlsx'):
                     AA124 = fs.open('L_T Allocation ' + str(i) + ' AUG 21.xlsx')
                     LTTW = pd.read_excel(AA124)
                 else:
                     continue
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
                     AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')
                     IDFCTW = pd.read_excel(AA125)
                 else:
                     continue
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/MIS/IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx'):
                     AA126 = fs3.open('IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx')
                     IDFCHL = pd.read_excel(AA126)
                 else:
@@ -9151,7 +9151,7 @@ def MASTER_SALARY_TW(request):
                 F.loc[i, 'PERFORMANCE'] = round(F.loc[i, 'PERFORMANCE'], 2)
                 F.loc[i, 'Additional_Performance'] = round(F.loc[i, 'Additional_Performance'], 2)
 
-            F.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Performance.xlsx',index=False)
+            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Performance.xlsx',index=False)
 
             #
             # FINAL TABLE COPY CREATION
@@ -9510,7 +9510,7 @@ def MASTER_SALARY_TW(request):
             for i in range(0,len(sy)):
                 FINAL_COPY.loc[sy[i],'PER PAID CASE']=0
 
-            FINAL_COPY.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE.xlsx',index=False)
+            FINAL_COPY.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE.xlsx',index=False)
 
             FINAL_COPY1 = pd.DataFrame(FINAL_COPY.groupby(['PRODUCT','FINAL PAID FOS'])['PER PAID CASE'].sum()).reset_index()
 
@@ -9526,20 +9526,20 @@ def MASTER_SALARY_TW(request):
             FINAL_COPY1 = FINAL_COPY1.merge(A, left_on='FINAL PAID FOS', right_on='NAMES', how='left')
             FINAL_COPY1.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'SALARY', 'TYPE_OF_SALARY', 'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1, inplace=True)
 
-            FINAL_COPY1.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT).xlsx', index=False)
+            FINAL_COPY1.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT).xlsx', index=False)
 
             FF = pd.DataFrame(FINAL_COPY[FINAL_COPY['PRODUCT']=='IDFC-TW']).reset_index(drop=True)
             FF1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT']=='IDFC-TW']).reset_index(drop=True)
 
-            FF.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE IDFC-TW.xlsx',index=False)
-            FF1.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) IDFC-TW.xlsx',index=False)
+            FF.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE IDFC-TW.xlsx',index=False)
+            FF1.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) IDFC-TW.xlsx',index=False)
 
 
             FF2 = pd.DataFrame(FINAL_COPY[FINAL_COPY['PRODUCT']=='L&T']).reset_index(drop=True)
             FF3 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT']=='L&T']).reset_index(drop=True)
 
-            FF2.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE L&T.xlsx',index=False)
-            FF3.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) L&T.xlsx',index=False)
+            FF2.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE L&T.xlsx',index=False)
+            FF3.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) L&T.xlsx',index=False)
 
             for i in range(0,len(F['ALLOCATED FOS'])):
                 F.loc[i,'TOTAL_FIX_SALARY']=F.loc[i,'TOTAL_CASES']*100
@@ -9573,15 +9573,15 @@ def MASTER_SALARY_TW(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx',index=False)
+            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx',index=False)
 
             FF4 = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
-            FF4.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx',index=False)
+            FF4.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx',index=False)
 
             FF5 = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
-            FF5.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx',index=False)
+            FF5.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx',index=False)
 
-            if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
+            if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
                 Designation = Employee_Designation()
@@ -9602,7 +9602,7 @@ def MASTER_SALARY_TW(request):
                 AA1233 = fs1233.open('TC Performance L_T.xlsx')
                 F123 = pd.read_excel(AA1233)
 
-            elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+            elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
@@ -9645,7 +9645,7 @@ def MASTER_SALARY_TW(request):
 
                 return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-            elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
+            elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
 
                 fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
                 AA1233 = fs1233.open('TC Performance L_T.xlsx')
@@ -9721,14 +9721,14 @@ def MASTER_SALARY_TW(request):
 
                 return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
             return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Please upload Allocation file for L&T-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -9743,7 +9743,7 @@ def MASTER_SALARY_TW(request):
             return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Upload for both', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
     elif request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -9774,7 +9774,7 @@ def MASTER_SALARY_TW(request):
                 fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
                 AA1233 = fs1233.open('TC Performance L_T.xlsx')
                 F123 = pd.read_excel(AA1233)
-        elif (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -9828,7 +9828,7 @@ def MASTER_SALARY_TW(request):
                 excel_data123.append(row_data22)
 
             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
+        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -9879,7 +9879,7 @@ def MASTER_SALARY_TW(request):
                 excel_data1233.append(row_data223)
 
             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -9916,8 +9916,8 @@ def MASTER_SALARY_TW(request):
                     row_data1.append(str(F.loc[j, C11[col]]))
                 excel_data1.append(row_data1)
             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/MASTER FILE L_T.xlsx')):
-            if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/MASTER FILE L_T.xlsx')):
+            if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
@@ -9941,7 +9941,7 @@ def MASTER_SALARY_TW(request):
                         row_data223.append(str(F123.loc[j, C1233[col1]]))
                     excel_data1233.append(row_data223)
                 return render(request, 'FirstLevel/salary.html', {'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel123': excel_data123, 'columns123': C123, 'Designation': Designation})
-            elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
+            elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
                 fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
                 AA1233 = fs1233.open('TC Performance L_T.xlsx')
                 F123 = pd.read_excel(AA1233)
@@ -9957,7 +9957,7 @@ def MASTER_SALARY_TW(request):
                         row_data223.append(str(F123.loc[j, C1233[col1]]))
                     excel_data1233.append(row_data223)
                 return render(request, 'FirstLevel/salary.html', {'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+            elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
@@ -9979,7 +9979,7 @@ def MASTER_SALARY_TW(request):
 
                 if final_process == 'L&T':
                     if os.path.exists(
-                            r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+                            r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
                         final_dep = DEP()
                         final_process = COMPANY_PROCESS()
                         Designation = Employee_Designation()
@@ -9990,7 +9990,7 @@ def MASTER_SALARY_TW(request):
                         return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
                 elif final_process == 'IDFC':
                     if os.path.exists(
-                            r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+                            r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
                         final_dep = DEP()
                         final_process = COMPANY_PROCESS()
                         Designation = Employee_Designation()
@@ -9999,7 +9999,7 @@ def MASTER_SALARY_TW(request):
                                       {'Salary_Update': 'Please upload Allocation file for L&T-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
                     else:
                         return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -10021,7 +10021,7 @@ def MASTER_SALARY_TW(request):
                         row_data22.append(str(F12.loc[j, C123[col1]]))
                     excel_data123.append(row_data22)
                 return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process,'excel123': excel_data123, 'columns123': C123, 'Designation': Designation})
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -10049,7 +10049,7 @@ def MASTER_SALARY_TW(request):
             Designation = Employee_Designation()
 
             if final_process == 'L&T':
-                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
                     final_dep = DEP()
                     final_process = COMPANY_PROCESS()
                     Designation = Employee_Designation()
@@ -10058,7 +10058,7 @@ def MASTER_SALARY_TW(request):
                 else:
                     return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
             elif final_process == 'IDFC':
-                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
                     final_dep = DEP()
                     final_process = COMPANY_PROCESS()
                     Designation = Employee_Designation()
@@ -10113,7 +10113,7 @@ def MASTER_SALARY_IDFC(request):
     AA1 = pd.DataFrame()
 
     if request.method == 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/MIS/MASTER_FILE_IDFC_HL.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/MASTER FILE L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/MASTER_FILE_IDFC_HL.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
             fs = FileSystemStorage(location='media/L_T/MIS')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/Employees')
@@ -10125,27 +10125,27 @@ def MASTER_SALARY_IDFC(request):
             UNIQUE_NAME=pd.read_excel(UNIQUE_NAME1)
 
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/MIS/IDFC_PAID FILE_'+ str(i) +'AUG21.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/IDFC_PAID FILE_'+ str(i) +'AUG21.xlsx'):
                     A1234 = fs3.open('IDFC_PAID FILE_' + str(i) + 'AUG21.xlsx')
                     PAID_FILE = pd.read_excel(A1234)
 
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/L_T Allocation ' + str(i) + ' AUG 21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T Allocation ' + str(i) + ' AUG 21.xlsx'):
                     AA124 = fs.open('L_T Allocation ' + str(i) + ' AUG 21.xlsx')
                     LTTW = pd.read_excel(AA124)
                 else:
                     continue
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
                     AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')
                     IDFCTW = pd.read_excel(AA125)
                 else:
                     continue
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/MIS/IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx'):
                     AA126 = fs3.open('IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx')
                     IDFCHL = pd.read_excel(AA126)
                 else:
@@ -10496,7 +10496,7 @@ def MASTER_SALARY_IDFC(request):
 
             COMBINED_SALARY.drop(['BOUNCING AMT.','EXTRA INCENTIVE','PENALTY_CHARGES', 'PENALTY_PAYOUT'], axis=1, inplace=True)
 
-            COMBINED_SALARY.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx', index=False)
+            COMBINED_SALARY.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx', index=False)
 
             IDFCHL = MASTER_COUNT[MASTER_COUNT['PROCESS'] == 'IDFC-HL']
 
@@ -10529,7 +10529,7 @@ def MASTER_SALARY_IDFC(request):
                 ['NAMES', 'MANAGEMENT_LEVEL', 'PROCESS', 'DEPARTMENT', 'TYPE_OF_SALARY', 'SALARY', 'END_DATE',
                  'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'DEPARTMENT_ID', 'DATE_OF_BIRTH'], axis=1, inplace=True)
 
-            FINAL_PAYOUT.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx', index=False)
+            FINAL_PAYOUT.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx', index=False)
 
             AA456 = fs3.open('MIS TL-WISE.xlsx')
             AA = pd.read_excel(AA456)
@@ -10570,7 +10570,7 @@ def MASTER_SALARY_IDFC(request):
 
             AA.drop(['NAMES', 'MANAGEMENT_LEVEL', 'PROCESS', 'DEPARTMENT', 'TYPE_OF_SALARY', 'SALARY', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'DEPARTMENT_ID', 'DATE_OF_BIRTH'], axis=1, inplace=True)
 
-            AA.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/FINAL INCENTIVE IDFC-HL(TL).xlsx',
+            AA.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL INCENTIVE IDFC-HL(TL).xlsx',
                         index=False)
         else:
             final_dep = DEP()
@@ -10579,8 +10579,8 @@ def MASTER_SALARY_IDFC(request):
 
             return render(request, 'FirstLevel/salary.html', {'Salary_Update':'Please upload Allocation file for IDFC-TW and L&T-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/MASTER_FILE_IDFC_HL.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/FINAL INCENTIVE IDFC-HL(TL).xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/MASTER_FILE_IDFC_HL.xlsx'):
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL INCENTIVE IDFC-HL(TL).xlsx'):
                 fs = FileSystemStorage(location='media/IDFC_HL/FOS Salary')
                 AA12 = fs.open('FINAL INCENTIVE IDFC-HL(TL).xlsx')
                 AA22 = fs.open('FINAL PAYOUT IDFC-HL.xlsx')
@@ -10635,7 +10635,7 @@ def MASTER_SALARY_FULLERTON(request):
     AA1 = pd.DataFrame()
 
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx'):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
             fs1 = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
             fs2 = FileSystemStorage(location='media/Employees')
@@ -10649,7 +10649,7 @@ def MASTER_SALARY_FULLERTON(request):
             UNIQUE_NAME=pd.read_excel(UNIQUE_NAME1)
 
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/MIS/FULLERTON_RECOVERY_PAID FILE_'+ str(i) +'AUG21.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/MIS/FULLERTON_RECOVERY_PAID FILE_'+ str(i) +'AUG21.xlsx'):
                     A1234 = fs3.open('FULLERTON_RECOVERY_PAID FILE_' + str(i) + 'AUG21.xlsx')
                     B = pd.read_excel(A1234)
 
@@ -10855,7 +10855,7 @@ def MASTER_SALARY_FULLERTON(request):
 
             F['TOTAL_POS'] = round(F['TOTAL_POS'],2)
 
-            F.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx', index=False)
+            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx', index=False)
 
             FINAL_PAYOUT = F.copy()
 
@@ -10867,8 +10867,8 @@ def MASTER_SALARY_FULLERTON(request):
             return render(request, 'FirstLevel/salary.html', {'Salary_Update':'Please upload Allocation file for FULLERTON_RECOVERY', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx'):
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
                 fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
                 AA12 = fs.open('FOS_SALARY_FULLERTON_RECOVERY.xlsx')
                 FINAL_PAYOUT = pd.read_excel(AA12)
@@ -11136,7 +11136,7 @@ def BAJAJ_MIS(request):
         SS1.to_excel(r'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx', index=False)
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx'):
             fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
             AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
             SS1 = pd.read_excel(AA)
@@ -11164,7 +11164,7 @@ def BAJAJ_MIS(request):
 def BAJAJ_BILLING(request):
     excel_data=[]
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx'):
             fs = FileSystemStorage(location='media/BAJAJ-CD/Billing')
             AA = fs.open('BAJAJ PAYOUT.xlsx')
             F1 = pd.read_excel(AA)
@@ -11194,7 +11194,7 @@ def BAJAJ_SALARY(request):
     excel_data=[]
     if request.method != 'POST':
         if os.path.exists(
-                r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx'):
+                r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx'):
             fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
             AA = fs.open('BAJAJ TC-WISE MIS.xlsx')
             FINAL_COPY1 = pd.read_excel(AA)
@@ -11223,10 +11223,10 @@ def IDFC_TW_SALARY_TC(request):
     a = 0
 
     if request.method == 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        '/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
                     fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
                     AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
@@ -11497,7 +11497,7 @@ def IDFC_TW_SALARY_TC(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx',
+            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx',
                        index=False)
 
             F12 = F.copy()
@@ -11535,9 +11535,9 @@ def IDFC_TW_SALARY_TC(request):
             Designation = Employee_Designation()
             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
                     fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
                     AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
@@ -11847,13 +11847,13 @@ def IDFC_TW_SALARY_TC(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx', index=False)
+            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx', index=False)
 
             F12 = F.copy()
 
 
     elif request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
@@ -11863,7 +11863,7 @@ def IDFC_TW_SALARY_TC(request):
             AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
             F12 = pd.read_excel(AA123)
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
@@ -11916,10 +11916,10 @@ def L_T_TW_SALARY_TC(request):
     a = 0
 
     if request.method == 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/MASTER FILE L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
 
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
                     fs1 = FileSystemStorage(location='media/L_T/MIS')
                     AA122 = fs1.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
                     PAID_FILE_L_T = pd.read_excel(AA122)
@@ -12074,7 +12074,7 @@ def L_T_TW_SALARY_TC(request):
                              'TYPE_OF_SALARY', 'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1,
                             inplace=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx', index=False)
+            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx', index=False)
 
             F12 = F.copy()
 
@@ -12111,9 +12111,9 @@ def L_T_TW_SALARY_TC(request):
             Designation = Employee_Designation()
             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel12334': excel_data12334, 'columns12334': C12334, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
                     fs1 = FileSystemStorage(location='media/L_T/MIS')
                     AA122 = fs1.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
                     PAID_FILE_L_T = pd.read_excel(AA122)
@@ -12270,14 +12270,14 @@ def L_T_TW_SALARY_TC(request):
                     'TYPE_OF_SALARY', 'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1,
                    inplace=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx',
+            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx',
                        index=False)
 
             F12 = F.copy()
 
 
     elif request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
@@ -12287,7 +12287,7 @@ def L_T_TW_SALARY_TC(request):
             AA123 = fs123.open('TC Performance L_T.xlsx')
             F12 = pd.read_excel(AA123)
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             AA = fs.open('PER PAID CASE(PIVOT L&T.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
@@ -12341,7 +12341,7 @@ def IDFC_TW_TL_ANALYSIS(request):
     a = 0
 
     if request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12378,7 +12378,7 @@ def IDFC_TW_TL_ANALYSIS(request):
                     row_data2.append(str(AA2.loc[j, C2[col1]]))
                 excel_data2.append(row_data2)
 
-        elif (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12422,7 +12422,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html',{'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel': excel_data, 'columns': C
 
-        elif (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12466,7 +12466,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html',{'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel2': excel_data2, 'columns2': C2
 
-        elif (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12510,7 +12510,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html',{'excel': excel_data, 'columns': C, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel1': excel_data1, 'columns1': C1
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12554,7 +12554,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12598,7 +12598,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html',{'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1,
 
-        elif os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12670,8 +12670,8 @@ def IDFC_TW_EMPLOYEES(request):
     Designation = Employee_Designation()
     excel_data=[]
 
-    if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees/Employee_Database.xlsx'):
-        fs = FileSystemStorage(location='/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees')
+    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+        fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
 
@@ -12701,8 +12701,8 @@ def BAJAJ_CD_EMPLOYEES(request):
     Designation = Employee_Designation()
     excel_data=[]
 
-    if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees/Employee_Database.xlsx'):
-        fs = FileSystemStorage(location='/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees')
+    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+        fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
 
@@ -12732,8 +12732,8 @@ def IDFC_HL_EMPLOYEES(request):
     Designation = Employee_Designation()
     excel_data=[]
 
-    if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees/Employee_Database.xlsx'):
-        fs = FileSystemStorage(location='/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees')
+    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+        fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
 
@@ -12763,8 +12763,8 @@ def FULLERTON_RECOVERY_EMPLOYEES(request):
     Designation = Employee_Designation()
     excel_data=[]
 
-    if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees/Employee_Database.xlsx'):
-        fs = FileSystemStorage(location='/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees')
+    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+        fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
 
@@ -12794,14 +12794,14 @@ def IDFC_TW_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'):
-                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_TW/Billing/BKT_Billing_IDFC_TW.xlsx'):
-                    if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees/Employee_Database.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'):
+                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/Billing/BKT_Billing_IDFC_TW.xlsx'):
+                    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
                         fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                         fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                         fs2 = FileSystemStorage(location='media/IDFC_TW/Billing')
-                        fs3 = FileSystemStorage(location='/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees')
+                        fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
 
                         AA = fs.open('IDFC_TW TC Incentive.xlsx')
                         AA2 = fs1.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
@@ -12846,12 +12846,12 @@ def FULLERTON_RECOVERY_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
-                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees/Employee_Database.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
+                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
                     fs1 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
                     fs2 = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
-                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees')
+                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
 
                     AA1 = fs1.open('FOS_SALARY_FULLERTON_RECOVERY.xlsx')
                     AA2 = fs2.open('PAYOUT_FULLERTON_RECOVERY.xlsx')
@@ -12885,12 +12885,12 @@ def BAJAJ_CD_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx'):
-                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees/Employee_Database.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx'):
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx'):
+                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
                     fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
                     fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
-                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees')
+                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
 
                     AA1 = fs.open('BAJAJ TC-WISE MIS.xlsx')
                     AA2 = fs2.open('BAJAJ PAYOUT.xlsx')
@@ -12923,12 +12923,12 @@ def IDFC_HL_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/IDFC_HL/Billing/BKT_Billing_IDFC_HL.xlsx'):
-                if os.path.exists(r'/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees/Employee_Database.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx'):
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/Billing/BKT_Billing_IDFC_HL.xlsx'):
+                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
                     fs1 = FileSystemStorage(location='media/IDFC_HL/FOS Salary')
                     fs2 = FileSystemStorage(location='media/IDFC_HL/Billing')
-                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Essencia/EssenciaWebsite/media/Employees')
+                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
 
                     AA1 = fs1.open('FINAL PAYOUT IDFC-HL.xlsx')
                     AA2 = fs2.open('BKT_Billing_IDFC_HL.xlsx')
