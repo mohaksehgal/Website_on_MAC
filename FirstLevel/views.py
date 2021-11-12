@@ -11193,8 +11193,7 @@ def BAJAJ_BILLING(request):
 def BAJAJ_SALARY(request):
     excel_data=[]
     if request.method != 'POST':
-        if os.path.exists(
-                r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx'):
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx'):
             fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
             AA = fs.open('BAJAJ TC-WISE MIS.xlsx')
             FINAL_COPY1 = pd.read_excel(AA)
