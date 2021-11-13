@@ -8837,7 +8837,7 @@ def FULLERTON_RECOVERY_MIS(request):
         A.to_excel('media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx', index=False)
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx')):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/MIS')
             AA = fs.open('MIS_FULLERTON_RECOVERY.xlsx')
             F1 = pd.read_excel(AA)
