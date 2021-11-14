@@ -8914,78 +8914,76 @@ def MASTER_SALARY_TW(request):
     a=0
 
     if request.method == 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx')):
-
-            fs = FileSystemStorage(location='media/L_T/MIS')
+        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+            # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'))
+            # fs = FileSystemStorage(location='media/L_T/MIS')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/Employees')
-            fs3 = FileSystemStorage(location='media/IDFC_HL/MIS')
-            AA = fs.open('MASTER FILE L_T.xlsx')
+            # fs3 = FileSystemStorage(location='media/IDFC_HL/MIS')
+            # AA = fs.open('MASTER FILE L_T.xlsx')
             AA1 = fs1.open('MASTER FILE IDFC_TW.xlsx')
             E = fs2.open('Employee_Database.xlsx')
             for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
                     AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
                     continue
+            # for i in range(31, 0, -1):
+            #     if os.path.exists(
+            #             '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+            #         AA123 = fs.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
+            #         PAID_FILE_L_T = pd.read_excel(AA123)
+            #     else:
+            #         continue
+            # for i in range(31, 0, -1):
+            #     if os.path.exists(
+            #             '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T Allocation ' + str(i) + ' AUG 21.xlsx'):
+            #         AA124 = fs.open('L_T Allocation ' + str(i) + ' AUG 21.xlsx')
+            #         LTTW = pd.read_excel(AA124)
+            #     else:
+            #         continue
             for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
-                    AA123 = fs.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
-                    PAID_FILE_L_T = pd.read_excel(AA123)
-                else:
-                    continue
-            for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T Allocation ' + str(i) + ' AUG 21.xlsx'):
-                    AA124 = fs.open('L_T Allocation ' + str(i) + ' AUG 21.xlsx')
-                    LTTW = pd.read_excel(AA124)
-                else:
-                    continue
-            for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
                     AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')
                     IDFCTW = pd.read_excel(AA125)
                 else:
                     continue
-            for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx'):
-                    AA126 = fs3.open('IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx')
-                    IDFCHL = pd.read_excel(AA126)
-                else:
-                    continue
-            MASTER_FILE_L_T = pd.read_excel(AA)
+            # for i in range(31, 0, -1):
+            #     if os.path.exists(
+            #             '/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx'):
+            #         AA126 = fs3.open('IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx')
+            #         IDFCHL = pd.read_excel(AA126)
+            #     else:
+            #         continue
+            # MASTER_FILE_L_T = pd.read_excel(AA)
             MASTER_FILE_IDFC_TW = pd.read_excel(AA1)
             A = pd.read_excel(E)
 
-            print('LT FILE')
-            print(LTTW.head(10))
+            # print('LT FILE')
+            # print(LTTW.head(10))
             print('IDFC TW FILE')
             print(IDFCTW.head(10))
-            print('IDFC HL FILE')
-            print(IDFCHL.head(10))
+            # print('IDFC HL FILE')
+            # print(IDFCHL.head(10))
             print('PAID FILE IDFC_TW')
             print(PAID_FILE_IDFC_TW.head(10))
-            print('PDIA FILE L_T')
-            print(PAID_FILE_L_T.head(10))
+            # print('PDIA FILE L_T')
+            # print(PAID_FILE_L_T.head(10))
 
 
-            LTTW.drop('TOTAL COLLECTABLE', axis=1, inplace=True)
+            # LTTW.drop('TOTAL COLLECTABLE', axis=1, inplace=True)
 
-            MASTER = pd.concat([IDFCHL, LTTW])
-            MASTER = pd.concat([MASTER, IDFCTW])
+            # MASTER = pd.concat([IDFCHL, LTTW])
+            MASTER = IDFCTW
             MASTER = MASTER.reset_index(drop=True)
 
             for i in range(0, len(MASTER['COMPANY'])):
-                if (MASTER.loc[i, 'COMPANY'] == 'HFC') or (MASTER.loc[i, 'COMPANY'] == 'SUVIDHA'):
-                    MASTER.loc[i, 'PROCESS'] = 'IDFC-HL'
-                elif MASTER.loc[i, 'COMPANY'] == 'L&T':
-                    MASTER.loc[i, 'PROCESS'] = 'TW'
-                elif MASTER.loc[i, 'COMPANY'] == 'IDFC - TW':
+                # if (MASTER.loc[i, 'COMPANY'] == 'HFC') or (MASTER.loc[i, 'COMPANY'] == 'SUVIDHA'):
+                #     MASTER.loc[i, 'PROCESS'] = 'IDFC-HL'
+                # elif MASTER.loc[i, 'COMPANY'] == 'L&T':
+                #     MASTER.loc[i, 'PROCESS'] = 'TW'
+                if MASTER.loc[i, 'COMPANY'] == 'IDFC - TW':
                     MASTER.loc[i, 'PROCESS'] = 'TW'
 
             MASTER_COUNT = pd.DataFrame(MASTER.groupby(['PROCESS', 'FOS'])['AGREEMENTID'].count()).reset_index()
@@ -9001,20 +8999,23 @@ def MASTER_SALARY_TW(request):
 
 
             PAID_FILE_IDFC_TW.drop(['DATE','BOUNCING AMT.','AGAINST'],axis=1,inplace=True)
-            PAID_FILE_L_T.drop(['DATE','BOUNCING AMT.','AGAINST'],axis=1,inplace=True)
+            # PAID_FILE_L_T.drop(['DATE','BOUNCING AMT.','AGAINST'],axis=1,inplace=True)
 
             MASTER_FILE_IDFC_TW.drop(['COMPANY','LAST MONTH','MOB','LOAN TYPE','BOUNCING REASONS','EMI CYCLE','TOTAL PAID','MOB','LOAN_AMT','ADDITIONAL NUMBER'],axis=1,inplace=True)
 
-            MASTER_FILE_L_T.drop(['BOUNCING REASONS','EMI CYCLE','LOAN AMT','ADDITIONAL NUMBER','TOTAL PAID','TOTAL COLLECTABLE','LAST MONTH','COMPANY','MOB'],axis=1,inplace=True)
+            # MASTER_FILE_L_T.drop(['BOUNCING REASONS','EMI CYCLE','LOAN AMT','ADDITIONAL NUMBER','TOTAL PAID','TOTAL COLLECTABLE','LAST MONTH','COMPANY','MOB'],axis=1,inplace=True)
 
             MASTER_FILE_IDFC_TW['PRODUCT']='IDFC-TW'
-            MASTER_FILE_L_T['PRODUCT']='L&T'
+            # MASTER_FILE_L_T['PRODUCT']='L&T'
 
-            MASTER_FILE=pd.concat([MASTER_FILE_IDFC_TW,MASTER_FILE_L_T])
+            # MASTER_FILE=pd.concat([MASTER_FILE_IDFC_TW,MASTER_FILE_L_T])
+            MASTER_FILE = MASTER_FILE_IDFC_TW
 
             MASTER_FILE=MASTER_FILE.reset_index(drop=True)
 
-            MASTER_PAID_FILE=pd.concat([PAID_FILE_IDFC_TW,PAID_FILE_L_T])
+            # MASTER_PAID_FILE=pd.concat([PAID_FILE_IDFC_TW,PAID_FILE_L_T])
+
+            MASTER_PAID_FILE = PAID_FILE_IDFC_TW
 
             MASTER_PAID_FILE=MASTER_PAID_FILE.reset_index(drop=True)
 
@@ -9174,8 +9175,7 @@ def MASTER_SALARY_TW(request):
 
             FINAL_COPY=FINAL_COPY.merge(A,left_on='FINAL PAID FOS',right_on='NAMES',how='left')
 
-            FINAL_COPY.drop(['DEPARTMENT_ID','END_DATE','HIRE_DATE','PHONE_NUMBER','LOCATION_ID','SALARY',
-                             'TYPE_OF_SALARY','MANAGEMENT_LEVEL','NAMES', 'DATE_OF_BIRTH'],axis=1,inplace=True)
+            FINAL_COPY.drop(['DEPARTMENT_ID','END_DATE','HIRE_DATE','PHONE_NUMBER','LOCATION_ID','SALARY','TYPE_OF_SALARY','MANAGEMENT_LEVEL','NAMES', 'DATE_OF_BIRTH'],axis=1,inplace=True)
 
             pick_up_case=[]
             for i in range(0,len(FINAL_COPY['AGREEMENTID'])):
@@ -9202,10 +9202,10 @@ def MASTER_SALARY_TW(request):
                 if FINAL_COPY.loc[i,'PER PAID CASE'] not in l6:
                     blank4.append(i)
 
-            HL = MASTER_COUNT[MASTER_COUNT['PROCESS'] == 'IDFC-HL']
+            # HL = MASTER_COUNT[MASTER_COUNT['PROCESS'] == 'IDFC-HL']
             TW = MASTER_COUNT[MASTER_COUNT['PROCESS'] == 'TW']
 
-            HL=HL.reset_index(drop=True)
+            # HL=HL.reset_index(drop=True)
 
             TW=TW.reset_index(drop=True)
 
@@ -9535,11 +9535,11 @@ def MASTER_SALARY_TW(request):
             FF1.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) IDFC-TW.xlsx',index=False)
 
 
-            FF2 = pd.DataFrame(FINAL_COPY[FINAL_COPY['PRODUCT']=='L&T']).reset_index(drop=True)
-            FF3 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT']=='L&T']).reset_index(drop=True)
-
-            FF2.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE L&T.xlsx',index=False)
-            FF3.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) L&T.xlsx',index=False)
+            # FF2 = pd.DataFrame(FINAL_COPY[FINAL_COPY['PRODUCT']=='L&T']).reset_index(drop=True)
+            # FF3 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT']=='L&T']).reset_index(drop=True)
+            #
+            # FF2.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE L&T.xlsx',index=False)
+            # FF3.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) L&T.xlsx',index=False)
 
             for i in range(0,len(F['ALLOCATED FOS'])):
                 F.loc[i,'TOTAL_FIX_SALARY']=F.loc[i,'TOTAL_CASES']*100
@@ -9578,10 +9578,11 @@ def MASTER_SALARY_TW(request):
             FF4 = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
             FF4.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx',index=False)
 
-            FF5 = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
-            FF5.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx',index=False)
+            # FF5 = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
+            # FF5.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx',index=False)
 
-            if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+            # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
                 Designation = Employee_Designation()
@@ -9590,17 +9591,17 @@ def MASTER_SALARY_TW(request):
                     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
                     F = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
 
-                elif (final_dep == 'TW') and (final_process == 'L&T'):
-                    FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
-                    F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
+                # elif (final_dep == 'TW') and (final_process == 'L&T'):
+                #     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
+                #     F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
 
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
 
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
+                # fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+                # AA1233 = fs1233.open('TC Performance L_T.xlsx')
+                # F123 = pd.read_excel(AA1233)
 
             elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -9613,9 +9614,9 @@ def MASTER_SALARY_TW(request):
                     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
                     F = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
 
-                elif (final_dep == 'TW') and (final_process == 'L&T'):
-                    FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
-                    F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
+                # elif (final_dep == 'TW') and (final_process == 'L&T'):
+                #     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
+                #     F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
 
                 C = list(FINAL_COPY1.columns)  # FOS_Incentive
                 C11 = list(F.columns)  # FOS_Fixed
@@ -9647,9 +9648,9 @@ def MASTER_SALARY_TW(request):
 
             elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
 
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
+                # fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+                # AA1233 = fs1233.open('TC Performance L_T.xlsx')
+                # F123 = pd.read_excel(AA1233)
 
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
@@ -9657,13 +9658,13 @@ def MASTER_SALARY_TW(request):
                     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
                     F = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
 
-                elif (final_dep == 'TW') and (final_process == 'L&T'):
-                    FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
-                    F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
+                # elif (final_dep == 'TW') and (final_process == 'L&T'):
+                #     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
+                #     F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
 
                 C = list(FINAL_COPY1.columns)  # FOS_Incentive
                 C11 = list(F.columns)  # FOS_Fixed
-                C1233 = list(F123.columns)  # L_T-TC_Incentive
+                # C1233 = list(F123.columns)  # L_T-TC_Incentive
 
                 for j in range(0, len(FINAL_COPY1[C[0]])):
                     row_data = list()
@@ -9677,17 +9678,18 @@ def MASTER_SALARY_TW(request):
                         row_data1.append(str(F.loc[j, C11[col]]))
                     excel_data1.append(row_data1)
 
-                for j in range(0, len(F123[C1233[0]])):
-                    row_data223 = list()
-                    for col1 in range(0, len(C1233)):
-                        row_data223.append(str(F123.loc[j, C1233[col1]]))
-                    excel_data1233.append(row_data223)
+                # for j in range(0, len(F123[C1233[0]])):
+                #     row_data223 = list()
+                #     for col1 in range(0, len(C1233)):
+                #         row_data223.append(str(F123.loc[j, C1233[col1]]))
+                #     excel_data1233.append(row_data223)
 
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
                 Designation = Employee_Designation()
 
-                return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+                return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            # 'columns1233': C1233
 
             else:
                 final_dep = DEP()
@@ -9696,9 +9698,9 @@ def MASTER_SALARY_TW(request):
                     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
                     F = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
 
-                elif (final_dep == 'TW') and (final_process == 'L&T'):
-                    FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
-                    F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
+                # elif (final_dep == 'TW') and (final_process == 'L&T'):
+                #     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
+                #     F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
 
                 C = list(FINAL_COPY1.columns)  # FOS_Incentive
                 C11 = list(F.columns)  # FOS_Fixed
@@ -9728,12 +9730,12 @@ def MASTER_SALARY_TW(request):
 
             return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Please upload Allocation file for L&T-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-
-            return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Please upload Allocation file for IDFC-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+        # elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+        #     final_dep = DEP()
+        #     final_process = COMPANY_PROCESS()
+        #     Designation = Employee_Designation()
+        #
+        #     return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Please upload Allocation file for IDFC-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
         else:
             final_dep = DEP()
@@ -9743,7 +9745,8 @@ def MASTER_SALARY_TW(request):
             return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Upload for both', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
     elif request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
+        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+            # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -9757,128 +9760,128 @@ def MASTER_SALARY_TW(request):
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
+                # fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+                # AA1233 = fs1233.open('TC Performance L_T.xlsx')
+                # F123 = pd.read_excel(AA1233)
 
 
-            elif (final_dep == 'TW') and (final_process == 'L&T'):
-                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-                AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
-                AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
-                FINAL_COPY1 = pd.read_excel(AA)
-                F = pd.read_excel(AA2)
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
-                AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
-                F12 = pd.read_excel(AA123)
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
-        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-
-            if (final_dep == 'TW') and (final_process == 'IDFC'):
-                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-                AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
-                AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
-                FINAL_COPY1 = pd.read_excel(AA)
-                F = pd.read_excel(AA2)
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
-                AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
-                F12 = pd.read_excel(AA123)
-
-            elif (final_dep == 'TW') and (final_process == 'L&T'):
-                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-                AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
-                AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
-                FINAL_COPY1 = pd.read_excel(AA)
-                F = pd.read_excel(AA2)
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
-                AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
-
-            F12 = pd.read_excel(AA123)
-            C = list(FINAL_COPY1.columns)  # FOS_Incentive
-            C11 = list(F.columns)  # FOS_Fixed
-            C123 = list(F12.columns)  # IDFC-TC_Incentive
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-
-            print(final_dep)
-            print(final_process)
-
-            for j in range(0, len(FINAL_COPY1[C[0]])):
-                row_data = list()
-                for col in range(0, len(C)):
-                    row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
-                excel_data.append(row_data)
-
-            for j in range(0, len(F[C11[0]])):
-                row_data1 = list()
-                for col in range(0, len(C11)):
-                    row_data1.append(str(F.loc[j, C11[col]]))
-                excel_data1.append(row_data1)
-
-            for j in range(0, len(F12[C123[0]])):
-                row_data22 = list()
-                for col1 in range(0, len(C123)):
-                    row_data22.append(str(F12.loc[j, C123[col1]]))
-                excel_data123.append(row_data22)
-
-            return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-
-            if (final_dep == 'TW') and (final_process == 'IDFC'):
-                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-                AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
-                AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
-                FINAL_COPY1 = pd.read_excel(AA)
-                F = pd.read_excel(AA2)
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
-
-            elif (final_dep == 'TW') and (final_process == 'L&T'):
-                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-                AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
-                AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
-                FINAL_COPY1 = pd.read_excel(AA)
-                F = pd.read_excel(AA2)
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
-
-            C = list(FINAL_COPY1.columns)  # FOS_Incentive
-            C11 = list(F.columns)  # FOS_Fixed
-            C1233 = list(F123.columns)  # L_T-TC_Incentive
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-
-            for j in range(0, len(FINAL_COPY1[C[0]])):
-                row_data = list()
-                for col in range(0, len(C)):
-                    row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
-                excel_data.append(row_data)
-
-            for j in range(0, len(F[C11[0]])):
-                row_data1 = list()
-                for col in range(0, len(C11)):
-                    row_data1.append(str(F.loc[j, C11[col]]))
-                excel_data1.append(row_data1)
-
-            for j in range(0, len(F123[C1233[0]])):
-                row_data223 = list()
-                for col1 in range(0, len(C1233)):
-                    row_data223.append(str(F123.loc[j, C1233[col1]]))
-                excel_data1233.append(row_data223)
-
-            return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            # elif (final_dep == 'TW') and (final_process == 'L&T'):
+            #     fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+            #     AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
+            #     AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+            #     FINAL_COPY1 = pd.read_excel(AA)
+            #     F = pd.read_excel(AA2)
+            #     fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            #     AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
+            #     F12 = pd.read_excel(AA123)
+            #     fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+            #     AA1233 = fs1233.open('TC Performance L_T.xlsx')
+            #     F123 = pd.read_excel(AA1233)
+        # elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        #     final_dep = DEP()
+        #     final_process = COMPANY_PROCESS()
+        #     Designation = Employee_Designation()
+        #
+        #     if (final_dep == 'TW') and (final_process == 'IDFC'):
+        #         fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+        #         AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
+        #         AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
+        #         FINAL_COPY1 = pd.read_excel(AA)
+        #         F = pd.read_excel(AA2)
+        #         fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+        #         AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
+        #         F12 = pd.read_excel(AA123)
+        #
+        #     elif (final_dep == 'TW') and (final_process == 'L&T'):
+        #         fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+        #         AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
+        #         AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+        #         FINAL_COPY1 = pd.read_excel(AA)
+        #         F = pd.read_excel(AA2)
+        #         fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+        #         AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
+        #
+        #     F12 = pd.read_excel(AA123)
+        #     C = list(FINAL_COPY1.columns)  # FOS_Incentive
+        #     C11 = list(F.columns)  # FOS_Fixed
+        #     C123 = list(F12.columns)  # IDFC-TC_Incentive
+        #     final_dep = DEP()
+        #     final_process = COMPANY_PROCESS()
+        #     Designation = Employee_Designation()
+        #
+        #     print(final_dep)
+        #     print(final_process)
+        #
+        #     for j in range(0, len(FINAL_COPY1[C[0]])):
+        #         row_data = list()
+        #         for col in range(0, len(C)):
+        #             row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
+        #         excel_data.append(row_data)
+        #
+        #     for j in range(0, len(F[C11[0]])):
+        #         row_data1 = list()
+        #         for col in range(0, len(C11)):
+        #             row_data1.append(str(F.loc[j, C11[col]]))
+        #         excel_data1.append(row_data1)
+        #
+        #     for j in range(0, len(F12[C123[0]])):
+        #         row_data22 = list()
+        #         for col1 in range(0, len(C123)):
+        #             row_data22.append(str(F12.loc[j, C123[col1]]))
+        #         excel_data123.append(row_data22)
+        #
+        #     return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+        # elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
+        #     final_dep = DEP()
+        #     final_process = COMPANY_PROCESS()
+        #     Designation = Employee_Designation()
+        #
+        #     if (final_dep == 'TW') and (final_process == 'IDFC'):
+        #         fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+        #         AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
+        #         AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
+        #         FINAL_COPY1 = pd.read_excel(AA)
+        #         F = pd.read_excel(AA2)
+        #         fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+        #         AA1233 = fs1233.open('TC Performance L_T.xlsx')
+        #         F123 = pd.read_excel(AA1233)
+        #
+        #     elif (final_dep == 'TW') and (final_process == 'L&T'):
+        #         fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+        #         AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
+        #         AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+        #         FINAL_COPY1 = pd.read_excel(AA)
+        #         F = pd.read_excel(AA2)
+        #         fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+        #         AA1233 = fs1233.open('TC Performance L_T.xlsx')
+        #         F123 = pd.read_excel(AA1233)
+        #
+        #     C = list(FINAL_COPY1.columns)  # FOS_Incentive
+        #     C11 = list(F.columns)  # FOS_Fixed
+        #     C1233 = list(F123.columns)  # L_T-TC_Incentive
+        #     final_dep = DEP()
+        #     final_process = COMPANY_PROCESS()
+        #     Designation = Employee_Designation()
+        #
+        #     for j in range(0, len(FINAL_COPY1[C[0]])):
+        #         row_data = list()
+        #         for col in range(0, len(C)):
+        #             row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
+        #         excel_data.append(row_data)
+        #
+        #     for j in range(0, len(F[C11[0]])):
+        #         row_data1 = list()
+        #         for col in range(0, len(C11)):
+        #             row_data1.append(str(F.loc[j, C11[col]]))
+        #         excel_data1.append(row_data1)
+        #
+        #     for j in range(0, len(F123[C1233[0]])):
+        #         row_data223 = list()
+        #         for col1 in range(0, len(C1233)):
+        #             row_data223.append(str(F123.loc[j, C1233[col1]]))
+        #         excel_data1233.append(row_data223)
+        #
+        #     return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
         elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
@@ -9891,12 +9894,12 @@ def MASTER_SALARY_TW(request):
                 FINAL_COPY1 = pd.read_excel(AA)
                 F = pd.read_excel(AA2)
 
-            elif (final_dep == 'TW') and (final_process == 'L&T'):
-                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-                AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
-                AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
-                FINAL_COPY1 = pd.read_excel(AA)
-                F = pd.read_excel(AA2)
+            # elif (final_dep == 'TW') and (final_process == 'L&T'):
+            #     fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+            #     AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
+            #     AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+            #     FINAL_COPY1 = pd.read_excel(AA)
+            #     F = pd.read_excel(AA2)
 
             C = list(FINAL_COPY1.columns)  # FOS_Incentive
             C11 = list(F.columns)  # FOS_FixedC = list(FINAL_COPY1.columns)#FOS_Incentive
@@ -9916,8 +9919,10 @@ def MASTER_SALARY_TW(request):
                     row_data1.append(str(F.loc[j, C11[col]]))
                 excel_data1.append(row_data1)
             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/MASTER FILE L_T.xlsx')):
-            if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx'):
+            # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/MASTER FILE L_T.xlsx'))
+            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+                # (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
@@ -9927,76 +9932,75 @@ def MASTER_SALARY_TW(request):
                     for col1 in range(0, len(C123)):
                         row_data22.append(str(F12.loc[j, C123[col1]]))
                     excel_data123.append(row_data22)
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
+                # fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+                # AA1233 = fs1233.open('TC Performance L_T.xlsx')
+                # F123 = pd.read_excel(AA1233)
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
                 Designation = Employee_Designation()
 
-                C1233 = list(F123.columns)  # L_T-TC_Incentive
-                for j in range(0, len(F123[C1233[0]])):
-                    row_data223 = list()
-                    for col1 in range(0, len(C1233)):
-                        row_data223.append(str(F123.loc[j, C1233[col1]]))
-                    excel_data1233.append(row_data223)
-                return render(request, 'FirstLevel/salary.html', {'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel123': excel_data123, 'columns123': C123, 'Designation': Designation})
-            elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                C1233 = list(F123.columns)  # L_T-TC_Incentive
-
-                for j in range(0, len(F123[C1233[0]])):
-                    row_data223 = list()
-                    for col1 in range(0, len(C1233)):
-                        row_data223.append(str(F123.loc[j, C1233[col1]]))
-                    excel_data1233.append(row_data223)
-                return render(request, 'FirstLevel/salary.html', {'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
-                AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
-                F12 = pd.read_excel(AA123)
-                C123 = list(F12.columns)  # TC_Incentive
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                for j in range(0, len(F12[C123[0]])):
-                    row_data22 = list()
-                    for col1 in range(0, len(C123)):
-                        row_data22.append(str(F12.loc[j, C123[col1]]))
-                    excel_data123.append(row_data22)
-                return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel123': excel_data123, 'columns123': C123, 'Designation': Designation})
+                # C1233 = list(F123.columns)  # L_T-TC_Incentive
+                # for j in range(0, len(F123[C1233[0]])):
+                #     row_data223 = list()
+                #     for col1 in range(0, len(C1233)):
+                #         row_data223.append(str(F123.loc[j, C1233[col1]]))
+                #     excel_data1233.append(row_data223)
+                return render(request, 'FirstLevel/salary.html', {'excel1233': excel_data1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel123': excel_data123, 'columns123': C123, 'Designation': Designation})
+            # 'columns1233': C1233
+            # elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
+            #     fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+            #     AA1233 = fs1233.open('TC Performance L_T.xlsx')
+            #     F123 = pd.read_excel(AA1233)
+            #     final_dep = DEP()
+            #     final_process = COMPANY_PROCESS()
+            #     Designation = Employee_Designation()
+            #
+            #     C1233 = list(F123.columns)  # L_T-TC_Incentive
+            #
+            #     for j in range(0, len(F123[C1233[0]])):
+            #         row_data223 = list()
+            #         for col1 in range(0, len(C1233)):
+            #             row_data223.append(str(F123.loc[j, C1233[col1]]))
+            #         excel_data1233.append(row_data223)
+            #     return render(request, 'FirstLevel/salary.html', {'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            # elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+            #     fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            #     AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
+            #     F12 = pd.read_excel(AA123)
+            #     C123 = list(F12.columns)  # TC_Incentive
+            #     final_dep = DEP()
+            #     final_process = COMPANY_PROCESS()
+            #     Designation = Employee_Designation()
+            #
+            #     for j in range(0, len(F12[C123[0]])):
+            #         row_data22 = list()
+            #         for col1 in range(0, len(C123)):
+            #             row_data22.append(str(F12.loc[j, C123[col1]]))
+            #         excel_data123.append(row_data22)
+            #     return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel123': excel_data123, 'columns123': C123, 'Designation': Designation})
             else:
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
                 Designation = Employee_Designation()
 
-                if final_process == 'L&T':
-                    if os.path.exists(
-                            r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+                # if final_process == 'L&T':
+                #     if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+                #         final_dep = DEP()
+                #         final_process = COMPANY_PROCESS()
+                #         Designation = Employee_Designation()
+                #
+                #         return render(request, 'FirstLevel/salary.html',
+                #                       {'Salary_Update': 'Please click on salaries button for updated salaries', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+                #     else:
+                #         return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
+                if final_process == 'IDFC':
+                    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
                         final_dep = DEP()
                         final_process = COMPANY_PROCESS()
                         Designation = Employee_Designation()
 
                         return render(request, 'FirstLevel/salary.html',
-                                      {'Salary_Update': 'Please click on salaries button for updated salaries', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-                    else:
-                        return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
-                elif final_process == 'IDFC':
-                    if os.path.exists(
-                            r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
-                        final_dep = DEP()
-                        final_process = COMPANY_PROCESS()
-                        Designation = Employee_Designation()
-
-                        return render(request, 'FirstLevel/salary.html',
-                                      {'Salary_Update': 'Please upload Allocation file for L&T-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+                                      {'Salary_Update': 'Please refresh Salary data for TC & FOS', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
                     else:
                         return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
         elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
@@ -10004,73 +10008,73 @@ def MASTER_SALARY_TW(request):
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
-            if (final_process == 'L&T') and (final_dep == 'TW'):
-                return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
-            else:
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
-                AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
-                F12 = pd.read_excel(AA123)
-                C123 = list(F12.columns)  # TC_Incentive
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                for j in range(0, len(F12[C123[0]])):
-                    row_data22 = list()
-                    for col1 in range(0, len(C123)):
-                        row_data22.append(str(F12.loc[j, C123[col1]]))
-                    excel_data123.append(row_data22)
-                return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process,'excel123': excel_data123, 'columns123': C123, 'Designation': Designation})
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
+            # if (final_process == 'L&T') and (final_dep == 'TW'):
+            #     return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
+            # else:
+            fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
+            F12 = pd.read_excel(AA123)
+            C123 = list(F12.columns)  # TC_Incentive
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
-            if (final_process == 'IDFC') and (final_dep == 'TW'):
-                return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
-            else:
-                fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                F123 = pd.read_excel(AA1233)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                C1233 = list(F123.columns)  # L_T-TC_Incentive
-
-                for j in range(0, len(F123[C1233[0]])):
-                    row_data223 = list()
-                    for col1 in range(0, len(C1233)):
-                        row_data223.append(str(F123.loc[j, C1233[col1]]))
-                    excel_data1233.append(row_data223)
-                return render(request, 'FirstLevel/salary.html', {'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            for j in range(0, len(F12[C123[0]])):
+                row_data22 = list()
+                for col1 in range(0, len(C123)):
+                    row_data22.append(str(F12.loc[j, C123[col1]]))
+                excel_data123.append(row_data22)
+            return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process,'excel123': excel_data123, 'columns123': C123, 'Designation': Designation})
+        # elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
+        #     final_dep = DEP()
+        #     final_process = COMPANY_PROCESS()
+        #     Designation = Employee_Designation()
+        #
+        #     if (final_process == 'IDFC') and (final_dep == 'TW'):
+        #         return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
+        #     else:
+        #         fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+        #         AA1233 = fs1233.open('TC Performance L_T.xlsx')
+        #         F123 = pd.read_excel(AA1233)
+        #         final_dep = DEP()
+        #         final_process = COMPANY_PROCESS()
+        #         Designation = Employee_Designation()
+        #         C1233 = list(F123.columns)  # L_T-TC_Incentive
+        #
+        #         for j in range(0, len(F123[C1233[0]])):
+        #             row_data223 = list()
+        #             for col1 in range(0, len(C1233)):
+        #                 row_data223.append(str(F123.loc[j, C1233[col1]]))
+        #             excel_data1233.append(row_data223)
+        #         return render(request, 'FirstLevel/salary.html', {'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
         else:
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
-            if final_process == 'L&T':
-                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
-                    final_dep = DEP()
-                    final_process = COMPANY_PROCESS()
-                    Designation = Employee_Designation()
-
-                    return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Please upload Allocation file for IDFC-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-                else:
-                    return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
-            elif final_process == 'IDFC':
+            # if final_process == 'L&T':
+            #     if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+            #         final_dep = DEP()
+            #         final_process = COMPANY_PROCESS()
+            #         Designation = Employee_Designation()
+            #
+            #         return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Please upload Allocation file for IDFC-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            #     else:
+            #         return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
+            if final_process == 'IDFC':
                 if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
                     final_dep = DEP()
                     final_process = COMPANY_PROCESS()
                     Designation = Employee_Designation()
 
-                    return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Please upload Allocation file for L&T-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+                    return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Please refresh Salary data for TC & FOS', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
                 else:
                     return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
 
     C = list(FINAL_COPY1.columns)  # FOS_Incentive
     C11 = list(F.columns)  # FOS_Fixed
     C123 = list(F12.columns)  # IDFC-TC_Incentive
-    C1233 = list(F123.columns)  # L_T-TC_Incentive
+    # C1233 = list(F123.columns)  # L_T-TC_Incentive
 
     for j in range(0, len(FINAL_COPY1[C[0]])):
         row_data = list()
@@ -10090,18 +10094,18 @@ def MASTER_SALARY_TW(request):
             row_data22.append(str(F12.loc[j, C123[col1]]))
         excel_data123.append(row_data22)
 
-    for j in range(0, len(F123[C1233[0]])):
-        row_data223 = list()
-        for col1 in range(0, len(C1233)):
-            row_data223.append(str(F123.loc[j, C1233[col1]]))
-        excel_data1233.append(row_data223)
+    # for j in range(0, len(F123[C1233[0]])):
+    #     row_data223 = list()
+    #     for col1 in range(0, len(C1233)):
+    #         row_data223.append(str(F123.loc[j, C1233[col1]]))
+    #     excel_data1233.append(row_data223)
 
     final_dep = DEP()
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/salary.html',
-                  {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/salary.html',{'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+# 'excel1233': excel_data1233, 'columns1233': C1233
 
 def MASTER_SALARY_IDFC(request):
     excel_data = []

@@ -116,66 +116,6 @@
             </ul>
         </UL>
     </NAV>
-<!--OK SEEN & NO EMPLOYEE TAB-->
-{% elif PROCESS == 'L&T' and DEPARTMENT == 'TW' %}
-    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
-        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
-            <LI>
-                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF="{% url 'basic_app:L_T_TW' %}" target="AB"><STRONG>SALARIES</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:L_T_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
-            </LI>
-            <LI>
-                <A href=#><STRONG>ANALYSIS</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:L_T_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:employee_database' %}"><STRONG>EMPLOYEES</STRONG></A>
-            </LI>
-            <ul class="block">
-                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
-            </ul>
-        </UL>
-    </NAV>
-<!--NOT OK & NO EMPLOYEE TAB-->
-{% elif DEPARTMENT == 'OTR' %}
-    <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
-        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
-            <LI>
-                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF="#"><STRONG>SALARIES</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_OTR_BILLING' %}"><STRONG>BILLING</STRONG></A>
-            </LI>
-            <LI>
-                <A href=#><STRONG>ANALYSIS</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_OTR_MIS' %}"><STRONG>FILE MANAGEMENT</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:employee_database' %}"><STRONG>EMPLOYEES</STRONG></A>
-            </LI>
-            <ul class="block">
-                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
-            </ul>
-        </UL>
-    </NAV>
 <!--OK SEEN-->
 {% elif DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' %}
     <NAV style="margin-top:0px;width:1439px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
