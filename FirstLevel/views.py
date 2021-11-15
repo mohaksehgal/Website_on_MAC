@@ -131,10 +131,10 @@ def user_login(request):
                     return (Salary)
 
                 if (Emp_Status == 'TC') or (Emp_Status == 'FOS'):
-                    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
-                        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx'):
-                            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
-                                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
+                    if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+                        if os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx')):
+                            if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx')):
+                                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx')):
                                     fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                                     fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                                     fs3 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
@@ -720,9 +720,9 @@ def user_login(request):
                             #     else:
                             #         continue
                     else:
-                        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx'):
-                            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
-                                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
+                        if os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx')):
+                            if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx')):
+                                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx')):
                                     # fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                                     fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                                     fs3 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
@@ -1161,8 +1161,8 @@ def user_login(request):
                                 #     else:
                                 #         continue
                         else:
-                            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
-                                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
+                            if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx')):
+                                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx')):
                                     # fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                                     # fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                                     fs3 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
@@ -1456,7 +1456,7 @@ def user_login(request):
                                     #     else:
                                     #         continue
                             else:
-                                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx'):
+                                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx')):
                                     # fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                                     # fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                                     # fs3 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
@@ -1921,544 +1921,544 @@ def IDFC_HL_FINAL_SALARY_INCENTIVE_DOWNLOAD(request):
     return response
 
 # to upload a file
-def L_T_MIS(request):
-    excel_data = []
-    F1 = pd.DataFrame()
-    if request.method == 'POST':
-        Allocation1 = request.FILES['Allocation']
-        Paidfile1 = request.FILES['Paid_File']
-        A = pd.read_excel(Allocation1)
-        B = pd.read_excel(Paidfile1)
-        # for check of file
-        for i in range(0, len(A['AGREEMENTID'])):
-            if pd.isnull(A['AGREEMENTID'][i]) == True:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'AGREEMENTID DOES NOT TAKE NULL VALUES','DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif pd.isnull(A['CUSTOMERNAME'][i]) == True or isinstance(A.loc[i,'CUSTOMERNAME'],str)==False:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'CUSTOMERNAME DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif pd.isnull(A['TC NAME'][i]) == True or isinstance(A.loc[i,'TC NAME'],str)==False:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TC NAME DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif pd.isnull(A['TL'][i]) == True or isinstance(A.loc[i,'TL'],str)==False:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TL DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif pd.isnull(A['FOS'][i]) == True or isinstance(A.loc[i,'FOS'],str)==False:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'FOS DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif pd.isnull(A['AREA'][i]) == True or isinstance(A.loc[i,'AREA'],str)==False:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'AREA DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif isinstance(A.loc[i,'BKT'],np.int64)==False or pd.isnull(A['BKT'][i]) == True:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'BKT DOES NOT TAKE STR VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif isinstance(A.loc[i,'POS'],np.float64)==False or pd.isnull(A['POS'][i]) == True:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif isinstance(A.loc[i,'EMI'],np.int64)==False or pd.isnull(A['EMI'][i]) == True:
-                print('error',i)
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'EMI DOES NOT TAKE STR VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            else:
-                continue
+# def L_T_MIS(request):
+#     excel_data = []
+#     F1 = pd.DataFrame()
+#     if request.method == 'POST':
+#         Allocation1 = request.FILES['Allocation']
+#         Paidfile1 = request.FILES['Paid_File']
+#         A = pd.read_excel(Allocation1)
+#         B = pd.read_excel(Paidfile1)
+#         # for check of file
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             if pd.isnull(A['AGREEMENTID'][i]) == True:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'AGREEMENTID DOES NOT TAKE NULL VALUES','DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             elif pd.isnull(A['CUSTOMERNAME'][i]) == True or isinstance(A.loc[i,'CUSTOMERNAME'],str)==False:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'CUSTOMERNAME DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             elif pd.isnull(A['TC NAME'][i]) == True or isinstance(A.loc[i,'TC NAME'],str)==False:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'TC NAME DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             elif pd.isnull(A['TL'][i]) == True or isinstance(A.loc[i,'TL'],str)==False:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'TL DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             elif pd.isnull(A['FOS'][i]) == True or isinstance(A.loc[i,'FOS'],str)==False:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'FOS DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             elif pd.isnull(A['AREA'][i]) == True or isinstance(A.loc[i,'AREA'],str)==False:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'AREA DOES NOT TAKE NULL VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             elif isinstance(A.loc[i,'BKT'],np.int64)==False or pd.isnull(A['BKT'][i]) == True:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'BKT DOES NOT TAKE STR VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             elif isinstance(A.loc[i,'POS'],np.float64)==False or pd.isnull(A['POS'][i]) == True:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             elif isinstance(A.loc[i,'EMI'],np.int64)==False or pd.isnull(A['EMI'][i]) == True:
+#                 print('error',i)
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'EMI DOES NOT TAKE STR VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#             else:
+#                 continue
+#
+#         fs = FileSystemStorage(location='media/L_T/MIS')
+#         fs.save(Allocation1.name, Allocation1)
+#         fs.save(Paidfile1.name, Paidfile1)
+#         print(A.head())
+#
+#         B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             for k in range(0, len(B['AGREEMENTID'])):
+#                 if (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] != 'FORECLOSE' and B.loc[k, 'AGAINST'] != 'SETTLEMENT'):
+#                     for j in range(0, len(B1['AGREEMENTID'])):
+#                         if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+#                             if (A.loc[i, 'BKT'] != 0 and A.loc[i, 'BKT'] != 12) and (A.loc[i, 'BKT'] != 1):
+#                                 a = (int(A.loc[i, 'BKT']) + 1) * A.loc[i, 'EMI']
+#                                 b = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
+#                                 if (B1.loc[j, 'PAID AMOUNT'] >= a) or (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']):
+#                                     A.loc[i, 'STATUS'] = 'NM'
+#                                 elif (B1.loc[j, 'PAID AMOUNT'] >= b) and (B1.loc[j, 'PAID AMOUNT'] < a) and (B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'POS']):
+#                                     A.loc[i, 'STATUS'] = 'RB'
+#                                 elif (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']) and (B1.loc[j, 'PAID AMOUNT'] < b):
+#                                     A.loc[i, 'STATUS'] = 'SB'
+#                                 elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+#                                     A.loc[i, 'STATUS'] = 'PART PAID'
+#                             elif A.loc[i, 'BKT'] == 1:
+#                                 b = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
+#                                 if (B1.loc[j, 'PAID AMOUNT'] >= b) or (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']):
+#                                     A.loc[i, 'STATUS'] = 'NM'
+#                                 elif (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']) and (B1.loc[j, 'PAID AMOUNT'] < b):
+#                                     A.loc[i, 'STATUS'] = 'SB'
+#                                 elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+#                                     A.loc[i, 'STATUS'] = 'PART PAID'
+#                             elif A.loc[i, 'BKT'] == 12:
+#                                 c = (int(A.loc[i, 'BKT']) + 1) * A.loc[i, 'EMI']
+#                                 d = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
+#                                 if (B1.loc[j, 'PAID AMOUNT'] >= c) or (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']):
+#                                     A.loc[i, 'STATUS'] = 'NM'
+#                                 elif (B1.loc[j, 'PAID AMOUNT'] >= d) and (B1.loc[j, 'PAID AMOUNT'] < c) and (B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'POS']):
+#                                     A.loc[i, 'STATUS'] = 'RB'
+#                                 elif (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']) and (B1.loc[j, 'PAID AMOUNT'] < d):
+#                                     A.loc[i, 'STATUS'] = 'SB'
+#                                 elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+#                                     A.loc[i, 'STATUS'] = 'PART PAID'
+#                             elif A.loc[i, 'BKT'] == 0:
+#                                 if B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+#                                     A.loc[i, 'STATUS'] = 'PART PAID'
+#                                 else:
+#                                     A.loc[i, 'STATUS'] = 'SB'
+#                 elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'FORECLOSE'):
+#                     A.loc[i, 'STATUS'] = 'FORECLOSE'
+#                 elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'SETTLEMENT'):
+#                     A.loc[i, 'STATUS'] = 'SETTLEMENT'
+#         A['STATUS'].fillna('FLOW', inplace=True)
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             for j in range(0, len(B1['PAID AMOUNT'])):
+#                 if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+#                     A.loc[i, 'TOTAL PAID'] = B1.loc[j, 'PAID AMOUNT']
+#
+#         M = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['POS'].sum()).reset_index()
+#
+#         M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
+#
+#         R = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['AGREEMENTID'].count()).reset_index()
+#
+#         F = M.merge(R, how='outer')
+#
+#         F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
+#
+#         R1 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE', 'STATUS'])['AGREEMENTID'].count()).reset_index()
+#
+#         P = F.copy()
+#
+#         P = P.iloc[:, :3]
+#
+#         P.head()
+#
+#         P['FLOW'] = np.nan
+#         P['SB'] = np.nan
+#         P['RB'] = np.nan
+#         P['NM'] = np.nan
+#         P['PART PAID'] = np.nan
+#         P['FORECLOSE'] = np.nan
+#         P['SETTLEMENT'] = np.nan
+#
+#         COL = P.columns
+#
+#         for i in range(0, len(R1['COMPANY'])):
+#             for j in range(0, len(P['COMPANY'])):
+#                 for k in range(0, len(COL)):
+#                     if ((R1.loc[i, ['COMPANY', 'BKT', 'STATE']] == P.loc[j, ['COMPANY', 'BKT', 'STATE']]).all()) and R1.loc[i, 'STATUS'] == COL[k]:
+#                         P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
+#
+#         F = F.merge(P, how='outer')
+#
+#         F.fillna(0, inplace=True)
+#
+#         F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'RB': 'RB_CASES', 'FORECLOSE': 'FORECLOSE_CASES',
+#                   'SETTLEMENT': 'SETTLEMENT_CASES', 'NM': 'NM_CASES', 'PART PAID': 'PART_PAID_CASES'}, axis=1,
+#                  inplace=True)
+#
+#         R2 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE', 'STATUS'])['POS'].sum()).reset_index()
+#
+#         for i in range(0, len(R2['COMPANY'])):
+#             for j in range(0, len(P['COMPANY'])):
+#                 for k in range(0, len(COL)):
+#                     if ((R2.loc[i, ['COMPANY', 'BKT', 'STATE']] == P.loc[j, ['COMPANY', 'BKT', 'STATE']]).all()) and R2.loc[i, 'STATUS'] == COL[k]:
+#                         P.loc[j, COL[k]] = R2.loc[i, 'POS']
+#
+#         F = F.merge(P, how='outer')
+#
+#         F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'RB': 'RB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'NM': 'NM_POS',
+#                   'SETTLEMENT': 'SETTLEMENT_POS', 'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
+#
+#         F.fillna(0, inplace=True)
+#
+#         for i in range(0, len(F['FLOW_CASES'])):
+#             F.loc[i, 'NM_POS'] = round(F.loc[i, 'NM_POS'], 2)
+#             F.loc[i, 'TOTAL_POS'] = round(F.loc[i, 'TOTAL_POS'], 2)
+#             F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
+#             F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
+#             F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'RB_POS%'] = round((F.loc[i, 'RB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'NM_POS%'] = round((F.loc[i, 'NM_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#
+#         TP = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['TOTAL PAID'].sum()).reset_index()
+#
+#         F = F.merge(TP, how='outer')
+#
+#         for i in range(0, len(F['NM_CASES'])):
+#             F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'RB_POS%'] + F.loc[i, 'NM_POS%'] + F.loc[
+#                 i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
+#             F.loc[i, 'Additional_Performance'] = F.loc[i, 'RB_POS%'] + F.loc[i, 'NM_POS%'] + F.loc[
+#                 i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
+#
+#         for i in range(0, len(F['FLOW_CASES'])):
+#             F.loc[i, 'PERFORMANCE'] = round(F.loc[i, 'PERFORMANCE'], 2)
+#             F.loc[i, 'Additional_Performance'] = round(F.loc[i, 'Additional_Performance'], 2)
+#
+#         F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
+#                   'SETTLEMENT_CASES': 'SC_CASES',
+#                   'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
+#                   'FORECLOSE_POS%': 'FC_POS%',
+#                   'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
+#                  inplace=True)
+#
+#         print(F)
+#         F.to_excel('media/L_T/MIS/Performance_L_T.xlsx',index=False)
+#         F.to_excel('media/L_T/Billing/Performance_L_T.xlsx', index=False)
+#         F1 = F.copy()
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             s = 0
+#             for j in range(0, len(B['AGREEMENTID'])):
+#                 if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and ((A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'SB')) and ((B.loc[j, 'MODE'] != 'ECS') and (B.loc[j, 'MODE'] != 'ADJUSTED')):
+#                     s = s + B.loc[j, 'PAID AMOUNT']
+#             A.loc[i, 'Billing PAID AMT.'] = s
+#         for i in range(0, len(A['STATE'])):
+#             if A.loc[i, 'STATUS'] == 'SB':
+#                 if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
+#                     A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
+#         A.to_excel('media/L_T/MIS/MASTER FILE L_T.xlsx', index=False)
+#         A.to_excel('media/L_T/Billing/MASTER FILE L_T.xlsx', index=False)
+#         A.to_excel('media/L_T/TC Performance/MASTER FILE L_T.xlsx', index=False)
+#         A.to_excel('media/L_T/FOS Salary/MASTER FILE L_T.xlsx', index=False)
+#         A.to_excel('media/L_T/TC Incentive/MASTER FILE L_T.xlsx', index=False)
+#     elif request.method != 'POST':
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/Performance_L_T.xlsx'):
+#             fs = FileSystemStorage(location='media/L_T/MIS')
+#             AA = fs.open('Performance_L_T.xlsx')
+#             F1 = pd.read_excel(AA)
+#         else:
+#             final_dep = DEP()
+#             final_process = COMPANY_PROCESS()
+#             Designation = Employee_Designation()
+#             return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#     C = list(F1.columns)
+#
+#     for j in range(0, len(F1[C[0]])):
+#         row_data = list()
+#         for col in range(0,len(C)):
+#             row_data.append(str(F1.loc[j,C[col]]))
+#         excel_data.append(row_data)
+#
+#     final_dep = DEP()
+#     final_process = COMPANY_PROCESS()
+#     Designation = Employee_Designation()
+#     return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        fs = FileSystemStorage(location='media/L_T/MIS')
-        fs.save(Allocation1.name, Allocation1)
-        fs.save(Paidfile1.name, Paidfile1)
-        print(A.head())
-
-        B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            for k in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] != 'FORECLOSE' and B.loc[k, 'AGAINST'] != 'SETTLEMENT'):
-                    for j in range(0, len(B1['AGREEMENTID'])):
-                        if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
-                            if (A.loc[i, 'BKT'] != 0 and A.loc[i, 'BKT'] != 12) and (A.loc[i, 'BKT'] != 1):
-                                a = (int(A.loc[i, 'BKT']) + 1) * A.loc[i, 'EMI']
-                                b = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
-                                if (B1.loc[j, 'PAID AMOUNT'] >= a) or (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']):
-                                    A.loc[i, 'STATUS'] = 'NM'
-                                elif (B1.loc[j, 'PAID AMOUNT'] >= b) and (B1.loc[j, 'PAID AMOUNT'] < a) and (B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'POS']):
-                                    A.loc[i, 'STATUS'] = 'RB'
-                                elif (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']) and (B1.loc[j, 'PAID AMOUNT'] < b):
-                                    A.loc[i, 'STATUS'] = 'SB'
-                                elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
-                                    A.loc[i, 'STATUS'] = 'PART PAID'
-                            elif A.loc[i, 'BKT'] == 1:
-                                b = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
-                                if (B1.loc[j, 'PAID AMOUNT'] >= b) or (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']):
-                                    A.loc[i, 'STATUS'] = 'NM'
-                                elif (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']) and (B1.loc[j, 'PAID AMOUNT'] < b):
-                                    A.loc[i, 'STATUS'] = 'SB'
-                                elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
-                                    A.loc[i, 'STATUS'] = 'PART PAID'
-                            elif A.loc[i, 'BKT'] == 12:
-                                c = (int(A.loc[i, 'BKT']) + 1) * A.loc[i, 'EMI']
-                                d = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
-                                if (B1.loc[j, 'PAID AMOUNT'] >= c) or (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']):
-                                    A.loc[i, 'STATUS'] = 'NM'
-                                elif (B1.loc[j, 'PAID AMOUNT'] >= d) and (B1.loc[j, 'PAID AMOUNT'] < c) and (B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'POS']):
-                                    A.loc[i, 'STATUS'] = 'RB'
-                                elif (B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']) and (B1.loc[j, 'PAID AMOUNT'] < d):
-                                    A.loc[i, 'STATUS'] = 'SB'
-                                elif B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
-                                    A.loc[i, 'STATUS'] = 'PART PAID'
-                            elif A.loc[i, 'BKT'] == 0:
-                                if B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
-                                    A.loc[i, 'STATUS'] = 'PART PAID'
-                                else:
-                                    A.loc[i, 'STATUS'] = 'SB'
-                elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'FORECLOSE'):
-                    A.loc[i, 'STATUS'] = 'FORECLOSE'
-                elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'SETTLEMENT'):
-                    A.loc[i, 'STATUS'] = 'SETTLEMENT'
-        A['STATUS'].fillna('FLOW', inplace=True)
-        for i in range(0, len(A['AGREEMENTID'])):
-            for j in range(0, len(B1['PAID AMOUNT'])):
-                if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
-                    A.loc[i, 'TOTAL PAID'] = B1.loc[j, 'PAID AMOUNT']
-
-        M = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['POS'].sum()).reset_index()
-
-        M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
-
-        R = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['AGREEMENTID'].count()).reset_index()
-
-        F = M.merge(R, how='outer')
-
-        F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
-
-        R1 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE', 'STATUS'])['AGREEMENTID'].count()).reset_index()
-
-        P = F.copy()
-
-        P = P.iloc[:, :3]
-
-        P.head()
-
-        P['FLOW'] = np.nan
-        P['SB'] = np.nan
-        P['RB'] = np.nan
-        P['NM'] = np.nan
-        P['PART PAID'] = np.nan
-        P['FORECLOSE'] = np.nan
-        P['SETTLEMENT'] = np.nan
-
-        COL = P.columns
-
-        for i in range(0, len(R1['COMPANY'])):
-            for j in range(0, len(P['COMPANY'])):
-                for k in range(0, len(COL)):
-                    if ((R1.loc[i, ['COMPANY', 'BKT', 'STATE']] == P.loc[j, ['COMPANY', 'BKT', 'STATE']]).all()) and R1.loc[i, 'STATUS'] == COL[k]:
-                        P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
-
-        F = F.merge(P, how='outer')
-
-        F.fillna(0, inplace=True)
-
-        F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'RB': 'RB_CASES', 'FORECLOSE': 'FORECLOSE_CASES',
-                  'SETTLEMENT': 'SETTLEMENT_CASES', 'NM': 'NM_CASES', 'PART PAID': 'PART_PAID_CASES'}, axis=1,
-                 inplace=True)
-
-        R2 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE', 'STATUS'])['POS'].sum()).reset_index()
-
-        for i in range(0, len(R2['COMPANY'])):
-            for j in range(0, len(P['COMPANY'])):
-                for k in range(0, len(COL)):
-                    if ((R2.loc[i, ['COMPANY', 'BKT', 'STATE']] == P.loc[j, ['COMPANY', 'BKT', 'STATE']]).all()) and R2.loc[i, 'STATUS'] == COL[k]:
-                        P.loc[j, COL[k]] = R2.loc[i, 'POS']
-
-        F = F.merge(P, how='outer')
-
-        F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'RB': 'RB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'NM': 'NM_POS',
-                  'SETTLEMENT': 'SETTLEMENT_POS', 'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
-
-        F.fillna(0, inplace=True)
-
-        for i in range(0, len(F['FLOW_CASES'])):
-            F.loc[i, 'NM_POS'] = round(F.loc[i, 'NM_POS'], 2)
-            F.loc[i, 'TOTAL_POS'] = round(F.loc[i, 'TOTAL_POS'], 2)
-            F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
-            F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
-            F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'RB_POS%'] = round((F.loc[i, 'RB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'NM_POS%'] = round((F.loc[i, 'NM_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-
-        TP = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'STATE'])['TOTAL PAID'].sum()).reset_index()
-
-        F = F.merge(TP, how='outer')
-
-        for i in range(0, len(F['NM_CASES'])):
-            F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'RB_POS%'] + F.loc[i, 'NM_POS%'] + F.loc[
-                i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
-            F.loc[i, 'Additional_Performance'] = F.loc[i, 'RB_POS%'] + F.loc[i, 'NM_POS%'] + F.loc[
-                i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
-
-        for i in range(0, len(F['FLOW_CASES'])):
-            F.loc[i, 'PERFORMANCE'] = round(F.loc[i, 'PERFORMANCE'], 2)
-            F.loc[i, 'Additional_Performance'] = round(F.loc[i, 'Additional_Performance'], 2)
-
-        F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
-                  'SETTLEMENT_CASES': 'SC_CASES',
-                  'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
-                  'FORECLOSE_POS%': 'FC_POS%',
-                  'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
-                 inplace=True)
-
-        print(F)
-        F.to_excel('media/L_T/MIS/Performance_L_T.xlsx',index=False)
-        F.to_excel('media/L_T/Billing/Performance_L_T.xlsx', index=False)
-        F1 = F.copy()
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            s = 0
-            for j in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and ((A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'SB')) and ((B.loc[j, 'MODE'] != 'ECS') and (B.loc[j, 'MODE'] != 'ADJUSTED')):
-                    s = s + B.loc[j, 'PAID AMOUNT']
-            A.loc[i, 'Billing PAID AMT.'] = s
-        for i in range(0, len(A['STATE'])):
-            if A.loc[i, 'STATUS'] == 'SB':
-                if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
-                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
-        A.to_excel('media/L_T/MIS/MASTER FILE L_T.xlsx', index=False)
-        A.to_excel('media/L_T/Billing/MASTER FILE L_T.xlsx', index=False)
-        A.to_excel('media/L_T/TC Performance/MASTER FILE L_T.xlsx', index=False)
-        A.to_excel('media/L_T/FOS Salary/MASTER FILE L_T.xlsx', index=False)
-        A.to_excel('media/L_T/TC Incentive/MASTER FILE L_T.xlsx', index=False)
-    elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/Performance_L_T.xlsx'):
-            fs = FileSystemStorage(location='media/L_T/MIS')
-            AA = fs.open('Performance_L_T.xlsx')
-            F1 = pd.read_excel(AA)
-        else:
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-    C = list(F1.columns)
-
-    for j in range(0, len(F1[C[0]])):
-        row_data = list()
-        for col in range(0,len(C)):
-            row_data.append(str(F1.loc[j,C[col]]))
-        excel_data.append(row_data)
-
-    final_dep = DEP()
-    final_process = COMPANY_PROCESS()
-    Designation = Employee_Designation()
-    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-def L_T_BILLING(request):
-    excel_data1 = []
-    F2 = pd.DataFrame()
-    if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/MASTER FILE L_T.xlsx'):
-            fs = FileSystemStorage(location='media/L_T/Billing')
-            AA = fs.open('Performance_L_T.xlsx')
-            AA1 = fs.open('MASTER FILE L_T.xlsx')
-            AA2 = fs.open('AddPayout.xlsx')
-            AA3 = fs.open('AddResolution.xlsx')
-            AA4 = fs.open('Payout.xlsx')
-            AA5 = fs.open('Resolution.xlsx')
-            P = pd.read_excel(AA)
-            A = pd.read_excel(AA1)
-            PA = pd.read_excel(AA4)
-            R = pd.read_excel(AA5)
-            APA = pd.read_excel(AA2)
-            AR = pd.read_excel(AA3)
-
-            l1 = R.columns
-
-            # =============================================================================
-            # BKT 1
-            # =============================================================================
-
-            for i in range(0, len(A['BKT'])):
-                if A.loc[i, 'BKT'] == 1:
-                    for j in range(0, len(P['BKT'])):
-                        if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
-                            for k in range(0, len(l1)):
-                                if l1[k] == A.loc[i, 'BKT']:
-                                    for l in range(0, len(PA[1])):
-                                        for y in range(0, len(APA[1])):
-                                            if l == 0:
-                                                if P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]:
-                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB' or A.loc[i, 'STATUS'] == 'NM'):
-                                                        a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = a
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
-                                                    # =============================================================================
-                                                    #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
-                                                    #                                             a=(A.loc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[1]
-                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                                    #                                             A.loc[i,'MOHAK']=a
-                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
-                                                    # =============================================================================
-                                                    else:
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = 0
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
-                                            elif l > 0:
-                                                if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])):
-                                                    # =============================================================================
-                                                    #                                          if (A.loc[i,'STATUS']=='RB') or (A.loc[i,'STATUS']=='NM'):
-                                                    #                                              c=(A.loc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[1]
-                                                    #                                              A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                                    #                                              A.loc[i,'MOHAK']=int(c)
-                                                    #                                              print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
-                                                    # =============================================================================
-                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
-                                                        d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = d
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], d, P.loc[j, 'BKT'])
-                                                    else:
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = 0
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
-                                            elif l == 6:
-                                                if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])):
-                                                    if (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
-                                                        c = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]] + APA.loc[y - 1, l1[k]]) / 100
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]] + APA.loc[y - 1, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = c
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], APA.loc[y, l1[k]], c, P.loc[j, 'BKT'])
-                                                    elif A.loc[i, 'STATUS'] == 'SB':
-                                                        d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = d
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], APA.loc[y, l1[k]], d, P.loc[j, 'BKT'])
-                                                    else:
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = 0
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], APA.loc[y, l1[k]], 0, P.loc[j, 'BKT'])
-
-            # =============================================================================
-            # BKT 2
-            # =============================================================================
-
-            for i in range(0, len(A['BKT'])):
-                if A.loc[i, 'BKT'] == 2:
-                    for j in range(0, len(P['BKT'])):
-                        if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
-                            for k in range(0, len(l1)):
-                                if l1[k] == A.loc[i, 'BKT']:
-                                    for l in range(0, len(PA[2])):
-                                        for y in range(0, len(APA[1])):
-                                            if l == 0:
-                                                if P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]:
-                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
-                                                        a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = a
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
-                                                    # =============================================================================
-                                                    #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
-                                                    #                                             a=(A.oc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[2]
-                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                                    #                                             A.loc[i,'MOHAK']=a
-                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
-                                                    # =============================================================================
-                                                    else:
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = 0
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
-                                            elif l > 0:
-                                                if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])):
-                                                    # =============================================================================
-                                                    #                                         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
-                                                    #                                             c=(A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100)+APA[2]
-                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                                    #                                             A.loc[i,'MOHAK']=int(c)
-                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
-                                                    # =============================================================================
-                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
-                                                        d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = d
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], d, P.loc[j, 'BKT'])
-                                                    else:
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = 0
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
-                                            # elif l>0:
-                                            #     if ((P.loc[j,'POS_RES%']>R.loc[l-1,l1[k]]) and (P.loc[j,'POS_RES%']<=R.loc[l,l1[k]])) and \
-                                            #     ((P.loc[j,'Additional_Performance']>AR.loc[y-1,l1[k]]) and (P.loc[j,'Additional_Performance']<=AR.loc[y,l1[k]])):
-                                            #         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
-                                            #             c=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])/100
-                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])+'%'
-                                            #             A.loc[i,'MOHAK']=c
-                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],APA.loc[y,l1[k]],c,P.loc[j,'BKT'])
-                                            #         elif A.loc[i,'STATUS']=='SB':
-                                            #             d=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100
-                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                            #             A.loc[i,'MOHAK']=d
-                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],d,P.loc[j,'BKT'])
-                                            #         else:
-                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                            #             A.loc[i,'MOHAK']=0
-                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],0,P.loc[j,'BKT'])
-
-            # =============================================================================
-            # BKT 3
-            # =============================================================================
-
-            for i in range(0, len(A['BKT'])):
-                if A.loc[i, 'BKT'] == 3:
-                    for j in range(0, len(P['BKT'])):
-                        if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
-                            for k in range(0, len(l1)):
-                                if l1[k] == A.loc[i, 'BKT']:
-                                    for l in range(0, len(PA[3])):
-                                        for y in range(0, len(APA[1])):
-                                            if l == 0:
-                                                if P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]:
-                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
-                                                        a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = a
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
-                                                    # =============================================================================
-                                                    #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
-                                                    #                                             a=(A.oc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[2]
-                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                                    #                                             A.loc[i,'MOHAK']=a
-                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
-                                                    # =============================================================================
-                                                    else:
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = 0
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
-                                            elif l > 0:
-                                                if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])):
-                                                    # =============================================================================
-                                                    #                                         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
-                                                    #                                             c=(A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100)+APA[2]
-                                                    #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                                    #                                             A.loc[i,'MOHAK']=int(c)
-                                                    #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
-                                                    # =============================================================================
-                                                    if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
-                                                        d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = d
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], d, P.loc[j, 'BKT'])
-                                                    else:
-                                                        A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
-                                                        A.loc[i, 'MOHAK'] = 0
-                                                        print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
-                                            # elif l>0 and y>0:
-                                            #     if ((P.loc[j,'POS_RES%']>R.loc[l-1,l1[k]]) and (P.loc[j,'POS_RES%']<=R.loc[l,l1[k]])) and \
-                                            #     ((P.loc[j,'Additional_Performance']>AR.loc[y-1,l1[k]]) and (P.loc[j,'Additional_Performance']<=AR.loc[y,l1[k]])):
-                                            #         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
-                                            #             c=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])/100
-                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])+'%'
-                                            #             A.loc[i,'MOHAK']=c
-                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],APA.loc[y,l1[k]],c,P.loc[j,'BKT'])
-                                            #         elif A.loc[i,'STATUS']=='SB':
-                                            #             d=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100
-                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                            #             A.loc[i,'MOHAK']=d
-                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],d,P.loc[j,'BKT'])
-                                            #         else:
-                                            #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
-                                            #             A.loc[i,'MOHAK']=0
-                                            #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],0,P.loc[j,'BKT'])
-
-            # =============================================================================
-            # SETTLEMENT
-            # =============================================================================
-
-            for i in range(0, len(A['BKT'])):
-                if A.loc[i, 'STATUS'] == 'SETTLEMENT':
-                    dd = A.loc[i, 'Billing PAID AMT.'] * 12 / 100
-                    A.loc[i, 'MOHAK'] = dd
-                    A.loc[i, 'PERCENTAGE'] = str(12) + '%'
-                elif A.loc[i, 'STATUS'] == 'FORECLOSE':
-                    dd = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
-                    A.loc[i, 'MOHAK'] = dd
-                    A.loc[i, 'PERCENTAGE'] = str(20) + '%'
-            # =============================================================================
-            #     elif (A.loc[i,'BKT']==2 or A.loc[i,'BKT']==3) and A.loc[i,'STATUS']=='FORECLOSE':
-            #         c=A.loc[i,'TOTAL COLLECTABLE']*16/100
-            #         A.loc[i,'MOHAK']=c
-            # =============================================================================
-
-            A['MOHAK'].replace(np.nan, 0, inplace=True)
-
-            A.rename({'MOHAK': 'PAYOUT'}, axis=1, inplace=True)
-
-
-            A.to_excel('media/L_T/Billing/Final_Billing_L_T.xlsx', index=False)
-
-            F = pd.DataFrame(A.groupby('BKT')['PAYOUT'].sum()).reset_index()
-            for i in range(0,len(F['PAYOUT'])):
-                F.loc[i,'PAYOUT']=round(F.loc[i,'PAYOUT'],2)
-            F.to_excel('media/L_T/Billing/BKT_Billing_L_T.xlsx', index=False)
-            F2 = F.copy()
-
-            Total_Payout = round(sum(A['PAYOUT']),2)
-
-
-    elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/Final_Billing_L_T.xlsx'):
-            fs = FileSystemStorage(location='media/L_T/Billing')
-            AA = fs.open('BKT_Billing_L_T.xlsx')
-            F2 = pd.read_excel(AA)
-            Total_Payout = round(sum(F2['PAYOUT']), 2)
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/MASTER FILE L_T.xlsx'):
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-            return render(request, 'FirstLevel/Billing.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        else:
-            return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
-
-    C1 = list(F2.columns)
-
-    for j in range(0, len(F2[C1[0]])):
-        row_data1 = list()
-        for col in range(0, len(C1)):
-            row_data1.append(str(F2.loc[j, C1[col]]))
-        excel_data1.append(row_data1)
-
-    final_dep = DEP()
-    final_process = COMPANY_PROCESS()
-    Designation = Employee_Designation()
-    return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+# def L_T_BILLING(request):
+#     excel_data1 = []
+#     F2 = pd.DataFrame()
+#     if request.method == 'POST':
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/MASTER FILE L_T.xlsx'):
+#             fs = FileSystemStorage(location='media/L_T/Billing')
+#             AA = fs.open('Performance_L_T.xlsx')
+#             AA1 = fs.open('MASTER FILE L_T.xlsx')
+#             AA2 = fs.open('AddPayout.xlsx')
+#             AA3 = fs.open('AddResolution.xlsx')
+#             AA4 = fs.open('Payout.xlsx')
+#             AA5 = fs.open('Resolution.xlsx')
+#             P = pd.read_excel(AA)
+#             A = pd.read_excel(AA1)
+#             PA = pd.read_excel(AA4)
+#             R = pd.read_excel(AA5)
+#             APA = pd.read_excel(AA2)
+#             AR = pd.read_excel(AA3)
+#
+#             l1 = R.columns
+#
+#             # =============================================================================
+#             # BKT 1
+#             # =============================================================================
+#
+#             for i in range(0, len(A['BKT'])):
+#                 if A.loc[i, 'BKT'] == 1:
+#                     for j in range(0, len(P['BKT'])):
+#                         if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
+#                             for k in range(0, len(l1)):
+#                                 if l1[k] == A.loc[i, 'BKT']:
+#                                     for l in range(0, len(PA[1])):
+#                                         for y in range(0, len(APA[1])):
+#                                             if l == 0:
+#                                                 if P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]:
+#                                                     if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB' or A.loc[i, 'STATUS'] == 'NM'):
+#                                                         a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = a
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
+#                                                     # =============================================================================
+#                                                     #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+#                                                     #                                             a=(A.loc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[1]
+#                                                     #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                                     #                                             A.loc[i,'MOHAK']=a
+#                                                     #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
+#                                                     # =============================================================================
+#                                                     else:
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = 0
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+#                                             elif l > 0:
+#                                                 if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])):
+#                                                     # =============================================================================
+#                                                     #                                          if (A.loc[i,'STATUS']=='RB') or (A.loc[i,'STATUS']=='NM'):
+#                                                     #                                              c=(A.loc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[1]
+#                                                     #                                              A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                                     #                                              A.loc[i,'MOHAK']=int(c)
+#                                                     #                                              print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
+#                                                     # =============================================================================
+#                                                     if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
+#                                                         d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = d
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], d, P.loc[j, 'BKT'])
+#                                                     else:
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = 0
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+#                                             elif l == 6:
+#                                                 if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])):
+#                                                     if (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
+#                                                         c = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]] + APA.loc[y - 1, l1[k]]) / 100
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]] + APA.loc[y - 1, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = c
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], APA.loc[y, l1[k]], c, P.loc[j, 'BKT'])
+#                                                     elif A.loc[i, 'STATUS'] == 'SB':
+#                                                         d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = d
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], APA.loc[y, l1[k]], d, P.loc[j, 'BKT'])
+#                                                     else:
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = 0
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], APA.loc[y, l1[k]], 0, P.loc[j, 'BKT'])
+#
+#             # =============================================================================
+#             # BKT 2
+#             # =============================================================================
+#
+#             for i in range(0, len(A['BKT'])):
+#                 if A.loc[i, 'BKT'] == 2:
+#                     for j in range(0, len(P['BKT'])):
+#                         if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
+#                             for k in range(0, len(l1)):
+#                                 if l1[k] == A.loc[i, 'BKT']:
+#                                     for l in range(0, len(PA[2])):
+#                                         for y in range(0, len(APA[1])):
+#                                             if l == 0:
+#                                                 if P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]:
+#                                                     if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
+#                                                         a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = a
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
+#                                                     # =============================================================================
+#                                                     #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+#                                                     #                                             a=(A.oc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[2]
+#                                                     #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                                     #                                             A.loc[i,'MOHAK']=a
+#                                                     #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
+#                                                     # =============================================================================
+#                                                     else:
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = 0
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+#                                             elif l > 0:
+#                                                 if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])):
+#                                                     # =============================================================================
+#                                                     #                                         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+#                                                     #                                             c=(A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100)+APA[2]
+#                                                     #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                                     #                                             A.loc[i,'MOHAK']=int(c)
+#                                                     #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
+#                                                     # =============================================================================
+#                                                     if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
+#                                                         d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = d
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], d, P.loc[j, 'BKT'])
+#                                                     else:
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = 0
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+#                                             # elif l>0:
+#                                             #     if ((P.loc[j,'POS_RES%']>R.loc[l-1,l1[k]]) and (P.loc[j,'POS_RES%']<=R.loc[l,l1[k]])) and \
+#                                             #     ((P.loc[j,'Additional_Performance']>AR.loc[y-1,l1[k]]) and (P.loc[j,'Additional_Performance']<=AR.loc[y,l1[k]])):
+#                                             #         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+#                                             #             c=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])/100
+#                                             #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])+'%'
+#                                             #             A.loc[i,'MOHAK']=c
+#                                             #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],APA.loc[y,l1[k]],c,P.loc[j,'BKT'])
+#                                             #         elif A.loc[i,'STATUS']=='SB':
+#                                             #             d=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100
+#                                             #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                             #             A.loc[i,'MOHAK']=d
+#                                             #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],d,P.loc[j,'BKT'])
+#                                             #         else:
+#                                             #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                             #             A.loc[i,'MOHAK']=0
+#                                             #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],0,P.loc[j,'BKT'])
+#
+#             # =============================================================================
+#             # BKT 3
+#             # =============================================================================
+#
+#             for i in range(0, len(A['BKT'])):
+#                 if A.loc[i, 'BKT'] == 3:
+#                     for j in range(0, len(P['BKT'])):
+#                         if A.loc[i, 'BKT'] == P.loc[j, 'BKT']:
+#                             for k in range(0, len(l1)):
+#                                 if l1[k] == A.loc[i, 'BKT']:
+#                                     for l in range(0, len(PA[3])):
+#                                         for y in range(0, len(APA[1])):
+#                                             if l == 0:
+#                                                 if P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]]:
+#                                                     if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
+#                                                         a = A.loc[i, 'Billing PAID AMT.'] * PA.loc[l, l1[k]] / 100
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = a
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], a, P.loc[j, 'BKT'])
+#                                                     # =============================================================================
+#                                                     #                                         elif (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+#                                                     #                                             a=(A.oc[i,'Billing PAID AMT.']*PA.loc[l,l1[k]]/100)+APA[2]
+#                                                     #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                                     #                                             A.loc[i,'MOHAK']=a
+#                                                     #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],a,P.loc[j,'BKT'])
+#                                                     # =============================================================================
+#                                                     else:
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = 0
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+#                                             elif l > 0:
+#                                                 if ((P.loc[j, 'POS_RES%'] > R.loc[l - 1, l1[k]]) and (P.loc[j, 'POS_RES%'] <= R.loc[l, l1[k]])):
+#                                                     # =============================================================================
+#                                                     #                                         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+#                                                     #                                             c=(A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100)+APA[2]
+#                                                     #                                             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                                     #                                             A.loc[i,'MOHAK']=int(c)
+#                                                     #                                             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],c,P.loc[j,'BKT'])
+#                                                     # =============================================================================
+#                                                     if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB'):
+#                                                         d = A.loc[i, 'Billing PAID AMT.'] * (PA.loc[l, l1[k]]) / 100
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = d
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l - 1, l1[k]], d, P.loc[j, 'BKT'])
+#                                                     else:
+#                                                         A.loc[i, 'PERCENTAGE'] = str(PA.loc[l, l1[k]]) + '%'
+#                                                         A.loc[i, 'MOHAK'] = 0
+#                                                         print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'BKT'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], PA.loc[l, l1[k]], 0, P.loc[j, 'BKT'])
+#                                             # elif l>0 and y>0:
+#                                             #     if ((P.loc[j,'POS_RES%']>R.loc[l-1,l1[k]]) and (P.loc[j,'POS_RES%']<=R.loc[l,l1[k]])) and \
+#                                             #     ((P.loc[j,'Additional_Performance']>AR.loc[y-1,l1[k]]) and (P.loc[j,'Additional_Performance']<=AR.loc[y,l1[k]])):
+#                                             #         if (A.loc[i,'STATUS']=='RB' or A.loc[i,'STATUS']=='NM'):
+#                                             #             c=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])/100
+#                                             #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]]+APA.loc[y-1,l1[k]])+'%'
+#                                             #             A.loc[i,'MOHAK']=c
+#                                             #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l-1,l1[k]],APA.loc[y,l1[k]],c,P.loc[j,'BKT'])
+#                                             #         elif A.loc[i,'STATUS']=='SB':
+#                                             #             d=A.loc[i,'Billing PAID AMT.']*(PA.loc[l,l1[k]])/100
+#                                             #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                             #             A.loc[i,'MOHAK']=d
+#                                             #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],d,P.loc[j,'BKT'])
+#                                             #         else:
+#                                             #             A.loc[i,'PERCENTAGE']=str(PA.loc[l,l1[k]])+'%'
+#                                             #             A.loc[i,'MOHAK']=0
+#                                             #             print(A.loc[i,'AGREEMENTID'],A.loc[i,'BKT'],P.loc[j,'POS_RES%'],A.loc[i,'Billing PAID AMT.'],PA.loc[l,l1[k]],APA.loc[y,l1[k]],0,P.loc[j,'BKT'])
+#
+#             # =============================================================================
+#             # SETTLEMENT
+#             # =============================================================================
+#
+#             for i in range(0, len(A['BKT'])):
+#                 if A.loc[i, 'STATUS'] == 'SETTLEMENT':
+#                     dd = A.loc[i, 'Billing PAID AMT.'] * 12 / 100
+#                     A.loc[i, 'MOHAK'] = dd
+#                     A.loc[i, 'PERCENTAGE'] = str(12) + '%'
+#                 elif A.loc[i, 'STATUS'] == 'FORECLOSE':
+#                     dd = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
+#                     A.loc[i, 'MOHAK'] = dd
+#                     A.loc[i, 'PERCENTAGE'] = str(20) + '%'
+#             # =============================================================================
+#             #     elif (A.loc[i,'BKT']==2 or A.loc[i,'BKT']==3) and A.loc[i,'STATUS']=='FORECLOSE':
+#             #         c=A.loc[i,'TOTAL COLLECTABLE']*16/100
+#             #         A.loc[i,'MOHAK']=c
+#             # =============================================================================
+#
+#             A['MOHAK'].replace(np.nan, 0, inplace=True)
+#
+#             A.rename({'MOHAK': 'PAYOUT'}, axis=1, inplace=True)
+#
+#
+#             A.to_excel('media/L_T/Billing/Final_Billing_L_T.xlsx', index=False)
+#
+#             F = pd.DataFrame(A.groupby('BKT')['PAYOUT'].sum()).reset_index()
+#             for i in range(0,len(F['PAYOUT'])):
+#                 F.loc[i,'PAYOUT']=round(F.loc[i,'PAYOUT'],2)
+#             F.to_excel('media/L_T/Billing/BKT_Billing_L_T.xlsx', index=False)
+#             F2 = F.copy()
+#
+#             Total_Payout = round(sum(A['PAYOUT']),2)
+#
+#
+#     elif request.method != 'POST':
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/Final_Billing_L_T.xlsx'):
+#             fs = FileSystemStorage(location='media/L_T/Billing')
+#             AA = fs.open('BKT_Billing_L_T.xlsx')
+#             F2 = pd.read_excel(AA)
+#             Total_Payout = round(sum(F2['PAYOUT']), 2)
+#         elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/Billing/MASTER FILE L_T.xlsx'):
+#             final_dep = DEP()
+#             final_process = COMPANY_PROCESS()
+#             Designation = Employee_Designation()
+#             return render(request, 'FirstLevel/Billing.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#         else:
+#             return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
+#
+#     C1 = list(F2.columns)
+#
+#     for j in range(0, len(F2[C1[0]])):
+#         row_data1 = list()
+#         for col in range(0, len(C1)):
+#             row_data1.append(str(F2.loc[j, C1[col]]))
+#         excel_data1.append(row_data1)
+#
+#     final_dep = DEP()
+#     final_process = COMPANY_PROCESS()
+#     Designation = Employee_Designation()
+#     return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 def IDFC_TW_MIS(request):
     excel_data = []
@@ -2724,7 +2724,7 @@ def IDFC_TW_MIS(request):
         A.to_excel(r'media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx', index=False)
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')):
             fs = FileSystemStorage(location='media/IDFC_TW/MIS')
             AA = fs.open('Performance_IDFC_TW.xlsx')
             F1 = pd.read_excel(AA)
@@ -2753,7 +2753,7 @@ def IDFC_TW_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/Billing/MASTER FILE IDFC_TW.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/MASTER FILE IDFC_TW.xlsx')):
             fs = FileSystemStorage(location='media/IDFC_TW/Billing')
             AA = fs.open('Performance_IDFC_TW.xlsx')
             AA1 = fs.open('MASTER FILE IDFC_TW.xlsx')
@@ -3784,7 +3784,7 @@ def IDFC_TW_BILLING(request):
             return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx')):
             fs = FileSystemStorage(location='media/IDFC_TW/Billing')
             AA = fs.open('BKT_Billing_IDFC_TW.xlsx')
             F2 = pd.read_excel(AA)
@@ -4158,7 +4158,7 @@ def IDFC_HL_MIS(request):
 
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/Performance_IDFC_HL.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/MIS/Performance_IDFC_HL.xlsx')):
             fs = FileSystemStorage(location='media/IDFC_HL/MIS')
             AA = fs.open('Performance_IDFC_HL.xlsx')
             F1 = pd.read_excel(AA)
@@ -4187,7 +4187,7 @@ def IDFC_HL_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/Billing/MASTER_FILE_IDFC_HL.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/Billing/MASTER_FILE_IDFC_HL.xlsx')):
             fs = FileSystemStorage(location='media/IDFC_HL/Billing')
             AA = fs.open('Performance_IDFC_HL.xlsx')
             AA1 = fs.open('MASTER_FILE_IDFC_HL.xlsx')
@@ -7438,7 +7438,7 @@ def IDFC_HL_BILLING(request):
             return HttpResponseRedirect(reverse('basic_app:IDFC_HL_MIS'))
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/Billing/Final_Billing_IDFC_HL.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/Billing/Final_Billing_IDFC_HL.xlsx')):
             fs = FileSystemStorage(location='media/IDFC_HL/Billing')
             AA = fs.open('BKT_Billing_IDFC_HL.xlsx')
             F2 = pd.read_excel(AA)
@@ -7464,1119 +7464,1119 @@ def IDFC_HL_BILLING(request):
 
     return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-def FULLERTON_OTR_MIS(request):
-    excel_data = []
-    excel_data11 = []
-    F1 = pd.DataFrame()
-    F11 = pd.DataFrame()
-    status = ''
-    status1 = ''
-    QQ2 = ''
-    QQ1 = ''
-    if request.method == 'POST':
-        Allocation1 = request.FILES['Allocation12']
-        Paidfile1 = request.FILES['Paid_File12']
-        A = pd.read_excel(Allocation1)
-        B = pd.read_excel(Paidfile1)
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            if pd.isnull(A['AGREEMENTID'][i]) == True:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html',
-                              {'error': 'AGREEMENTID DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['CUSTOMERNAME'][i]) == True or isinstance(A.loc[i, 'CUSTOMERNAME'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html',
-                              {'error': 'CUSTOMERNAME DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['TC NAME'][i]) == True or isinstance(A.loc[i, 'TC NAME'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TC NAME DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['TL'][i]) == True or isinstance(A.loc[i, 'TL'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TL DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['FOS'][i]) == True or isinstance(A.loc[i, 'FOS'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'FOS DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['AREA'][i]) == True or isinstance(A.loc[i, 'AREA'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'AREA DOES NOT TAKE NULL VALUES'})
-            elif isinstance(A.loc[i, 'POS'], np.float64) == False or pd.isnull(A['POS'][i]) == True:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES'})
-            elif isinstance(A.loc[i, 'EMI'], np.int64) == False or pd.isnull(A['EMI'][i]) == True:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'EMI DOES NOT TAKE STR VALUES'})
-            else:
-                continue
-
-        fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
-        fs.save(Allocation1.name, Allocation1)
-        fs.save(Paidfile1.name, Paidfile1)
-        print(A.head())
-
-        B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            for k in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (
-                        (B.loc[k, 'AGAINST'] != 'FORECLOSE') and (B.loc[k, 'AGAINST'] != 'SETTLEMENT')):
-                    for j in range(0, len(B1['AGREEMENTID'])):
-                        if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
-                            if B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
-                                A.loc[i, 'STATUS'] = 'PART PAID'
-                            elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']:
-                                A.loc[i, 'STATUS'] = 'SETTLEMENT'
-                            elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']:
-                                A.loc[i, 'STATUS'] = 'SB'
-                elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'FORECLOSE'):
-                    A.loc[i, 'STATUS'] = 'FORECLOSE'
-                elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'SETTLEMENT'):
-                    A.loc[i, 'STATUS'] = 'SETTLEMENT'
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            if str(A.loc[i, 'STATUS']) == 'nan':
-                A.loc[i, 'STATUS'] = 'FLOW'
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            for j in range(0, len(B1['PAID AMOUNT'])):
-                if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
-                    A.loc[i, 'TOTAL PAID'] = B1.loc[j, 'PAID AMOUNT']
-
-        M = pd.DataFrame(A.groupby(['PRODUCT'])['POS'].sum()).reset_index()
-
-        M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
-
-        R = pd.DataFrame(A.groupby(['PRODUCT'])['AGREEMENTID'].count()).reset_index()
-
-        F = M.merge(R, how='outer')
-
-        F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
-
-        R1 = pd.DataFrame(A.groupby(['PRODUCT', 'STATUS'])['AGREEMENTID'].count()).reset_index()
-
-        P = F.copy()
-
-        P.drop(['TOTAL_POS', 'TOTAL_CASES'], axis=1, inplace=True)
-
-        P['FLOW'] = np.nan
-        P['SB'] = np.nan
-        P['PART PAID'] = np.nan
-        P['FORECLOSE'] = np.nan
-        P['SETTLEMENT'] = np.nan
-
-        COL = P.columns
-
-        for i in range(0, len(R1['PRODUCT'])):
-            for j in range(0, len(P['FLOW'])):
-                for k in range(0, len(COL)):
-                    if (R1.loc[i, 'PRODUCT'] == P.loc[j, 'PRODUCT']) and (R1.loc[i, 'STATUS'] == COL[k]):
-                        P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
-
-        F = F.merge(P, how='outer')
-
-        F.fillna(0, inplace=True)
-
-        F.rename(
-            {'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'FORECLOSE': 'FORECLOSE_CASES', 'SETTLEMENT': 'SETTLEMENT_CASES',
-             'PART PAID': 'PART_PAID_CASES'}, axis=1, inplace=True)
-
-        R2 = pd.DataFrame(A.groupby(['PRODUCT', 'STATUS'])['POS'].sum()).reset_index()
-
-        for i in range(0, len(R2['PRODUCT'])):
-            for j in range(0, len(P['PRODUCT'])):
-                for k in range(0, len(COL)):
-                    if (R2.loc[i, 'PRODUCT'] == P.loc[j, 'PRODUCT']) and (R2.loc[i, 'STATUS'] == COL[k]):
-                        P.loc[j, COL[k]] = R2.loc[i, 'POS']
-
-        F = F.merge(P, how='outer')
-
-        F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'SETTLEMENT': 'SETTLEMENT_POS',
-                  'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
-
-        F.fillna(0, inplace=True)
-
-        for i in range(0, len(F['FLOW_CASES'])):
-            F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-
-        TP = pd.DataFrame(A.groupby(['PRODUCT'])['TOTAL PAID'].sum()).reset_index()
-
-        F = F.merge(TP, how='outer')
-
-        for i in range(0, len(F['SB_POS'])):
-            F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
-
-        F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
-                  'SETTLEMENT_CASES': 'SC_CASES',
-                  'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
-                  'FORECLOSE_POS%': 'FC_POS%',
-                  'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
-                 inplace=True)
-        for i in range(0, len(F['FLOW_CASES'])):
-            F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
-            F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
-            F.loc[i, 'PP_POS'] = round(F.loc[i, 'PP_POS'], 2)
-            F.loc[i, 'FC_POS'] = round(F.loc[i, 'FC_POS'], 2)
-            F.loc[i, 'SC_POS'] = round(F.loc[i, 'SC_POS'], 2)
-            F.loc[i, 'TOTAL_POS'] = round(F.loc[i, 'TOTAL_POS'], 2)
-
-        F.to_excel('media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx', index=False)
-
-        F1 = F.copy()
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            s = 0
-            for j in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and (
-                        (A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                        A.loc[i, 'STATUS'] == 'SB')) and (B.loc[j, 'MODE'] != 'ECS'):
-                    s = s + B.loc[j, 'PAID AMOUNT']
-            A.loc[i, 'Billing PAID AMT.'] = s
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            if (A.loc[i, 'EMI'] > A.loc[i, 'TOTAL PAID']) and (A.loc[i, 'STATUS'] == 'SB'):
-                A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
-
-        A['TOTAL PAID'].fillna(0, inplace=True)
-
-        A['Billing PAID AMT.'].fillna(0, inplace=True)
-
-        status1 = 'There is DataFrame of OTR'
-
-        A.to_excel('media/FULLERTON_OTR/Billing/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
-        A.to_excel('media/FULLERTON_OTR/TC Performance/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
-        A.to_excel('media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
-        A.to_excel('media/FULLERTON_OTR/FOS Salary/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
-
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
-            fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
-            AA = fs.open('MIS_FULLERTON_FR.xlsx')
-            F11 = pd.read_excel(AA)
-            status = 'There is a data Frame'
-        else:
-            QQ2 = 'Please Upload File for FULLERTON_FR'
-
-    elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
-            fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
-            fs11 = FileSystemStorage(location='media/FULLERTON_FR/MIS')
-            AA = fs.open('MIS_FULLERTON_OTR.xlsx')
-            AA11 = fs11.open('MIS_FULLERTON_FR.xlsx')
-            F1 = pd.read_excel(AA)
-            F11 = pd.read_excel(AA11)
-            status = 'There is a data Frame'
-
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
-            fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
-            AA = fs.open('MIS_FULLERTON_OTR.xlsx')
-            F1 = pd.read_excel(AA)
-            QQ2 = 'Please Upload File for FULLERTON_FR'
-
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
-            fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
-            AA = fs.open('MIS_FULLERTON_FR.xlsx')
-            F11 = pd.read_excel(AA)
-            QQ1 = 'Please Upload File for FULLERTON_OTR'
-            status = 'There is a data Frame'
-            status1 = 'There is no OTR data Frame'
-
-        else:
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-
-            QQ = 'Please Upload File for FULLERTON_FR'
-            QQ1 = 'Please Upload File for FULLERTON_OTR'
-            return render(request, 'FirstLevel/upload_excel.html',
-                          {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'OTR': QQ1, 'FR': QQ, 'Designation': Designation})
-
-    C = list(F1.columns)
-    C11 = list(F11.columns)
-    if status1 != 'There is no OTR data Frame':
-        for j in range(0, len(F1[C[0]])):
-            row_data = list()
-            for col in range(0, len(C)):
-                row_data.append(str(F1.loc[j, C[col]]))
-            excel_data.append(row_data)
-    if status == 'There is a data Frame':
-        for j in range(0, len(F11[C11[0]])):
-            row_data11 = list()
-            for col in range(0, len(C11)):
-                row_data11.append(str(F11.loc[j, C11[col]]))
-            excel_data11.append(row_data11)
-
-    final_dep = DEP()
-    final_process = COMPANY_PROCESS()
-    Designation = Employee_Designation()
-
-    return render(request, 'FirstLevel/upload_excel.html', {'excel1': excel_data11, 'columns1': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel': excel_data, 'columns': C, 'FR': QQ2, 'OTR': QQ1, 'Designation': Designation})
-
-def FULLERTON_OTR_BILLING(request):
-    Total_Payout = ''
-    final_dep = ''
-    final_process = ''
-    Total_Payout1 = ''
-    QQ = ''
-    QQ1 = ''
-    QQ2 = ''
-    line = ''
-    line2 = ''
-
-    if request.method == 'POST':
-        if os.path.exists(
-                r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')
-            fs1 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
-            AA = fs.open('MASTER_FILE_FULLERTON_OTR.xlsx')
-            AA1 = fs1.open('MIS_FULLERTON_OTR.xlsx')
-            for i in range(1, 32, -1):
-                if os.path.exists(
-                        r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/FULLERTON_OTR_PAID FILE_' + i + 'SEP21.xlsx'):
-                    AA122 = fs1.open('FULLERTON_OTR_PAID FILE_' + i + 'SEP21.xlsx')
-                    PAID_FILE = pd.read_excel(AA122)
-                else:
-                    continue
-            A = pd.read_excel(AA)
-            P = pd.read_excel(AA1)
-
-            for i in range(0, len(A['PRODUCT'])):
-                # PL-SAL
-                if A.loc[i, 'PRODUCT'] == 'PL Sal':
-                    for j in range(0, len(P['PRODUCT'])):
-                        if (A.loc[i, 'PRODUCT'] == P.loc[j, 'PRODUCT']):
-                            if P.loc[j, 'POS_RES%'] < 55:
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 11 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(11) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(11), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 55) and (P.loc[j, 'POS_RES%'] < 65):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 13 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(13) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(13), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 65) and (P.loc[j, 'POS_RES%'] < 70):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(15) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(15), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 70) and (P.loc[j, 'POS_RES%'] < 75):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 17 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(17) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(17), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 75) and (P.loc[j, 'POS_RES%'] < 80):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 19 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(19) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(19), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 80) and (P.loc[j, 'POS_RES%'] < 85):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 21 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(21) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(21), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 85) and (P.loc[j, 'POS_RES%'] < 90):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 23 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(23) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(23), a, P.loc[j, 'PRODUCT'])
-                            elif P.loc[j, 'POS_RES%'] >= 90:
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 25 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(25) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(25), a, P.loc[j, 'PRODUCT'])
-                # PL-SELF
-                elif A.loc[i, 'PRODUCT'] == 'PL Self':
-                    for j in range(0, len(P['PRODUCT'])):
-                        if A.loc[i, 'PRODUCT'] == P.loc[j, 'PRODUCT']:
-                            if P.loc[j, 'POS_RES%'] < 55:
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 6 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(6) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(6), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 55) and (P.loc[j, 'POS_RES%'] < 65):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 8 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(8) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(8), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 65) and (P.loc[j, 'POS_RES%'] < 70):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 10 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(10) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(10), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 70) and (P.loc[j, 'POS_RES%'] < 75):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 12 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(12) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(12), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 75) and (P.loc[j, 'POS_RES%'] < 80):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 14 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(14) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(14), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 80) and (P.loc[j, 'POS_RES%'] < 85):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 16 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(16) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(16), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 85) and (P.loc[j, 'POS_RES%'] < 90):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 18 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(18) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(18), a, P.loc[j, 'PRODUCT'])
-                            elif (P.loc[j, 'POS_RES%'] >= 90):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(20) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
-                                          A.loc[i, 'Billing PAID AMT.'], str(20), a, P.loc[j, 'PRODUCT'])
-
-            FLOWLIST = A[A['STATUS'] == 'FLOW'].index
-
-            for i in range(0, len(FLOWLIST)):
-                A.loc[FLOWLIST[i], 'MOHAK'] = 0
-
-            A[A['MOHAK'].isnull()]['STATUS'].value_counts()
-
-            for i in range(0, len(A['AGREEMENTID'])):
-                if A.loc[i, 'STATUS'] == 'SETTLEMENT':
-                    for j in range(0, len(PAID_FILE['AGREEMENTID'])):
-                        if A.loc[i, 'AGREEMENTID'] == PAID_FILE.loc[j, 'AGREEMENTID']:
-                            wavier = 100 - round(PAID_FILE.loc[j, 'PAID AMOUNT'] / A.loc[i, 'POS'] * 100)
-                            if (A.loc[i, 'POS'] < 100000):
-                                if wavier == 0:
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 18 / 100
-                                    if a >= 20000:
-                                        A.loc[i, 'MOHAK'] = 20000
-                                    elif a < 20000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(18) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(18),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                                elif (wavier > 0) and (wavier <= 25):
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                    if a >= 15000:
-                                        A.loc[i, 'MOHAK'] = 15000
-                                    elif a < 15000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(15) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(15),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                                elif (wavier > 25) and (wavier <= 50):
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 12 / 100
-                                    if a >= 10000:
-                                        A.loc[i, 'MOHAK'] = 10000
-                                    elif a < 10000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(12) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(12),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                            elif (A.loc[i, 'POS'] >= 100000) and (A.loc[i, 'POS'] < 200000):
-                                if wavier == 0:
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 21 / 100
-                                    if a >= 30000:
-                                        A.loc[i, 'MOHAK'] = 30000
-                                    elif a < 30000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(21) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(21),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                                elif (wavier > 0) and (wavier <= 25):
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 18 / 100
-                                    if a >= 25000:
-                                        A.loc[i, 'MOHAK'] = 25000
-                                    elif a < 25000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(18) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(18),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                                elif (wavier > 25) and (wavier <= 50):
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                    if a >= 20000:
-                                        A.loc[i, 'MOHAK'] = 20000
-                                    elif a < 20000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(15) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(15),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                            elif (A.loc[i, 'POS'] >= 200000) and (A.loc[i, 'POS'] < 300000):
-                                if wavier == 0:
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 25 / 100
-                                    if a >= 35000:
-                                        A.loc[i, 'MOHAK'] = 35000
-                                    elif a < 35000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(25) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(25),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                                elif (wavier > 0) and (wavier <= 25):
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 22 / 100
-                                    if a >= 30000:
-                                        A.loc[i, 'MOHAK'] = 30000
-                                    elif a < 30000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(22) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(22),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                                elif (wavier > 25) and (wavier <= 50):
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 19 / 100
-                                    if a >= 25000:
-                                        A.loc[i, 'MOHAK'] = 25000
-                                    elif a < 25000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(19) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(19),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                            elif (A.loc[i, 'POS'] >= 300000):
-                                if wavier == 0:
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 30 / 100
-                                    if a >= 40000:
-                                        A.loc[i, 'MOHAK'] = 40000
-                                    elif a < 40000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(30) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(30),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                                elif (wavier > 0) and (wavier <= 25):
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 27 / 100
-                                    if a >= 35000:
-                                        A.loc[i, 'MOHAK'] = 35000
-                                    elif a < 35000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(27) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(27),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-                                elif (wavier > 25) and (wavier <= 50):
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 24 / 100
-                                    if a >= 30000:
-                                        A.loc[i, 'MOHAK'] = 30000
-                                    elif a < 30000:
-                                        A.loc[i, 'MOHAK'] = a
-                                    A.loc[i, 'PERCENTAGE'] = str(24) + '%'
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(24),
-                                          A.loc[i, 'MOHAK'],
-                                          wavier)
-
-            A.rename({'MOHAK': 'PAYOUT'}, axis=1, inplace=True)
-
-            A['PAYOUT'].fillna(0, inplace=True)
-
-            A.to_excel(r'media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx', index=False)
-
-            Total_Payout1 = round(sum(A['PAYOUT']), 2)
-
-            line2 = 'Total Payout for OTR = '
-            QQ1 = 'Please click Billing button for FULLERTON_OTR'
-
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx'):
-                fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
-                AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
-                F2 = pd.read_excel(AA2)  # OTR
-                Total_Payout = round(sum(F2['PAYOUT']), 2)  # OTR
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                line = 'Total Payout for FR = '
-            else:
-                QQ = 'Please upload Allocation file for FULLERTON_FR'
-
-        else:
-            return HttpResponseRedirect(reverse('basic_app:FULLERTON_OTR_MIS'))
-
-    elif request.method != 'POST':
-        if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
-                fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # FR
-                fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
-                AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # FR
-                AA3 = fs.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
-                F2 = pd.read_excel(AA2)  # FR
-                F3 = pd.read_excel(AA3)  # OTR
-                line = 'Total Payout for FR = '
-                line2 = 'Total Payout for OTR = '
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                Total_Payout = round(sum(F2['PAYOUT']), 2)  # FR
-                Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
-
-            elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
-                fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
-                AA3 = fs.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
-                F3 = pd.read_excel(AA3)  # OTR
-                Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                line2 = 'Total Payout for OTR = '
-
-            elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
-                fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
-                AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
-                F2 = pd.read_excel(AA2)  # OTR
-                Total_Payout = round(sum(F2['PAYOUT']), 2)  # OTR
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                line = 'Total Payout for FR = '
-
-            else:
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-        elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
-                fs1 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
-                AA1 = fs1.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
-                F3 = pd.read_excel(AA1)  # OTR
-                Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
-                QQ = 'Please Upload Allocation File for FULLERTON_FR'
-                QQ1 = 'Please click billing button for FULLERTON_OTR'
-                line2 = 'Total Payout for OTR = '
-            else:
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                QQ = 'Please Upload Allocation File for FULLERTON_FR'
-                QQ1 = 'Please click billing button for FULLERTON_OTR'
-                return render(request, 'FirstLevel/Billing.html', {'FR': QQ, 'OTR': QQ1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-        elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
-                fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # FR
-                AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # FR
-                F2 = pd.read_excel(AA3)  # OTR
-                Total_Payout = round(sum(F2['PAYOUT']), 2)  # FR
-                QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
-                QQ = 'Please click billing button for FULLERTON_FR'
-                line = 'Total Payout for FR = '
-            else:
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                QQ = 'Please click billing button for FULLERTON_FR'
-                QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
-                return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-        else:
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-            QQ = 'Please Upload Allocation File for FULLERTON_FR'
-            QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
-            return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-    final_dep = DEP()
-    final_process = COMPANY_PROCESS()
-    Designation = Employee_Designation()
-
-    return render(request, 'FirstLevel/Billing.html', {'Total_Payout12': Total_Payout, 'Total_Payout': Total_Payout1, 'FR': QQ, 'OTR': QQ1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'com': line, 'com2': line2, 'Designation': Designation})
-
-def FULLERTON_FR_MIS(request):
-    excel_data = [] #OTR
-    excel_data11 = [] #FR
-    F1 = pd.DataFrame() #FR
-    F11 = pd.DataFrame() #OTR
-    status = ''
-    status1 = ''
-    C = ''
-    QQ1 = ''
-    if request.method == 'POST':
-        Allocation1 = request.FILES['Allocation']
-        Paidfile1 = request.FILES['Paid_File']
-        A = pd.read_excel(Allocation1)
-        B = pd.read_excel(Paidfile1)
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            if pd.isnull(A['AGREEMENTID'][i]) == True:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html',
-                              {'error': 'AGREEMENTID DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['CUSTOMERNAME'][i]) == True or isinstance(A.loc[i, 'CUSTOMERNAME'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html',
-                              {'error': 'CUSTOMERNAME DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['TC NAME'][i]) == True or isinstance(A.loc[i, 'TC NAME'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TC NAME DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['TL'][i]) == True or isinstance(A.loc[i, 'TL'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'TL DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['FOS'][i]) == True or isinstance(A.loc[i, 'FOS'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'FOS DOES NOT TAKE NULL VALUES'})
-            elif pd.isnull(A['AREA'][i]) == True or isinstance(A.loc[i, 'AREA'], str) == False:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'AREA DOES NOT TAKE NULL VALUES'})
-            elif isinstance(A.loc[i, 'POS'], np.float64) == False or pd.isnull(A['POS'][i]) == True:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES'})
-            elif isinstance(A.loc[i, 'EMI'], np.int64) == False or pd.isnull(A['EMI'][i]) == True:
-                print('error', i)
-                return render(request, 'FirstLevel/upload_excel.html', {'error': 'EMI DOES NOT TAKE STR VALUES'})
-            else:
-                continue
-
-        fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
-        fs.save(Allocation1.name, Allocation1)
-        fs.save(Paidfile1.name, Paidfile1)
-        print(A.head())
-
-        B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            for k in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and ((B.loc[k, 'AGAINST'] != 'FORECLOSE') and (B.loc[k, 'AGAINST'] != 'SETTLEMENT')):
-                    for j in range(0, len(B1['AGREEMENTID'])):
-                        if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
-                            if B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
-                                A.loc[i, 'STATUS'] = 'PART PAID'
-                            elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']:
-                                A.loc[i, 'STATUS'] = 'SETTLEMENT'
-                            elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']:
-                                A.loc[i, 'STATUS'] = 'SB'
-                elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'FORECLOSE'):
-                    A.loc[i, 'STATUS'] = 'FORECLOSE'
-                elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'SETTLEMENT'):
-                    A.loc[i, 'STATUS'] = 'SETTLEMENT'
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            if str(A.loc[i, 'STATUS']) == 'nan':
-                A.loc[i, 'STATUS'] = 'FLOW'
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            for j in range(0, len(B1['PAID AMOUNT'])):
-                if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
-                    A.loc[i, 'TOTAL PAID'] = B1.loc[j, 'PAID AMOUNT']
-
-        M = pd.DataFrame(A.groupby(['COMPANY'])['POS'].sum()).reset_index()
-
-        M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
-
-        R = pd.DataFrame(A.groupby(['COMPANY'])['AGREEMENTID'].count()).reset_index()
-
-        F = M.merge(R, how='outer')
-
-        F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
-
-        R1 = pd.DataFrame(A.groupby(['COMPANY', 'STATUS'])['AGREEMENTID'].count()).reset_index()
-
-        P = F.copy()
-
-        P.drop(['TOTAL_POS', 'TOTAL_CASES'], axis=1, inplace=True)
-
-        P['FLOW'] = np.nan
-        P['SB'] = np.nan
-        P['PART PAID'] = np.nan
-        P['FORECLOSE'] = np.nan
-        P['SETTLEMENT'] = np.nan
-
-        COL = P.columns
-
-        for i in range(0, len(R1['COMPANY'])):
-            for j in range(0, len(P['FLOW'])):
-                for k in range(0, len(COL)):
-                    if (R1.loc[i, 'COMPANY'] == P.loc[j, 'COMPANY']) and R1.loc[i, 'STATUS'] == COL[k]:
-                        P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
-
-        F = F.merge(P, how='outer')
-
-        F.fillna(0, inplace=True)
-
-        F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'FORECLOSE': 'FORECLOSE_CASES', 'SETTLEMENT': 'SETTLEMENT_CASES',
-                  'PART PAID': 'PART_PAID_CASES'}, axis=1, inplace=True)
-
-        R2 = pd.DataFrame(A.groupby(['COMPANY', 'STATUS'])['POS'].sum()).reset_index()
-
-        for i in range(0, len(R2['COMPANY'])):
-            for j in range(0, len(P['COMPANY'])):
-                for k in range(0, len(COL)):
-                    if (R2.loc[i, 'COMPANY'] == P.loc[j, 'COMPANY']) and R2.loc[i, 'STATUS'] == COL[k]:
-                        P.loc[j, COL[k]] = R2.loc[i, 'POS']
-
-        F = F.merge(P, how='outer')
-
-        F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'SETTLEMENT': 'SETTLEMENT_POS',
-                  'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
-
-        F.fillna(0, inplace=True)
-
-        for i in range(0, len(F['FLOW_CASES'])):
-            F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-            F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-
-        TP = pd.DataFrame(A.groupby(['COMPANY'])['TOTAL PAID'].sum()).reset_index()
-
-        F = F.merge(TP, how='outer')
-
-        for i in range(0, len(F['SB_POS'])):
-            F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
-
-        F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
-                  'SETTLEMENT_CASES': 'SC_CASES',
-                  'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
-                  'FORECLOSE_POS%': 'FC_POS%',
-                  'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
-                 inplace=True)
-
-        for i in range(0,len(F['FLOW_CASES'])):
-            F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
-            F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
-            F.loc[i, 'PP_POS'] = round(F.loc[i, 'PP_POS'], 2)
-            F.loc[i, 'FC_POS'] = round(F.loc[i, 'FC_POS'], 2)
-            F.loc[i, 'SC_POS'] = round(F.loc[i, 'SC_POS'], 2)
-            F.loc[i, 'TOTAL_POS'] = round(F.loc[i, 'TOTAL_POS'], 2)
-
-        F.to_excel('media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx', index=False)
-
-        F1 = F.copy()
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            s = 0
-            for j in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and ((A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'SB')) and (B.loc[j, 'MODE'] != 'ECS'):
-                    s = s + B.loc[j, 'PAID AMOUNT']
-            A.loc[i, 'Billing PAID AMT.'] = s
-
-        for i in range(0, len(A['AGREEMENTID'])):
-            if (A.loc[i, 'EMI'] > A.loc[i, 'TOTAL PAID']) and (A.loc[i, 'STATUS'] == 'SB'):
-                A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
-
-        A['TOTAL PAID'].fillna(0, inplace=True)
-
-        A['Billing PAID AMT.'].fillna(0, inplace=True)
-
-        A.to_excel('media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
-        A.to_excel('media/FULLERTON_FR/TC Performance/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
-        A.to_excel('media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
-        A.to_excel('media/FULLERTON_FR/FOS Salary/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
-
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_OTR.xlsx'):
-            True
-        else:
-            QQ1 = 'Please Upload File for FULLERTON_OTR'
-
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
-            fs11 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
-            AA11 = fs11.open('MIS_FULLERTON_OTR.xlsx')
-            F11 = pd.read_excel(AA11)  # OTR
-            status = 'There is a data Frame'
-        else:
-            status = 'There is a data Frame'
-            status1 = 'There is no otr file'
-
-    elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
-            fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
-            fs11 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
-            AA = fs.open('MIS_FULLERTON_FR.xlsx')
-            AA11 = fs11.open('MIS_FULLERTON_OTR.xlsx')
-            F1 = pd.read_excel(AA) #FR
-            F11 = pd.read_excel(AA11) #OTR
-            status = 'There is a data Frame'
-            status1 = 'There is otr file'
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
-            fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
-            AA11 = fs.open('MIS_FULLERTON_OTR.xlsx')
-            F11 = pd.read_excel(AA11)
-            QQ = 'Please Upload File for FULLERTON_FR'
-            status1= 'There is otr file'
-        else:
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-
-            QQ = 'Please Upload File for FULLERTON_FR'
-            QQ1 = 'Please Upload File for FULLERTON_OTR'
-            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'OTR': QQ1, 'FR': QQ, 'Designation': Designation})
-
-    if status1 != 'There is no otr file':
-        C = list(F11.columns) #OTR
-        for j in range(0, len(F11[C[0]])):
-            row_data11 = list()
-            for col in range(0, len(C)):
-                row_data11.append(str(F11.loc[j, C[col]]))
-            excel_data.append(row_data11)
-    C11 = list(F1.columns)  # FR
-    if status == 'There is a data Frame':
-        for j in range(0, len(F1[C11[0]])):
-            row_data = list()
-            for col in range(0, len(C11)):
-                row_data.append(str(F1.loc[j, C11[col]]))
-            excel_data11.append(row_data)
-
-    final_dep = DEP()
-    final_process = COMPANY_PROCESS()
-    Designation = Employee_Designation()
-    
-    return render(request, 'FirstLevel/upload_excel.html', {'excel1': excel_data11, 'columns1': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel': excel_data, 'columns': C, 'OTR': QQ1, 'Designation': Designation})
-
-def FULLERTON_FR_BILLING(request):
-    Total_Payout = ''
-    Total_Payout1 = ''
-    line = ''
-    line2 = ''
-    QQ = ''
-    QQ1 = ''
-    if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx'):
-            fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')
-            fs1 = FileSystemStorage(location='media/FULLERTON_FR/MIS')
-            AA = fs.open('MASTER_FILE_FULLERTON_FR.xlsx')
-            AA1 = fs1.open('MIS_FULLERTON_FR.xlsx')
-            for i in range(1, 32, -1):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/FULLERTON_FR_PAID FILE_' + i + 'SEP21.xlsx'):
-                    AA122 = fs1.open('FULLERTON_FR_PAID FILE_' + i + 'SEP21.xlsx')
-                    PAID_FILE = pd.read_excel(AA122)
-                else:
-                    continue
-            A = pd.read_excel(AA)
-            P = pd.read_excel(AA1)
-
-            for i in range(0, len(A['COMPANY'])):
-                if A.loc[i, 'COMPANY'] == 'FULLERTON':
-                    for j in range(0, len(P['COMPANY'])):
-                        if A.loc[i, 'COMPANY'] == P.loc[j, 'COMPANY']:
-                            if P.loc[j, 'POS_RES%'] < 75:
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 4 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(4) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(4), a, P.loc[j, 'COMPANY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 75) and (P.loc[j, 'POS_RES%'] < 78):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 4.25 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(4.25) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(4.25), a, P.loc[j, 'COMPANY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 78) and (P.loc[j, 'POS_RES%'] < 80):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 4.5 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(4.5) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(4.5), a, P.loc[j, 'COMPANY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 80) and (P.loc[j, 'POS_RES%'] < 82):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 4.75 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(4.75) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(4.75), a, P.loc[j, 'COMPANY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 82) and (P.loc[j, 'POS_RES%'] < 84):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 5 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(5) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(5), a, P.loc[j, 'COMPNAY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 84) and (P.loc[j, 'POS_RES%'] < 86):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 5.25 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(5.25) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], A.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(5.25), a, P.loc[j, 'COMPNAY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 86) and (P.loc[j, 'POS_RES%'] < 88):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 5.5 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(5.5) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(5.5), a, P.loc[j, 'COMPNAY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 88) and (P.loc[j, 'POS_RES%'] < 90):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 5.75 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(5.75) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(5.75), a, P.loc[j, 'COMPNAY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 90) and (P.loc[j, 'POS_RES%'] < 92):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 6 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(6) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(6), a, P.loc[j, 'COMPNAY'])
-                            elif (P.loc[j, 'POS_RES%'] >= 92):
-                                if A.loc[i, 'STATUS'] == 'SB':
-                                    a = A.loc[i, 'Billing PAID AMT.'] * 6.25 / 100
-                                    A.loc[i, 'PERCENTAGE'] = str(6.25) + '%'
-                                    A.loc[i, 'MOHAK'] = a
-                                    print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(6.25), a, P.loc[j, 'COMPANY'])
-
-            FLOWLIST = A[A['STATUS'] == 'FLOW'].index
-
-            for i in range(0, len(FLOWLIST)):
-                A.loc[FLOWLIST[i], 'MOHAK'] = 0
-
-            A[A['MOHAK'].isnull()]['STATUS'].value_counts()
-
-            A.rename({'MOHAK': 'PAYOUT'}, axis=1, inplace=True)
-
-            A['PAYOUT'].fillna(0, inplace=True)
-
-            A.to_excel(r'media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx', index=False)
-
-            Total_Payout = round(sum(A['PAYOUT']), 2)
-            line = 'Total Payout for FR = '
-
-            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
-                    fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
-                    AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
-                    F3 = pd.read_excel(AA2)  # OTR
-                    Total_Payout1 = round(sum(F3['PAYOUT']), 2)
-                    line2 = 'Total Payout for OTR = '# OTR
-                    QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                    QQ = 'Please click Billing button for FULLERTON_FR'
-                else:
-                    QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                    QQ = 'Please click Billing button for FULLERTON_FR'
-            else:
-                QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
-                QQ = 'Please click Billing button for FULLERTON_FR'
-
-        else:
-            return HttpResponseRedirect(reverse('basic_app:FULLERTON_OTR_MIS'))
-
-    elif request.method != 'POST':
-        if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
-                fs = FileSystemStorage(location='media/FULLERTON_FR/Billing') #FR
-                fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing') #OTR
-                AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx') #FR
-                AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx') #OTR
-                F2 = pd.read_excel(AA3) #FR
-                F3 = pd.read_excel(AA2) #OTR
-                Total_Payout = round(sum(F2['PAYOUT']), 2) #FR
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                line = 'Total Payout for FR = '
-                line2 = 'Total Payout for OTR = '
-                Total_Payout1 = round(sum(F3['PAYOUT']), 2) #OTR
-
-            elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
-                fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
-                AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
-                F3 = pd.read_excel(AA2)  # OTR
-                Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                line2 = 'Total Payout for OTR = '
-
-            elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
-                fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
-                AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
-                F3 = pd.read_excel(AA3)  # OTR
-                Total_Payout = round(sum(F3['PAYOUT']), 2)  # OTR
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                line = 'Total Payout for FR = '
-
-            else:
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-                
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                return render(request, 'FirstLevel/Billing.html',
-                              {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-        elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
-                fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
-                AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
-                F3 = pd.read_excel(AA2)  # OTR
-                Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
-                QQ = 'Please Upload Allocation File for FULLERTON_FR'
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                line2 = 'Total Payout for OTR = '
-            else:
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                QQ1 = 'Please click Billing button for FULLERTON_OTR'
-                QQ = 'Please Upload Allocation File for FULLERTON_FR'
-                return render(request, 'FirstLevel/Billing.html',
-                              {'OTR': QQ1, 'FR':QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-        elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx'):
-            if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
-                fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
-                AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
-                F2 = pd.read_excel(AA3)  # OTR
-                Total_Payout = round(sum(F2['PAYOUT']), 2)  # OTR
-                QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                line = 'Total Payout for FR = '
-            else:
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
-                QQ = 'Please click Billing button for FULLERTON_FR'
-                return render(request, 'FirstLevel/Billing.html',
-                              {'FR': QQ, "OTR": QQ1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-        else:
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-            QQ = 'Please Upload File for FULLERTON_FR'
-            QQ1 = 'Please Upload File for FULLERTON_OTR'
-            return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-    final_dep = DEP()
-    final_process = COMPANY_PROCESS()
-    Designation = Employee_Designation()
-
-    return render(request, 'FirstLevel/Billing.html', {'Total_Payout12': Total_Payout, 'Total_Payout': Total_Payout1, 'OTR': QQ1, 'com': line, 'com2' : line2, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+# def FULLERTON_OTR_MIS(request):
+#     excel_data = []
+#     excel_data11 = []
+#     F1 = pd.DataFrame()
+#     F11 = pd.DataFrame()
+#     status = ''
+#     status1 = ''
+#     QQ2 = ''
+#     QQ1 = ''
+#     if request.method == 'POST':
+#         Allocation1 = request.FILES['Allocation12']
+#         Paidfile1 = request.FILES['Paid_File12']
+#         A = pd.read_excel(Allocation1)
+#         B = pd.read_excel(Paidfile1)
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             if pd.isnull(A['AGREEMENTID'][i]) == True:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html',
+#                               {'error': 'AGREEMENTID DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['CUSTOMERNAME'][i]) == True or isinstance(A.loc[i, 'CUSTOMERNAME'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html',
+#                               {'error': 'CUSTOMERNAME DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['TC NAME'][i]) == True or isinstance(A.loc[i, 'TC NAME'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'TC NAME DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['TL'][i]) == True or isinstance(A.loc[i, 'TL'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'TL DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['FOS'][i]) == True or isinstance(A.loc[i, 'FOS'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'FOS DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['AREA'][i]) == True or isinstance(A.loc[i, 'AREA'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'AREA DOES NOT TAKE NULL VALUES'})
+#             elif isinstance(A.loc[i, 'POS'], np.float64) == False or pd.isnull(A['POS'][i]) == True:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES'})
+#             elif isinstance(A.loc[i, 'EMI'], np.int64) == False or pd.isnull(A['EMI'][i]) == True:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'EMI DOES NOT TAKE STR VALUES'})
+#             else:
+#                 continue
+#
+#         fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
+#         fs.save(Allocation1.name, Allocation1)
+#         fs.save(Paidfile1.name, Paidfile1)
+#         print(A.head())
+#
+#         B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             for k in range(0, len(B['AGREEMENTID'])):
+#                 if (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (
+#                         (B.loc[k, 'AGAINST'] != 'FORECLOSE') and (B.loc[k, 'AGAINST'] != 'SETTLEMENT')):
+#                     for j in range(0, len(B1['AGREEMENTID'])):
+#                         if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+#                             if B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+#                                 A.loc[i, 'STATUS'] = 'PART PAID'
+#                             elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']:
+#                                 A.loc[i, 'STATUS'] = 'SETTLEMENT'
+#                             elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']:
+#                                 A.loc[i, 'STATUS'] = 'SB'
+#                 elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'FORECLOSE'):
+#                     A.loc[i, 'STATUS'] = 'FORECLOSE'
+#                 elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'SETTLEMENT'):
+#                     A.loc[i, 'STATUS'] = 'SETTLEMENT'
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             if str(A.loc[i, 'STATUS']) == 'nan':
+#                 A.loc[i, 'STATUS'] = 'FLOW'
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             for j in range(0, len(B1['PAID AMOUNT'])):
+#                 if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+#                     A.loc[i, 'TOTAL PAID'] = B1.loc[j, 'PAID AMOUNT']
+#
+#         M = pd.DataFrame(A.groupby(['PRODUCT'])['POS'].sum()).reset_index()
+#
+#         M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
+#
+#         R = pd.DataFrame(A.groupby(['PRODUCT'])['AGREEMENTID'].count()).reset_index()
+#
+#         F = M.merge(R, how='outer')
+#
+#         F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
+#
+#         R1 = pd.DataFrame(A.groupby(['PRODUCT', 'STATUS'])['AGREEMENTID'].count()).reset_index()
+#
+#         P = F.copy()
+#
+#         P.drop(['TOTAL_POS', 'TOTAL_CASES'], axis=1, inplace=True)
+#
+#         P['FLOW'] = np.nan
+#         P['SB'] = np.nan
+#         P['PART PAID'] = np.nan
+#         P['FORECLOSE'] = np.nan
+#         P['SETTLEMENT'] = np.nan
+#
+#         COL = P.columns
+#
+#         for i in range(0, len(R1['PRODUCT'])):
+#             for j in range(0, len(P['FLOW'])):
+#                 for k in range(0, len(COL)):
+#                     if (R1.loc[i, 'PRODUCT'] == P.loc[j, 'PRODUCT']) and (R1.loc[i, 'STATUS'] == COL[k]):
+#                         P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
+#
+#         F = F.merge(P, how='outer')
+#
+#         F.fillna(0, inplace=True)
+#
+#         F.rename(
+#             {'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'FORECLOSE': 'FORECLOSE_CASES', 'SETTLEMENT': 'SETTLEMENT_CASES',
+#              'PART PAID': 'PART_PAID_CASES'}, axis=1, inplace=True)
+#
+#         R2 = pd.DataFrame(A.groupby(['PRODUCT', 'STATUS'])['POS'].sum()).reset_index()
+#
+#         for i in range(0, len(R2['PRODUCT'])):
+#             for j in range(0, len(P['PRODUCT'])):
+#                 for k in range(0, len(COL)):
+#                     if (R2.loc[i, 'PRODUCT'] == P.loc[j, 'PRODUCT']) and (R2.loc[i, 'STATUS'] == COL[k]):
+#                         P.loc[j, COL[k]] = R2.loc[i, 'POS']
+#
+#         F = F.merge(P, how='outer')
+#
+#         F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'SETTLEMENT': 'SETTLEMENT_POS',
+#                   'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
+#
+#         F.fillna(0, inplace=True)
+#
+#         for i in range(0, len(F['FLOW_CASES'])):
+#             F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#
+#         TP = pd.DataFrame(A.groupby(['PRODUCT'])['TOTAL PAID'].sum()).reset_index()
+#
+#         F = F.merge(TP, how='outer')
+#
+#         for i in range(0, len(F['SB_POS'])):
+#             F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
+#
+#         F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
+#                   'SETTLEMENT_CASES': 'SC_CASES',
+#                   'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
+#                   'FORECLOSE_POS%': 'FC_POS%',
+#                   'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
+#                  inplace=True)
+#         for i in range(0, len(F['FLOW_CASES'])):
+#             F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
+#             F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
+#             F.loc[i, 'PP_POS'] = round(F.loc[i, 'PP_POS'], 2)
+#             F.loc[i, 'FC_POS'] = round(F.loc[i, 'FC_POS'], 2)
+#             F.loc[i, 'SC_POS'] = round(F.loc[i, 'SC_POS'], 2)
+#             F.loc[i, 'TOTAL_POS'] = round(F.loc[i, 'TOTAL_POS'], 2)
+#
+#         F.to_excel('media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx', index=False)
+#
+#         F1 = F.copy()
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             s = 0
+#             for j in range(0, len(B['AGREEMENTID'])):
+#                 if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and (
+#                         (A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
+#                         A.loc[i, 'STATUS'] == 'SB')) and (B.loc[j, 'MODE'] != 'ECS'):
+#                     s = s + B.loc[j, 'PAID AMOUNT']
+#             A.loc[i, 'Billing PAID AMT.'] = s
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             if (A.loc[i, 'EMI'] > A.loc[i, 'TOTAL PAID']) and (A.loc[i, 'STATUS'] == 'SB'):
+#                 A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
+#
+#         A['TOTAL PAID'].fillna(0, inplace=True)
+#
+#         A['Billing PAID AMT.'].fillna(0, inplace=True)
+#
+#         status1 = 'There is DataFrame of OTR'
+#
+#         A.to_excel('media/FULLERTON_OTR/Billing/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
+#         A.to_excel('media/FULLERTON_OTR/TC Performance/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
+#         A.to_excel('media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
+#         A.to_excel('media/FULLERTON_OTR/FOS Salary/MASTER_FILE_FULLERTON_OTR.xlsx', index=False)
+#
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
+#             fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
+#             AA = fs.open('MIS_FULLERTON_FR.xlsx')
+#             F11 = pd.read_excel(AA)
+#             status = 'There is a data Frame'
+#         else:
+#             QQ2 = 'Please Upload File for FULLERTON_FR'
+#
+#     elif request.method != 'POST':
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
+#             fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
+#             fs11 = FileSystemStorage(location='media/FULLERTON_FR/MIS')
+#             AA = fs.open('MIS_FULLERTON_OTR.xlsx')
+#             AA11 = fs11.open('MIS_FULLERTON_FR.xlsx')
+#             F1 = pd.read_excel(AA)
+#             F11 = pd.read_excel(AA11)
+#             status = 'There is a data Frame'
+#
+#         elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
+#             fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
+#             AA = fs.open('MIS_FULLERTON_OTR.xlsx')
+#             F1 = pd.read_excel(AA)
+#             QQ2 = 'Please Upload File for FULLERTON_FR'
+#
+#         elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx'):
+#             fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
+#             AA = fs.open('MIS_FULLERTON_FR.xlsx')
+#             F11 = pd.read_excel(AA)
+#             QQ1 = 'Please Upload File for FULLERTON_OTR'
+#             status = 'There is a data Frame'
+#             status1 = 'There is no OTR data Frame'
+#
+#         else:
+#             final_dep = DEP()
+#             final_process = COMPANY_PROCESS()
+#             Designation = Employee_Designation()
+#
+#             QQ = 'Please Upload File for FULLERTON_FR'
+#             QQ1 = 'Please Upload File for FULLERTON_OTR'
+#             return render(request, 'FirstLevel/upload_excel.html',
+#                           {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'OTR': QQ1, 'FR': QQ, 'Designation': Designation})
+#
+#     C = list(F1.columns)
+#     C11 = list(F11.columns)
+#     if status1 != 'There is no OTR data Frame':
+#         for j in range(0, len(F1[C[0]])):
+#             row_data = list()
+#             for col in range(0, len(C)):
+#                 row_data.append(str(F1.loc[j, C[col]]))
+#             excel_data.append(row_data)
+#     if status == 'There is a data Frame':
+#         for j in range(0, len(F11[C11[0]])):
+#             row_data11 = list()
+#             for col in range(0, len(C11)):
+#                 row_data11.append(str(F11.loc[j, C11[col]]))
+#             excel_data11.append(row_data11)
+#
+#     final_dep = DEP()
+#     final_process = COMPANY_PROCESS()
+#     Designation = Employee_Designation()
+#
+#     return render(request, 'FirstLevel/upload_excel.html', {'excel1': excel_data11, 'columns1': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel': excel_data, 'columns': C, 'FR': QQ2, 'OTR': QQ1, 'Designation': Designation})
+
+# def FULLERTON_OTR_BILLING(request):
+#     Total_Payout = ''
+#     final_dep = ''
+#     final_process = ''
+#     Total_Payout1 = ''
+#     QQ = ''
+#     QQ1 = ''
+#     QQ2 = ''
+#     line = ''
+#     line2 = ''
+#
+#     if request.method == 'POST':
+#         if os.path.exists(
+#                 r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/MASTER_FILE_FULLERTON_OTR.xlsx'):
+#             fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')
+#             fs1 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
+#             AA = fs.open('MASTER_FILE_FULLERTON_OTR.xlsx')
+#             AA1 = fs1.open('MIS_FULLERTON_OTR.xlsx')
+#             for i in range(1, 32, -1):
+#                 if os.path.exists(
+#                         r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/FULLERTON_OTR_PAID FILE_' + i + 'SEP21.xlsx'):
+#                     AA122 = fs1.open('FULLERTON_OTR_PAID FILE_' + i + 'SEP21.xlsx')
+#                     PAID_FILE = pd.read_excel(AA122)
+#                 else:
+#                     continue
+#             A = pd.read_excel(AA)
+#             P = pd.read_excel(AA1)
+#
+#             for i in range(0, len(A['PRODUCT'])):
+#                 # PL-SAL
+#                 if A.loc[i, 'PRODUCT'] == 'PL Sal':
+#                     for j in range(0, len(P['PRODUCT'])):
+#                         if (A.loc[i, 'PRODUCT'] == P.loc[j, 'PRODUCT']):
+#                             if P.loc[j, 'POS_RES%'] < 55:
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 11 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(11) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(11), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 55) and (P.loc[j, 'POS_RES%'] < 65):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 13 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(13) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(13), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 65) and (P.loc[j, 'POS_RES%'] < 70):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(15) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(15), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 70) and (P.loc[j, 'POS_RES%'] < 75):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 17 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(17) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(17), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 75) and (P.loc[j, 'POS_RES%'] < 80):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 19 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(19) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(19), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 80) and (P.loc[j, 'POS_RES%'] < 85):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 21 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(21) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(21), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 85) and (P.loc[j, 'POS_RES%'] < 90):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 23 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(23) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(23), a, P.loc[j, 'PRODUCT'])
+#                             elif P.loc[j, 'POS_RES%'] >= 90:
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 25 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(25) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(25), a, P.loc[j, 'PRODUCT'])
+#                 # PL-SELF
+#                 elif A.loc[i, 'PRODUCT'] == 'PL Self':
+#                     for j in range(0, len(P['PRODUCT'])):
+#                         if A.loc[i, 'PRODUCT'] == P.loc[j, 'PRODUCT']:
+#                             if P.loc[j, 'POS_RES%'] < 55:
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 6 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(6) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(6), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 55) and (P.loc[j, 'POS_RES%'] < 65):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 8 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(8) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(8), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 65) and (P.loc[j, 'POS_RES%'] < 70):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 10 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(10) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(10), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 70) and (P.loc[j, 'POS_RES%'] < 75):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 12 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(12) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(12), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 75) and (P.loc[j, 'POS_RES%'] < 80):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 14 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(14) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(14), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 80) and (P.loc[j, 'POS_RES%'] < 85):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 16 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(16) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(16), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 85) and (P.loc[j, 'POS_RES%'] < 90):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 18 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(18) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(18), a, P.loc[j, 'PRODUCT'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 90):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(20) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'PRODUCT'], P.loc[j, 'POS_RES%'],
+#                                           A.loc[i, 'Billing PAID AMT.'], str(20), a, P.loc[j, 'PRODUCT'])
+#
+#             FLOWLIST = A[A['STATUS'] == 'FLOW'].index
+#
+#             for i in range(0, len(FLOWLIST)):
+#                 A.loc[FLOWLIST[i], 'MOHAK'] = 0
+#
+#             A[A['MOHAK'].isnull()]['STATUS'].value_counts()
+#
+#             for i in range(0, len(A['AGREEMENTID'])):
+#                 if A.loc[i, 'STATUS'] == 'SETTLEMENT':
+#                     for j in range(0, len(PAID_FILE['AGREEMENTID'])):
+#                         if A.loc[i, 'AGREEMENTID'] == PAID_FILE.loc[j, 'AGREEMENTID']:
+#                             wavier = 100 - round(PAID_FILE.loc[j, 'PAID AMOUNT'] / A.loc[i, 'POS'] * 100)
+#                             if (A.loc[i, 'POS'] < 100000):
+#                                 if wavier == 0:
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 18 / 100
+#                                     if a >= 20000:
+#                                         A.loc[i, 'MOHAK'] = 20000
+#                                     elif a < 20000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(18) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(18),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                                 elif (wavier > 0) and (wavier <= 25):
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
+#                                     if a >= 15000:
+#                                         A.loc[i, 'MOHAK'] = 15000
+#                                     elif a < 15000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(15) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(15),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                                 elif (wavier > 25) and (wavier <= 50):
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 12 / 100
+#                                     if a >= 10000:
+#                                         A.loc[i, 'MOHAK'] = 10000
+#                                     elif a < 10000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(12) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(12),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                             elif (A.loc[i, 'POS'] >= 100000) and (A.loc[i, 'POS'] < 200000):
+#                                 if wavier == 0:
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 21 / 100
+#                                     if a >= 30000:
+#                                         A.loc[i, 'MOHAK'] = 30000
+#                                     elif a < 30000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(21) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(21),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                                 elif (wavier > 0) and (wavier <= 25):
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 18 / 100
+#                                     if a >= 25000:
+#                                         A.loc[i, 'MOHAK'] = 25000
+#                                     elif a < 25000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(18) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(18),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                                 elif (wavier > 25) and (wavier <= 50):
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
+#                                     if a >= 20000:
+#                                         A.loc[i, 'MOHAK'] = 20000
+#                                     elif a < 20000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(15) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(15),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                             elif (A.loc[i, 'POS'] >= 200000) and (A.loc[i, 'POS'] < 300000):
+#                                 if wavier == 0:
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 25 / 100
+#                                     if a >= 35000:
+#                                         A.loc[i, 'MOHAK'] = 35000
+#                                     elif a < 35000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(25) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(25),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                                 elif (wavier > 0) and (wavier <= 25):
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 22 / 100
+#                                     if a >= 30000:
+#                                         A.loc[i, 'MOHAK'] = 30000
+#                                     elif a < 30000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(22) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(22),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                                 elif (wavier > 25) and (wavier <= 50):
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 19 / 100
+#                                     if a >= 25000:
+#                                         A.loc[i, 'MOHAK'] = 25000
+#                                     elif a < 25000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(19) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(19),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                             elif (A.loc[i, 'POS'] >= 300000):
+#                                 if wavier == 0:
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 30 / 100
+#                                     if a >= 40000:
+#                                         A.loc[i, 'MOHAK'] = 40000
+#                                     elif a < 40000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(30) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(30),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                                 elif (wavier > 0) and (wavier <= 25):
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 27 / 100
+#                                     if a >= 35000:
+#                                         A.loc[i, 'MOHAK'] = 35000
+#                                     elif a < 35000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(27) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(27),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#                                 elif (wavier > 25) and (wavier <= 50):
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 24 / 100
+#                                     if a >= 30000:
+#                                         A.loc[i, 'MOHAK'] = 30000
+#                                     elif a < 30000:
+#                                         A.loc[i, 'MOHAK'] = a
+#                                     A.loc[i, 'PERCENTAGE'] = str(24) + '%'
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'Billing PAID AMT.'], str(24),
+#                                           A.loc[i, 'MOHAK'],
+#                                           wavier)
+#
+#             A.rename({'MOHAK': 'PAYOUT'}, axis=1, inplace=True)
+#
+#             A['PAYOUT'].fillna(0, inplace=True)
+#
+#             A.to_excel(r'media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx', index=False)
+#
+#             Total_Payout1 = round(sum(A['PAYOUT']), 2)
+#
+#             line2 = 'Total Payout for OTR = '
+#             QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#
+#             if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx'):
+#                 fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
+#                 AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
+#                 F2 = pd.read_excel(AA2)  # OTR
+#                 Total_Payout = round(sum(F2['PAYOUT']), 2)  # OTR
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 line = 'Total Payout for FR = '
+#             else:
+#                 QQ = 'Please upload Allocation file for FULLERTON_FR'
+#
+#         else:
+#             return HttpResponseRedirect(reverse('basic_app:FULLERTON_OTR_MIS'))
+#
+#     elif request.method != 'POST':
+#         if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+#             if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+#                 fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # FR
+#                 fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
+#                 AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # FR
+#                 AA3 = fs.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
+#                 F2 = pd.read_excel(AA2)  # FR
+#                 F3 = pd.read_excel(AA3)  # OTR
+#                 line = 'Total Payout for FR = '
+#                 line2 = 'Total Payout for OTR = '
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 Total_Payout = round(sum(F2['PAYOUT']), 2)  # FR
+#                 Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
+#
+#             elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+#                 fs = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
+#                 AA3 = fs.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
+#                 F3 = pd.read_excel(AA3)  # OTR
+#                 Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 line2 = 'Total Payout for OTR = '
+#
+#             elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
+#                 fs2 = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
+#                 AA2 = fs2.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
+#                 F2 = pd.read_excel(AA2)  # OTR
+#                 Total_Payout = round(sum(F2['PAYOUT']), 2)  # OTR
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 line = 'Total Payout for FR = '
+#
+#             else:
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#         elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+#             if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+#                 fs1 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
+#                 AA1 = fs1.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
+#                 F3 = pd.read_excel(AA1)  # OTR
+#                 Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
+#                 QQ = 'Please Upload Allocation File for FULLERTON_FR'
+#                 QQ1 = 'Please click billing button for FULLERTON_OTR'
+#                 line2 = 'Total Payout for OTR = '
+#             else:
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#
+#                 QQ = 'Please Upload Allocation File for FULLERTON_FR'
+#                 QQ1 = 'Please click billing button for FULLERTON_OTR'
+#                 return render(request, 'FirstLevel/Billing.html', {'FR': QQ, 'OTR': QQ1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#         elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx'):
+#             if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
+#                 fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # FR
+#                 AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # FR
+#                 F2 = pd.read_excel(AA3)  # OTR
+#                 Total_Payout = round(sum(F2['PAYOUT']), 2)  # FR
+#                 QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
+#                 QQ = 'Please click billing button for FULLERTON_FR'
+#                 line = 'Total Payout for FR = '
+#             else:
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#
+#                 QQ = 'Please click billing button for FULLERTON_FR'
+#                 QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
+#                 return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#         else:
+#             final_dep = DEP()
+#             final_process = COMPANY_PROCESS()
+#             Designation = Employee_Designation()
+#             QQ = 'Please Upload Allocation File for FULLERTON_FR'
+#             QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
+#             return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#     final_dep = DEP()
+#     final_process = COMPANY_PROCESS()
+#     Designation = Employee_Designation()
+#
+#     return render(request, 'FirstLevel/Billing.html', {'Total_Payout12': Total_Payout, 'Total_Payout': Total_Payout1, 'FR': QQ, 'OTR': QQ1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'com': line, 'com2': line2, 'Designation': Designation})
+
+# def FULLERTON_FR_MIS(request):
+#     excel_data = [] #OTR
+#     excel_data11 = [] #FR
+#     F1 = pd.DataFrame() #FR
+#     F11 = pd.DataFrame() #OTR
+#     status = ''
+#     status1 = ''
+#     C = ''
+#     QQ1 = ''
+#     if request.method == 'POST':
+#         Allocation1 = request.FILES['Allocation']
+#         Paidfile1 = request.FILES['Paid_File']
+#         A = pd.read_excel(Allocation1)
+#         B = pd.read_excel(Paidfile1)
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             if pd.isnull(A['AGREEMENTID'][i]) == True:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html',
+#                               {'error': 'AGREEMENTID DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['CUSTOMERNAME'][i]) == True or isinstance(A.loc[i, 'CUSTOMERNAME'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html',
+#                               {'error': 'CUSTOMERNAME DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['TC NAME'][i]) == True or isinstance(A.loc[i, 'TC NAME'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'TC NAME DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['TL'][i]) == True or isinstance(A.loc[i, 'TL'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'TL DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['FOS'][i]) == True or isinstance(A.loc[i, 'FOS'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'FOS DOES NOT TAKE NULL VALUES'})
+#             elif pd.isnull(A['AREA'][i]) == True or isinstance(A.loc[i, 'AREA'], str) == False:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'AREA DOES NOT TAKE NULL VALUES'})
+#             elif isinstance(A.loc[i, 'POS'], np.float64) == False or pd.isnull(A['POS'][i]) == True:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES'})
+#             elif isinstance(A.loc[i, 'EMI'], np.int64) == False or pd.isnull(A['EMI'][i]) == True:
+#                 print('error', i)
+#                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'EMI DOES NOT TAKE STR VALUES'})
+#             else:
+#                 continue
+#
+#         fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
+#         fs.save(Allocation1.name, Allocation1)
+#         fs.save(Paidfile1.name, Paidfile1)
+#         print(A.head())
+#
+#         B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             for k in range(0, len(B['AGREEMENTID'])):
+#                 if (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and ((B.loc[k, 'AGAINST'] != 'FORECLOSE') and (B.loc[k, 'AGAINST'] != 'SETTLEMENT')):
+#                     for j in range(0, len(B1['AGREEMENTID'])):
+#                         if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+#                             if B1.loc[j, 'PAID AMOUNT'] < A.loc[i, 'EMI']:
+#                                 A.loc[i, 'STATUS'] = 'PART PAID'
+#                             elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'POS']:
+#                                 A.loc[i, 'STATUS'] = 'SETTLEMENT'
+#                             elif B1.loc[j, 'PAID AMOUNT'] >= A.loc[i, 'EMI']:
+#                                 A.loc[i, 'STATUS'] = 'SB'
+#                 elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'FORECLOSE'):
+#                     A.loc[i, 'STATUS'] = 'FORECLOSE'
+#                 elif (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (B.loc[k, 'AGAINST'] == 'SETTLEMENT'):
+#                     A.loc[i, 'STATUS'] = 'SETTLEMENT'
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             if str(A.loc[i, 'STATUS']) == 'nan':
+#                 A.loc[i, 'STATUS'] = 'FLOW'
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             for j in range(0, len(B1['PAID AMOUNT'])):
+#                 if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+#                     A.loc[i, 'TOTAL PAID'] = B1.loc[j, 'PAID AMOUNT']
+#
+#         M = pd.DataFrame(A.groupby(['COMPANY'])['POS'].sum()).reset_index()
+#
+#         M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
+#
+#         R = pd.DataFrame(A.groupby(['COMPANY'])['AGREEMENTID'].count()).reset_index()
+#
+#         F = M.merge(R, how='outer')
+#
+#         F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
+#
+#         R1 = pd.DataFrame(A.groupby(['COMPANY', 'STATUS'])['AGREEMENTID'].count()).reset_index()
+#
+#         P = F.copy()
+#
+#         P.drop(['TOTAL_POS', 'TOTAL_CASES'], axis=1, inplace=True)
+#
+#         P['FLOW'] = np.nan
+#         P['SB'] = np.nan
+#         P['PART PAID'] = np.nan
+#         P['FORECLOSE'] = np.nan
+#         P['SETTLEMENT'] = np.nan
+#
+#         COL = P.columns
+#
+#         for i in range(0, len(R1['COMPANY'])):
+#             for j in range(0, len(P['FLOW'])):
+#                 for k in range(0, len(COL)):
+#                     if (R1.loc[i, 'COMPANY'] == P.loc[j, 'COMPANY']) and R1.loc[i, 'STATUS'] == COL[k]:
+#                         P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
+#
+#         F = F.merge(P, how='outer')
+#
+#         F.fillna(0, inplace=True)
+#
+#         F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'FORECLOSE': 'FORECLOSE_CASES', 'SETTLEMENT': 'SETTLEMENT_CASES',
+#                   'PART PAID': 'PART_PAID_CASES'}, axis=1, inplace=True)
+#
+#         R2 = pd.DataFrame(A.groupby(['COMPANY', 'STATUS'])['POS'].sum()).reset_index()
+#
+#         for i in range(0, len(R2['COMPANY'])):
+#             for j in range(0, len(P['COMPANY'])):
+#                 for k in range(0, len(COL)):
+#                     if (R2.loc[i, 'COMPANY'] == P.loc[j, 'COMPANY']) and R2.loc[i, 'STATUS'] == COL[k]:
+#                         P.loc[j, COL[k]] = R2.loc[i, 'POS']
+#
+#         F = F.merge(P, how='outer')
+#
+#         F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'SETTLEMENT': 'SETTLEMENT_POS',
+#                   'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
+#
+#         F.fillna(0, inplace=True)
+#
+#         for i in range(0, len(F['FLOW_CASES'])):
+#             F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#             F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#
+#         TP = pd.DataFrame(A.groupby(['COMPANY'])['TOTAL PAID'].sum()).reset_index()
+#
+#         F = F.merge(TP, how='outer')
+#
+#         for i in range(0, len(F['SB_POS'])):
+#             F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
+#
+#         F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
+#                   'SETTLEMENT_CASES': 'SC_CASES',
+#                   'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
+#                   'FORECLOSE_POS%': 'FC_POS%',
+#                   'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
+#                  inplace=True)
+#
+#         for i in range(0,len(F['FLOW_CASES'])):
+#             F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
+#             F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
+#             F.loc[i, 'PP_POS'] = round(F.loc[i, 'PP_POS'], 2)
+#             F.loc[i, 'FC_POS'] = round(F.loc[i, 'FC_POS'], 2)
+#             F.loc[i, 'SC_POS'] = round(F.loc[i, 'SC_POS'], 2)
+#             F.loc[i, 'TOTAL_POS'] = round(F.loc[i, 'TOTAL_POS'], 2)
+#
+#         F.to_excel('media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx', index=False)
+#
+#         F1 = F.copy()
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             s = 0
+#             for j in range(0, len(B['AGREEMENTID'])):
+#                 if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and ((A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'SB')) and (B.loc[j, 'MODE'] != 'ECS'):
+#                     s = s + B.loc[j, 'PAID AMOUNT']
+#             A.loc[i, 'Billing PAID AMT.'] = s
+#
+#         for i in range(0, len(A['AGREEMENTID'])):
+#             if (A.loc[i, 'EMI'] > A.loc[i, 'TOTAL PAID']) and (A.loc[i, 'STATUS'] == 'SB'):
+#                 A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
+#
+#         A['TOTAL PAID'].fillna(0, inplace=True)
+#
+#         A['Billing PAID AMT.'].fillna(0, inplace=True)
+#
+#         A.to_excel('media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
+#         A.to_excel('media/FULLERTON_FR/TC Performance/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
+#         A.to_excel('media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
+#         A.to_excel('media/FULLERTON_FR/FOS Salary/MASTER_FILE_FULLERTON_FR.xlsx', index=False)
+#
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_OTR.xlsx'):
+#             True
+#         else:
+#             QQ1 = 'Please Upload File for FULLERTON_OTR'
+#
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
+#             fs11 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
+#             AA11 = fs11.open('MIS_FULLERTON_OTR.xlsx')
+#             F11 = pd.read_excel(AA11)  # OTR
+#             status = 'There is a data Frame'
+#         else:
+#             status = 'There is a data Frame'
+#             status1 = 'There is no otr file'
+#
+#     elif request.method != 'POST':
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MIS_FULLERTON_FR.xlsx') and os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
+#             fs = FileSystemStorage(location='media/FULLERTON_FR/MIS')
+#             fs11 = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
+#             AA = fs.open('MIS_FULLERTON_FR.xlsx')
+#             AA11 = fs11.open('MIS_FULLERTON_OTR.xlsx')
+#             F1 = pd.read_excel(AA) #FR
+#             F11 = pd.read_excel(AA11) #OTR
+#             status = 'There is a data Frame'
+#             status1 = 'There is otr file'
+#         elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MIS_FULLERTON_OTR.xlsx'):
+#             fs = FileSystemStorage(location='media/FULLERTON_OTR/MIS')
+#             AA11 = fs.open('MIS_FULLERTON_OTR.xlsx')
+#             F11 = pd.read_excel(AA11)
+#             QQ = 'Please Upload File for FULLERTON_FR'
+#             status1= 'There is otr file'
+#         else:
+#             final_dep = DEP()
+#             final_process = COMPANY_PROCESS()
+#             Designation = Employee_Designation()
+#
+#             QQ = 'Please Upload File for FULLERTON_FR'
+#             QQ1 = 'Please Upload File for FULLERTON_OTR'
+#             return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'OTR': QQ1, 'FR': QQ, 'Designation': Designation})
+#
+#     if status1 != 'There is no otr file':
+#         C = list(F11.columns) #OTR
+#         for j in range(0, len(F11[C[0]])):
+#             row_data11 = list()
+#             for col in range(0, len(C)):
+#                 row_data11.append(str(F11.loc[j, C[col]]))
+#             excel_data.append(row_data11)
+#     C11 = list(F1.columns)  # FR
+#     if status == 'There is a data Frame':
+#         for j in range(0, len(F1[C11[0]])):
+#             row_data = list()
+#             for col in range(0, len(C11)):
+#                 row_data.append(str(F1.loc[j, C11[col]]))
+#             excel_data11.append(row_data)
+#
+#     final_dep = DEP()
+#     final_process = COMPANY_PROCESS()
+#     Designation = Employee_Designation()
+#
+#     return render(request, 'FirstLevel/upload_excel.html', {'excel1': excel_data11, 'columns1': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel': excel_data, 'columns': C, 'OTR': QQ1, 'Designation': Designation})
+
+# def FULLERTON_FR_BILLING(request):
+#     Total_Payout = ''
+#     Total_Payout1 = ''
+#     line = ''
+#     line2 = ''
+#     QQ = ''
+#     QQ1 = ''
+#     if request.method == 'POST':
+#         if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/MASTER_FILE_FULLERTON_FR.xlsx'):
+#             fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')
+#             fs1 = FileSystemStorage(location='media/FULLERTON_FR/MIS')
+#             AA = fs.open('MASTER_FILE_FULLERTON_FR.xlsx')
+#             AA1 = fs1.open('MIS_FULLERTON_FR.xlsx')
+#             for i in range(1, 32, -1):
+#                 if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/FULLERTON_FR_PAID FILE_' + i + 'SEP21.xlsx'):
+#                     AA122 = fs1.open('FULLERTON_FR_PAID FILE_' + i + 'SEP21.xlsx')
+#                     PAID_FILE = pd.read_excel(AA122)
+#                 else:
+#                     continue
+#             A = pd.read_excel(AA)
+#             P = pd.read_excel(AA1)
+#
+#             for i in range(0, len(A['COMPANY'])):
+#                 if A.loc[i, 'COMPANY'] == 'FULLERTON':
+#                     for j in range(0, len(P['COMPANY'])):
+#                         if A.loc[i, 'COMPANY'] == P.loc[j, 'COMPANY']:
+#                             if P.loc[j, 'POS_RES%'] < 75:
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 4 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(4) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(4), a, P.loc[j, 'COMPANY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 75) and (P.loc[j, 'POS_RES%'] < 78):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 4.25 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(4.25) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(4.25), a, P.loc[j, 'COMPANY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 78) and (P.loc[j, 'POS_RES%'] < 80):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 4.5 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(4.5) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(4.5), a, P.loc[j, 'COMPANY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 80) and (P.loc[j, 'POS_RES%'] < 82):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 4.75 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(4.75) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(4.75), a, P.loc[j, 'COMPANY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 82) and (P.loc[j, 'POS_RES%'] < 84):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 5 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(5) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(5), a, P.loc[j, 'COMPNAY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 84) and (P.loc[j, 'POS_RES%'] < 86):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 5.25 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(5.25) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], A.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(5.25), a, P.loc[j, 'COMPNAY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 86) and (P.loc[j, 'POS_RES%'] < 88):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 5.5 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(5.5) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(5.5), a, P.loc[j, 'COMPNAY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 88) and (P.loc[j, 'POS_RES%'] < 90):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 5.75 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(5.75) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(5.75), a, P.loc[j, 'COMPNAY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 90) and (P.loc[j, 'POS_RES%'] < 92):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 6 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(6) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(6), a, P.loc[j, 'COMPNAY'])
+#                             elif (P.loc[j, 'POS_RES%'] >= 92):
+#                                 if A.loc[i, 'STATUS'] == 'SB':
+#                                     a = A.loc[i, 'Billing PAID AMT.'] * 6.25 / 100
+#                                     A.loc[i, 'PERCENTAGE'] = str(6.25) + '%'
+#                                     A.loc[i, 'MOHAK'] = a
+#                                     print(A.loc[i, 'AGREEMENTID'], A.loc[i, 'COMPANY'], P.loc[j, 'POS_RES%'], A.loc[i, 'Billing PAID AMT.'], str(6.25), a, P.loc[j, 'COMPANY'])
+#
+#             FLOWLIST = A[A['STATUS'] == 'FLOW'].index
+#
+#             for i in range(0, len(FLOWLIST)):
+#                 A.loc[FLOWLIST[i], 'MOHAK'] = 0
+#
+#             A[A['MOHAK'].isnull()]['STATUS'].value_counts()
+#
+#             A.rename({'MOHAK': 'PAYOUT'}, axis=1, inplace=True)
+#
+#             A['PAYOUT'].fillna(0, inplace=True)
+#
+#             A.to_excel(r'media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx', index=False)
+#
+#             Total_Payout = round(sum(A['PAYOUT']), 2)
+#             line = 'Total Payout for FR = '
+#
+#             if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+#                 if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+#                     fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
+#                     AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
+#                     F3 = pd.read_excel(AA2)  # OTR
+#                     Total_Payout1 = round(sum(F3['PAYOUT']), 2)
+#                     line2 = 'Total Payout for OTR = '# OTR
+#                     QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                     QQ = 'Please click Billing button for FULLERTON_FR'
+#                 else:
+#                     QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                     QQ = 'Please click Billing button for FULLERTON_FR'
+#             else:
+#                 QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#
+#         else:
+#             return HttpResponseRedirect(reverse('basic_app:FULLERTON_OTR_MIS'))
+#
+#     elif request.method != 'POST':
+#         if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+#             if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx') and os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+#                 fs = FileSystemStorage(location='media/FULLERTON_FR/Billing') #FR
+#                 fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing') #OTR
+#                 AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx') #FR
+#                 AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx') #OTR
+#                 F2 = pd.read_excel(AA3) #FR
+#                 F3 = pd.read_excel(AA2) #OTR
+#                 Total_Payout = round(sum(F2['PAYOUT']), 2) #FR
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 line = 'Total Payout for FR = '
+#                 line2 = 'Total Payout for OTR = '
+#                 Total_Payout1 = round(sum(F3['PAYOUT']), 2) #OTR
+#
+#             elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+#                 fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
+#                 AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
+#                 F3 = pd.read_excel(AA2)  # OTR
+#                 Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 line2 = 'Total Payout for OTR = '
+#
+#             elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
+#                 fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
+#                 AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
+#                 F3 = pd.read_excel(AA3)  # OTR
+#                 Total_Payout = round(sum(F3['PAYOUT']), 2)  # OTR
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 line = 'Total Payout for FR = '
+#
+#             else:
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 return render(request, 'FirstLevel/Billing.html',
+#                               {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#         elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/MIS/MASTER_FILE_FULLERTON_OTR.xlsx'):
+#             if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_OTR/Billing/PAYOUT_FULLERTON_OTR.xlsx'):
+#                 fs2 = FileSystemStorage(location='media/FULLERTON_OTR/Billing')  # OTR
+#                 AA2 = fs2.open('PAYOUT_FULLERTON_OTR.xlsx')  # OTR
+#                 F3 = pd.read_excel(AA2)  # OTR
+#                 Total_Payout1 = round(sum(F3['PAYOUT']), 2)  # OTR
+#                 QQ = 'Please Upload Allocation File for FULLERTON_FR'
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 line2 = 'Total Payout for OTR = '
+#             else:
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#
+#                 QQ1 = 'Please click Billing button for FULLERTON_OTR'
+#                 QQ = 'Please Upload Allocation File for FULLERTON_FR'
+#                 return render(request, 'FirstLevel/Billing.html',
+#                               {'OTR': QQ1, 'FR':QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#         elif os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/MIS/MASTER_FILE_FULLERTON_FR.xlsx'):
+#             if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_FR/Billing/PAYOUT_FULLERTON_FR.xlsx'):
+#                 fs = FileSystemStorage(location='media/FULLERTON_FR/Billing')  # OTR
+#                 AA3 = fs.open('PAYOUT_FULLERTON_FR.xlsx')  # OTR
+#                 F2 = pd.read_excel(AA3)  # OTR
+#                 Total_Payout = round(sum(F2['PAYOUT']), 2)  # OTR
+#                 QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 line = 'Total Payout for FR = '
+#             else:
+#                 final_dep = DEP()
+#                 final_process = COMPANY_PROCESS()
+#                 Designation = Employee_Designation()
+#
+#                 QQ1 = 'Please Upload Allocation File for FULLERTON_OTR'
+#                 QQ = 'Please click Billing button for FULLERTON_FR'
+#                 return render(request, 'FirstLevel/Billing.html',
+#                               {'FR': QQ, "OTR": QQ1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#         else:
+#             final_dep = DEP()
+#             final_process = COMPANY_PROCESS()
+#             Designation = Employee_Designation()
+#             QQ = 'Please Upload File for FULLERTON_FR'
+#             QQ1 = 'Please Upload File for FULLERTON_OTR'
+#             return render(request, 'FirstLevel/Billing.html', {'OTR': QQ1, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#     final_dep = DEP()
+#     final_process = COMPANY_PROCESS()
+#     Designation = Employee_Designation()
+#
+#     return render(request, 'FirstLevel/Billing.html', {'Total_Payout12': Total_Payout, 'Total_Payout': Total_Payout1, 'OTR': QQ1, 'com': line, 'com2' : line2, 'FR': QQ, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 def FULLERTON_RECOVERY_MIS(request):
     excel_data = []
@@ -8866,7 +8866,7 @@ def FULLERTON_RECOVERY_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/BILLING/PAYOUT_FULLERTON_RECOVERY.xlsx')):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
             AA = fs.open('PAYOUT_FULLERTON_RECOVERY.xlsx')
             A = pd.read_excel(AA)
@@ -8881,7 +8881,7 @@ def FULLERTON_RECOVERY_BILLING(request):
         final_process = COMPANY_PROCESS()
         Designation = Employee_Designation()
 
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/BILLING/PAYOUT_FULLERTON_RECOVERY.xlsx')):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
             AA = fs.open('PAYOUT_FULLERTON_RECOVERY.xlsx')
             F2 = pd.read_excel(AA)
@@ -8914,7 +8914,7 @@ def MASTER_SALARY_TW(request):
     a=0
 
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
             # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'))
             # fs = FileSystemStorage(location='media/L_T/MIS')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
@@ -8924,7 +8924,7 @@ def MASTER_SALARY_TW(request):
             AA1 = fs1.open('MASTER FILE IDFC_TW.xlsx')
             E = fs2.open('Employee_Database.xlsx')
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')):
                     AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
@@ -8944,7 +8944,7 @@ def MASTER_SALARY_TW(request):
             #     else:
             #         continue
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')):
                     AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')
                     IDFCTW = pd.read_excel(AA125)
                 else:
@@ -9581,7 +9581,7 @@ def MASTER_SALARY_TW(request):
             # FF5 = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
             # FF5.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx',index=False)
 
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
             # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
@@ -9603,7 +9603,7 @@ def MASTER_SALARY_TW(request):
                 # AA1233 = fs1233.open('TC Performance L_T.xlsx')
                 # F123 = pd.read_excel(AA1233)
 
-            elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+            elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
@@ -9646,50 +9646,50 @@ def MASTER_SALARY_TW(request):
 
                 return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-            elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
-
-                # fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
-                # AA1233 = fs1233.open('TC Performance L_T.xlsx')
-                # F123 = pd.read_excel(AA1233)
-
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                if (final_dep == 'TW') and (final_process == 'IDFC'):
-                    FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
-                    F = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
-
-                # elif (final_dep == 'TW') and (final_process == 'L&T'):
-                #     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
-                #     F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
-
-                C = list(FINAL_COPY1.columns)  # FOS_Incentive
-                C11 = list(F.columns)  # FOS_Fixed
-                # C1233 = list(F123.columns)  # L_T-TC_Incentive
-
-                for j in range(0, len(FINAL_COPY1[C[0]])):
-                    row_data = list()
-                    for col in range(0, len(C)):
-                        row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
-                    excel_data.append(row_data)
-
-                for j in range(0, len(F[C11[0]])):
-                    row_data1 = list()
-                    for col in range(0, len(C11)):
-                        row_data1.append(str(F.loc[j, C11[col]]))
-                    excel_data1.append(row_data1)
-
-                # for j in range(0, len(F123[C1233[0]])):
-                #     row_data223 = list()
-                #     for col1 in range(0, len(C1233)):
-                #         row_data223.append(str(F123.loc[j, C1233[col1]]))
-                #     excel_data1233.append(row_data223)
-
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            # 'columns1233': C1233
+            # elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'):
+            #
+            #     # fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
+            #     # AA1233 = fs1233.open('TC Performance L_T.xlsx')
+            #     # F123 = pd.read_excel(AA1233)
+            #
+            #     final_dep = DEP()
+            #     final_process = COMPANY_PROCESS()
+            #     if (final_dep == 'TW') and (final_process == 'IDFC'):
+            #         FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
+            #         F = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
+            #
+            #     # elif (final_dep == 'TW') and (final_process == 'L&T'):
+            #     #     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
+            #     #     F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
+            #
+            #     C = list(FINAL_COPY1.columns)  # FOS_Incentive
+            #     C11 = list(F.columns)  # FOS_Fixed
+            #     # C1233 = list(F123.columns)  # L_T-TC_Incentive
+            #
+            #     for j in range(0, len(FINAL_COPY1[C[0]])):
+            #         row_data = list()
+            #         for col in range(0, len(C)):
+            #             row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
+            #         excel_data.append(row_data)
+            #
+            #     for j in range(0, len(F[C11[0]])):
+            #         row_data1 = list()
+            #         for col in range(0, len(C11)):
+            #             row_data1.append(str(F.loc[j, C11[col]]))
+            #         excel_data1.append(row_data1)
+            #
+            #     # for j in range(0, len(F123[C1233[0]])):
+            #     #     row_data223 = list()
+            #     #     for col1 in range(0, len(C1233)):
+            #     #         row_data223.append(str(F123.loc[j, C1233[col1]]))
+            #     #     excel_data1233.append(row_data223)
+            #
+            #     final_dep = DEP()
+            #     final_process = COMPANY_PROCESS()
+            #     Designation = Employee_Designation()
+            #
+            #     return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            # # 'columns1233': C1233
 
             else:
                 final_dep = DEP()
@@ -9723,7 +9723,7 @@ def MASTER_SALARY_TW(request):
 
                 return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -9745,7 +9745,7 @@ def MASTER_SALARY_TW(request):
             return render(request, 'FirstLevel/salary.html', {'Salary_Update': 'Upload for both', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
     elif request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))):
             # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
@@ -9882,7 +9882,7 @@ def MASTER_SALARY_TW(request):
         #         excel_data1233.append(row_data223)
         #
         #     return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -9919,9 +9919,9 @@ def MASTER_SALARY_TW(request):
                     row_data1.append(str(F.loc[j, C11[col]]))
                 excel_data1.append(row_data1)
             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx')):
             # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/MASTER FILE L_T.xlsx'))
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
                 # (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
                 fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
@@ -9994,7 +9994,7 @@ def MASTER_SALARY_TW(request):
                 #     else:
                 #         return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
                 if final_process == 'IDFC':
-                    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+                    if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
                         final_dep = DEP()
                         final_process = COMPANY_PROCESS()
                         Designation = Employee_Designation()
@@ -10003,7 +10003,7 @@ def MASTER_SALARY_TW(request):
                                       {'Salary_Update': 'Please refresh Salary data for TC & FOS', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
                     else:
                         return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -10062,7 +10062,7 @@ def MASTER_SALARY_TW(request):
             #     else:
             #         return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
             if final_process == 'IDFC':
-                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
                     final_dep = DEP()
                     final_process = COMPANY_PROCESS()
                     Designation = Employee_Designation()
@@ -10117,8 +10117,9 @@ def MASTER_SALARY_IDFC(request):
     AA1 = pd.DataFrame()
 
     if request.method == 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/MASTER_FILE_IDFC_HL.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
-            fs = FileSystemStorage(location='media/L_T/MIS')
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/MIS/MASTER_FILE_IDFC_HL.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'))):
+            # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'))
+            # fs = FileSystemStorage(location='media/L_T/MIS')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/Employees')
             fs3 = FileSystemStorage(location='media/IDFC_HL/MIS')
@@ -10129,17 +10130,17 @@ def MASTER_SALARY_IDFC(request):
             UNIQUE_NAME=pd.read_excel(UNIQUE_NAME1)
 
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/IDFC_PAID FILE_'+ str(i) +'AUG21.xlsx'):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/MIS/IDFC_PAID FILE_'+ str(i) +'AUG21.xlsx')):
                     A1234 = fs3.open('IDFC_PAID FILE_' + str(i) + 'AUG21.xlsx')
                     PAID_FILE = pd.read_excel(A1234)
 
-            for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T Allocation ' + str(i) + ' AUG 21.xlsx'):
-                    AA124 = fs.open('L_T Allocation ' + str(i) + ' AUG 21.xlsx')
-                    LTTW = pd.read_excel(AA124)
-                else:
-                    continue
+            # for i in range(31, 0, -1):
+            #     if os.path.exists(
+            #             '/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T Allocation ' + str(i) + ' AUG 21.xlsx'):
+            #         AA124 = fs.open('L_T Allocation ' + str(i) + ' AUG 21.xlsx')
+            #         LTTW = pd.read_excel(AA124)
+            #     else:
+            #         continue
             for i in range(31, 0, -1):
                 if os.path.exists(
                         '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
