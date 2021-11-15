@@ -8883,7 +8883,7 @@ def FULLERTON_RECOVERY_BILLING(request):
         final_process = COMPANY_PROCESS()
         Designation = Employee_Designation()
 
-        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/BILLING/PAYOUT_FULLERTON_RECOVERY.xlsx')):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx')):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
             AA = fs.open('PAYOUT_FULLERTON_RECOVERY.xlsx')
             F2 = pd.read_excel(AA)
