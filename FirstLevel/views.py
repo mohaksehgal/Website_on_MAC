@@ -3869,7 +3869,7 @@ def IDFC_HL_MIS(request):
                 final_process = COMPANY_PROCESS()
                 Designation = Employee_Designation()
                 return render(request, 'FirstLevel/upload_excel.html', {'error': 'POS DOES NOT TAKE STR VALUES', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-            elif isinstance(A.loc[i, 'EMI'], np.float64) == True and pd.isnull(A['EMI'][i]) == False:
+            elif isinstance(A.loc[i, 'EMI'], np.float64) == True and pd.isnull(A['EMI'][i]) == True:
                 print('error', i)
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
