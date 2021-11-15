@@ -8836,6 +8836,8 @@ def FULLERTON_RECOVERY_MIS(request):
         A.to_excel('media/FULLERTON_RECOVERY/MIS/MASTER_FILE_FULLERTON_RECOVERY.xlsx', index=False)
         A.to_excel('media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx', index=False)
 
+        F.to_excel('media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx', index=False)
+
     elif request.method != 'POST':
         if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx')):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/MIS')
@@ -8866,7 +8868,7 @@ def FULLERTON_RECOVERY_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/BILLING/PAYOUT_FULLERTON_RECOVERY.xlsx')):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx')):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
             AA = fs.open('PAYOUT_FULLERTON_RECOVERY.xlsx')
             A = pd.read_excel(AA)
