@@ -8924,8 +8924,8 @@ def MASTER_SALARY_TW(request):
             AA1 = fs1.open('MASTER FILE IDFC_TW.xlsx')
             E = fs2.open('Employee_Database.xlsx')
             for i in range(31, 0, -1):
-                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')):
-                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')):
+                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
                     continue
@@ -8944,8 +8944,8 @@ def MASTER_SALARY_TW(request):
             #     else:
             #         continue
             for i in range(31, 0, -1):
-                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')):
-                    AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' OCT 21.xlsx')):
+                    AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' OCT 21.xlsx')
                     IDFCTW = pd.read_excel(AA125)
                 else:
                     continue
@@ -10117,10 +10117,11 @@ def MASTER_SALARY_IDFC(request):
     AA1 = pd.DataFrame()
 
     if request.method == 'POST':
-        if (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/MIS/MASTER_FILE_IDFC_HL.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'))):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/MIS/MASTER_FILE_IDFC_HL.xlsx')):
+            # and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')))
             # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'))
             # fs = FileSystemStorage(location='media/L_T/MIS')
-            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
+            # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/Employees')
             fs3 = FileSystemStorage(location='media/IDFC_HL/MIS')
 
@@ -10129,10 +10130,10 @@ def MASTER_SALARY_IDFC(request):
             UNIQUE_NAME1 = fs2.open('Employee_Database.xlsx')
             UNIQUE_NAME=pd.read_excel(UNIQUE_NAME1)
 
-            for i in range(31, 0, -1):
-                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/MIS/IDFC_PAID FILE_'+ str(i) +'AUG21.xlsx')):
-                    A1234 = fs3.open('IDFC_PAID FILE_' + str(i) + 'AUG21.xlsx')
-                    PAID_FILE = pd.read_excel(A1234)
+            # for i in range(31, 0, -1):
+            #     if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/MIS/IDFC_PAID FILE_'+ str(i) +'AUG21.xlsx')):
+            #         A1234 = fs3.open('IDFC_PAID FILE_' + str(i) + 'AUG21.xlsx')
+            #         PAID_FILE = pd.read_excel(A1234)
 
             # for i in range(31, 0, -1):
             #     if os.path.exists(
@@ -10141,131 +10142,137 @@ def MASTER_SALARY_IDFC(request):
             #         LTTW = pd.read_excel(AA124)
             #     else:
             #         continue
-            for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
-                    AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')
-                    IDFCTW = pd.read_excel(AA125)
+            # for i in range(31, 0, -1):
+            #     if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx'):
+            #         AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' AUG 21.xlsx')
+            #         IDFCTW = pd.read_excel(AA125)
+            #     else:
+            #         continue
+            # for i in range(31, 0, -1):
+            #     if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx'):
+            #         AA126 = fs3.open('IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx')
+            #         IDFCHL = pd.read_excel(AA126)
+            #     else:
+            #         continue
+            #
+            # print('LT FILE')
+            # print(LTTW.head(10))
+            # print('IDFC TW FILE')
+            # print(IDFCTW.head(10))
+            # print('IDFC HL FILE')
+            # print(IDFCHL.head(10))
+            # print('A')
+            # print(UNIQUE_NAME.head(10))
+            #
+            # LTTW.drop('TOTAL COLLECTABLE', axis=1, inplace=True)
+            #
+            # MASTER = pd.concat([IDFCHL, LTTW])
+            # MASTER = pd.concat([MASTER, IDFCTW])
+            # MASTER = MASTER.reset_index(drop=True)
+
+            # for i in range(0, len(MASTER['COMPANY'])):
+            #     if (MASTER.loc[i, 'COMPANY'] == 'HFC') or (MASTER.loc[i, 'COMPANY'] == 'SUVIDHA'):
+            #         MASTER.loc[i, 'PROCESS'] = 'IDFC-HL'
+            #     elif MASTER.loc[i, 'COMPANY'] == 'L&T':
+            #         MASTER.loc[i, 'PROCESS'] = 'TW'
+            #     elif MASTER.loc[i, 'COMPANY'] == 'IDFC - TW':
+            #         MASTER.loc[i, 'PROCESS'] = 'TW'
+            #
+            # MASTER_COUNT = pd.DataFrame(MASTER.groupby(['PROCESS', 'FOS'])['AGREEMENTID'].count()).reset_index()
+            #
+            # dr = []
+            # for i in range(0, len(MASTER_COUNT['FOS'])):
+            #     if MASTER_COUNT.loc[i, 'FOS'] == 'NO FOS' or MASTER_COUNT.loc[i, 'FOS'] == 'LOW POS':
+            #         dr.append(i)
+            #
+            # MASTER_COUNT.drop(dr, axis=0, inplace=True)
+            #
+            # MASTER_COUNT = MASTER_COUNT.reset_index(drop=True)
+            #
+            # BKT1B = []
+            # for i in range(0, len(PAID_FILE['PROCESS'])):
+            #     if (PAID_FILE.loc[i, 'BKT'] == 1) and (PAID_FILE.loc[i, 'BOUNCING AMT.'] != 0) and (
+            #             PAID_FILE.loc[i, 'MODE'] != 'CASH'):
+            #         BKT1B.append(i)
+            #
+            # BKT1B
+            #
+            # PAID_FILE.drop(BKT1B, axis=0, inplace=True)
+            #
+            # PAID_FILE = PAID_FILE.reset_index(drop=True)
+            #
+            # BOU_AMT = pd.DataFrame(PAID_FILE.groupby(['FOS', 'BKT'])['BOUNCING AMT.'].sum()).reset_index()
+            #
+            # PAID_FILE = PAID_FILE[PAID_FILE['BOUNCING AMT.'] >= 200]
+            #
+            # BOU = pd.DataFrame(PAID_FILE.groupby(['FOS', 'BKT', 'AGREEMENTID'])['BOUNCING AMT.'].sum()).reset_index()
+            #
+            # d = []
+            # for i in range(0, len(BOU['FOS'])):
+            #     if BOU.loc[i, 'BOUNCING AMT.'] == 0:
+            #         d.append(i)
+            #
+            # BOU.drop(d, axis=0, inplace=True)
+            #
+            # BOU = BOU.reset_index(drop=True)
+            #
+            # BOUNCING_CASE_COUNT = pd.DataFrame(BOU.groupby(['FOS', 'BKT'])['AGREEMENTID'].count()).reset_index()
+            #
+            # BOUNCING_CASE_COUNT.head()
+
+            for i in range(0, len(A['AGREEMENTID'])):
+                if A.loc[i, 'Billing PAID AMT.'] * 2 / 100 > 20000:
+                    A.loc[i, 'FOS_PAYOUT'] = 20000
                 else:
-                    continue
-            for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/MIS/IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx'):
-                    AA126 = fs3.open('IDFC_ALLOCATION_' + str(i) + 'AUG21.xlsx')
-                    IDFCHL = pd.read_excel(AA126)
-                else:
-                    continue
+                    A.loc[i, 'FOS_PAYOUT'] = A.loc[i, 'Billing PAID AMT.'] * 2 / 100
 
-            print('LT FILE')
-            print(LTTW.head(10))
-            print('IDFC TW FILE')
-            print(IDFCTW.head(10))
-            print('IDFC HL FILE')
-            print(IDFCHL.head(10))
-            print('A')
-            print(UNIQUE_NAME.head(10))
+            F = pd.DataFrame(A.groupby(['FOS'])['POS'].sum()).reset_index()
 
-            LTTW.drop('TOTAL COLLECTABLE', axis=1, inplace=True)
+            R1 = pd.DataFrame(A.groupby(['FOS', 'STATUS'])['POS'].sum()).reset_index()
 
-            MASTER = pd.concat([IDFCHL, LTTW])
-            MASTER = pd.concat([MASTER, IDFCTW])
-            MASTER = MASTER.reset_index(drop=True)
+            R2 = pd.DataFrame(A.groupby(['FOS', 'STATUS'])['AGREEMENTID'].count()).reset_index()
 
-            for i in range(0, len(MASTER['COMPANY'])):
-                if (MASTER.loc[i, 'COMPANY'] == 'HFC') or (MASTER.loc[i, 'COMPANY'] == 'SUVIDHA'):
-                    MASTER.loc[i, 'PROCESS'] = 'IDFC-HL'
-                elif MASTER.loc[i, 'COMPANY'] == 'L&T':
-                    MASTER.loc[i, 'PROCESS'] = 'TW'
-                elif MASTER.loc[i, 'COMPANY'] == 'IDFC - TW':
-                    MASTER.loc[i, 'PROCESS'] = 'TW'
+            AA=pd.DataFrame(A.groupby(['FOS'])['AGREEMENTID'].count()).reset_index()
 
-            MASTER_COUNT = pd.DataFrame(MASTER.groupby(['PROCESS', 'FOS'])['AGREEMENTID'].count()).reset_index()
+            F=F.merge(AA,how='outer')
 
-            dr = []
-            for i in range(0, len(MASTER_COUNT['FOS'])):
-                if MASTER_COUNT.loc[i, 'FOS'] == 'NO FOS' or MASTER_COUNT.loc[i, 'FOS'] == 'LOW POS':
-                    dr.append(i)
+            F=F.reset_index(drop=True)
 
-            MASTER_COUNT.drop(dr, axis=0, inplace=True)
+            F.rename({'AGREEMENTID':'CASE_COUNT'},axis=1,inplace=True)
 
-            MASTER_COUNT = MASTER_COUNT.reset_index(drop=True)
+            # BOUNCING_CASE_COUNT.rename({'PROCESS': 'COMPANY'}, axis=1, inplace=True)
 
-            BKT1B = []
-            for i in range(0, len(PAID_FILE['PROCESS'])):
-                if (PAID_FILE.loc[i, 'BKT'] == 1) and (PAID_FILE.loc[i, 'BOUNCING AMT.'] != 0) and (
-                        PAID_FILE.loc[i, 'MODE'] != 'CASH'):
-                    BKT1B.append(i)
+            # BOUNCING_CASE_COUNT['BKT'].unique()
 
-            BKT1B
+            # for i in range(0, len(BOUNCING_CASE_COUNT['FOS'])):
+            #     if BOUNCING_CASE_COUNT.loc[i, 'BKT'] == 0:
+            #         BOUNCING_CASE_COUNT.loc[i, 'BKT'] = 'BKT0'
+            #     elif BOUNCING_CASE_COUNT.loc[i, 'BKT'] == 1:
+            #         BOUNCING_CASE_COUNT.loc[i, 'BKT'] = 'BKT1'
+            #
+            # BOUNCING_CASE_COUNT.head()
 
-            PAID_FILE.drop(BKT1B, axis=0, inplace=True)
+            # F = F.merge(BOUNCING_CASE_COUNT, how='outer')
 
-            PAID_FILE = PAID_FILE.reset_index(drop=True)
+            # F.rename({'AGREEMENTID': 'BOUNCING_CASE_COUNT'}, axis=1, inplace=True)
 
-            BOU_AMT = pd.DataFrame(PAID_FILE.groupby(['FOS', 'BKT'])['BOUNCING AMT.'].sum()).reset_index()
+            # BOU_AMT.rename({'PROCESS': 'COMPANY'}, axis=1, inplace=True)
 
-            PAID_FILE = PAID_FILE[PAID_FILE['BOUNCING AMT.'] >= 200]
+            # BOU_AMT['BKT'].unique()
 
-            BOU = pd.DataFrame(PAID_FILE.groupby(['FOS', 'BKT', 'AGREEMENTID'])['BOUNCING AMT.'].sum()).reset_index()
+            # for i in range(0, len(BOU_AMT['FOS'])):
+            #     if BOU_AMT.loc[i, 'BKT'] == 0:
+            #         BOU_AMT.loc[i, 'BKT'] = 'BKT0'
+            #     elif BOU_AMT.loc[i, 'BKT'] == 1:
+            #         BOU_AMT.loc[i, 'BKT'] = 'BKT1'
+            #     elif BOU_AMT.loc[i, 'BKT'] == 6:
+            #         BOU_AMT.loc[i, 'BKT'] = 'BKT6'
 
-            d = []
-            for i in range(0, len(BOU['FOS'])):
-                if BOU.loc[i, 'BOUNCING AMT.'] == 0:
-                    d.append(i)
-
-            BOU.drop(d, axis=0, inplace=True)
-
-            BOU = BOU.reset_index(drop=True)
-
-            BOUNCING_CASE_COUNT = pd.DataFrame(BOU.groupby(['FOS', 'BKT'])['AGREEMENTID'].count()).reset_index()
-
-            BOUNCING_CASE_COUNT.head()
-
-            F = pd.DataFrame(A.groupby(['FOS', 'BKT'])['POS'].sum()).reset_index()
-
-            R1 = pd.DataFrame(A.groupby(['FOS', 'BKT', 'STATUS'])['POS'].sum()).reset_index()
-
-            AA = pd.DataFrame(A.groupby(['FOS', 'BKT'])['AGREEMENTID'].count()).reset_index()
-
-            F = F.merge(AA, how='outer')
-
-            F = F.reset_index(drop=True)
-
-            F.rename({'AGREEMENTID': 'CASE_COUNT'}, axis=1, inplace=True)
-
-            BOUNCING_CASE_COUNT.rename({'PROCESS': 'COMPANY'}, axis=1, inplace=True)
-
-            BOUNCING_CASE_COUNT['BKT'].unique()
-
-            for i in range(0, len(BOUNCING_CASE_COUNT['FOS'])):
-                if BOUNCING_CASE_COUNT.loc[i, 'BKT'] == 0:
-                    BOUNCING_CASE_COUNT.loc[i, 'BKT'] = 'BKT0'
-                elif BOUNCING_CASE_COUNT.loc[i, 'BKT'] == 1:
-                    BOUNCING_CASE_COUNT.loc[i, 'BKT'] = 'BKT1'
-
-            BOUNCING_CASE_COUNT.head()
-
-            F = F.merge(BOUNCING_CASE_COUNT, how='outer')
-
-            F.rename({'AGREEMENTID': 'BOUNCING_CASE_COUNT'}, axis=1, inplace=True)
-
-            BOU_AMT.rename({'PROCESS': 'COMPANY'}, axis=1, inplace=True)
-
-            BOU_AMT['BKT'].unique()
-
-            for i in range(0, len(BOU_AMT['FOS'])):
-                if BOU_AMT.loc[i, 'BKT'] == 0:
-                    BOU_AMT.loc[i, 'BKT'] = 'BKT0'
-                elif BOU_AMT.loc[i, 'BKT'] == 1:
-                    BOU_AMT.loc[i, 'BKT'] = 'BKT1'
-                elif BOU_AMT.loc[i, 'BKT'] == 6:
-                    BOU_AMT.loc[i, 'BKT'] = 'BKT6'
-
-            F = F.merge(BOU_AMT, how='left')
+            # F = F.merge(BOU_AMT, how='left')
 
             P = F.copy()
 
-            P = P.iloc[:, :3]
+            P = P.iloc[:, :1]
 
             P['SB'] = np.nan
             P['RB'] = np.nan
@@ -10278,9 +10285,20 @@ def MASTER_SALARY_IDFC(request):
             for i in range(0, len(R1['FOS'])):
                 for j in range(0, len(P['FOS'])):
                     for k in range(0, len(COL)):
-                        if ((R1.loc[i, ['FOS', 'BKT']] == P.loc[j, ['FOS', 'BKT']]).all()) and R1.loc[i, 'STATUS'] == \
-                                COL[k]:
+                        if (R1.loc[i, 'FOS'] == P.loc[j, 'FOS']) and (R1.loc[i, 'STATUS'] == COL[k]):
                             P.loc[j, COL[k]] = R1.loc[i, 'POS']
+
+            F = F.merge(P, how='outer')
+
+            F.fillna(0, inplace=True)
+
+            F.rename({'SB':'SB_POS','RB':'RB_POS','NM':'NM_POS','FORECLOSE':'FORECLOSE_POS','SETTLEMENT':'SETTLEMENT_POS'},axis=1,inplace=True)
+
+            for i in range(0, len(R2['FOS'])):
+                for j in range(0, len(P['FOS'])):
+                    for k in range(0, len(COL)):
+                        if (R2.loc[i, 'FOS'] == P.loc[j, 'FOS']) and (R2.loc[i, 'STATUS'] == COL[k]):
+                            P.loc[j, COL[k]] = R2.loc[i, 'AGREEMENTID']
 
             F = F.merge(P, how='outer')
 
@@ -10288,317 +10306,326 @@ def MASTER_SALARY_IDFC(request):
 
             F.rename({'POS': 'TOTAL POS'}, axis=1, inplace=True)
 
+            F.rename({'SB': 'SB_COUNT', 'RB': 'RB_COUNT', 'NM': 'NM_COUNT', 'FORECLOSE': 'FORECLOSE_COUNT', 'SETTLEMENT': 'SETTLEMENT_COUNT'}, axis=1, inplace=True)
+
             for i in range(0, len(F['TOTAL POS'])):
-                F.loc[i, 'POS'] = F.loc[i, 'SB'] + F.loc[i, 'RB'] + F.loc[i, 'NM'] + F.loc[i, 'FORECLOSE'] + F.loc[
-                    i, 'SETTLEMENT']
-                F.loc[i, 'RB+NM'] = F.loc[i, 'RB'] + F.loc[i, 'NM'] + F.loc[i, 'FORECLOSE'] + F.loc[i, 'SETTLEMENT']
+                F.loc[i, 'POS'] = F.loc[i, 'SB_POS'] + F.loc[i, 'RB_POS'] + F.loc[i, 'NM_POS'] + F.loc[i, 'FORECLOSE_POS'] + F.loc[i, 'SETTLEMENT_POS']
+                F.loc[i, 'TOTAL_PAID_COUNT'] = F.loc[i, 'SB_COUNT'] + F.loc[i, 'RB_COUNT'] + F.loc[i, 'NM_COUNT'] + F.loc[i, 'FORECLOSE_COUNT'] + F.loc[i, 'SETTLEMENT_COUNT']
 
             for i in range(0, len(F['FOS'])):
                 F.loc[i, 'Performance'] = F.loc[i, 'POS'] / F.loc[i, 'TOTAL POS'] * 100
-                F.loc[i, 'RB+NM%'] = F.loc[i, 'RB+NM'] / F.loc[i, 'TOTAL POS'] * 100
 
             F.fillna(0, inplace=True)
 
-            A['STATUS'].unique()
+            PA = pd.DataFrame(A.groupby(['FOS'])['FOS_PAYOUT'].sum()).reset_index()
 
-            for i in range(0, len(A['AGREEMENTID'])):
-                for j in range(0, len(F['FOS'])):
-                    if (A.loc[i, 'BKT'] == 'BKT0' and F.loc[j, 'BKT'] == 'BKT0'):
-                        if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
-                            if (A.loc[i, 'STATUS'] == 'SB'):
-                                if F.loc[j, 'Performance'] < 88:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 0 / 100
-                                elif F.loc[j, 'Performance'] >= 88 and F.loc[j, 'Performance'] < 90:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(0.5) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 0.65 / 100
-                                elif F.loc[j, 'Performance'] >= 90 and F.loc[j, 'Performance'] < 92:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(1) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 1 / 100
-                                elif F.loc[j, 'Performance'] >= 92 and F.loc[j, 'Performance'] < 95:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(1.5) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 1.5 / 100
-                                elif F.loc[j, 'Performance'] >= 95:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(2) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 2 / 100
-
-            for i in range(0, len(A['AGREEMENTID'])):
-                for j in range(0, len(F['FOS'])):
-                    if (A.loc[i, 'BKT'] == 'BKT1') and (F.loc[j, 'BKT'] == 'BKT1'):
-                        if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
-                            if (A.loc[i, 'STATUS'] != 'SETTLEMENT') and (A.loc[i, 'STATUS'] != 'FORECLOSE'):
-                                if F.loc[j, 'Performance'] < 82:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 0 / 100
-                                elif F.loc[j, 'Performance'] >= 82 and F.loc[j, 'Performance'] < 84:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(0.5) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 0.5 / 100
-                                elif F.loc[j, 'Performance'] >= 84 and F.loc[j, 'Performance'] < 86:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(1) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 1 / 100
-                                elif F.loc[j, 'Performance'] >= 86 and F.loc[j, 'Performance'] < 90:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(1.5) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 1.5 / 100
-                                elif F.loc[j, 'Performance'] >= 90:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(2) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 2 / 100
-
-            for i in range(0, len(A['AGREEMENTID'])):
-                for j in range(0, len(F['FOS'])):
-                    if (A.loc[i, 'BKT'] == 'BKT1') and (F.loc[j, 'BKT'] == 'BKT1'):
-                        if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
-                            if (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
-                                if F.loc[j, 'RB+NM%'] < 22:
-                                    A.loc[i, 'RB PAYOUT'] = 0
-                                elif F.loc[j, 'RB+NM%'] >= 22 and F.loc[j, 'RB+NM%'] < 24:
-                                    A.loc[i, 'RB PAYOUT'] = 250
-                                elif F.loc[j, 'RB+NM%'] >= 24 and F.loc[j, 'RB+NM%'] < 28:
-                                    A.loc[i, 'RB PAYOUT'] = 400
-                                elif F.loc[j, 'RB+NM%'] >= 28:
-                                    A.loc[i, 'RB PAYOUT'] = 500
+            F = F.merge(PA, how='outer')
 
             for i in range(0, len(F['FOS'])):
-                if F.loc[i, 'BKT'] == 'BKT1':
-                    if (F.loc[i, 'RB+NM%'] < 10):
-                        F.loc[i, 'EXTRA INCENTIVE'] = 'Deduction of 10%'
-                    elif (F.loc[i, 'RB+NM%'] >= 10) and (F.loc[i, 'RB+NM%'] < 15):
-                        F.loc[i, 'EXTRA INCENTIVE'] = 'Deduction of 5%'
-                    elif ((F.loc[i, 'RB+NM%'] >= 15) and (F.loc[i, 'RB+NM%'] < 18)):
-                        F.loc[i, 'EXTRA INCENTIVE'] = 0
-                    elif ((F.loc[i, 'RB+NM%'] >= 18) and (F.loc[i, 'RB+NM%'] < 22)):
-                        F.loc[i, 'EXTRA INCENTIVE'] = 1000
-                    elif ((F.loc[i, 'RB+NM%'] >= 22) and (F.loc[i, 'RB+NM%'] < 24)):
-                        F.loc[i, 'EXTRA INCENTIVE'] = 2000
-                    elif ((F.loc[i, 'RB+NM%'] >= 24) and (F.loc[i, 'RB+NM%'] < 30)):
-                        F.loc[i, 'EXTRA INCENTIVE'] = 3000
-                    elif (F.loc[i, 'RB+NM%'] >= 30):
-                        F.loc[i, 'EXTRA INCENTIVE'] = 5000
+                F.loc[i, 'VISIT_PAYOUT'] = F.loc[i, 'CASE_COUNT'] * 100
 
-            F[F['EXTRA INCENTIVE'] != 0]
+            F['FINAL_PAYOUT'] = F['VISIT_PAYOUT'] + F['FOS_PAYOUT']
 
-            for i in range(0, len(F['BOUNCING_CASE_COUNT'])):
-                F.loc[i, 'PENALTY_CHARGES'] = F.loc[i, 'BOUNCING_CASE_COUNT'] / F.loc[i, 'CASE_COUNT'] * 100
+            # for i in range(0, len(A['AGREEMENTID'])):
+            #     for j in range(0, len(F['FOS'])):
+            #         if (A.loc[i, 'BKT'] == 'BKT0' and F.loc[j, 'BKT'] == 'BKT0'):
+            #             if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
+            #                 if (A.loc[i, 'STATUS'] == 'SB'):
+            #                     if F.loc[j, 'Performance'] < 88:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 0 / 100
+            #                     elif F.loc[j, 'Performance'] >= 88 and F.loc[j, 'Performance'] < 90:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(0.5) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 0.65 / 100
+            #                     elif F.loc[j, 'Performance'] >= 90 and F.loc[j, 'Performance'] < 92:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(1) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 1 / 100
+            #                     elif F.loc[j, 'Performance'] >= 92 and F.loc[j, 'Performance'] < 95:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(1.5) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 1.5 / 100
+            #                     elif F.loc[j, 'Performance'] >= 95:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(2) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 2 / 100
+            #
+            # for i in range(0, len(A['AGREEMENTID'])):
+            #     for j in range(0, len(F['FOS'])):
+            #         if (A.loc[i, 'BKT'] == 'BKT1') and (F.loc[j, 'BKT'] == 'BKT1'):
+            #             if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
+            #                 if (A.loc[i, 'STATUS'] != 'SETTLEMENT') and (A.loc[i, 'STATUS'] != 'FORECLOSE'):
+            #                     if F.loc[j, 'Performance'] < 82:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 0 / 100
+            #                     elif F.loc[j, 'Performance'] >= 82 and F.loc[j, 'Performance'] < 84:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(0.5) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 0.5 / 100
+            #                     elif F.loc[j, 'Performance'] >= 84 and F.loc[j, 'Performance'] < 86:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(1) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 1 / 100
+            #                     elif F.loc[j, 'Performance'] >= 86 and F.loc[j, 'Performance'] < 90:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(1.5) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 1.5 / 100
+            #                     elif F.loc[j, 'Performance'] >= 90:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(2) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'Billing PAID AMT.'] * 2 / 100
+            #
+            # for i in range(0, len(A['AGREEMENTID'])):
+            #     for j in range(0, len(F['FOS'])):
+            #         if (A.loc[i, 'BKT'] == 'BKT1') and (F.loc[j, 'BKT'] == 'BKT1'):
+            #             if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
+            #                 if (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
+            #                     if F.loc[j, 'RB+NM%'] < 22:
+            #                         A.loc[i, 'RB PAYOUT'] = 0
+            #                     elif F.loc[j, 'RB+NM%'] >= 22 and F.loc[j, 'RB+NM%'] < 24:
+            #                         A.loc[i, 'RB PAYOUT'] = 250
+            #                     elif F.loc[j, 'RB+NM%'] >= 24 and F.loc[j, 'RB+NM%'] < 28:
+            #                         A.loc[i, 'RB PAYOUT'] = 400
+            #                     elif F.loc[j, 'RB+NM%'] >= 28:
+            #                         A.loc[i, 'RB PAYOUT'] = 500
+            #
+            # for i in range(0, len(F['FOS'])):
+            #     if F.loc[i, 'BKT'] == 'BKT1':
+            #         if (F.loc[i, 'RB+NM%'] < 10):
+            #             F.loc[i, 'EXTRA INCENTIVE'] = 'Deduction of 10%'
+            #         elif (F.loc[i, 'RB+NM%'] >= 10) and (F.loc[i, 'RB+NM%'] < 15):
+            #             F.loc[i, 'EXTRA INCENTIVE'] = 'Deduction of 5%'
+            #         elif ((F.loc[i, 'RB+NM%'] >= 15) and (F.loc[i, 'RB+NM%'] < 18)):
+            #             F.loc[i, 'EXTRA INCENTIVE'] = 0
+            #         elif ((F.loc[i, 'RB+NM%'] >= 18) and (F.loc[i, 'RB+NM%'] < 22)):
+            #             F.loc[i, 'EXTRA INCENTIVE'] = 1000
+            #         elif ((F.loc[i, 'RB+NM%'] >= 22) and (F.loc[i, 'RB+NM%'] < 24)):
+            #             F.loc[i, 'EXTRA INCENTIVE'] = 2000
+            #         elif ((F.loc[i, 'RB+NM%'] >= 24) and (F.loc[i, 'RB+NM%'] < 30)):
+            #             F.loc[i, 'EXTRA INCENTIVE'] = 3000
+            #         elif (F.loc[i, 'RB+NM%'] >= 30):
+            #             F.loc[i, 'EXTRA INCENTIVE'] = 5000
+            #
+            # F[F['EXTRA INCENTIVE'] != 0]
+            #
+            # for i in range(0, len(F['BOUNCING_CASE_COUNT'])):
+            #     F.loc[i, 'PENALTY_CHARGES'] = F.loc[i, 'BOUNCING_CASE_COUNT'] / F.loc[i, 'CASE_COUNT'] * 100
+            #
+            # for i in range(0, len(F['FOS'])):
+            #     if F.loc[i, 'PENALTY_CHARGES'] >= 70:
+            #         F.loc[i, 'PENALTY_PAYOUT'] = (F.loc[i, 'BOUNCING AMT.']) * (8 / 100)
+            #     else:
+            #         F.loc[i, 'PENALTY_PAYOUT'] = 0
+            #
+            # for i in range(0, len(A['PER PAID CASE'])):
+            #     if (A.loc[i, 'STATUS'] == 'PART PAID') or (A.loc[i, 'STATUS'] == 'FLOW'):
+            #         A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
+            #         A.loc[i, 'PER PAID CASE'] = 0
+            #
+            # for i in range(0, len(A['STATUS'])):
+            #     if (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'FORECLOSE'):
+            #         if A.loc[i, 'BKT'] == 'BKT0':
+            #             if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
+            #                 A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
+            #             elif A.loc[i, 'Billing PAID AMT.'] < A.loc[i, 'EMI']:
+            #                 A.loc[i, 'Billing PAID AMT.'] = 0
+            #         elif A.loc[i, 'BKT'] == 'BKT1':
+            #             if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI'] * 2:
+            #                 A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI'] * 2
+            #             elif (A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']) and (
+            #                     A.loc[i, 'Billing PAID AMT.'] < A.loc[i, 'EMI'] * 2):
+            #                 A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
+            #             elif (A.loc[i, 'Billing PAID AMT.'] < A.loc[i, 'EMI']):
+            #                 A.loc[i, 'Billing PAID AMT'] = 0
+            #
+            # for i in range(0, len(A['AGREEMENTID'])):
+            #     for j in range(0, len(F['FOS'])):
+            #         if (A.loc[i, 'BKT'] == 'BKT0' and F.loc[j, 'BKT'] == 'BKT0'):
+            #             if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
+            #                 if (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'FORECLOSE'):
+            #                     if F.loc[j, 'Performance'] < 88:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 0 / 100
+            #                     elif F.loc[j, 'Performance'] >= 88 and F.loc[j, 'Performance'] < 90:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(0.65) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 0.65 / 100
+            #                     elif F.loc[j, 'Performance'] >= 90 and F.loc[j, 'Performance'] < 92:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(1) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 1 / 100
+            #                     elif F.loc[j, 'Performance'] >= 92 and F.loc[j, 'Performance'] < 94:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(1.5) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 1.5 / 100
+            #                     elif F.loc[j, 'Performance'] >= 94:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(2) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 2 / 100
+            #
+            # for i in range(0, len(A['AGREEMENTID'])):
+            #     for j in range(0, len(F['FOS'])):
+            #         if (A.loc[i, 'BKT'] == 'BKT1' and F.loc[j, 'BKT'] == 'BKT1'):
+            #             if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
+            #                 if (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'FORECLOSE'):
+            #                     if F.loc[j, 'Performance'] < 82:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = (A.loc[i, 'EMI'] * 2) * 0 / 100
+            #                     elif F.loc[j, 'Performance'] >= 82 and F.loc[j, 'Performance'] < 84:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(0.5) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = (A.loc[i, 'EMI'] * 2) * 0.5 / 100
+            #                     elif F.loc[j, 'Performance'] >= 84 and F.loc[j, 'Performance'] < 86:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(1) + '%'
+            #                         A.loc[i, 'MOHAK'] = (A.loc[i, 'EMI'] * 2) * 1 / 100
+            #                     elif F.loc[j, 'Performance'] >= 86 and F.loc[j, 'Performance'] < 90:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(1.5) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = (A.loc[i, 'EMI'] * 2) * 1.5 / 100
+            #                     elif F.loc[j, 'Performance'] >= 90:
+            #                         A.loc[i, 'FOS PERCENTAGE'] = str(2) + '%'
+            #                         A.loc[i, 'PER PAID CASE'] = (A.loc[i, 'EMI'] * 2) * 2 / 100
+            #
+            # l1 = list(A[A['PER PAID CASE'].isnull()].index)
+            #
+            # for i in range(0, len(A['AGREEMENTID'])):
+            #     if A.loc[i, 'STATUS'] == 'SB':
+            #         if A.loc[i, 'PER PAID CASE'] > 500:
+            #             A.loc[i, 'PER PAID CASE'] = 500
+            #     elif (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
+            #         if A.loc[i, 'PER PAID CASE'] > 1000:
+            #             if A.loc[i, 'Billing PAID AMT.'] == A.loc[i, 'EMI']:
+            #                 A.loc[i, 'PER PAID CASE'] = 500
+            #             elif A.loc[i, 'Billing PAID AMT.'] >= (A.loc[i, 'EMI'] * 2):
+            #                 A.loc[i, 'PER PAID CASE'] = 1000
+            #
+            # F.fillna(0, inplace=True)
+            #
+            # PPC = pd.DataFrame(A.groupby(['FOS', 'BKT'])['PER PAID CASE'].sum()).reset_index()
+            #
+            # PPC1 = pd.DataFrame(A.groupby(['FOS', 'BKT'])['RB PAYOUT'].sum()).reset_index()
 
-            for i in range(0, len(F['FOS'])):
-                if F.loc[i, 'PENALTY_CHARGES'] >= 70:
-                    F.loc[i, 'PENALTY_PAYOUT'] = (F.loc[i, 'BOUNCING AMT.']) * (8 / 100)
-                else:
-                    F.loc[i, 'PENALTY_PAYOUT'] = 0
+            # COMBINED_SALARY = F.merge(PPC, left_on=['FOS', 'BKT'], right_on=['FOS', 'BKT'], how='left')
+            #
+            # COMBINED_SALARY = COMBINED_SALARY.merge(PPC1, left_on=['FOS', 'BKT'], right_on=['FOS', 'BKT'], how='left')
+            #
+            # COMBINED_SALARY = COMBINED_SALARY.reset_index(drop=True)
+            #
+            # COMBINED_SALARY.drop(['SB', 'RB', 'NM', 'FORECLOSE', 'SETTLEMENT', 'POS', 'RB+NM'], axis=1, inplace=True)
+            #
+            # COMBINED_SALARY.drop('BOUNCING_CASE_COUNT', axis=1, inplace=True)
+            #
+            # COMBINED_SALARY = COMBINED_SALARY.merge(UNIQUE_NAME, how='left', left_on='FOS', right_on='NAMES')
+            #
+            # COMBINED_SALARY.drop(
+            #     ['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'TYPE_OF_SALARY', 'SALARY',
+            #      'MANAGEMENT_LEVEL', 'NAMES', 'STAFF', 'DATE_OF_BIRTH'], axis=1, inplace=True)
+            #
+            # for i in range(0,len(COMBINED_SALARY['FOS'])):
+            #     COMBINED_SALARY.loc[i,'TOTAL POS']=round(COMBINED_SALARY.loc[i,'TOTAL POS'],2)
+            #     COMBINED_SALARY.loc[i,'Performance']=round(COMBINED_SALARY.loc[i,'Performance'],2)
+            #     COMBINED_SALARY.loc[i,'RB+NM%']=round(COMBINED_SALARY.loc[i,'RB+NM%'],2)
+            #     COMBINED_SALARY.loc[i,'PENALTY_CHARGES']=round(COMBINED_SALARY.loc[i,'PENALTY_CHARGES'],2)
+            #     COMBINED_SALARY.loc[i,'PER PAID CASE']=round(COMBINED_SALARY.loc[i,'PER PAID CASE'],2)
+            #
+            # li1=[]
+            # for i in range(0,len(COMBINED_SALARY['FOS'])):
+            #     if (COMBINED_SALARY.loc[i,'FOS'] == '--') or (COMBINED_SALARY.loc[i,'FOS'] == 'FUNDING') or (COMBINED_SALARY.loc[i,'FOS'] == 'NO FOS'):
+            #         li1.append(i)
+            #
+            # COMBINED_SALARY.drop(li1, axis=0, inplace=True)
+            #
+            # COMBINED_SALARY=COMBINED_SALARY.reset_index(drop=True)
+            #
+            # COMBINED_SALARY.drop(['BOUNCING AMT.','EXTRA INCENTIVE','PENALTY_CHARGES', 'PENALTY_PAYOUT'], axis=1, inplace=True)
+            #
+            # COMBINED_SALARY.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx', index=False)
+            #
+            # IDFCHL = MASTER_COUNT[MASTER_COUNT['PROCESS'] == 'IDFC-HL']
+            #
+            # IDFCHL = IDFCHL.reset_index(drop=True)
+            #
+            # TW = MASTER_COUNT[MASTER_COUNT['PROCESS'] == 'TW']
+            #
+            # TW = TW.reset_index(drop=True)
+            #
+            # FINAL_PAYOUT = pd.DataFrame(COMBINED_SALARY.groupby(['FOS', 'PROCESS', 'DEPARTMENT'])['PER PAID CASE', 'RB PAYOUT'].sum()).reset_index()
+            #
+            # for i in range(0, len(FINAL_PAYOUT['FOS'])):
+            #     for j in range(0, len(IDFCHL['FOS'])):
+            #         if (FINAL_PAYOUT.loc[i, 'FOS'] == IDFCHL.loc[j, 'FOS']) and (
+            #                 (FINAL_PAYOUT.loc[i, 'DEPARTMENT'] == 'HL') and (FINAL_PAYOUT.loc[i, 'PROCESS'] == 'IDFC')):
+            #             if (IDFCHL.loc[j, 'AGREEMENTID'] >= 35) and (IDFCHL.loc[j, 'AGREEMENTID'] < 40):
+            #                 FINAL_PAYOUT.loc[i, 'FIXED SALARY'] = 13000
+            #             elif IDFCHL.loc[j, 'AGREEMENTID'] >= 40:
+            #                 FINAL_PAYOUT.loc[i, 'FIXED SALARY'] = 15000
+            #             elif MASTER_COUNT.loc[j, 'AGREEMENTID'] < 35:
+            #                 FINAL_PAYOUT.loc[i, 'FIXED SALARY'] = round((13000 / 35) * IDFCHL.loc[j, 'AGREEMENTID'], 0)
+            #         elif FINAL_PAYOUT.loc[i, 'DEPARTMENT'] == 'TW':
+            #             FINAL_PAYOUT.loc[i, 'FIXED SALARY'] = 0
+            #
+            # FINAL_PAYOUT.drop(['PROCESS', 'DEPARTMENT'], axis=1, inplace=True)
+            #
+            # FINAL_PAYOUT = FINAL_PAYOUT.merge(UNIQUE_NAME, how='left', left_on='FOS', right_on='NAMES')
+            #
+            # FINAL_PAYOUT.drop(
+            #     ['NAMES', 'MANAGEMENT_LEVEL', 'PROCESS', 'DEPARTMENT', 'TYPE_OF_SALARY', 'SALARY', 'END_DATE',
+            #      'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'DEPARTMENT_ID', 'DATE_OF_BIRTH'], axis=1, inplace=True)
+            #
+            # FINAL_PAYOUT.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx', index=False)
+            #
+            # AA456 = fs3.open('MIS TL-WISE.xlsx')
+            # AA = pd.read_excel(AA456)
+            #
+            # for i in range(0, len(AA['TL'])):
+            #     if AA.loc[i, 'BKT'] == 'BKT1':
+            #         if AA.loc[i, 'PERFORMANCE'] < 84:
+            #             AA.loc[i, 'INCENTIVE'] = 0
+            #         elif (AA.loc[i, 'PERFORMANCE'] >= 84) and (AA.loc[i, 'PERFORMANCE'] < 86):
+            #             AA.loc[i, 'INCENTIVE'] = 3000
+            #         elif (AA.loc[i, 'PERFORMANCE'] >= 86) and (AA.loc[i, 'PERFORMANCE'] < 90):
+            #             AA.loc[i, 'INCENTIVE'] = 6000
+            #         elif AA.loc[i, 'PERFORMANCE'] >= 90:
+            #             AA.loc[i, 'INCENTIVE'] = 12000
+            #     if AA.loc[i, 'BKT'] == 'BKT0':
+            #         if AA.loc[i, 'PERFORMANCE'] < 90:
+            #             AA.loc[i, 'INCENTIVE'] = 0
+            #         elif (AA.loc[i, 'PERFORMANCE'] >= 90) and (AA.loc[i, 'PERFORMANCE'] < 92):
+            #             AA.loc[i, 'INCENTIVE'] = 5000
+            #         elif (AA.loc[i, 'PERFORMANCE'] >= 92) and (AA.loc[i, 'PERFORMANCE'] < 95):
+            #             AA.loc[i, 'INCENTIVE'] = 8000
+            #         elif AA.loc[i, 'PERFORMANCE'] >= 95:
+            #             AA.loc[i, 'INCENTIVE'] = 24000
+            # for i in range(0, len(AA['TL'])):
+            #     if AA.loc[i, 'BKT'] == 'BKT1':
+            #         if AA.loc[i, 'Additional_Performance'] < 22:
+            #             AA.loc[i, 'RB_INCENTIVE'] = 0
+            #         elif (AA.loc[i, 'Additional_Performance'] >= 22) and (AA.loc[i, 'Additional_Performance'] < 24):
+            #             AA.loc[i, 'RB_INCENTIVE'] = 3000
+            #         elif (AA.loc[i, 'Additional_Performance'] >= 24) and (AA.loc[i, 'Additional_Performance'] < 28):
+            #             AA.loc[i, 'RB_INCENTIVE'] = 5000
+            #         elif AA.loc[i, 'Additional_Performance'] >= 28:
+            #             AA.loc[i, 'RB_INCENTIVE'] = 10000
 
-            for i in range(0, len(A['PER PAID CASE'])):
-                if (A.loc[i, 'STATUS'] == 'PART PAID') or (A.loc[i, 'STATUS'] == 'FLOW'):
-                    A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
-                    A.loc[i, 'PER PAID CASE'] = 0
+            # AA.fillna(0, inplace=True)
 
-            for i in range(0, len(A['STATUS'])):
-                if (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'FORECLOSE'):
-                    if A.loc[i, 'BKT'] == 'BKT0':
-                        if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
-                            A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
-                        elif A.loc[i, 'Billing PAID AMT.'] < A.loc[i, 'EMI']:
-                            A.loc[i, 'Billing PAID AMT.'] = 0
-                    elif A.loc[i, 'BKT'] == 'BKT1':
-                        if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI'] * 2:
-                            A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI'] * 2
-                        elif (A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']) and (
-                                A.loc[i, 'Billing PAID AMT.'] < A.loc[i, 'EMI'] * 2):
-                            A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
-                        elif (A.loc[i, 'Billing PAID AMT.'] < A.loc[i, 'EMI']):
-                            A.loc[i, 'Billing PAID AMT'] = 0
-
-            for i in range(0, len(A['AGREEMENTID'])):
-                for j in range(0, len(F['FOS'])):
-                    if (A.loc[i, 'BKT'] == 'BKT0' and F.loc[j, 'BKT'] == 'BKT0'):
-                        if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
-                            if (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'FORECLOSE'):
-                                if F.loc[j, 'Performance'] < 88:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 0 / 100
-                                elif F.loc[j, 'Performance'] >= 88 and F.loc[j, 'Performance'] < 90:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(0.65) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 0.65 / 100
-                                elif F.loc[j, 'Performance'] >= 90 and F.loc[j, 'Performance'] < 92:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(1) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 1 / 100
-                                elif F.loc[j, 'Performance'] >= 92 and F.loc[j, 'Performance'] < 94:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(1.5) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 1.5 / 100
-                                elif F.loc[j, 'Performance'] >= 94:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(2) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = A.loc[i, 'EMI'] * 2 / 100
-
-            for i in range(0, len(A['AGREEMENTID'])):
-                for j in range(0, len(F['FOS'])):
-                    if (A.loc[i, 'BKT'] == 'BKT1' and F.loc[j, 'BKT'] == 'BKT1'):
-                        if (A.loc[i, ['FOS', 'BKT']] == F.loc[j, ['FOS', 'BKT']]).all():
-                            if (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (A.loc[i, 'STATUS'] == 'FORECLOSE'):
-                                if F.loc[j, 'Performance'] < 82:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(0) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = (A.loc[i, 'EMI'] * 2) * 0 / 100
-                                elif F.loc[j, 'Performance'] >= 82 and F.loc[j, 'Performance'] < 84:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(0.5) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = (A.loc[i, 'EMI'] * 2) * 0.5 / 100
-                                elif F.loc[j, 'Performance'] >= 84 and F.loc[j, 'Performance'] < 86:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(1) + '%'
-                                    A.loc[i, 'MOHAK'] = (A.loc[i, 'EMI'] * 2) * 1 / 100
-                                elif F.loc[j, 'Performance'] >= 86 and F.loc[j, 'Performance'] < 90:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(1.5) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = (A.loc[i, 'EMI'] * 2) * 1.5 / 100
-                                elif F.loc[j, 'Performance'] >= 90:
-                                    A.loc[i, 'FOS PERCENTAGE'] = str(2) + '%'
-                                    A.loc[i, 'PER PAID CASE'] = (A.loc[i, 'EMI'] * 2) * 2 / 100
-
-            l1 = list(A[A['PER PAID CASE'].isnull()].index)
-
-            for i in range(0, len(A['AGREEMENTID'])):
-                if A.loc[i, 'STATUS'] == 'SB':
-                    if A.loc[i, 'PER PAID CASE'] > 500:
-                        A.loc[i, 'PER PAID CASE'] = 500
-                elif (A.loc[i, 'STATUS'] == 'RB') or (A.loc[i, 'STATUS'] == 'NM'):
-                    if A.loc[i, 'PER PAID CASE'] > 1000:
-                        if A.loc[i, 'Billing PAID AMT.'] == A.loc[i, 'EMI']:
-                            A.loc[i, 'PER PAID CASE'] = 500
-                        elif A.loc[i, 'Billing PAID AMT.'] >= (A.loc[i, 'EMI'] * 2):
-                            A.loc[i, 'PER PAID CASE'] = 1000
-
-            F.fillna(0, inplace=True)
-
-            PPC = pd.DataFrame(A.groupby(['FOS', 'BKT'])['PER PAID CASE'].sum()).reset_index()
-
-            PPC1 = pd.DataFrame(A.groupby(['FOS', 'BKT'])['RB PAYOUT'].sum()).reset_index()
-
-            COMBINED_SALARY = F.merge(PPC, left_on=['FOS', 'BKT'], right_on=['FOS', 'BKT'], how='left')
-
-            COMBINED_SALARY = COMBINED_SALARY.merge(PPC1, left_on=['FOS', 'BKT'], right_on=['FOS', 'BKT'], how='left')
-
-            COMBINED_SALARY = COMBINED_SALARY.reset_index(drop=True)
-
-            COMBINED_SALARY.drop(['SB', 'RB', 'NM', 'FORECLOSE', 'SETTLEMENT', 'POS', 'RB+NM'], axis=1, inplace=True)
-
-            COMBINED_SALARY.drop('BOUNCING_CASE_COUNT', axis=1, inplace=True)
-
-            COMBINED_SALARY = COMBINED_SALARY.merge(UNIQUE_NAME, how='left', left_on='FOS', right_on='NAMES')
-
-            COMBINED_SALARY.drop(
-                ['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'TYPE_OF_SALARY', 'SALARY',
-                 'MANAGEMENT_LEVEL', 'NAMES', 'STAFF', 'DATE_OF_BIRTH'], axis=1, inplace=True)
-
-            for i in range(0,len(COMBINED_SALARY['FOS'])):
-                COMBINED_SALARY.loc[i,'TOTAL POS']=round(COMBINED_SALARY.loc[i,'TOTAL POS'],2)
-                COMBINED_SALARY.loc[i,'Performance']=round(COMBINED_SALARY.loc[i,'Performance'],2)
-                COMBINED_SALARY.loc[i,'RB+NM%']=round(COMBINED_SALARY.loc[i,'RB+NM%'],2)
-                COMBINED_SALARY.loc[i,'PENALTY_CHARGES']=round(COMBINED_SALARY.loc[i,'PENALTY_CHARGES'],2)
-                COMBINED_SALARY.loc[i,'PER PAID CASE']=round(COMBINED_SALARY.loc[i,'PER PAID CASE'],2)
-
-            li1=[]
-            for i in range(0,len(COMBINED_SALARY['FOS'])):
-                if (COMBINED_SALARY.loc[i,'FOS'] == '--') or (COMBINED_SALARY.loc[i,'FOS'] == 'FUNDING') or (COMBINED_SALARY.loc[i,'FOS'] == 'NO FOS'):
-                    li1.append(i)
-
-            COMBINED_SALARY.drop(li1, axis=0, inplace=True)
-
-            COMBINED_SALARY=COMBINED_SALARY.reset_index(drop=True)
-
-            COMBINED_SALARY.drop(['BOUNCING AMT.','EXTRA INCENTIVE','PENALTY_CHARGES', 'PENALTY_PAYOUT'], axis=1, inplace=True)
-
-            COMBINED_SALARY.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/BKT-WISE PAYOUT.xlsx', index=False)
-
-            IDFCHL = MASTER_COUNT[MASTER_COUNT['PROCESS'] == 'IDFC-HL']
-
-            IDFCHL = IDFCHL.reset_index(drop=True)
-
-            TW = MASTER_COUNT[MASTER_COUNT['PROCESS'] == 'TW']
-
-            TW = TW.reset_index(drop=True)
-
-            FINAL_PAYOUT = pd.DataFrame(COMBINED_SALARY.groupby(['FOS', 'PROCESS', 'DEPARTMENT'])['PER PAID CASE', 'RB PAYOUT'].sum()).reset_index()
-
-            for i in range(0, len(FINAL_PAYOUT['FOS'])):
-                for j in range(0, len(IDFCHL['FOS'])):
-                    if (FINAL_PAYOUT.loc[i, 'FOS'] == IDFCHL.loc[j, 'FOS']) and (
-                            (FINAL_PAYOUT.loc[i, 'DEPARTMENT'] == 'HL') and (FINAL_PAYOUT.loc[i, 'PROCESS'] == 'IDFC')):
-                        if (IDFCHL.loc[j, 'AGREEMENTID'] >= 35) and (IDFCHL.loc[j, 'AGREEMENTID'] < 40):
-                            FINAL_PAYOUT.loc[i, 'FIXED SALARY'] = 13000
-                        elif IDFCHL.loc[j, 'AGREEMENTID'] >= 40:
-                            FINAL_PAYOUT.loc[i, 'FIXED SALARY'] = 15000
-                        elif MASTER_COUNT.loc[j, 'AGREEMENTID'] < 35:
-                            FINAL_PAYOUT.loc[i, 'FIXED SALARY'] = round((13000 / 35) * IDFCHL.loc[j, 'AGREEMENTID'], 0)
-                    elif FINAL_PAYOUT.loc[i, 'DEPARTMENT'] == 'TW':
-                        FINAL_PAYOUT.loc[i, 'FIXED SALARY'] = 0
-
-            FINAL_PAYOUT.drop(['PROCESS', 'DEPARTMENT'], axis=1, inplace=True)
-
-            FINAL_PAYOUT = FINAL_PAYOUT.merge(UNIQUE_NAME, how='left', left_on='FOS', right_on='NAMES')
-
-            FINAL_PAYOUT.drop(
-                ['NAMES', 'MANAGEMENT_LEVEL', 'PROCESS', 'DEPARTMENT', 'TYPE_OF_SALARY', 'SALARY', 'END_DATE',
-                 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'DEPARTMENT_ID', 'DATE_OF_BIRTH'], axis=1, inplace=True)
-
-            FINAL_PAYOUT.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx', index=False)
-
-            AA456 = fs3.open('MIS TL-WISE.xlsx')
-            AA = pd.read_excel(AA456)
-
-            for i in range(0, len(AA['TL'])):
-                if AA.loc[i, 'BKT'] == 'BKT1':
-                    if AA.loc[i, 'PERFORMANCE'] < 84:
-                        AA.loc[i, 'INCENTIVE'] = 0
-                    elif (AA.loc[i, 'PERFORMANCE'] >= 84) and (AA.loc[i, 'PERFORMANCE'] < 86):
-                        AA.loc[i, 'INCENTIVE'] = 3000
-                    elif (AA.loc[i, 'PERFORMANCE'] >= 86) and (AA.loc[i, 'PERFORMANCE'] < 90):
-                        AA.loc[i, 'INCENTIVE'] = 6000
-                    elif AA.loc[i, 'PERFORMANCE'] >= 90:
-                        AA.loc[i, 'INCENTIVE'] = 12000
-                if AA.loc[i, 'BKT'] == 'BKT0':
-                    if AA.loc[i, 'PERFORMANCE'] < 90:
-                        AA.loc[i, 'INCENTIVE'] = 0
-                    elif (AA.loc[i, 'PERFORMANCE'] >= 90) and (AA.loc[i, 'PERFORMANCE'] < 92):
-                        AA.loc[i, 'INCENTIVE'] = 5000
-                    elif (AA.loc[i, 'PERFORMANCE'] >= 92) and (AA.loc[i, 'PERFORMANCE'] < 95):
-                        AA.loc[i, 'INCENTIVE'] = 8000
-                    elif AA.loc[i, 'PERFORMANCE'] >= 95:
-                        AA.loc[i, 'INCENTIVE'] = 24000
-            for i in range(0, len(AA['TL'])):
-                if AA.loc[i, 'BKT'] == 'BKT1':
-                    if AA.loc[i, 'Additional_Performance'] < 22:
-                        AA.loc[i, 'RB_INCENTIVE'] = 0
-                    elif (AA.loc[i, 'Additional_Performance'] >= 22) and (AA.loc[i, 'Additional_Performance'] < 24):
-                        AA.loc[i, 'RB_INCENTIVE'] = 3000
-                    elif (AA.loc[i, 'Additional_Performance'] >= 24) and (AA.loc[i, 'Additional_Performance'] < 28):
-                        AA.loc[i, 'RB_INCENTIVE'] = 5000
-                    elif AA.loc[i, 'Additional_Performance'] >= 28:
-                        AA.loc[i, 'RB_INCENTIVE'] = 10000
-
-            AA.fillna(0, inplace=True)
-
-            AA = AA.merge(UNIQUE_NAME, how='left', left_on='TL', right_on='NAMES')
+            F = F.merge(UNIQUE_NAME, how='left', left_on='FOS', right_on='NAMES')
 
             AA.drop(['NAMES', 'MANAGEMENT_LEVEL', 'PROCESS', 'DEPARTMENT', 'TYPE_OF_SALARY', 'SALARY', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'DEPARTMENT_ID', 'DATE_OF_BIRTH'], axis=1, inplace=True)
 
-            AA.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL INCENTIVE IDFC-HL(TL).xlsx',
-                        index=False)
+            F.drop(['DEPARTMENT_ID','END_DATE','HIRE_DATE','PHONE_NUMBER','LOCATION_ID','TYPE_OF_SALARY','SALARY','MANAGEMENT_LEVEL','NAMES','STAFF'],axis=1,inplace=True)
+
+            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx', index=False)
+
         else:
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
-            return render(request, 'FirstLevel/salary.html', {'Salary_Update':'Please upload Allocation file for IDFC-TW and L&T-TW', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            return render(request, 'FirstLevel/salary.html', {'Salary_Update':'Please Refresh Salary for IDFC-HL', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/MASTER_FILE_IDFC_HL.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL INCENTIVE IDFC-HL(TL).xlsx'):
-                fs = FileSystemStorage(location='media/IDFC_HL/FOS Salary')
-                AA12 = fs.open('FINAL INCENTIVE IDFC-HL(TL).xlsx')
-                AA22 = fs.open('FINAL PAYOUT IDFC-HL.xlsx')
-                AA32 = fs.open('BKT-WISE PAYOUT.xlsx')
-                AA = pd.read_excel(AA12)
-                FINAL_PAYOUT = pd.read_excel(AA22)
-                COMBINED_SALARY = pd.read_excel(AA32)
-            else:
-                final_dep = DEP()
-                final_process = COMPANY_PROCESS()
-                Designation = Employee_Designation()
-
-                return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/FOS Salary/MASTER_FILE_IDFC_HL.xlsx')):
+            # if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL INCENTIVE IDFC-HL(TL).xlsx'):
+            fs = FileSystemStorage(location='media/IDFC_HL/FOS Salary')
+            AA12 = fs.open('FINAL INCENTIVE IDFC-HL(TL).xlsx')
+            AA22 = fs.open('FINAL PAYOUT IDFC-HL.xlsx')
+            AA32 = fs.open('BKT-WISE PAYOUT.xlsx')
+            AA = pd.read_excel(AA12)
+            FINAL_PAYOUT = pd.read_excel(AA22)
+            COMBINED_SALARY = pd.read_excel(AA32)
+            # else:
+            #     final_dep = DEP()
+            #     final_process = COMPANY_PROCESS()
+            #     Designation = Employee_Designation()
+            #
+            #     return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
         else:
             return HttpResponseRedirect(reverse('basic_app:IDFC_HL_MIS'))
 
@@ -10640,7 +10667,7 @@ def MASTER_SALARY_FULLERTON(request):
     AA1 = pd.DataFrame()
 
     if request.method == 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx')):
             fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
             fs1 = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
             fs2 = FileSystemStorage(location='media/Employees')
@@ -10654,8 +10681,8 @@ def MASTER_SALARY_FULLERTON(request):
             UNIQUE_NAME=pd.read_excel(UNIQUE_NAME1)
 
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/MIS/FULLERTON_RECOVERY_PAID FILE_'+ str(i) +'AUG21.xlsx'):
-                    A1234 = fs3.open('FULLERTON_RECOVERY_PAID FILE_' + str(i) + 'AUG21.xlsx')
+                if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/MIS/FULLERTON_RECOVERY_PAID FILE_'+ str(i) +'OCT21.xlsx')):
+                    A1234 = fs3.open('FULLERTON_RECOVERY_PAID FILE_' + str(i) + 'OCT21.xlsx')
                     B = pd.read_excel(A1234)
 
             COLLECTION = C['MONEY_COLLECTION'].sum()
@@ -10872,8 +10899,8 @@ def MASTER_SALARY_FULLERTON(request):
             return render(request, 'FirstLevel/salary.html', {'Salary_Update':'Please upload Allocation file for FULLERTON_RECOVERY', 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx')):
                 fs = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
                 AA12 = fs.open('FOS_SALARY_FULLERTON_RECOVERY.xlsx')
                 FINAL_PAYOUT = pd.read_excel(AA12)
@@ -11141,7 +11168,7 @@ def BAJAJ_MIS(request):
         SS1.to_excel(r'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx', index=False)
 
     elif request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
             fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
             AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
             SS1 = pd.read_excel(AA)
@@ -11169,7 +11196,7 @@ def BAJAJ_MIS(request):
 def BAJAJ_BILLING(request):
     excel_data=[]
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')):
             fs = FileSystemStorage(location='media/BAJAJ-CD/Billing')
             AA = fs.open('BAJAJ PAYOUT.xlsx')
             F1 = pd.read_excel(AA)
@@ -11198,7 +11225,7 @@ def BAJAJ_BILLING(request):
 def BAJAJ_SALARY(request):
     excel_data=[]
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
             fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
             AA = fs.open('BAJAJ TC-WISE MIS.xlsx')
             FINAL_COPY1 = pd.read_excel(AA)
@@ -11227,12 +11254,11 @@ def IDFC_TW_SALARY_TC(request):
     a = 0
 
     if request.method == 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'))):
             for i in range(31, 0, -1):
-                if os.path.exists(
-                        '/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')):
                     fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
-                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')
+                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
                     continue
@@ -11539,11 +11565,11 @@ def IDFC_TW_SALARY_TC(request):
             Designation = Employee_Designation()
             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
             for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')):
                     fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
-                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' AUG 21.xlsx')
+                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
                     continue
@@ -11857,7 +11883,7 @@ def IDFC_TW_SALARY_TC(request):
 
 
     elif request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
@@ -11867,7 +11893,7 @@ def IDFC_TW_SALARY_TC(request):
             AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
             F12 = pd.read_excel(AA123)
 
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
@@ -11911,429 +11937,429 @@ def IDFC_TW_SALARY_TC(request):
 
     return render(request, 'FirstLevel/salary.html', {'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-def L_T_TW_SALARY_TC(request):
-    excel_data = []
-    excel_data1 = []
-    excel_data123 = []
-    excel_data12334 = []
-    F12 = pd.DataFrame()
-    a = 0
-
-    if request.method == 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
-
-            for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
-                    fs1 = FileSystemStorage(location='media/L_T/MIS')
-                    AA122 = fs1.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
-                    PAID_FILE_L_T = pd.read_excel(AA122)
-                else:
-                    continue
-
-            fs1 = FileSystemStorage(location='media/L_T/TC Incentive')
-            fs2 = FileSystemStorage(location='media/Employees')
-            AA1 = fs1.open('MASTER FILE L_T.xlsx')
-            E = fs2.open('Employee_Database.xlsx')
-
-            A = pd.read_excel(AA1)
-            EE1 = pd.read_excel(E)
-
-            A.head()
-
-            FUNDING_LIST=list(PAID_FILE_L_T[PAID_FILE_L_T['FOS']=='FUNDING']['AGREEMENTID'])
-
-            for i in range(0,len(A['AGREEMENTID'])):
-                for j in range(0,len(FUNDING_LIST)):
-                    if A.loc[i,'AGREEMENTID']==FUNDING_LIST[j]:
-                        A.loc[i,'STATUS']='FLOW'
-
-            M = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['POS'].sum()).reset_index()
-
-            M
-
-            M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
-
-            R = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['AGREEMENTID'].count()).reset_index()
-
-            F = M.merge(R, how='outer')
-
-            F.head()
-
-            F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
-
-            R1 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME', 'STATUS'])['AGREEMENTID'].count()).reset_index()
-
-            R1.head()
-
-            P = F.copy()
-
-            P = P.iloc[:, :3]
-
-            P.head()
-
-            P['FLOW'] = np.nan
-            P['SB'] = np.nan
-            P['RB'] = np.nan
-            P['NM'] = np.nan
-            P['PART PAID'] = np.nan
-            P['FORECLOSE'] = np.nan
-            P['SETTLEMENT'] = np.nan
-
-            P.head()
-
-            R1.head()
-
-            COL = P.columns
-
-            for i in range(0, len(R1['COMPANY'])):
-                for j in range(0, len(P['COMPANY'])):
-                    for k in range(0, len(COL)):
-                        if (
-                        (R1.loc[i, ['COMPANY', 'BKT', 'TC NAME']] == P.loc[j, ['COMPANY', 'BKT', 'TC NAME']]).all()) and \
-                                R1.loc[i, 'STATUS'] == COL[k]:
-                            P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
-
-            P
-
-            F = F.merge(P, how='outer')
-
-            F.head()
-
-            F.fillna(0, inplace=True)
-
-            F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'RB': 'RB_CASES', 'FORECLOSE': 'FORECLOSE_CASES',
-                      'SETTLEMENT': 'SETTLEMENT_CASES', 'NM': 'NM_CASES', 'PART PAID': 'PART_PAID_CASES'}, axis=1,
-                     inplace=True)
-
-            R2 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME', 'STATUS'])['POS'].sum()).reset_index()
-
-            for i in range(0, len(R2['COMPANY'])):
-                for j in range(0, len(P['COMPANY'])):
-                    for k in range(0, len(COL)):
-                        if (
-                        (R2.loc[i, ['COMPANY', 'BKT', 'TC NAME']] == P.loc[j, ['COMPANY', 'BKT', 'TC NAME']]).all()) and \
-                                R2.loc[i, 'STATUS'] == COL[k]:
-                            P.loc[j, COL[k]] = R2.loc[i, 'POS']
-
-            F = F.merge(P, how='outer')
-
-            F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'RB': 'RB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'NM': 'NM_POS',
-                      'SETTLEMENT': 'SETTLEMENT_POS', 'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
-
-            F.fillna(0, inplace=True)
-
-            for i in range(0, len(F['FLOW_CASES'])):
-                F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'RB_POS%'] = round((F.loc[i, 'RB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'NM_POS%'] = round((F.loc[i, 'NM_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-
-            TP = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['TOTAL PAID'].sum()).reset_index()
-
-            F = F.merge(TP, how='outer')
-
-            for i in range(0, len(F['SB_POS'])):
-                F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'RB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + \
-                                          F.loc[i, 'NM_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
-
-            F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
-                      'SETTLEMENT_CASES': 'SC_CASES',
-                      'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
-                      'FORECLOSE_POS%': 'FC_POS%',
-                      'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
-                     inplace=True)
-
-            F
-
-            for i in range(0, len(F['COMPANY'])):
-                if F.loc[i, 'POS_RES%'] < 60:
-                    F.loc[i, 'INCENTIVE'] = 0
-                elif (F.loc[i, 'POS_RES%'] >= 60) and (F.loc[i, 'POS_RES%'] < 65):
-                    F.loc[i, 'INCENTIVE'] = 1000
-                elif (F.loc[i, 'POS_RES%'] >= 65) and (F.loc[i, 'POS_RES%'] < 70):
-                    F.loc[i, 'INCENTIVE'] = 1500
-                elif (F.loc[i, 'POS_RES%'] >= 70) and (F.loc[i, 'POS_RES%'] < 75):
-                    F.loc[i, 'INCENTIVE'] = 2000
-                elif F.loc[i, 'POS_RES%'] >= 75:
-                    F.loc[i, 'INCENTIVE'] = 4000
-
-            F.head()
-
-            for i in range(0,len(F['COMPANY'])):
-                F.loc[i,'TOTAL_POS'] = round(F.loc[i,'TOTAL_POS'],2)
-                F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
-                F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
-                F.loc[i, 'RB_POS'] = round(F.loc[i, 'RB_POS'], 2)
-                F.loc[i, 'NM_POS'] = round(F.loc[i, 'NM_POS'], 2)
-                F.loc[i, 'PP_POS'] = round(F.loc[i, 'PP_POS'], 2)
-                F.loc[i, 'FC_POS'] = round(F.loc[i, 'FC_POS'], 2)
-                F.loc[i, 'SC_POS'] = round(F.loc[i, 'SC_POS'], 2)
-
-            F = F.merge(EE1, left_on='TC NAME', right_on='NAMES', how='left')
-
-            F.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'SALARY',
-                             'TYPE_OF_SALARY', 'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1,
-                            inplace=True)
-
-            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx', index=False)
-
-            F12 = F.copy()
-
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-            AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
-            AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
-            FINAL_COPY1 = pd.read_excel(AA)
-            F = pd.read_excel(AA2)
-
-            C = list(FINAL_COPY1.columns)  # FOS_Incentive
-            C11 = list(F.columns)  # FOS_Fixed
-            C12334 = list(F12.columns)  # TC_Incentive
-
-            for j in range(0, len(FINAL_COPY1[C[0]])):
-                row_data = list()
-                for col in range(0, len(C)):
-                    row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
-                excel_data.append(row_data)
-
-            for j in range(0, len(F[C11[0]])):
-                row_data1 = list()
-                for col in range(0, len(C11)):
-                    row_data1.append(str(F.loc[j, C11[col]]))
-                excel_data1.append(row_data1)
-
-            for j in range(0, len(F12[C12334[0]])):
-                row_data22 = list()
-                for col1 in range(0, len(C12334)):
-                    row_data22.append(str(F12.loc[j, C12334[col1]]))
-                excel_data12334.append(row_data22)
-
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-            return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel12334': excel_data12334, 'columns12334': C12334, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
-            for i in range(31, 0, -1):
-                if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
-                    fs1 = FileSystemStorage(location='media/L_T/MIS')
-                    AA122 = fs1.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
-                    PAID_FILE_L_T = pd.read_excel(AA122)
-                else:
-                    continue
-
-            fs1 = FileSystemStorage(location='media/L_T/TC Incentive')
-            fs2 = FileSystemStorage(location='media/Employees')
-            AA1 = fs1.open('MASTER FILE L_T.xlsx')
-            E = fs2.open('Employee_Database.xlsx')
-
-            A = pd.read_excel(AA1)
-            EE1 = pd.read_excel(E)
-
-            A.head()
-
-            FUNDING_LIST = list(PAID_FILE_L_T[PAID_FILE_L_T['FOS'] == 'FUNDING']['AGREEMENTID'])
-
-            for i in range(0, len(A['AGREEMENTID'])):
-                for j in range(0, len(FUNDING_LIST)):
-                    if A.loc[i, 'AGREEMENTID'] == FUNDING_LIST[j]:
-                        A.loc[i, 'STATUS'] = 'FLOW'
-
-            M = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['POS'].sum()).reset_index()
-
-            M
-
-            M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
-
-            R = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['AGREEMENTID'].count()).reset_index()
-
-            F = M.merge(R, how='outer')
-
-            F.head()
-
-            F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
-
-            R1 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME', 'STATUS'])['AGREEMENTID'].count()).reset_index()
-
-            R1.head()
-
-            P = F.copy()
-
-            P = P.iloc[:, :3]
-
-            P.head()
-
-            P['FLOW'] = np.nan
-            P['SB'] = np.nan
-            P['RB'] = np.nan
-            P['NM'] = np.nan
-            P['PART PAID'] = np.nan
-            P['FORECLOSE'] = np.nan
-            P['SETTLEMENT'] = np.nan
-
-            P.head()
-
-            R1.head()
-
-            COL = P.columns
-
-            for i in range(0, len(R1['COMPANY'])):
-                for j in range(0, len(P['COMPANY'])):
-                    for k in range(0, len(COL)):
-                        if (
-                                (R1.loc[i, ['COMPANY', 'BKT', 'TC NAME']] == P.loc[
-                                    j, ['COMPANY', 'BKT', 'TC NAME']]).all()) and \
-                                R1.loc[i, 'STATUS'] == COL[k]:
-                            P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
-
-            P
-
-            F = F.merge(P, how='outer')
-
-            F.head()
-
-            F.fillna(0, inplace=True)
-
-            F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'RB': 'RB_CASES', 'FORECLOSE': 'FORECLOSE_CASES',
-                      'SETTLEMENT': 'SETTLEMENT_CASES', 'NM': 'NM_CASES', 'PART PAID': 'PART_PAID_CASES'}, axis=1,
-                     inplace=True)
-
-            R2 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME', 'STATUS'])['POS'].sum()).reset_index()
-
-            for i in range(0, len(R2['COMPANY'])):
-                for j in range(0, len(P['COMPANY'])):
-                    for k in range(0, len(COL)):
-                        if (
-                                (R2.loc[i, ['COMPANY', 'BKT', 'TC NAME']] == P.loc[
-                                    j, ['COMPANY', 'BKT', 'TC NAME']]).all()) and \
-                                R2.loc[i, 'STATUS'] == COL[k]:
-                            P.loc[j, COL[k]] = R2.loc[i, 'POS']
-
-            F = F.merge(P, how='outer')
-
-            F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'RB': 'RB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'NM': 'NM_POS',
-                      'SETTLEMENT': 'SETTLEMENT_POS', 'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
-
-            F.fillna(0, inplace=True)
-
-            for i in range(0, len(F['FLOW_CASES'])):
-                F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'RB_POS%'] = round((F.loc[i, 'RB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'NM_POS%'] = round((F.loc[i, 'NM_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-                F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
-
-            TP = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['TOTAL PAID'].sum()).reset_index()
-
-            F = F.merge(TP, how='outer')
-
-            for i in range(0, len(F['SB_POS'])):
-                F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'RB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + \
-                                          F.loc[i, 'NM_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
-
-            F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
-                      'SETTLEMENT_CASES': 'SC_CASES',
-                      'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
-                      'FORECLOSE_POS%': 'FC_POS%',
-                      'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
-                     inplace=True)
-
-            F
-
-            for i in range(0, len(F['COMPANY'])):
-                if F.loc[i, 'POS_RES%'] < 60:
-                    F.loc[i, 'INCENTIVE'] = 0
-                elif (F.loc[i, 'POS_RES%'] >= 60) and (F.loc[i, 'POS_RES%'] < 65):
-                    F.loc[i, 'INCENTIVE'] = 1000
-                elif (F.loc[i, 'POS_RES%'] >= 65) and (F.loc[i, 'POS_RES%'] < 70):
-                    F.loc[i, 'INCENTIVE'] = 1500
-                elif (F.loc[i, 'POS_RES%'] >= 70) and (F.loc[i, 'POS_RES%'] < 75):
-                    F.loc[i, 'INCENTIVE'] = 2000
-                elif F.loc[i, 'POS_RES%'] >= 75:
-                    F.loc[i, 'INCENTIVE'] = 4000
-
-            F.head()
-
-            for i in range(0,len(F['COMPANY'])):
-                F.loc[i,'TOTAL_POS'] = round(F.loc[i,'TOTAL_POS'],2)
-                F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
-                F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
-                F.loc[i, 'RB_POS'] = round(F.loc[i, 'RB_POS'], 2)
-                F.loc[i, 'NM_POS'] = round(F.loc[i, 'NM_POS'], 2)
-                F.loc[i, 'PP_POS'] = round(F.loc[i, 'PP_POS'], 2)
-                F.loc[i, 'FC_POS'] = round(F.loc[i, 'FC_POS'], 2)
-                F.loc[i, 'SC_POS'] = round(F.loc[i, 'SC_POS'], 2)
-
-            F = F.merge(EE1, left_on='TC NAME', right_on='NAMES', how='left')
-
-            F.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'SALARY',
-                    'TYPE_OF_SALARY', 'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1,
-                   inplace=True)
-
-            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx',
-                       index=False)
-
-            F12 = F.copy()
-
-
-    elif request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-            AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
-            AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
-            FINAL_COPY1 = pd.read_excel(AA)
-            F = pd.read_excel(AA2)
-            fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
-            AA123 = fs123.open('TC Performance L_T.xlsx')
-            F12 = pd.read_excel(AA123)
-
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-            AA = fs.open('PER PAID CASE(PIVOT L&T.xlsx')
-            AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
-            FINAL_COPY1 = pd.read_excel(AA)
-            F = pd.read_excel(AA2)
-            C = list(FINAL_COPY1.columns)  # FOS_Incentive
-            C11 = list(F.columns)  # FOS_Fixed
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
-
-            for j in range(0, len(FINAL_COPY1[C[0]])):
-                row_data = list()
-                for col in range(0, len(C)):
-                    row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
-                excel_data.append(row_data)
-
-            for j in range(0, len(F[C11[0]])):
-                row_data1 = list()
-                for col in range(0, len(C11)):
-                    row_data1.append(str(F.loc[j, C11[col]]))
-                excel_data1.append(row_data1)
-
-            return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'Designation': Designation})
-
-        else:
-            return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
-
-
-    C12334 = list(F12.columns)  # TC_Incentive
-
-    for j in range(0, len(F12[C12334[0]])):
-        row_data22 = list()
-        for col1 in range(0, len(C12334)):
-            row_data22.append(str(F12.loc[j, C12334[col1]]))
-        excel_data12334.append(row_data22)
-
-    final_dep = DEP()
-    final_process = COMPANY_PROCESS()
-    Designation = Employee_Designation()
-
-    return render(request, 'FirstLevel/salary.html', {'excel12334': excel_data12334, 'columns12334': C12334, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+# def L_T_TW_SALARY_TC(request):
+#     excel_data = []
+#     excel_data1 = []
+#     excel_data123 = []
+#     excel_data12334 = []
+#     F12 = pd.DataFrame()
+#     a = 0
+#
+#     if request.method == 'POST':
+#         if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
+#
+#             for i in range(31, 0, -1):
+#                 if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+#                     fs1 = FileSystemStorage(location='media/L_T/MIS')
+#                     AA122 = fs1.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
+#                     PAID_FILE_L_T = pd.read_excel(AA122)
+#                 else:
+#                     continue
+#
+#             fs1 = FileSystemStorage(location='media/L_T/TC Incentive')
+#             fs2 = FileSystemStorage(location='media/Employees')
+#             AA1 = fs1.open('MASTER FILE L_T.xlsx')
+#             E = fs2.open('Employee_Database.xlsx')
+#
+#             A = pd.read_excel(AA1)
+#             EE1 = pd.read_excel(E)
+#
+#             A.head()
+#
+#             FUNDING_LIST=list(PAID_FILE_L_T[PAID_FILE_L_T['FOS']=='FUNDING']['AGREEMENTID'])
+#
+#             for i in range(0,len(A['AGREEMENTID'])):
+#                 for j in range(0,len(FUNDING_LIST)):
+#                     if A.loc[i,'AGREEMENTID']==FUNDING_LIST[j]:
+#                         A.loc[i,'STATUS']='FLOW'
+#
+#             M = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['POS'].sum()).reset_index()
+#
+#             M
+#
+#             M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
+#
+#             R = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['AGREEMENTID'].count()).reset_index()
+#
+#             F = M.merge(R, how='outer')
+#
+#             F.head()
+#
+#             F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
+#
+#             R1 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME', 'STATUS'])['AGREEMENTID'].count()).reset_index()
+#
+#             R1.head()
+#
+#             P = F.copy()
+#
+#             P = P.iloc[:, :3]
+#
+#             P.head()
+#
+#             P['FLOW'] = np.nan
+#             P['SB'] = np.nan
+#             P['RB'] = np.nan
+#             P['NM'] = np.nan
+#             P['PART PAID'] = np.nan
+#             P['FORECLOSE'] = np.nan
+#             P['SETTLEMENT'] = np.nan
+#
+#             P.head()
+#
+#             R1.head()
+#
+#             COL = P.columns
+#
+#             for i in range(0, len(R1['COMPANY'])):
+#                 for j in range(0, len(P['COMPANY'])):
+#                     for k in range(0, len(COL)):
+#                         if (
+#                         (R1.loc[i, ['COMPANY', 'BKT', 'TC NAME']] == P.loc[j, ['COMPANY', 'BKT', 'TC NAME']]).all()) and \
+#                                 R1.loc[i, 'STATUS'] == COL[k]:
+#                             P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
+#
+#             P
+#
+#             F = F.merge(P, how='outer')
+#
+#             F.head()
+#
+#             F.fillna(0, inplace=True)
+#
+#             F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'RB': 'RB_CASES', 'FORECLOSE': 'FORECLOSE_CASES',
+#                       'SETTLEMENT': 'SETTLEMENT_CASES', 'NM': 'NM_CASES', 'PART PAID': 'PART_PAID_CASES'}, axis=1,
+#                      inplace=True)
+#
+#             R2 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME', 'STATUS'])['POS'].sum()).reset_index()
+#
+#             for i in range(0, len(R2['COMPANY'])):
+#                 for j in range(0, len(P['COMPANY'])):
+#                     for k in range(0, len(COL)):
+#                         if (
+#                         (R2.loc[i, ['COMPANY', 'BKT', 'TC NAME']] == P.loc[j, ['COMPANY', 'BKT', 'TC NAME']]).all()) and \
+#                                 R2.loc[i, 'STATUS'] == COL[k]:
+#                             P.loc[j, COL[k]] = R2.loc[i, 'POS']
+#
+#             F = F.merge(P, how='outer')
+#
+#             F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'RB': 'RB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'NM': 'NM_POS',
+#                       'SETTLEMENT': 'SETTLEMENT_POS', 'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
+#
+#             F.fillna(0, inplace=True)
+#
+#             for i in range(0, len(F['FLOW_CASES'])):
+#                 F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'RB_POS%'] = round((F.loc[i, 'RB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'NM_POS%'] = round((F.loc[i, 'NM_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#
+#             TP = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['TOTAL PAID'].sum()).reset_index()
+#
+#             F = F.merge(TP, how='outer')
+#
+#             for i in range(0, len(F['SB_POS'])):
+#                 F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'RB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + \
+#                                           F.loc[i, 'NM_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
+#
+#             F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
+#                       'SETTLEMENT_CASES': 'SC_CASES',
+#                       'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
+#                       'FORECLOSE_POS%': 'FC_POS%',
+#                       'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
+#                      inplace=True)
+#
+#             F
+#
+#             for i in range(0, len(F['COMPANY'])):
+#                 if F.loc[i, 'POS_RES%'] < 60:
+#                     F.loc[i, 'INCENTIVE'] = 0
+#                 elif (F.loc[i, 'POS_RES%'] >= 60) and (F.loc[i, 'POS_RES%'] < 65):
+#                     F.loc[i, 'INCENTIVE'] = 1000
+#                 elif (F.loc[i, 'POS_RES%'] >= 65) and (F.loc[i, 'POS_RES%'] < 70):
+#                     F.loc[i, 'INCENTIVE'] = 1500
+#                 elif (F.loc[i, 'POS_RES%'] >= 70) and (F.loc[i, 'POS_RES%'] < 75):
+#                     F.loc[i, 'INCENTIVE'] = 2000
+#                 elif F.loc[i, 'POS_RES%'] >= 75:
+#                     F.loc[i, 'INCENTIVE'] = 4000
+#
+#             F.head()
+#
+#             for i in range(0,len(F['COMPANY'])):
+#                 F.loc[i,'TOTAL_POS'] = round(F.loc[i,'TOTAL_POS'],2)
+#                 F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
+#                 F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
+#                 F.loc[i, 'RB_POS'] = round(F.loc[i, 'RB_POS'], 2)
+#                 F.loc[i, 'NM_POS'] = round(F.loc[i, 'NM_POS'], 2)
+#                 F.loc[i, 'PP_POS'] = round(F.loc[i, 'PP_POS'], 2)
+#                 F.loc[i, 'FC_POS'] = round(F.loc[i, 'FC_POS'], 2)
+#                 F.loc[i, 'SC_POS'] = round(F.loc[i, 'SC_POS'], 2)
+#
+#             F = F.merge(EE1, left_on='TC NAME', right_on='NAMES', how='left')
+#
+#             F.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'SALARY',
+#                              'TYPE_OF_SALARY', 'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1,
+#                             inplace=True)
+#
+#             F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx', index=False)
+#
+#             F12 = F.copy()
+#
+#             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+#             AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
+#             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+#             FINAL_COPY1 = pd.read_excel(AA)
+#             F = pd.read_excel(AA2)
+#
+#             C = list(FINAL_COPY1.columns)  # FOS_Incentive
+#             C11 = list(F.columns)  # FOS_Fixed
+#             C12334 = list(F12.columns)  # TC_Incentive
+#
+#             for j in range(0, len(FINAL_COPY1[C[0]])):
+#                 row_data = list()
+#                 for col in range(0, len(C)):
+#                     row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
+#                 excel_data.append(row_data)
+#
+#             for j in range(0, len(F[C11[0]])):
+#                 row_data1 = list()
+#                 for col in range(0, len(C11)):
+#                     row_data1.append(str(F.loc[j, C11[col]]))
+#                 excel_data1.append(row_data1)
+#
+#             for j in range(0, len(F12[C12334[0]])):
+#                 row_data22 = list()
+#                 for col1 in range(0, len(C12334)):
+#                     row_data22.append(str(F12.loc[j, C12334[col1]]))
+#                 excel_data12334.append(row_data22)
+#
+#             final_dep = DEP()
+#             final_process = COMPANY_PROCESS()
+#             Designation = Employee_Designation()
+#             return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel12334': excel_data12334, 'columns12334': C12334, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+#
+#         elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'):
+#             for i in range(31, 0, -1):
+#                 if os.path.exists('/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/L_T PAID FILE ' + str(i) + ' AUG 21.xlsx'):
+#                     fs1 = FileSystemStorage(location='media/L_T/MIS')
+#                     AA122 = fs1.open('L_T PAID FILE ' + str(i) + ' AUG 21.xlsx')
+#                     PAID_FILE_L_T = pd.read_excel(AA122)
+#                 else:
+#                     continue
+#
+#             fs1 = FileSystemStorage(location='media/L_T/TC Incentive')
+#             fs2 = FileSystemStorage(location='media/Employees')
+#             AA1 = fs1.open('MASTER FILE L_T.xlsx')
+#             E = fs2.open('Employee_Database.xlsx')
+#
+#             A = pd.read_excel(AA1)
+#             EE1 = pd.read_excel(E)
+#
+#             A.head()
+#
+#             FUNDING_LIST = list(PAID_FILE_L_T[PAID_FILE_L_T['FOS'] == 'FUNDING']['AGREEMENTID'])
+#
+#             for i in range(0, len(A['AGREEMENTID'])):
+#                 for j in range(0, len(FUNDING_LIST)):
+#                     if A.loc[i, 'AGREEMENTID'] == FUNDING_LIST[j]:
+#                         A.loc[i, 'STATUS'] = 'FLOW'
+#
+#             M = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['POS'].sum()).reset_index()
+#
+#             M
+#
+#             M.rename({'POS': 'TOTAL_POS'}, axis=1, inplace=True)
+#
+#             R = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['AGREEMENTID'].count()).reset_index()
+#
+#             F = M.merge(R, how='outer')
+#
+#             F.head()
+#
+#             F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
+#
+#             R1 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME', 'STATUS'])['AGREEMENTID'].count()).reset_index()
+#
+#             R1.head()
+#
+#             P = F.copy()
+#
+#             P = P.iloc[:, :3]
+#
+#             P.head()
+#
+#             P['FLOW'] = np.nan
+#             P['SB'] = np.nan
+#             P['RB'] = np.nan
+#             P['NM'] = np.nan
+#             P['PART PAID'] = np.nan
+#             P['FORECLOSE'] = np.nan
+#             P['SETTLEMENT'] = np.nan
+#
+#             P.head()
+#
+#             R1.head()
+#
+#             COL = P.columns
+#
+#             for i in range(0, len(R1['COMPANY'])):
+#                 for j in range(0, len(P['COMPANY'])):
+#                     for k in range(0, len(COL)):
+#                         if (
+#                                 (R1.loc[i, ['COMPANY', 'BKT', 'TC NAME']] == P.loc[
+#                                     j, ['COMPANY', 'BKT', 'TC NAME']]).all()) and \
+#                                 R1.loc[i, 'STATUS'] == COL[k]:
+#                             P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
+#
+#             P
+#
+#             F = F.merge(P, how='outer')
+#
+#             F.head()
+#
+#             F.fillna(0, inplace=True)
+#
+#             F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'RB': 'RB_CASES', 'FORECLOSE': 'FORECLOSE_CASES',
+#                       'SETTLEMENT': 'SETTLEMENT_CASES', 'NM': 'NM_CASES', 'PART PAID': 'PART_PAID_CASES'}, axis=1,
+#                      inplace=True)
+#
+#             R2 = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME', 'STATUS'])['POS'].sum()).reset_index()
+#
+#             for i in range(0, len(R2['COMPANY'])):
+#                 for j in range(0, len(P['COMPANY'])):
+#                     for k in range(0, len(COL)):
+#                         if (
+#                                 (R2.loc[i, ['COMPANY', 'BKT', 'TC NAME']] == P.loc[
+#                                     j, ['COMPANY', 'BKT', 'TC NAME']]).all()) and \
+#                                 R2.loc[i, 'STATUS'] == COL[k]:
+#                             P.loc[j, COL[k]] = R2.loc[i, 'POS']
+#
+#             F = F.merge(P, how='outer')
+#
+#             F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'RB': 'RB_POS', 'FORECLOSE': 'FORECLOSE_POS', 'NM': 'NM_POS',
+#                       'SETTLEMENT': 'SETTLEMENT_POS', 'PART PAID': 'PART_PAID_POS'}, axis=1, inplace=True)
+#
+#             F.fillna(0, inplace=True)
+#
+#             for i in range(0, len(F['FLOW_CASES'])):
+#                 F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'RB_POS%'] = round((F.loc[i, 'RB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'FORECLOSE_POS%'] = round((F.loc[i, 'FORECLOSE_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'SETTLEMENT_POS%'] = round((F.loc[i, 'SETTLEMENT_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'NM_POS%'] = round((F.loc[i, 'NM_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#                 F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+#
+#             TP = pd.DataFrame(A.groupby(['COMPANY', 'BKT', 'TC NAME'])['TOTAL PAID'].sum()).reset_index()
+#
+#             F = F.merge(TP, how='outer')
+#
+#             for i in range(0, len(F['SB_POS'])):
+#                 F.loc[i, 'PERFORMANCE'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'RB_POS%'] + F.loc[i, 'FORECLOSE_POS%'] + \
+#                                           F.loc[i, 'NM_POS%'] + F.loc[i, 'SETTLEMENT_POS%']
+#
+#             F.rename({'TOTAL_CASES': 'COUNT', 'PART_PAID_CASES': 'PP_CASES', 'FORECLOSE_CASES': 'FC_CASES',
+#                       'SETTLEMENT_CASES': 'SC_CASES',
+#                       'PART_PAID_POS': 'PP_POS', 'FORECLOSE_POS': 'FC_POS', 'SETTLEMENT_POS': 'SC_POS',
+#                       'FORECLOSE_POS%': 'FC_POS%',
+#                       'SETTLEMENT_POS%': 'SC_POS%', 'PART_PAID_POS%': 'PP_POS%', 'PERFORMANCE': 'POS_RES%'}, axis=1,
+#                      inplace=True)
+#
+#             F
+#
+#             for i in range(0, len(F['COMPANY'])):
+#                 if F.loc[i, 'POS_RES%'] < 60:
+#                     F.loc[i, 'INCENTIVE'] = 0
+#                 elif (F.loc[i, 'POS_RES%'] >= 60) and (F.loc[i, 'POS_RES%'] < 65):
+#                     F.loc[i, 'INCENTIVE'] = 1000
+#                 elif (F.loc[i, 'POS_RES%'] >= 65) and (F.loc[i, 'POS_RES%'] < 70):
+#                     F.loc[i, 'INCENTIVE'] = 1500
+#                 elif (F.loc[i, 'POS_RES%'] >= 70) and (F.loc[i, 'POS_RES%'] < 75):
+#                     F.loc[i, 'INCENTIVE'] = 2000
+#                 elif F.loc[i, 'POS_RES%'] >= 75:
+#                     F.loc[i, 'INCENTIVE'] = 4000
+#
+#             F.head()
+#
+#             for i in range(0,len(F['COMPANY'])):
+#                 F.loc[i,'TOTAL_POS'] = round(F.loc[i,'TOTAL_POS'],2)
+#                 F.loc[i, 'FLOW_POS'] = round(F.loc[i, 'FLOW_POS'], 2)
+#                 F.loc[i, 'SB_POS'] = round(F.loc[i, 'SB_POS'], 2)
+#                 F.loc[i, 'RB_POS'] = round(F.loc[i, 'RB_POS'], 2)
+#                 F.loc[i, 'NM_POS'] = round(F.loc[i, 'NM_POS'], 2)
+#                 F.loc[i, 'PP_POS'] = round(F.loc[i, 'PP_POS'], 2)
+#                 F.loc[i, 'FC_POS'] = round(F.loc[i, 'FC_POS'], 2)
+#                 F.loc[i, 'SC_POS'] = round(F.loc[i, 'SC_POS'], 2)
+#
+#             F = F.merge(EE1, left_on='TC NAME', right_on='NAMES', how='left')
+#
+#             F.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'SALARY',
+#                     'TYPE_OF_SALARY', 'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1,
+#                    inplace=True)
+#
+#             F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx',
+#                        index=False)
+#
+#             F12 = F.copy()
+#
+#
+#     elif request.method != 'POST':
+#         if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx')):
+#             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+#             AA = fs.open('PER PAID CASE(PIVOT) L&T.xlsx')
+#             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+#             FINAL_COPY1 = pd.read_excel(AA)
+#             F = pd.read_excel(AA2)
+#             fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+#             AA123 = fs123.open('TC Performance L_T.xlsx')
+#             F12 = pd.read_excel(AA123)
+#
+#         elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'):
+#             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+#             AA = fs.open('PER PAID CASE(PIVOT L&T.xlsx')
+#             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+#             FINAL_COPY1 = pd.read_excel(AA)
+#             F = pd.read_excel(AA2)
+#             C = list(FINAL_COPY1.columns)  # FOS_Incentive
+#             C11 = list(F.columns)  # FOS_Fixed
+#             final_dep = DEP()
+#             final_process = COMPANY_PROCESS()
+#             Designation = Employee_Designation()
+#
+#             for j in range(0, len(FINAL_COPY1[C[0]])):
+#                 row_data = list()
+#                 for col in range(0, len(C)):
+#                     row_data.append(str(FINAL_COPY1.loc[j, C[col]]))
+#                 excel_data.append(row_data)
+#
+#             for j in range(0, len(F[C11[0]])):
+#                 row_data1 = list()
+#                 for col in range(0, len(C11)):
+#                     row_data1.append(str(F.loc[j, C11[col]]))
+#                 excel_data1.append(row_data1)
+#
+#             return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'Designation': Designation})
+#
+#         else:
+#             return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
+#
+#
+#     C12334 = list(F12.columns)  # TC_Incentive
+#
+#     for j in range(0, len(F12[C12334[0]])):
+#         row_data22 = list()
+#         for col1 in range(0, len(C12334)):
+#             row_data22.append(str(F12.loc[j, C12334[col1]]))
+#         excel_data12334.append(row_data22)
+#
+#     final_dep = DEP()
+#     final_process = COMPANY_PROCESS()
+#     Designation = Employee_Designation()
+#
+#     return render(request, 'FirstLevel/salary.html', {'excel12334': excel_data12334, 'columns12334': C12334, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 def IDFC_TW_TL_ANALYSIS(request):
     excel_data = []
@@ -12345,7 +12371,7 @@ def IDFC_TW_TL_ANALYSIS(request):
     a = 0
 
     if request.method != 'POST':
-        if (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12382,7 +12408,7 @@ def IDFC_TW_TL_ANALYSIS(request):
                     row_data2.append(str(AA2.loc[j, C2[col1]]))
                 excel_data2.append(row_data2)
 
-        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12426,7 +12452,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html',{'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel': excel_data, 'columns': C
 
-        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12470,7 +12496,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html',{'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel2': excel_data2, 'columns2': C2
 
-        elif (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')) and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12514,7 +12540,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html',{'excel': excel_data, 'columns': C, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel1': excel_data1, 'columns1': C1
 
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
             fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12558,7 +12584,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2
 
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12602,7 +12628,7 @@ def IDFC_TW_TL_ANALYSIS(request):
             return render(request, 'FirstLevel/analysis.html',{'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1,
 
-        elif os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
@@ -12674,7 +12700,7 @@ def IDFC_TW_EMPLOYEES(request):
     Designation = Employee_Designation()
     excel_data=[]
 
-    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+    if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
         fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
@@ -12705,7 +12731,7 @@ def BAJAJ_CD_EMPLOYEES(request):
     Designation = Employee_Designation()
     excel_data=[]
 
-    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+    if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
         fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
@@ -12736,7 +12762,7 @@ def IDFC_HL_EMPLOYEES(request):
     Designation = Employee_Designation()
     excel_data=[]
 
-    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+    if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
         fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
@@ -12767,7 +12793,7 @@ def FULLERTON_RECOVERY_EMPLOYEES(request):
     Designation = Employee_Designation()
     excel_data=[]
 
-    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+    if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
         fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
@@ -12798,10 +12824,10 @@ def IDFC_TW_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'):
-                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/Billing/BKT_Billing_IDFC_TW.xlsx'):
-                    if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx')):
+                    if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
                         fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                         fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                         fs2 = FileSystemStorage(location='media/IDFC_TW/Billing')
@@ -12850,9 +12876,9 @@ def FULLERTON_RECOVERY_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/Billing/PAYOUT_FULLERTON_RECOVERY.xlsx'):
-                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/BILLING/PAYOUT_FULLERTON_RECOVERY.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
                     fs1 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
                     fs2 = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
                     fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
@@ -12889,9 +12915,9 @@ def BAJAJ_CD_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx'):
-                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
                     fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
                     fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
                     fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
@@ -12927,9 +12953,9 @@ def IDFC_HL_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx'):
-            if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/Billing/BKT_Billing_IDFC_HL.xlsx'):
-                if os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/Employees/Employee_Database.xlsx'):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_HL/Billing/BKT_Billing_IDFC_HL.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
                     fs1 = FileSystemStorage(location='media/IDFC_HL/FOS Salary')
                     fs2 = FileSystemStorage(location='media/IDFC_HL/Billing')
                     fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
