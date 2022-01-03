@@ -26,20 +26,121 @@
             background-attachment: fixed;
             background-position: 50% 50% ;
             background-size: 500px 450px;
-            }
+            overflow:scroll;}
 
-        h1{
-            font-size: 36px;
-            font-weight: 600;
-            font-family: Accidental Presidency;
-            color: white;
-            text-align: left;
-            }
+        ::-webkit-scrollbar {
+               width: 0px;}
+             h1{
+           color: white;
+           font-family: Accidental Presidency;
+           font-size: 36px;
+           margin-bottom: 0px;
+           margin-top:150px;
+           }
+
+       ol.oll li+li:before{
+           padding: 8px;
+           color: rgb(211,174,109);
+           content: "/\00a0";
+           }
+
+       ol.oll {
+           padding: 10px 16px;
+           list-style: none;
+           background-color:none;
+           text-align: left;
+           display:-webkit-box;
+           margin-bottom:13px;
+           }
+
+       ol.oll li {
+           font-size: 18px;
+           }
+
+       ol.oll li a{
+           color: white ;
+           text-decoration: none;
+           }
+
+       ol.oll li a:hover{
+           color: white;
+           text-decoration: underline;
+           }
+
+
+
+         p{
+           color:#777;
+           font-size: 18px;
+           font-weight: 300;
+           line-height: 22px;
+           padding:10px;
+         }
+
+         .row{
+           margin-top:5%;
+           display:flex;
+           justify-content:space-around;
+           flex-direction: row;
+
+         }
+
+         .course-col{
+           flex-basis:30%;
+           background:white;
+           border-radius: 48px;
+           margin-bottom:5%;
+           padding:50px 12px;
+           box-sizing: border-box;
+           /* text-align:center; */
+         }
+
+         h3{
+           text-align: center;
+           font-weight: 600;
+           font-family: sans-serif;
+           margin:0px 0px;
+           text-decoration:underline;
+           text-decoration-color:#d3ae6d;
+           margin-bottom:5px;
+         }
+
+
+         .course-col:hover{
+           box-shadow: 0 0 40px 0px rgb(211 ,174 ,109);
+
+
+         }
+         .idfc{
+           width:124px;
+           padding:20px 20px;
+         }
+
+          .row2{
+           margin-top:2%;
+           display:flex;
+           justify-content:space-around;
+           width:100%;
+           margin:auto;
+           text-align:center;
+           padding-top:50px;
+           flex-direction: row;
+
+
+         }
+
+
+         @media (max-width:850px) {
+           .row,.row2{
+             flex-direction: column;
+           }
+         }
+
     </style>
 </head>
 <body>
 <SECTION class="course">
-    <H1 style="margin-bottom:0px; margin-top:0px">OUR CLIENTS</H1>
+    <H1 style="margin-bottom:0px; margin-top:52px">OUR CLIENTS</H1>
     <HR color= #d3ae6d>
     <OL class="breadcrumb" style="margin-top:0px;margin-bottom:0px;padding-left:0px;padding-top:0px;">
         <LI>
@@ -53,7 +154,6 @@
     <DIV class="row">
         <DIV class="course-col">
             <H3>IDFC CAPITAL FIRST</H3>
-            <HR color=#d3ae6d width=30%>
             <IMG class="idfc" src="{% static 'FirstLevel/images/idfc logo.png' %}" alt="">
                 <P>IDFC Bank is a universal bank , offering financial solutions through its nationwide branches ,
                     internet and mobile. IDFC Bank offers basic services like savings account , NRI Accounts ,
@@ -64,7 +164,6 @@
 
         <DIV class="course-col">
             <H3>BAJAJ FINSERV</H3>
-            <HR color=#d3ae6d width=30%>
             <IMG class="idfc" src="{% static 'FirstLevel/images/bajaj.jpg' %}" alt="">
                 <P> Bajaj Finserv, is an Indian non-banking financial company (NBFC). The company deals in consumer
                     finance, SME (small and medium-sized enterprises) and commercial lending, and wealth management.
@@ -73,7 +172,6 @@
 
         <DIV class="course-col">
             <H3>L&T Financial Services </H3>
-            <HR color=#d3ae6d width=30%>
             <IMG class="idfc" src="{% static 'FirstLevel/images/l&t logo.png' %}" alt="">
                 <P> L&T Finance Holdings Ltd. is a NSE and BSE listed company and is also registered with RBI as an
                     NBFC and CIC. It conducts its financial services businesses through various subsidiaries.
@@ -85,7 +183,6 @@
     <DIV class="row2">
         <DIV class="course-col">
             <H3>KOTAK MAHINDRA</H3>
-            <HR color=#d3ae6d width=30%>
             <IMG class="idfc" src="{% static 'FirstLevel/images/kotak.png' %}" alt="">
                 <P>Kotak Mahindra Bank Limited is an Indian private sector bank headquartered in Mumbai,
                     Maharashtra, India. It offers banking products and financial services for corporate and
@@ -96,7 +193,6 @@
 
         <DIV class="course-col">
             <H3>FULLERTON INDIA</H3>
-            <HR color=#d3ae6d width=30%>
             <IMG class="idfc" src="{% static 'FirstLevel/images/flurtron.png' %}" alt="">
                 <P>Fullerton India Credit Co. Ltd. is a non - banking financial company in India.
                     It is headquartered at Mumbai, India and deals with financing across retail and rural segments.

@@ -20,83 +20,177 @@
 
         body{
             background-color: black;
+            overflow:scroll;
             }
 
+        ::-webkit-scrollbar {
+             width: 0px;}
+
         h1{
-            color:white;
-            font-family:Accidental Presidency;
-            font-size:36px;
-            }
+           color: white;
+           font-family: Accidental Presidency;
+           font-size: 36px;
+           margin-bottom: 0px;
+           margin-top:100px;
+           }
+
+          ol.breadcrumb {
+            padding: 0px 21px;
+            list-style: none;
+            background-color:none;
+            text-align: left;
+            margin-top: 5px;
+            margin-left:94px;
+
+          }
+          ol.breadcrumb li {
+            display: inline;
+            font-size: 15px;
+          }
+          ol.breadcrumb li+li:before {
+            padding: 8px;
+            color: #d3ae6d;
+            content: "/\00a0";
+          }
+          ol.breadcrumb li a {
+            color: white ;
+            text-decoration: none;
+          }
+          ol.breadcrumb li a:hover {
+            color: #d3ae6d;
+            text-decoration: underline;
+            text-decoration-color:white;
+          }
+           .row1{
+           margin-top:5%;
+           display:flex;
+           justify-content:space-around;
+           width:100%;
+           margin:auto;
+           text-align:center;
+           padding-top:50px;
+           flex-direction: row;
+         }
+           .course-col{
+           flex-basis:20%;
+           background:black;
+           border-radius: 48px;
+           margin-bottom:5%;
+           padding:50px 12px;
+           box-sizing: border-box;
+         }
+          .course-col{
+           box-shadow: 0 0 40px 0px rgb(211 ,174 ,109);
+             }
+               .row2,.row3,.row4,.row5{
+           margin-top:2%;
+           display:flex;
+           justify-content:space-around;
+           width:100%;
+           margin:auto;
+           text-align:center;
+           padding-top:50px;
+           flex-direction: row;
+         }
+          .mohu1,.mohu2,.mohu3,.mohu4,.mohu5,.mohu6,mohu7,.mohu8,.mohu9,.mohu10{
+       height:auto;
+       max-width:150px;
+       width:100%;
+       padding-bottom: 50px;
+       padding-top: 41px;
+     }
+          @media (max-width:850px) {
+           .row1,.row2,.row3,.row4,.row5{
+             flex-direction: row;
+             align-items:center;
+
+           }
+           .course-col{
+           flex-basis:30%;
+           background:black;
+           border-radius: 61px;
+           margin-top:5%;
+           margin-bottom:5%;
+           padding:50px 12px;
+           box-sizing: border-box;
+           width:226px;
+           align-items:center;
+         }
+         body{overflow:scroll;}
+     ::-webkit-scrollbar {
+     width: 0px;}
+         }
+
     </style>
 </head>
 <body>
-    <h1 style="margin-bottom:0px;margin-top:0px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white" >OUR STRENGTH</h1>
+    <h1 style="margin-bottom:0px;margin-top:100px;border-left-style:solid;border-left-width:0px; margin-left:110px; color:white" >OUR STRENGTH</h1>
     <hr color="#d3ae6d" style="margin-left:115px; margin-right:50px;">
     <OL class="breadcrumb" style="width:400px;padding-bottom:10px;padding-left:20px;padding-top:0px;margin-top:0px;" >
         <LI>
-            <A href="{% url 'basic_app:index' %}" style="padding-left:95px;">Home</A>
+            <A href="{% url 'basic_app:index' %}">Home</A>
         </LI>
         <LI>
             <A href="{% url 'basic_app:strength' %}">Our Strength</A>
         </LI>
     </OL>
-    <div class="abhi1">
-        <div class="row1">
+    <div class="row1">
+         <div class="course-col">
             <img class="mohu1" src="{% static 'FirstLevel/images/strength1.jpeg' %}" alt="">
             <p>strength1</p>
         </div>
 
-        <div class="row2">
+        <div class="course-col">
             <img class="mohu2" src="{% static 'FirstLevel/images/strength2.png' %}" alt="">
             <p>strength2</p>
         </div>
     </div>
 
-    <div class="abhi2">
-        <div class="row3">
+    <div class="row2">
+         <div class="course-col">
             <img class="mohu3" src="{% static 'FirstLevel/images/strength3.png' %}" alt="">
             <p>strength1 </p>
         </div>
 
-        <div class="row4">
+        <div class="course-col">
             <img class="mohu4" src="{% static 'FirstLevel/images/strength4.png' %}" alt="">
             <p>strength2</p>
         </div>
     </div>
 
-    <div class="abhi3">
-        <div class="row5">
+    <div class="row3">
+         <div class="course-col">
             <img class="mohu5" src="{% static 'FirstLevel/images/strength5.jpg' %}" alt="">
             <p>strength1 </p>
         </div>
 
-        <div class="row6">
+        <div class="course-col">
             <img class="mohu6" src="{% static 'FirstLevel/images/strength6.png' %}" alt="">
             <p>strength2</p>
         </div>
     </div>
 
 
-    <div class="abhi4">
-        <div class="row7">
+    <div class="row4">
+         <div class="course-col">
             <img class="mohu7" src="{% static 'FirstLevel/images/strength7.png' %}" alt="">
             <p>strength1 </p>
         </div>
 
-        <div class="row8">
+        <div class="course-col">
             <img class="mohu8" src="{% static 'FirstLevel/images/strength8.png' %}" alt="">
             <p>strength2</p>
         </div>
     </div>
 
 
-    <div class="abhi5">
-        <div class="row9">
+    <div class="row5">
+         <div class="course-col">
             <img class="mohu9" src="{% static 'FirstLevel/images/strength9.png' %}" alt="">
             <p>strength1 </p>
         </div>
 
-        <div class="row10">
+        <div class="course-col">
             <img class="mohu10" src="{% static 'FirstLevel/images/strength10.png' %}" alt="">
             <p>strength2</p>
         </div>
