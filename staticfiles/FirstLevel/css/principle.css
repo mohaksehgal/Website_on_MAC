@@ -1,88 +1,155 @@
-@font-face {
-    font-family: Accidental Presidency ;
-    src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
- }
+    @font-face {
+   font-family: Accidental Presidency ;
+   src: url("C:\Users\abhinav kislay\Documents\sample project\homepage\fonts\accid_.ttff ");
+}
 
 body{
- /* background-image: linear-gradient(to bottom, #ffff99 0%, #ff99cc 100%); */
-     /* background-image: url(images/back.png); */
-     background-repeat: no-repeat;
-     background-attachment: fixed;
-     background-position: 50% 50% ;
-     background-size: 500px 550px;
+/* background-image: linear-gradient(to bottom, #ffff99 0%, #ff99cc 100%); */
+    /* background-image: url(images/back.png); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50% ;
+    background-size: 500px 550px;
+    background-color: black;
      background-color: black;
-      background-color: black;
-             overflow:scroll;
+            overflow:scroll;
+}
+
+            ::-webkit-scrollbar {
+            width: 0px;}
+      h1{
+          color: white;
+          font-family: Accidental Presidency;
+          font-size: 36px;
+          margin-bottom: 0px;
+          margin-top:100px;
+          }
+
+ ol.breadcrumb {
+   padding: 0px 21px;
+   list-style: none;
+   background-color:none;
+   text-align: left;
+   margin-top: 5px;
+   margin-left:94px;
+
+ }
+ ol.breadcrumb li {
+   display: inline;
+   font-size: 15px;
+ }
+ ol.breadcrumb li+li:before {
+   padding: 8px;
+   color: #d3ae6d;
+   content: "/\00a0";
+ }
+ ol.breadcrumb li a {
+   color: white ;
+   text-decoration: none;
+ }
+ ol.breadcrumb li a:hover {
+   color: #d3ae6d;
+   text-decoration: underline;
+   text-decoration-color:white;
  }
 
-::-webkit-scrollbar {
-             width: 0px;}
+ table img{
+  height:auto;
+  max-width:109px;
+  width:100%;
+  padding-bottom: 6px;
+  padding-top: 37px;
+}
 
-h1{
-           color: white;
-           font-family: Accidental Presidency;
-           font-size: 36px;
-           margin-bottom: 0px;
-           margin-top:100px;
-           }
+.table1{
+  color: white;
+  border-radius: 116px;
+  margin-right: 0px;
+  width:661px;
+  height:182px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 20px;
+  float: left;
+  animation: slideMe 3s ease-in;
+  margin-top: 22px;
 
-ol.breadcrumb {
-    padding: 0px 21px;
-    list-style: none;
-    background-color:none;
-    text-align: left;
-    margin-top: 5px;
-    margin-left:94px;
+}
+
+.row1{
+        margin-top:5%;
+        color:white;
+        display:flex;
+        justify-content:space-around;
+        width:100%;
+        margin:auto;
+        text-align:center;
+        padding-top:50px;
+        flex-direction: row;
+        animation: slideMe 2s ease-in;
+
+      }
+        .course-col{
+        flex-basis:40%;
+        background:black;
+        border-radius: 116px;
+        width:654px;
+        height:182px;
+        margin-bottom:5%;
+        box-sizing: border-box;
+      }
+       .course-col{
+        box-shadow: 0 0 40px 0px rgb(211 ,174 ,109);
+          }
+
+@keyframes slideMe {
+    0%{
+      transform: skewX(3deg) translateX(-900px);
     }
+    100%{
+      transform: skew(0deg);
+    }
+}
+.table1{
+  box-shadow: 0 0 40px 0px  rgb(211 ,174 ,109);
+}
+   .row2{
+         color:white;
+          margin-top:2%;
+          display:flex;
+          justify-content:space-around;
+          width:100%;
+          margin:auto;
+          text-align:center;
+          padding-top:50px;
+          flex-direction: row;
+               animation: slideMe2 2s ease-in;
 
-ol.breadcrumb li {
-    display: inline;
-    font-size: 15px;
-  }
-  ol.breadcrumb li+li:before {
-    padding: 8px;
-    color: #d3ae6d;
-    content: "/\00a0";
-  }
-  ol.breadcrumb li a {
-    color: white ;
-    text-decoration: none;
-  }
-  ol.breadcrumb li a:hover {
-    color: #d3ae6d;
-    text-decoration: underline;
-    text-decoration-color:white;
-  }
-  table img{
-   height:auto;
-   max-width:109px;
-   width:100%;
-   padding-bottom: 6px;
-   padding-top: 37px;
- }
-
- .table1{
-   color: white;
-   border-radius: 116px;
-   margin-right: 0px;
-   width:661px;
-   height:182px;
-   vertical-align: middle;
-   text-align: center;
-   font-size: 20px;
-   float: left;
-   animation: slideMe 3s ease-in;
-   margin-top: 22px;}
-
-   @keyframes slideMe {
-     0%{
-       transform: skewX(3deg) translateX(-900px);
-     }
-     100%{
-       transform: skew(0deg);
-     }
- }
- .table1{
-   box-shadow: 0 0 40px 0px  rgb(211 ,174 ,109);
- }
-
+        }
+@keyframes slideMe
+      {
+         0%
+            {
+                transform: skewX(3deg) translateX(-900px);
+             }
+            100%
+            {
+                transform: skew(0deg);
+             }
+      }
+       @keyframes slideMe2 {
+        0%{
+          transform: skewX(3deg) translateX(900px);
+        }
+        100%{
+          transform: skew(0deg);
+        }
+    }
+      table img
+      {
+          height:auto;
+          max-width:115px;
+          width:100%;
+          padding-bottom: 50px;
+          padding-top: 24px;
+      }
