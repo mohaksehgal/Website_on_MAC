@@ -10,47 +10,52 @@
 </head>
 <body>
   <H1 style="margin-bottom:0px;position:fixed;background:black;width:1800px;position:0px;margin-top:95px;">Welcome {{name}},</H1>
-  <HR color= #d3ae6d style="margin-bottom:0px;width:1420px;position:fixed;margin-top:140px;">
+  <HR color= #d3ae6d style="margin-bottom:0px;max-width:1482px;width:100%;position:fixed;margin-top:140px;">
   <br>
   {% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'MANAGER' %}
-  <iframe style="width:180px;height:685px;border:2px solid #d3ae6d;margin-top:120px;">
+  <iframe style="width:180px;height:560px;border:2px solid #d3ae6d;margin-top:120px;position:fixed;">
   </iframe>
-  <iframe class="frames" src="salary.html" name="AB" style="margin-left: 0px; max-width: 1235px; width: 100%; height: 685px; position: absolute; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 148px !important;">
+  <iframe class="frames" src="salary.html" name="AB" style="margin-left: 184px; max-width: 1297px; width: 100%; height: 560px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 146px !important;">
   </iframe>
   {% endif %}
 
   {% if DEPARTMENT == 'HL' and PROCESS == 'IDFC' and Emp_Status == 'MANAGER' %}
-  <iframe style="width:180px;height:685px;border:2px solid #d3ae6d;margin-top:120px;">
+  <iframe style="width:180px;height:577px;border:2px solid #d3ae6d;margin-top:120px;position:fixed;">
   </iframe>
-  <iframe class="frames" src="IDFC-HL_Salary.html" name="AB" style="margin-left: 0px; max-width: 1235px; width: 100%; height: 685px; position: absolute; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 148px !important;">
+  <iframe class="frames" src="IDFC-HL_Salary.html" name="AB" style="margin-left: 184px; max-width: 1296px
+; width: 100%; height: 577px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 146px !important;">
   </iframe>
   {% endif %}
 
 <!--  {% if DEPARTMENT == 'TW' and PROCESS == 'L&T' and Emp_Status == 'TL' %}-->
-<!--  <iframe style="width:180px;height:685px;border:2px solid #d3ae6d;margin-top:120px;">-->
+<!--  <iframe style="width:180px;height:650px;border:2px solid #d3ae6d;margin-top:120px;">-->
 <!--  </iframe>-->
-<!--  <iframe class="frames" src="salary.html" name="AB" style="margin-left: 0px; max-width: 1235px; width: 100%; height: 685px; position: absolute; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 148px !important;">-->
+<!--  <iframe class="frames" src="salary.html" name="AB" style="margin-left: 184px; max-width: 1500px
+; width: 100%; height: 650px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 147px !important;">-->
 <!--  </iframe>-->
 <!--  {% endif %}-->
 
   {% if DEPARTMENT == 'CD' and PROCESS == 'BAJAJ' and Emp_Status == 'TL' %}
-  <iframe style="width:180px;height:685px;border:2px solid #d3ae6d;margin-top:120px;">
+  <iframe style="width:180px;height:565px;border:2px solid #d3ae6d;margin-top:121px;position:fixed;">
   </iframe>
-  <iframe class="frames" src="bajaj_salary.html" name="AB" style="margin-left: 0px; max-width: 1235px; width: 100%; height: 685px; position: absolute; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 148px !important;">
+  <iframe class="frames" src="bajaj_salary.html" name="AB" style="margin-left: 184px; max-width: 1297px
+; width: 100%; height: 566px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 147px !important;">
   </iframe>
   {% endif %}
 
   {% if DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' and Emp_Status == 'MANAGER' %}
-  <iframe style="width:180px;height:685px;border:2px solid #d3ae6d;margin-top:120px;">
+  <iframe style="width:180px;height:570px;border:2px solid #d3ae6d;margin-top:120px;position:fixed;">
   </iframe>
-  <iframe class="frames" src="FULLERTON_RECOVERY_SALARY.html" name="AB" style="margin-left: 0px; max-width: 1235px; width: 100%; height: 685px; position: absolute; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 148px !important;">
+  <iframe class="frames" src="FULLERTON_RECOVERY_SALARY.html" name="AB" style="margin-left: 184px; max-width: 1297px
+; width: 100%; height: 571px; position: fixed;overflow:hidden; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 146px !important;">
   </iframe>
   {% endif %}
 
   {% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TL' %}
-  <iframe style="width:180px;height:685px;border:2px solid #d3ae6d;margin-top:120px;">
+  <iframe style="width:180px;height:573px;border:2px solid #d3ae6d;margin-top:120px;position:fixed;">
   </iframe>
-  <iframe class="frames" src="IDFC_TW_TL_ANALYSIS.html" name="AB" style="margin-left: 0px; max-width: 1235px; width: 100%; height: 685px; position: absolute; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 148px !important;">
+  <iframe class="frames" src="IDFC_TW_TL_ANALYSIS.html" name="AB" style="margin-left: 184px; max-width: 1297px
+; width: 100%; height: 573px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 146px !important;">
   </iframe>
   {% endif %}
 

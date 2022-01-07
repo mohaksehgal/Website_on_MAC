@@ -63,3 +63,41 @@ ul.block A{
 nav{
  width:1584px;
  }
+input{
+display:none;}
+
+@media all and (max-width:960px){
+nav ul{
+margin-right:0px;
+float:right;
+}
+nav.logo{
+padding-left:30px;
+width:100%;
+}
+nav ul li,nav ul ul li{
+display:block;
+width:100%
+}
+nav ul ul{
+top:70px;
+position:static;
+float:none;
+}
+.icon{
+display:block;
+color:white;
+position:absolute;
+right:40px;
+line-height:70px;
+font-size:25px;
+cursor:pointer;
+}
+ul{
+display:none;
+}
+[id^=btn]:checked+ul{
+display:block;
+}
+
+}

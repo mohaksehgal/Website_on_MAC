@@ -10931,7 +10931,12 @@ def MASTER_SALARY_FULLERTON(request):
 
 def BAJAJ_MIS(request):
     excel_data = []
-    F1 = pd.DataFrame()
+    excel_data1 = []
+    excel_data2 = []
+    QQ1 = ''
+    BAJAJ_PL = ''
+    C1=''
+    C2=''
     if request.method == 'POST':
         Allocation1 = request.FILES['Allocation']
         Paidfile1 = request.FILES['Paid_File']
@@ -11169,31 +11174,442 @@ def BAJAJ_MIS(request):
 
         SS1.to_excel(r'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx', index=False)
 
+        BAJAJ_CD = 'yes there is data for BAJAJ-CD'
+
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+            AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
+            AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
+            SS2 = pd.read_excel(AA1)
+            SS3 = pd.read_excel(AA2)
+            BAJAJ_PL = 'yes there is data for BAJAJ-PL'
+
+        else:
+            QQ1 = 'Please Upload file for BAJAJ-PL'
+
     elif request.method != 'POST':
         if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
+                fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+                fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+                AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
+                AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
+                AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
+                SS1 = pd.read_excel(AA)
+                SS2 = pd.read_excel(AA1)
+                SS3 = pd.read_excel(AA2)
+                BAJAJ_CD = 'yes there is data for BAJAJ-CD'
+                BAJAJ_PL = 'yes there is data for BAJAJ-PL'
+
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
             fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
             AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
             SS1 = pd.read_excel(AA)
+
+            C = list(SS1.columns)
+
+            for j in range(0, len(SS1[C[0]])):
+                row_data = list()
+                for col in range(0, len(C)):
+                    row_data.append(str(SS1.loc[j, C[col]]))
+                excel_data.append(row_data)
+
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_PL': 'Please Upload file for BAJAJ-PL'})
+
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+            AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
+            AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
+            SS2 = pd.read_excel(AA1)
+            SS3 = pd.read_excel(AA2)
+
+            C1 = list(SS2.columns)
+            C2 = list(SS3.columns)
+
+            for j in range(0, len(SS2[C1[0]])):
+                row_data = list()
+                for col in range(0, len(C1)):
+                    row_data.append(str(SS2.loc[j, C1[col]]))
+                excel_data1.append(row_data)
+
+            for j in range(0, len(SS3[C2[0]])):
+                row_data = list()
+                for col in range(0, len(C2)):
+                    row_data.append(str(SS3.loc[j, C2[col]]))
+                excel_data2.append(row_data)
+
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/upload_excel.html', {'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_CD': 'Please Upload file for BAJAJ-CD'})
+
+
         else:
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
-            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'Overall': 'Please upload files for all the process'})
+
 
     C = list(SS1.columns)
 
-    for j in range(0, len(SS1[C[0]])):
-        row_data = list()
-        for col in range(0, len(C)):
-            row_data.append(str(SS1.loc[j, C[col]]))
-        excel_data.append(row_data)
+    if BAJAJ_PL == 'yes there is data for BAJAJ-PL':
+        C1 = list(SS2.columns)
+        C2 = list(SS3.columns)
+        for j in range(0, len(SS2[C1[0]])):
+            row_data = list()
+            for col in range(0, len(C1)):
+                row_data.append(str(SS2.loc[j, C1[col]]))
+            excel_data1.append(row_data)
+
+        for j in range(0, len(SS3[C2[0]])):
+            row_data = list()
+            for col in range(0, len(C2)):
+                row_data.append(str(SS3.loc[j, C2[col]]))
+            excel_data2.append(row_data)
+
+    if BAJAJ_CD == 'yes there is data for BAJAJ-CD':
+        for j in range(0, len(SS1[C[0]])):
+            row_data = list()
+            for col in range(0, len(C)):
+                row_data.append(str(SS1.loc[j, C[col]]))
+            excel_data.append(row_data)
 
     final_dep = DEP()
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_PL': QQ1})
+
+def BAJAJ_PL_MIS(request):
+    excel_data = []
+    excel_data1 = []
+    excel_data2 = []
+    QQ2 = ''
+    BAJAJ_CD=''
+    C=''
+    if request.method == 'POST':
+        Allocation1 = request.FILES['Allocation1']
+        Paidfile1 = request.FILES['Paid_File1']
+        A = pd.read_excel(Allocation1)
+        B = pd.read_excel(Paidfile1)
+
+        fs = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+        fs.save(Allocation1.name, Allocation1)
+        fs.save(Paidfile1.name, Paidfile1)
+
+        print(A.head())
+
+        B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
+        B2 = pd.DataFrame(B.groupby(['AGREEMENTID', 'TC'])['PAID AMOUNT'].count()).reset_index()
+
+        ECS = pd.DataFrame(B.groupby(['AGREEMENTID', 'MODE'])['PAID AMOUNT'].sum()).reset_index()
+
+        ECS = ECS[ECS['MODE'] == 'ECS']
+
+        ECS.rename({'PAID AMOUNT': 'ECS'}, axis=1, inplace=True)
+
+        B1.head()
+
+        B1 = B1.merge(ECS, how='left')
+
+        B1.drop('MODE', axis=1, inplace=True)
+
+        B1.fillna(0, inplace=True)
+
+        B1['FINAL PAID AMOUNT'] = B1['PAID AMOUNT'] - B1['ECS']
+
+        B1.head()
+
+        B2.drop('PAID AMOUNT', axis=1, inplace=True)
+
+        B2.rename({'TC': 'PAID TC', 'AGREEMENTID': 'LOAN_NUMBER'}, axis=1, inplace=True)
+
+        B2
+
+        B1.head()
+
+        B1.drop(['PAID AMOUNT', 'ECS'], axis=1, inplace=True)
+
+        B1.rename({'FINAL PAID AMOUNT': 'PAID AMOUNT'}, axis=1, inplace=True)
+
+        B1.head()
+
+        B1.rename({'AGREEMENTID': 'LOAN_NUMBER'}, axis=1, inplace=True)
+
+        A.head(1)
+
+        B2.head(1)
+
+        B1
+
+        A = A.merge(B2, left_on='LOAN AGREEMENT NO', right_on='LOAN_NUMBER', how='left')
+
+        A = A.merge(B1, left_on='LOAN AGREEMENT NO', right_on='LOAN_NUMBER', how='left')
+
+        A.head()
+
+        A.drop(['LOAN_NUMBER_x', 'LOAN_NUMBER_y'], axis=1, inplace=True)
+
+        A.head(1)
+
+        for i in range(0, len(A['LOAN AGREEMENT NO'])):
+            if str(A.loc[i, 'PAID AMOUNT']) == 'nan':
+                A.loc[i, 'MOHAK STATUS'] = 'UNPAID'
+            elif str(A.loc[i, 'PAID AMOUNT']) != 'nan':
+                A.loc[i, 'MOHAK STATUS'] = 'PAID'
+
+        A.head(1)
+
+        for i in range(0, len(A['LOAN AGREEMENT NO'])):
+            if str(A.loc[i, 'PAID TC']) == 'nan':
+                A.loc[i, 'PAID TC'] = '--'
+        for i in range(0, len(A['LOAN AGREEMENT NO'])):
+            if str(A.loc[i, 'PAID AMOUNT']) == 'nan':
+                A.loc[i, 'PAID AMOUNT'] = 0
+
+        A.head(1)
+
+        A['PAID TC'].unique()
+
+        A.rename({'MOHAK STATUS': 'STATUS'}, axis=1, inplace=True)
+
+        for i in range(0, len(A['LOAN AGREEMENT NO'])):
+            A.loc[i, 'OD AMOUNT'] = (A.loc[i, 'BOM_BUCKET'] + 1) * A.loc[i, 'INST AMT']
+
+        A.head(1)
+
+        A['STATUS'].unique()
+
+        for i in range(0, len(A['PAID AMOUNT'])):
+            if A.loc[i, 'STATUS'] == 'PAID':
+                if A.loc[i, 'PAID AMOUNT'] < A.loc[i, 'OD AMOUNT']:
+                    A.loc[i, 'PAID FEEDBACK'] = 'LESS THAN DEMAND'
+                else:
+                    A.loc[i, 'PAID FEEDBACK'] = 'MORE THAN DEMAND'
+            else:
+                A.loc[i, 'PAID FEEDBACK'] = 'UNPAID'
+
+        A.to_excel(r'media/BAJAJ-PL/MIS/MASTER_FILE_BAJAJ-PL.xlsx', index=False)
+
+        for i in range(0, len(A['LOAN AGREEMENT NO'])):
+            if A.loc[i, 'STATUS'] == 'PAID':
+                if A.loc[i, 'PAID TC'] != 'SYS. PAID':
+                    if A.loc[i, 'TC NAME'] != A.loc[i, 'PAID TC']:
+                        print("ACTUAL TC-", A.loc[i, 'TC NAME'], "PAID TC-", A.loc[i, 'PAID TC'])
+
+        P = pd.DataFrame(A.groupby(['PAID FEEDBACK', 'PAID TC'])['PAID AMOUNT'].sum().reset_index())
+
+        P.head()
+
+        a = []
+        for i in range(0, len(P['PAID AMOUNT'])):
+            if P.loc[i, 'PAID FEEDBACK'] == 'UNPAID':
+                a.append(i)
+
+        P.drop(a, axis=0, inplace=True)
+
+        P
+
+        for i in range(0, len(P['PAID TC'])):
+            if P.loc[i, 'PAID FEEDBACK'] == 'LESS THAN DEMAND':
+                if (P.loc[i, 'PAID AMOUNT'] >= 500000):
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '5%'
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '0%'
+                elif (P.loc[i, 'PAID AMOUNT'] >= 400000) and (P.loc[i, 'PAID AMOUNT'] < 500000):
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '4%'
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '0%'
+                elif (P.loc[i, 'PAID AMOUNT'] >= 300000) and (P.loc[i, 'PAID AMOUNT'] < 400000):
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '3%'
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '0%'
+                elif (P.loc[i, 'PAID AMOUNT'] >= 200000) and (P.loc[i, 'PAID AMOUNT'] < 300000):
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '2%'
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '0%'
+                elif (P.loc[i, 'PAID AMOUNT'] >= 100000) and (P.loc[i, 'PAID AMOUNT'] < 200000):
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '1%'
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '0%'
+                else:
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '0%'
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '0%'
+            elif P.loc[i, 'PAID FEEDBACK'] == 'MORE THAN DEMAND':
+                if (P.loc[i, 'PAID AMOUNT'] >= 650000):
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '5%'
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '0%'
+                elif (P.loc[i, 'PAID AMOUNT'] >= 550000) and (P.loc[i, 'PAID AMOUNT'] < 650000):
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '4%'
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '0%'
+                elif (P.loc[i, 'PAID AMOUNT'] >= 450000) and (P.loc[i, 'PAID AMOUNT'] < 550000):
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '3%'
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '0%'
+                elif (P.loc[i, 'PAID AMOUNT'] >= 350000) and (P.loc[i, 'PAID AMOUNT'] < 450000):
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '2%'
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '0%'
+                elif (P.loc[i, 'PAID AMOUNT'] >= 250000) and (P.loc[i, 'PAID AMOUNT'] < 350000):
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '1%'
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '0%'
+                else:
+                    P.loc[i, 'MORE THAN DEMAND PAYOUT%'] = '0%'
+                    P.loc[i, 'LESS THAN DEMAND PAYOUT%'] = '0%'
+
+        P
+
+        P.to_excel(r'media/BAJAJ-PL/MIS/BAJAJ-PL TC MIS.xlsx', index=False)
+
+        A.head()
+
+        SS = pd.DataFrame(A.groupby(['BOM_BUCKET'])['POS', 'PAID AMOUNT'].sum().reset_index())
+
+        SS.head()
+
+        for i in range(0, len(SS['BOM_BUCKET'])):
+            SS.loc[i, 'PERFORMANCE'] = (SS.loc[i, 'PAID AMOUNT'] / SS.loc[i, 'POS']) * 100
+
+        SS.head()
+
+        SS.to_excel(r'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx', index=False)
+
+        A.head(1)
+
+        for i in range(0, len(A['OD AMOUNT'])):
+            if A.loc[i, 'BOM_BUCKET'] == 3:
+                if (A.loc[i, 'PAID AMOUNT'] * 15) / 100 > (A.loc[i, 'OD AMOUNT'] * 15) / 100:
+                    A.loc[i, 'BILLING%'] = '15%'
+                    A.loc[i, 'PAYOUT'] = (A.loc[i, 'OD AMOUNT'] * 15) / 100
+                else:
+                    A.loc[i, 'BILLING%'] = '15%'
+                    A.loc[i, 'PAYOUT'] = (A.loc[i, 'PAID AMOUNT'] * 15) / 100
+            elif A.loc[i, 'BOM_BUCKET'] == 4:
+                if (A.loc[i, 'PAID AMOUNT'] * 16) / 100 > (A.loc[i, 'OD AMOUNT'] * 16) / 100:
+                    A.loc[i, 'BILLING%'] = '16%'
+                    A.loc[i, 'PAYOUT'] = (A.loc[i, 'OD AMOUNT'] * 16) / 100
+                else:
+                    A.loc[i, 'BILLING%'] = '16%'
+                    A.loc[i, 'PAYOUT'] = (A.loc[i, 'PAID AMOUNT'] * 16) / 100
+            elif A.loc[i, 'BOM_BUCKET'] == 5:
+                if (A.loc[i, 'PAID AMOUNT'] * 17) / 100 > (A.loc[i, 'OD AMOUNT'] * 17) / 100:
+                    A.loc[i, 'BILLING%'] = '17%'
+                    A.loc[i, 'PAYOUT'] = (A.loc[i, 'OD AMOUNT'] * 17) / 100
+                else:
+                    A.loc[i, 'BILLING%'] = '17%'
+                    A.loc[i, 'PAYOUT'] = (A.loc[i, 'PAID AMOUNT'] * 17) / 100
+
+        A.to_excel(r'media/BAJAJ-PL/Billing/BAJAJ-PL. Billing.xlsx', index=False)
+
+        BAJAJ_PL = 'yes there is data for BAJAJ-PL'
+
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
+            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+            AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
+            SS1 = pd.read_excel(AA)
+            BAJAJ_CD = 'yes there is data for BAJAJ-CD'
+
+        else:
+            QQ2 = 'Please Upload file for BAJAJ-CD'
+
+    elif request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
+                fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+                fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+                AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
+                AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
+                AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
+                SS1 = pd.read_excel(AA)
+                SS = pd.read_excel(AA1)
+                P = pd.read_excel(AA2)
+                BAJAJ_CD = 'yes there is data for BAJAJ-CD'
+                BAJAJ_PL = 'yes there is data for BAJAJ-PL'
+
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
+            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+            AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
+            SS1 = pd.read_excel(AA)
+
+            C = list(SS1.columns)
+
+            for j in range(0, len(SS1[C[0]])):
+                row_data = list()
+                for col in range(0, len(C)):
+                    row_data.append(str(SS1.loc[j, C[col]]))
+                excel_data.append(row_data)
+
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_PL': 'Please Upload file for BAJAJ-PL'})
+
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+            AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
+            AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
+            SS2 = pd.read_excel(AA1)
+            SS3 = pd.read_excel(AA2)
+
+            C1 = list(SS2.columns)
+            C2 = list(SS3.columns)
+
+            for j in range(0, len(SS2[C1[0]])):
+                row_data = list()
+                for col in range(0, len(C1)):
+                    row_data.append(str(SS2.loc[j, C1[col]]))
+                excel_data1.append(row_data)
+
+            for j in range(0, len(SS3[C2[0]])):
+                row_data = list()
+                for col in range(0, len(C2)):
+                    row_data.append(str(SS3.loc[j, C2[col]]))
+                excel_data2.append(row_data)
+
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/upload_excel.html', {'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_CD': 'Please Upload file for BAJAJ-CD'})
+
+        else:
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'Overall': 'Please upload files for all the process'})
+
+
+    C1 = list(SS.columns)
+    C2 = list(P.columns)
+
+    if BAJAJ_PL == 'yes there is data for BAJAJ-PL':
+        for j in range(0, len(SS[C1[0]])):
+            row_data = list()
+            for col in range(0, len(C1)):
+                row_data.append(str(SS.loc[j, C1[col]]))
+            excel_data1.append(row_data)
+
+        for j in range(0, len(P[C2[0]])):
+            row_data = list()
+            for col in range(0, len(C2)):
+                row_data.append(str(P.loc[j, C2[col]]))
+            excel_data2.append(row_data)
+
+    if BAJAJ_CD == 'yes there is data for BAJAJ-CD':
+        C = list(SS1.columns)
+        for j in range(0, len(SS1[C[0]])):
+            row_data = list()
+            for col in range(0, len(C)):
+                row_data.append(str(SS1.loc[j, C[col]]))
+            excel_data.append(row_data)
+
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_CD': QQ2})
 
 def BAJAJ_BILLING(request):
     excel_data=[]
@@ -12833,7 +13249,7 @@ def IDFC_TW_ANALYSIS(request):
                         fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
                         fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
                         fs2 = FileSystemStorage(location='media/IDFC_TW/Billing')
-                        fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
+                        fs3 = FileSystemStorage(location='media/Employees')
 
                         AA = fs.open('IDFC_TW TC Incentive.xlsx')
                         AA2 = fs1.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
@@ -12883,7 +13299,7 @@ def FULLERTON_RECOVERY_ANALYSIS(request):
                 if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
                     fs1 = FileSystemStorage(location='media/FULLERTON_RECOVERY/FOS Salary')
                     fs2 = FileSystemStorage(location='media/FULLERTON_RECOVERY/Billing')
-                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
+                    fs3 = FileSystemStorage(location='media/Employees')
 
                     AA1 = fs1.open('FOS_SALARY_FULLERTON_RECOVERY.xlsx')
                     AA2 = fs2.open('PAYOUT_FULLERTON_RECOVERY.xlsx')
@@ -12922,7 +13338,7 @@ def BAJAJ_CD_ANALYSIS(request):
                 if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
                     fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
                     fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
-                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
+                    fs3 = FileSystemStorage(location='media/Employees')
 
                     AA1 = fs.open('BAJAJ TC-WISE MIS.xlsx')
                     AA2 = fs2.open('BAJAJ PAYOUT.xlsx')
@@ -12960,7 +13376,7 @@ def IDFC_HL_ANALYSIS(request):
                 if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
                     fs1 = FileSystemStorage(location='media/IDFC_HL/FOS Salary')
                     fs2 = FileSystemStorage(location='media/IDFC_HL/Billing')
-                    fs3 = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
+                    fs3 = FileSystemStorage(location='media/Employees')
 
                     AA1 = fs1.open('FINAL PAYOUT IDFC-HL.xlsx')
                     AA2 = fs2.open('BKT_Billing_IDFC_HL.xlsx')

@@ -19,14 +19,6 @@ nav img{
   max-width: 100px;
   width:13%;
 }
-.princ{
-  position: absolute;
-  bottom: 25px;
-  right: 10px;
-  max-width:200px;
-  width:25%;
-  height:auto;
-}
 
 .nav li ul li{
   text-align: center;
@@ -120,42 +112,6 @@ ul.log a{
 UL LI :HOVER UL LI {
   DISPLAY: none;
 }
- .text-box{
-     width:90;
-     color:rgb(242, 217, 56);
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     transform:translate(-50%,-50%);
-     text-align: center;
- }
- .text-box h1{
-   font-size: 40px;
-   color: rgba(211,174,109,255);
-   text-shadow:2px 3px black;
- }
- .text-box p{
-   margin:26px 0px 40px;
-   font-size: 18px;
-   color: white;
- }
- .hero-btn{
-   display: inline-block;
-   text-decoration:none;
-   color:black;
-   border: 1px solid black;
-   padding: 11px 10px;
-   font-size: 13px;
-   background: #d3ae6d;
-   position: relative;
-   cursor: pointer;
- }
- .hero-btn:hover{
-   border:1px solid black;
-   border-radius: 85px;
-   background: #d3ae6d;
-   transition: 1.5s;
- }
 
 @media all and (max-width:808px) {
   body{

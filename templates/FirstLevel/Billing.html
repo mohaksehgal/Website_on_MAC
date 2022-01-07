@@ -9,25 +9,30 @@
     <title>ESSENCCIA OUTSOURCING</title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/Billing.css' %}">
 </head>
+<style>
+    body{overflow:scroll;}
+        ::-webkit-scrollbar {
+        width: 0px;}
+</style>
 <body>
-{% if DEPARTMENT == 'OTR' %}
-{{OTR}}
-<form method="post", action="{% url 'basic_app:FULLERTON_OTR_BILLING' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    <button class="button1" type="submit">Billing</button>
-</form>
-{{FR}}
-<form method="post", action="{% url 'basic_app:FULLERTON_FR_BILLING' %}", enctype="multipart/form-data">
-    {% csrf_token %}
-    <button class="button1" type="submit">Billing</button>
-</form>
-{% else %}
-<form method="post", enctype="multipart/form-data">
-    {% csrf_token %}
-    <button class="button1" type="submit">Billing</button>
-</form>
-{% endif %}
-<div class="center">
+<!--{% if DEPARTMENT == 'OTR' %}-->
+<!--{{OTR}}-->
+<!--<form method="post", action="{% url 'basic_app:FULLERTON_OTR_BILLING' %}" enctype="multipart/form-data">-->
+<!--    {% csrf_token %}-->
+<!--    <button class="button1" type="submit">Billing</button>-->
+<!--</form>-->
+<!--{{FR}}-->
+<!--<form method="post", action="{% url 'basic_app:FULLERTON_FR_BILLING' %}", enctype="multipart/form-data">-->
+<!--    {% csrf_token %}-->
+<!--    <button class="button1" type="submit">Billing</button>-->
+<!--</form>-->
+<!--{% else %}-->
+<!--<form method="post", enctype="multipart/form-data">-->
+<!--    {% csrf_token %}-->
+<!--    <button class="button1" type="submit">Billing</button>-->
+<!--</form>-->
+<!--{% endif %}-->
+<!--<div class="center">-->
 <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BILLING {{PROCESS}}-{{DEPARTMENT}}</p3>
     <BR><BR>
 {% if DEPARTMENT == 'HL' %}
@@ -88,24 +93,24 @@
     {% endif %}
 {% endif %}
 
-{% if DEPARTMENT == 'TW' %}
-    {% if PROCESS == 'L&T' %}
-        <table class="A4">
-            <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
-            {% for col in columns %}
-                <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px" >{{col}}</th>
-            {% endfor %}
-            </tr>
-            {% for row in Billing %}
-                <tr style="background-color:white;border:2px solid black;">
-                {% for j in row %}
-                    <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:500px; height:17px">{{j}}</td>
-                {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
-    {% endif %}
-{% endif %}
+<!--{% if DEPARTMENT == 'TW' %}-->
+<!--    {% if PROCESS == 'L&T' %}-->
+<!--        <table class="A4">-->
+<!--            <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">-->
+<!--            {% for col in columns %}-->
+<!--                <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px" >{{col}}</th>-->
+<!--            {% endfor %}-->
+<!--            </tr>-->
+<!--            {% for row in Billing %}-->
+<!--                <tr style="background-color:white;border:2px solid black;">-->
+<!--                {% for j in row %}-->
+<!--                    <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:500px; height:17px">{{j}}</td>-->
+<!--                {% endfor %}-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--        </table>-->
+<!--    {% endif %}-->
+<!--{% endif %}-->
 
 {% if DEPARTMENT == 'CD' %}
     {% if PROCESS == 'BAJAJ' %}
@@ -151,11 +156,11 @@
     {% endif %}
 {% endif %}
 
-{% if DEPARTMENT == 'OTR' %}
-    {% if PROCESS == 'FULLERTON' %}
-        <a  class="button"href="{% url 'basic_app:FULLERTON_OTR_DOWNLOAD' %}">DOWNNLOAD</a>
-    {% endif %}
-{% endif %}
+<!--{% if DEPARTMENT == 'OTR' %}-->
+<!--    {% if PROCESS == 'FULLERTON' %}-->
+<!--        <a  class="button"href="{% url 'basic_app:FULLERTON_OTR_DOWNLOAD' %}">DOWNNLOAD</a>-->
+<!--    {% endif %}-->
+<!--{% endif %}-->
 
 {% if DEPARTMENT == 'RECOVERY' %}
     {% if PROCESS == 'FULLERTON' %}
