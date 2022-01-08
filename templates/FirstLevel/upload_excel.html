@@ -116,25 +116,37 @@
     {% endif %}
 {% endif %}
 <br>
-<div class="center">
-<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">MIS {{PROCESS}}-{{DEPARTMENT}}</p3>
-<p3 >{{OTR}}</p3>
-</div>
-<BR>
-<table class="center">
-    <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
-    {% for col in columns %}
-        <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px" >{{col}}</th>
-    {% endfor %}
-    </tr>
-    {% for row in excel %}
-        <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
-        {% for j in row %}
-            <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:100px; height:17px">{{j}}</td>
-        {% endfor %}
-        </tr>
-    {% endfor %}
-</table>
+{% if DEPARTMENT != 'CD' %}
+    {% if PROCESS != 'BAJAJ' %}
+        <form method="post", enctype="multipart/form-data">
+             {% csrf_token %}
+             <label style="color:white;">Allocation_File</label>
+             <input type="file" name="Allocation" style="color:white;">
+             <label style="color:white;">Paid_File</label>
+             <input type="file" name="Paid_File"style="color:white;">
+             <button type="submit">Upload</button>
+         </form>
+        <div class="center">
+        <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">MIS {{PROCESS}}-{{DEPARTMENT}}</p3>
+        <p3 >{{OTR}}</p3>
+        </div>
+        <BR>
+        <table class="center">
+            <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+            {% for col in columns %}
+                <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px" >{{col}}</th>
+            {% endfor %}
+            </tr>
+            {% for row in excel %}
+                <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
+                {% for j in row %}
+                    <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:100px; height:17px">{{j}}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endif %}
 <br>
 <br>
 <p3 style="color:white;">{{error}}</p3>

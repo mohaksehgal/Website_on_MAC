@@ -8580,7 +8580,7 @@ def IDFC_HL_BILLING(request):
 
 def FULLERTON_RECOVERY_MIS(request):
     excel_data = []
-    F1 = pd.DataFrame()
+    F = pd.DataFrame()
     if request.method == 'POST':
         Allocation1 = request.FILES['Allocation']
         Paidfile1 = request.FILES['Paid_File']
@@ -8835,8 +8835,6 @@ def FULLERTON_RECOVERY_MIS(request):
         A.to_excel('media/FULLERTON_RECOVERY/TC Performance/MASTER_FILE_FULLERTON_RECOVERY.xlsx', index=False)
         A.to_excel('media/FULLERTON_RECOVERY/MIS/MASTER_FILE_FULLERTON_RECOVERY.xlsx', index=False)
         A.to_excel('media/FULLERTON_RECOVERY/FOS Salary/MASTER_FILE_FULLERTON_RECOVERY.xlsx', index=False)
-
-        F.to_excel('media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx', index=False)
 
     elif request.method != 'POST':
         if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx')):
@@ -9154,7 +9152,7 @@ def MASTER_SALARY_TW(request):
                 F.loc[i, 'PERFORMANCE'] = round(F.loc[i, 'PERFORMANCE'], 2)
                 F.loc[i, 'Additional_Performance'] = round(F.loc[i, 'Additional_Performance'], 2)
 
-            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/Performance.xlsx',index=False)
+            F.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/Performance.xlsx',index=False)
 
             #
             # FINAL TABLE COPY CREATION
@@ -9512,7 +9510,7 @@ def MASTER_SALARY_TW(request):
             for i in range(0,len(sy)):
                 FINAL_COPY.loc[sy[i],'PER PAID CASE']=0
 
-            FINAL_COPY.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE.xlsx',index=False)
+            FINAL_COPY.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE.xlsx',index=False)
 
             FINAL_COPY1 = pd.DataFrame(FINAL_COPY.groupby(['PRODUCT','FINAL PAID FOS'])['PER PAID CASE'].sum()).reset_index()
 
@@ -9528,13 +9526,13 @@ def MASTER_SALARY_TW(request):
             FINAL_COPY1 = FINAL_COPY1.merge(A, left_on='FINAL PAID FOS', right_on='NAMES', how='left')
             FINAL_COPY1.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'SALARY', 'TYPE_OF_SALARY', 'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1, inplace=True)
 
-            FINAL_COPY1.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT).xlsx', index=False)
+            FINAL_COPY1.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT).xlsx', index=False)
 
             FF = pd.DataFrame(FINAL_COPY[FINAL_COPY['PRODUCT']=='IDFC-TW']).reset_index(drop=True)
             FF1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT']=='IDFC-TW']).reset_index(drop=True)
 
-            FF.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE IDFC-TW.xlsx',index=False)
-            FF1.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) IDFC-TW.xlsx',index=False)
+            FF.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE IDFC-TW.xlsx',index=False)
+            FF1.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) IDFC-TW.xlsx',index=False)
 
 
             # FF2 = pd.DataFrame(FINAL_COPY[FINAL_COPY['PRODUCT']=='L&T']).reset_index(drop=True)
@@ -9575,10 +9573,10 @@ def MASTER_SALARY_TW(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx',index=False)
+            F.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx',index=False)
 
             FF4 = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
-            FF4.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx',index=False)
+            FF4.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx',index=False)
 
             # FF5 = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
             # FF5.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx',index=False)
@@ -10604,7 +10602,7 @@ def MASTER_SALARY_IDFC(request):
 
             F.drop(['DEPARTMENT_ID','END_DATE','HIRE_DATE','PHONE_NUMBER','LOCATION_ID','TYPE_OF_SALARY','SALARY','MANAGEMENT_LEVEL','NAMES','STAFF'],axis=1,inplace=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx', index=False)
+            F.to_excel(r'media/IDFC_HL/FOS Salary/FINAL PAYOUT IDFC-HL.xlsx', index=False)
 
         else:
             final_dep = DEP()
@@ -10683,8 +10681,8 @@ def MASTER_SALARY_FULLERTON(request):
             UNIQUE_NAME=pd.read_excel(UNIQUE_NAME1)
 
             for i in range(31, 0, -1):
-                if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/MIS/FULLERTON_RECOVERY_PAID FILE_'+ str(i) +'OCT21.xlsx')):
-                    A1234 = fs3.open('FULLERTON_RECOVERY_PAID FILE_' + str(i) + 'OCT21.xlsx')
+                if os.path.exists(os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/MIS/FULLERTON_RECOVERY_PAID FILE_'+ str(i) +'AUG21.xlsx')):
+                    A1234 = fs3.open('FULLERTON_RECOVERY_PAID FILE_' + str(i) + 'AUG21.xlsx')
                     B = pd.read_excel(A1234)
 
             COLLECTION = C['MONEY_COLLECTION'].sum()
@@ -10889,7 +10887,7 @@ def MASTER_SALARY_FULLERTON(request):
 
             F['TOTAL_POS'] = round(F['TOTAL_POS'],2)
 
-            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx', index=False)
+            F.to_excel(r'media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx', index=False)
 
             FINAL_PAYOUT = F.copy()
 
@@ -11470,6 +11468,10 @@ def BAJAJ_PL_MIS(request):
         for i in range(0, len(SS['BOM_BUCKET'])):
             SS.loc[i, 'PERFORMANCE'] = (SS.loc[i, 'PAID AMOUNT'] / SS.loc[i, 'POS']) * 100
 
+        for i in range(0,len(SS['BOM_BUCKET'])):
+            SS.loc[i,'PERFORMANCE'] = round(SS.loc[i,'PERFORMANCE'],2)
+            SS.loc[i,'POS'] = round(SS.loc[i,'POS'],2)
+
         SS.head()
 
         SS.to_excel(r'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx', index=False)
@@ -11945,7 +11947,7 @@ def IDFC_TW_SALARY_TC(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx',
+            F.to_excel(r'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx',
                        index=False)
 
             F12 = F.copy()
@@ -12295,7 +12297,7 @@ def IDFC_TW_SALARY_TC(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx', index=False)
+            F.to_excel(r'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx', index=False)
 
             F12 = F.copy()
 
@@ -13119,7 +13121,7 @@ def IDFC_TW_EMPLOYEES(request):
     excel_data=[]
 
     if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
-        fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
+        fs = FileSystemStorage(location='media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
 
@@ -13150,7 +13152,7 @@ def BAJAJ_CD_EMPLOYEES(request):
     excel_data=[]
 
     if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
-        fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
+        fs = FileSystemStorage(location='media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
 
@@ -13181,7 +13183,7 @@ def IDFC_HL_EMPLOYEES(request):
     excel_data=[]
 
     if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
-        fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
+        fs = FileSystemStorage(location='media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
 
@@ -13212,7 +13214,7 @@ def FULLERTON_RECOVERY_EMPLOYEES(request):
     excel_data=[]
 
     if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
-        fs = FileSystemStorage(location='/Users/mohaksehgal/Website_Deployment/media/Employees')
+        fs = FileSystemStorage(location='media/Employees')
         AA = fs.open('Employee_Database.xlsx')
         AA = pd.read_excel(AA)
 
