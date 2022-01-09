@@ -11257,6 +11257,14 @@ def BAJAJ_MIS(request):
 
     C = list(SS1.columns)
 
+    if BAJAJ_CD == 'yes there is data for BAJAJ-CD':
+        for j in range(0, len(SS1[C[0]])):
+            row_data = list()
+            for col in range(0, len(C)):
+                row_data.append(str(SS1.loc[j, C[col]]))
+            excel_data.append(row_data)
+        BAJAJPL = 'Please Upload file for BAJAJ-PL'
+
     if BAJAJ_PL == 'yes there is data for BAJAJ-PL':
         C1 = list(SS2.columns)
         C2 = list(SS3.columns)
@@ -11272,18 +11280,13 @@ def BAJAJ_MIS(request):
                 row_data.append(str(SS3.loc[j, C2[col]]))
             excel_data2.append(row_data)
 
-    if BAJAJ_CD == 'yes there is data for BAJAJ-CD':
-        for j in range(0, len(SS1[C[0]])):
-            row_data = list()
-            for col in range(0, len(C)):
-                row_data.append(str(SS1.loc[j, C[col]]))
-            excel_data.append(row_data)
+        BAJAJPL=''
 
     final_dep = DEP()
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_PL': QQ1})
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_PL': BAJAJPL})
 
 def BAJAJ_PL_MIS(request):
     excel_data = []
@@ -11501,7 +11504,13 @@ def BAJAJ_PL_MIS(request):
                     A.loc[i, 'BILLING%'] = '17%'
                     A.loc[i, 'PAYOUT'] = (A.loc[i, 'PAID AMOUNT'] * 17) / 100
 
-        A.to_excel(r'media/BAJAJ-PL/Billing/BAJAJ-PL. Billing.xlsx', index=False)
+        A.to_excel(r'media/BAJAJ-PL/Billing/BAJAJ-PL Billing.xlsx', index=False)
+
+        A23=pd.DataFrame(A.groupby(['BOM_BUCKET','BILLING%'])['PAYOUT'].sum()).reset_index()
+
+        A23['PAYOUT']=round(A23['PAYOUT'],2)
+
+        A23.to_excel(r'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx', index=False)
 
         BAJAJ_PL = 'yes there is data for BAJAJ-PL'
 
@@ -11615,32 +11624,92 @@ def BAJAJ_PL_MIS(request):
 
 def BAJAJ_BILLING(request):
     excel_data=[]
+    excel_data1=[]
+    Total_Payout=0
+    Total_Payout_PL=0
     if request.method != 'POST':
         if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx')):
+                fs = FileSystemStorage(location='media/BAJAJ-CD/Billing')
+                fs1 = FileSystemStorage(location='media/BAJAJ-PL/Billing')
+                AA = fs.open('BAJAJ PAYOUT.xlsx')
+                AA1 = fs1.open('BAJAJ-PL Billing MIS.xlsx')
+                F1 = pd.read_excel(AA)
+                F2 = pd.read_excel(AA1)
+                F1.fillna(0,inplace=True)
+                F2.fillna(0, inplace=True)
+                Total_Payout = round(sum(F1['PAYOUT']), 2)
+                Total_Payout_PL = round(sum(F2['PAYOUT']), 2)
+
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-PL/Billing')
+            AA1 = fs1.open('BAJAJ-PL Billing MIS.xlsx')
+            F2 = pd.read_excel(AA1)
+            F2.fillna(0, inplace=True)
+            Total_Payout_PL = round(sum(F2['PAYOUT']), 2)
+
+            C1 = list(F2.columns)
+
+            for j in range(0, len(F2[C1[0]])):
+                row_data = list()
+                for col in range(0, len(C1)):
+                    row_data.append(str(F2.loc[j, C1[col]]))
+                excel_data1.append(row_data)
+
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/Billing.html', {'Billing1': excel_data1, 'columns1': C1, 'Total_Payout_PL': Total_Payout_PL, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_CD': 'Please Upload Files for BAJAJ-CD'})
+
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')):
             fs = FileSystemStorage(location='media/BAJAJ-CD/Billing')
             AA = fs.open('BAJAJ PAYOUT.xlsx')
             F1 = pd.read_excel(AA)
-            F1.fillna(0,inplace=True)
+            F1.fillna(0, inplace=True)
             Total_Payout = round(sum(F1['PAYOUT']), 2)
+
+            C = list(F1.columns)
+
+            for j in range(0, len(F1[C[0]])):
+                row_data = list()
+                for col in range(0, len(C)):
+                    row_data.append(str(F1.loc[j, C[col]]))
+                excel_data.append(row_data)
+
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data, 'columns': C, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_PL': 'Please upload Files for BAJAJ-PL'})
+
         else:
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
-            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'Overall': 'Please Upload Files for both the process'})
 
     C = list(F1.columns)
+    C1 = list(F2.columns)
 
     for j in range(0, len(F1[C[0]])):
         row_data = list()
         for col in range(0,len(C)):
             row_data.append(str(F1.loc[j,C[col]]))
         excel_data.append(row_data)
+
+    for j in range(0, len(F2[C1[0]])):
+        row_data = list()
+        for col in range(0,len(C1)):
+            row_data.append(str(F2.loc[j,C1[col]]))
+        excel_data1.append(row_data)
+
     final_dep = DEP()
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data, 'columns': C, 'Total_Payout': Total_Payout,'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data, 'columns': C, 'Total_Payout': Total_Payout, 'Billing1': excel_data1, 'columns1': C1, 'Total_Payout_PL': Total_Payout_PL,'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 def BAJAJ_SALARY(request):
     excel_data=[]

@@ -35,6 +35,10 @@
 <br>
 {% if DEPARTMENT == 'CD' %}
     {% if PROCESS == 'BAJAJ' %}
+        <p3 style="color:white;">{{BAJAJ_CD}}</p3>
+        <p3 style="color:white;">{{BAJAJ_PL}}</p3>
+        <p3 style="color:white;">{{Overall}}</p3>
+        <br>
         <p3 style="color:white">Please Upload file for BAJAJ-CD</p3>
         <br>
         <form method="post", action="{% url 'basic_app:BAJAJ_MIS' %}", enctype="multipart/form-data">
