@@ -143,6 +143,11 @@
 
 {% if DEPARTMENT == 'CD' %}
     {% if PROCESS == 'BAJAJ' %}
+        <form method="post", action="{% url 'basic_app:BAJAJ_PL_SALARY' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p3 style="color:white;font-family:accidental presidency">BAJAJ_PL_TC_SALARY</p3>
+            <button class="button1" type="submit">BAJAJ-PL TC Salary</button>
+        </form>
         <div class="center">
             <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">BAJAJ_TC_SALARY</p3>
         </div>
@@ -162,6 +167,23 @@
             {% endfor %}
         </table>
         <br>
+        <div class="center">
+            <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">BAJAJ_PL_TC_SALARY</p3>
+        </div>
+        <table class="T10">
+            <tr style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
+            {% for col in columns98 %}
+                <th style="color:black;background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px;" >{{col}}</th>
+            {% endfor %}
+            </tr>
+            {% for row in excel98 %}
+                <tr style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
+                {% for j in row %}
+                    <td style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">{{j}}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
     <a class="button" href="{% url 'basic_app:BAJAJ_CD_SALARY_DOWNLOAD' %}">BAJAJ_CD_SALARY_DOWNLOAD</a>
     {% endif %}
 {% endif %}
