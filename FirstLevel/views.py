@@ -13642,7 +13642,77 @@ def BAJAJ_CD_ANALYSIS(request):
     if request.method != 'POST':
         if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
             if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')):
-                if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx')):
+                    if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/BAJAJ-PL TC Incentive Group.xlsx')):
+                        if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
+                            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+                            fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
+                            fs3 = FileSystemStorage(location='media/Employees')
+                            fs4 = FileSystemStorage(location='media/BAJAJ-PL/Billing')
+                            fs5 = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive')
+
+
+                            AA1 = fs.open('BAJAJ TC-WISE MIS.xlsx')
+                            AA2 = fs2.open('BAJAJ PAYOUT.xlsx')
+                            AA3 = fs3.open('Employee_Database.xlsx')
+                            AA4 = fs4.open('BAJAJ-PL Billing MIS.xlsx')
+                            AA5 = fs5.open('BAJAJ-PL TC Incentive Group.xlsx')
+
+                            AA1 = pd.read_excel(AA1)
+                            AA2 = pd.read_excel(AA2)
+                            AA3 = pd.read_excel(AA3)
+                            AA4 = pd.read_excel(AA4)
+                            AA5 = pd.read_excel(AA5)
+
+                            AA6 = AA3[(AA3['DESIGNATION'] != 'FOS') & (AA3['PROCESS'] == 'BAJAJ') & (AA3['DEPARTMENT'] == 'CD') & (AA3['EMPLOYEE_STATUS'] == 'ACTIVE')]
+
+                            AA7 = AA3[(AA3['DESIGNATION'] != 'FOS') & (AA3['PROCESS'] == 'BAJAJ') & (AA3['DEPARTMENT'] == 'PL') & (AA3['EMPLOYEE_STATUS'] == 'ACTIVE')]
+
+                            AA6 = AA6.reset_index(drop=True)
+
+                            AA7 = AA7.reset_index(drop=True)
+
+                            TC_INCENTIVE = AA1['FLAT INCENTIVE'].sum()
+                            TOTAL_BILLING = AA2['PAYOUT'].sum()
+                            FIXED_COSTING_OFFICE = AA6['SALARY'].sum()
+                            FINAL_COSTING = FIXED_COSTING_OFFICE + TC_INCENTIVE
+                            P_L_BAJAJ_CD = round(TOTAL_BILLING-FINAL_COSTING, 2)
+                            P_L_BAJAJ_CD_PERCENTAGE = round((P_L_BAJAJ_CD/TOTAL_BILLING)*100, 2)
+
+                            TC_INCENTIVE_PL = AA5['TC PAYOUT'].sum()
+                            TOTAL_BILLING_PL = AA4['PAYOUT'].sum()
+                            FIXED_COSTING_OFFICE_PL = AA7['SALARY'].sum()
+                            FINAL_COSTING_PL = FIXED_COSTING_OFFICE_PL + TC_INCENTIVE_PL
+                            P_L_BAJAJ_PL = round(TOTAL_BILLING_PL - FINAL_COSTING_PL, 2)
+                            P_L_BAJAJ_PL_PERCENTAGE = round((P_L_BAJAJ_PL / TOTAL_BILLING_PL) * 100, 2)
+
+                            return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'TC_INCENTIVE': TC_INCENTIVE, 'TOTAL_BILLING': TOTAL_BILLING, 'FIXED_COSTING_OFFICE': FIXED_COSTING_OFFICE, 'FINAL_COSTING': FINAL_COSTING, 'P_L_BAJAJ_CD': P_L_BAJAJ_CD, 'P_L_BAJAJ_CD_PERCENTAGE': P_L_BAJAJ_CD_PERCENTAGE, 'TC_INCENTIVE_PL': TC_INCENTIVE_PL, 'TOTAL_BILLING_PL': TOTAL_BILLING_PL, 'FIXED_COSTING_OFFICE_PL': FIXED_COSTING_OFFICE_PL, 'FINAL_COSTING_PL': FINAL_COSTING_PL, 'P_L_BAJAJ_PL': P_L_BAJAJ_PL, 'P_L_BAJAJ_PL_PERCENTAGE': P_L_BAJAJ_PL_PERCENTAGE})
+                    else:
+                        fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+                        fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
+                        fs3 = FileSystemStorage(location='media/Employees')
+
+                        AA1 = fs.open('BAJAJ TC-WISE MIS.xlsx')
+                        AA2 = fs2.open('BAJAJ PAYOUT.xlsx')
+                        AA3 = fs3.open('Employee_Database.xlsx')
+
+                        AA1 = pd.read_excel(AA1)
+                        AA2 = pd.read_excel(AA2)
+                        AA3 = pd.read_excel(AA3)
+
+                        AA3 = AA3[(AA3['DESIGNATION'] != 'FOS') & (AA3['PROCESS'] == 'BAJAJ') & ((AA3['DEPARTMENT'] == 'CD') | (AA3['DEPARTMENT'] == 'PL')) & (AA3['EMPLOYEE_STATUS'] == 'ACTIVE')]
+
+                        AA3 = AA3.reset_index(drop=True)
+
+                        TC_INCENTIVE = AA1['FLAT INCENTIVE'].sum()
+                        TOTAL_BILLING = AA2['PAYOUT'].sum()
+                        FIXED_COSTING_OFFICE = AA3['SALARY'].sum()
+                        FINAL_COSTING = FIXED_COSTING_OFFICE + TC_INCENTIVE
+                        P_L_BAJAJ_CD = round(TOTAL_BILLING - FINAL_COSTING, 2)
+                        P_L_BAJAJ_CD_PERCENTAGE = round((P_L_BAJAJ_CD / TOTAL_BILLING) * 100, 2)
+
+                        return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'TC_INCENTIVE': TC_INCENTIVE, 'TOTAL_BILLING': TOTAL_BILLING, 'FIXED_COSTING_OFFICE': FIXED_COSTING_OFFICE, 'FINAL_COSTING': FINAL_COSTING, 'P_L_BAJAJ_CD': P_L_BAJAJ_CD, 'P_L_BAJAJ_CD_PERCENTAGE': P_L_BAJAJ_CD_PERCENTAGE, 'STATUS': 'Please Refresh TC Salary Data for BAJAJ-PL'})
+                else:
                     fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
                     fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
                     fs3 = FileSystemStorage(location='media/Employees')
@@ -13655,7 +13725,7 @@ def BAJAJ_CD_ANALYSIS(request):
                     AA2 = pd.read_excel(AA2)
                     AA3 = pd.read_excel(AA3)
 
-                    AA3 = AA3[(AA3['DESIGNATION'] != 'FOS') & (AA3['PROCESS'] == 'BAJAJ') & (AA3['DEPARTMENT'] == 'CD') & (AA3['EMPLOYEE_STATUS'] == 'ACTIVE')]
+                    AA3 = AA3[(AA3['DESIGNATION'] != 'FOS') & (AA3['PROCESS'] == 'BAJAJ') & ((AA3['DEPARTMENT'] == 'CD') | (AA3['DEPARTMENT'] == 'PL')) & (AA3['EMPLOYEE_STATUS'] == 'ACTIVE')]
 
                     AA3 = AA3.reset_index(drop=True)
 
@@ -13663,12 +13733,41 @@ def BAJAJ_CD_ANALYSIS(request):
                     TOTAL_BILLING = AA2['PAYOUT'].sum()
                     FIXED_COSTING_OFFICE = AA3['SALARY'].sum()
                     FINAL_COSTING = FIXED_COSTING_OFFICE + TC_INCENTIVE
-                    P_L_BAJAJ_CD = round(TOTAL_BILLING-FINAL_COSTING,2)
-                    P_L_BAJAJ_CD_PERCENTAGE = round((P_L_BAJAJ_CD/TOTAL_BILLING)*100,2)
+                    P_L_BAJAJ_CD = round(TOTAL_BILLING - FINAL_COSTING, 2)
+                    P_L_BAJAJ_CD_PERCENTAGE = round((P_L_BAJAJ_CD / TOTAL_BILLING) * 100, 2)
 
-                    return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'TC_INCENTIVE': TC_INCENTIVE, 'TOTAL_BILLING': TOTAL_BILLING, 'FIXED_COSTING_OFFICE': FIXED_COSTING_OFFICE, 'FINAL_COSTING': FINAL_COSTING, 'P_L_BAJAJ_CD': P_L_BAJAJ_CD, 'P_L_BAJAJ_CD_PERCENTAGE': P_L_BAJAJ_CD_PERCENTAGE})
+                    return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'TC_INCENTIVE': TC_INCENTIVE, 'TOTAL_BILLING': TOTAL_BILLING, 'FIXED_COSTING_OFFICE': FIXED_COSTING_OFFICE, 'FINAL_COSTING': FINAL_COSTING, 'P_L_BAJAJ_CD': P_L_BAJAJ_CD, 'P_L_BAJAJ_CD_PERCENTAGE': P_L_BAJAJ_CD_PERCENTAGE, 'STATUS': 'Please Refresh TC and Billing Data for BAJAJ-PL'})
             else:
-                return render(request, 'FirstLevel/analysis.html',{'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'STATUS': 'Please Refresh Billing Data'})
+                return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'STATUS': 'Please Refresh Billing Data'})
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/BAJAJ-PL TC Incentive Group.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
+                    fs3 = FileSystemStorage(location='media/Employees')
+                    fs4 = FileSystemStorage(location='media/BAJAJ-PL/Billing')
+                    fs5 = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive')
+
+                    AA3 = fs3.open('Employee_Database.xlsx')
+                    AA4 = fs4.open('BAJAJ-PL Billing MIS.xlsx')
+                    AA5 = fs5.open('BAJAJ-PL TC Incentive Group.xlsx')
+
+                    AA3 = pd.read_excel(AA3)
+                    AA4 = pd.read_excel(AA4)
+                    AA5 = pd.read_excel(AA5)
+
+                    AA3 = AA3[(AA3['DESIGNATION'] != 'FOS') & (AA3['PROCESS'] == 'BAJAJ') & ((AA3['DEPARTMENT'] == 'PL') | (AA3['DEPARTMENT'] == 'PL')) & (AA3['EMPLOYEE_STATUS'] == 'ACTIVE')]
+
+                    AA3 = AA3.reset_index(drop=True)
+
+                    TC_INCENTIVE_PL = AA5['TC PAYOUT'].sum()
+                    TOTAL_BILLING_PL = AA4['PAYOUT'].sum()
+                    FIXED_COSTING_OFFICE_PL = AA3['SALARY'].sum()
+                    FINAL_COSTING_PL = FIXED_COSTING_OFFICE_PL + TC_INCENTIVE_PL
+                    P_L_BAJAJ_PL = round(TOTAL_BILLING_PL - FINAL_COSTING_PL, 2)
+                    P_L_BAJAJ_PL_PERCENTAGE = round((P_L_BAJAJ_PL / TOTAL_BILLING_PL) * 100, 2)
+
+                    return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'TC_INCENTIVE_PL': TC_INCENTIVE_PL, 'TOTAL_BILLING_PL': TOTAL_BILLING_PL, 'FIXED_COSTING_OFFICE_PL': FIXED_COSTING_OFFICE_PL, 'FINAL_COSTING_PL': FINAL_COSTING_PL, 'P_L_BAJAJ_PL': P_L_BAJAJ_PL, 'P_L_BAJAJ_PL_PERCENTAGE': P_L_BAJAJ_PL_PERCENTAGE})
+            else:
+                return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'STATUS': 'Please Refresh TC Data'})
         else:
             return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'STATUS': 'Please Refresh TC and FOS Salary Data'})
 
