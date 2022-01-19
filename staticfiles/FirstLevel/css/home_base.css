@@ -87,6 +87,8 @@ nav{
     ::-webkit-scrollbar {
     width: 0px;}
 
-    @media (max-width:850px){
+    @media (max-width:1200px){
+
     .nav{display:none;
+    }
     }
