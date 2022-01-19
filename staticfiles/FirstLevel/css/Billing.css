@@ -1,18 +1,17 @@
+    body{
+    overflow:scroll;
+    width:1400px;
+
+    }
+        ::-webkit-scrollbar {
+        width: 0px;}
+
 table {
    border-collapse: collapse;
    border-spacing: 0;
    border: 1px solid #ddd;
-   width : 100%;
+   width : 126%;
  }
-
-.A3,.A1,.A4{
-width:53%;
-margin-left:165px;
-}
-
-.A5{
-width:133%;
-}
 
 
  th, td {
@@ -74,5 +73,3 @@ width:133%;
    box-shadow: 0 5px BLACK;
    transform: translateY(4px);
  }
-
-

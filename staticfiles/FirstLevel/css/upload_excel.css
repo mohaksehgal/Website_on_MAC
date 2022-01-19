@@ -61,3 +61,26 @@ table {
    box-shadow: 0 5px BLACK;
    transform: translateY(4px);
  }
+     body{
+        width:3010px;
+    }
+        UL LI{
+            FLOAT:left;
+            WIDTH:160PX;
+            HEIGHT:33PX;
+            BACKGROUND:NONE;
+            OPACITY:.8;
+            LINE-HEIGHT:31PX;
+            MARGIN-RIGHT: 3PX
+            }
+
+        UL LI A{
+            TEXT-DECORATION: NONE;
+            COLOR:WHITE;
+            DISPLAY: BLOCK;
+            TEXT-ALIGN: CENTER;
+            FONT-SIZE: 15PX;
+            }
+       body{overflow:scroll;}
+        ::-webkit-scrollbar {
+        width: 0px;}

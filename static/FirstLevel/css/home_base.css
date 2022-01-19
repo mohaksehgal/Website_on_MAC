@@ -1,3 +1,4 @@
+
 BODY{
     BACKGROUND-REPEAT:NO-REPEAT;
     BACKGROUND-ATTACHMENT:FIXED;
@@ -63,41 +64,29 @@ ul.block A{
 nav{
  width:1584px;
  }
-input{
-display:none;}
 
-@media all and (max-width:960px){
-nav ul{
-margin-right:0px;
-float:right;
-}
-nav.logo{
-padding-left:30px;
-width:100%;
-}
-nav ul li,nav ul ul li{
-display:block;
-width:100%
-}
-nav ul ul{
-top:70px;
-position:static;
-float:none;
-}
-.icon{
-display:block;
-color:white;
-position:absolute;
-right:40px;
-line-height:70px;
-font-size:25px;
-cursor:pointer;
-}
-ul{
-display:none;
-}
-[id^=btn]:checked+ul{
-display:block;
-}
+         UL LI{
+            FLOAT:left;
+            WIDTH:160PX;
+            HEIGHT:33PX;
+            BACKGROUND:NONE;
+            OPACITY:.8;
+            LINE-HEIGHT:31PX;
+            MARGIN-RIGHT: 3PX
+            }
 
-}
+        UL LI A{
+            TEXT-DECORATION: NONE;
+            COLOR:WHITE;
+            DISPLAY: BLOCK;
+            TEXT-ALIGN: CENTER;
+            FONT-SIZE: 15PX;
+            }
+
+             body{overflow:hidden;}
+    ::-webkit-scrollbar {
+    width: 0px;}
+
+    @media (max-width:1200px){
+    .nav{display:none;
+    }

@@ -8,111 +8,42 @@
     <title>ESSENCCIA OUTSOURCING</title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/home_base.css' %}">
     <link rel="icon" href="{% static 'FirstLevel/images/logo.png' %}" type="image/gif">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        UL LI{
-            FLOAT:left;
-            WIDTH:160PX;
-            HEIGHT:33PX;
-            BACKGROUND:NONE;
-            OPACITY:.8;
-            LINE-HEIGHT:31PX;
-            MARGIN-RIGHT: 3PX
-            }
-
-        UL LI A{
-            TEXT-DECORATION: NONE;
-            COLOR:WHITE;
-            DISPLAY: BLOCK;
-            TEXT-ALIGN: CENTER;
-            FONT-SIZE: 15PX;
-            }
-    </style>
 </head>
 <body>
-<style>
- body{overflow:hidden;}
-    ::-webkit-scrollbar {
-    width: 0px;}
-
-                table {
-          border-collapse: collapse;
-          width: 100%;
-        }
-
-                table.one {
-          border-collapse: collapse;
-          width: 263%;
-        }
-
-                table.two {
-          border-collapse: collapse;
-          width: 90%;
-        }
-
-          table.three {
-          border-collapse: collapse;
-          width: 130%;
-        }
-
-        table.four {
-          border-collapse: collapse;
-          width: 90%;
-        }
-
-        table.five {
-          border-collapse: collapse;
-          width: 100%;
-        }
-
-        th, td {
-          text-align:center;
-          padding: 8px;
-        }
-
-        tr:nth-child(even) {background-color: #f2f2f2;}
-</style>
 <!--OK SEEN-->
 {% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'MANAGER' %}
-    <NAV>
-<!--        <div class="logo" style="height:0px">-->
-<!--            <a href="{% url 'basic_app:index' %}">-->
-<!--                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">-->
-<!--            </a>-->
-<!--        </div>-->
-        <label for="btn" class="icon">
-        <i class="fa fa-bars"></i>
-        </label>
-        <input type="checkbox" id="btn">
-        <UL class="nav">
+    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+        <UL class="img1">
+            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
+        </UL>
+        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
-                <A HREF="{% url 'basic_app:index' %}"><strong>DASHBOARD</strong></A>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
             </LI>
             <LI>
-                <A HREF="{% url 'basic_app:vision' %}" ><strong>SALARY</strong></A>
+                <A HREF="{% url 'basic_app:IDFC_TW_SALARY' %}" target="AB"><STRONG>SALARIES</STRONG></A>
             </LI>
             <LI>
-                <a href="{% url 'basic_app:whatwedo' %}"><strong>BILLING</strong></a>
+                <A HREF= "{% url 'basic_app:IDFC_TW_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
             </LI>
             <LI>
-                <a href="{% url 'basic_app:whatwedo' %}"><strong>ANALYSIS</strong></a>
+                <A href="{% url 'basic_app:IDFC_TW_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>
             </LI>
             <LI>
-                <a href="{% url 'basic_app:whatwedo' %}"><strong>FILE MANAGEMENT</strong></a>
+                <A HREF= "{% url 'basic_app:IDFC_TW_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
             </LI>
             <LI>
-                <a href="{% url 'basic_app:whatwedo' %}"><strong>EMPLOYEES</strong></a>
+                <A HREF= "{% url 'basic_app:IDFC_TW_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>
             </LI>
-
-            <UL class="log">
-                <A HREF="{% url 'basic_app:user_login' %}"><strong>LOGIN</strong></A>
-            </UL>
+            <ul class="block">
+                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+            </ul>
         </UL>
     </NAV>
 
 <!--OK SEEN-->
 {% elif DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' %}
-    <NAV style="margin-top:0px;width:1492px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+    <NAV style="margin-top:0px;ma-width:1492px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
         <UL class="img1">
             <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
@@ -142,7 +73,7 @@
     </NAV>
 <!--OK SEEN-->
 {% elif PROCESS == 'IDFC' and DEPARTMENT == 'HL' and Emp_Status == 'MANAGER' %}
-    <NAV style="margin-top:0px;max-width:1489px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
         <UL class="img1">
             <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
@@ -172,7 +103,7 @@
     </NAV>
 <!--OK SEEN-->
 {% elif PROCESS == 'BAJAJ' and DEPARTMENT == 'CD' %}
-    <NAV style="margin-top:0px;width:1471px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+    <NAV style="margin-top:0px;max-width:1530px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
         <UL class="img1">
             <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
@@ -202,7 +133,7 @@
     </NAV>
 <!--NOT OK-->
 {% elif PROCESS == 'HERO' and DEPARTMENT == 'RECOVERY' %}
-    <NAV style="margin-top:0px;width:1489px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
         <UL class="img1">
             <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
@@ -232,7 +163,7 @@
     </NAV>
 <!--NOT OK-->
 {% elif DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TL' %}
-    <NAV style="margin-top:0px;width:1489px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
         <UL class="img1">
             <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
@@ -253,7 +184,7 @@
     </NAV>
 <!--NOT OK-->
 {% elif DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TC' %}
-    <NAV style="margin-top:0px;width:1489px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
         <UL class="img1">
             <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
@@ -271,7 +202,7 @@
     </NAV>
 <!--OK SEEN-->
 {% elif Emp_Status == 'FOS' %}
-    <NAV style="margin-top:0px;width:1489px;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
+    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
         <UL class="img1">
             <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
         </UL>
@@ -295,3 +226,5 @@
 {% endblock %}
 </body>
 </html>
+
+<!--HOME BASE?-->

@@ -11,20 +11,11 @@
     <meta name="HandheldFriendly" content="true">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/login.css' %}">
-    <style>
-        @font-face {
-            font-family: Accidental Presidency ;
-            src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
-            }
-
-        @font-face {
-            font-family: Arial Narrow;
-            src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
-            }
-    </style>
 </head>
 <body>
-        <H1 class='gos' style="margin-top:130px;position:fixed;right:50px;left:50px;">COMPANY LOGIN</H1>
+        <H1 class='gos' style="top:20%;position:fixed;right:50px;left:50px;">COMPANY LOGIN</H1>
+    <div class="container">
+
         <FORM class="boxx" action="{% url 'basic_app:user_login' %}" method="POST">
             {% csrf_token %}
 
@@ -41,10 +32,12 @@
                 </TABLE>
             </div>
         </FORM>
-    <div class="error" style="margin-top: 652px;position:fixed;right: 567px;left: 590px;margin-left: 10‒;margin-left: 78px;">
+    </div>
+    <span class="error" style=" position: fixed;bottom: 5%;width: 100%;text-align:center">
         {{Error}}
         {{re}}
-    </div>
+    </span>
 </body>
 </html>
 {% endblock %}
+<!--LOGIN?-->

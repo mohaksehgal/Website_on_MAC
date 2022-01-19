@@ -1,3 +1,12 @@
+        @font-face {
+            font-family: Accidental Presidency ;
+            src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+            }
+
+        @font-face {
+            font-family: Arial Narrow;
+            src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+            }
 body{
     background: #34495e;
     background-size: cover;
@@ -98,3 +107,6 @@ table {
 input::placeholder{
     color:white;
 }
+body{overflow:scroll;}
+    ::-webkit-scrollbar {
+    width: 0px;}
