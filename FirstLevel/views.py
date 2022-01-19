@@ -10069,6 +10069,10 @@ def FULLERTON_RECOVERY_BILLING(request):
         else:
             return render(request, 'FirstLevel/Billing.html')
 
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
     C1 = list(F2.columns)
 
     for j in range(0, len(F2[C1[0]])):
