@@ -7,49 +7,10 @@
     <meta name="viewport" content="width=device-width , initial- scale 1.0">
     <title>ESSENCCIA OUTSOURCING</title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/analysis.css' %}">
-    <style>
-        UL LI{
-            FLOAT:left;
-            WIDTH:160PX;
-            HEIGHT:33PX;
-            BACKGROUND:NONE;
-            OPACITY:.8;
-            LINE-HEIGHT:31PX;
-            MARGIN-RIGHT: 3PX
-            }
-
-            .div1{width: 64%;float: left;padding: 20px;}
-            .div2{width: 29%;float: left;padding: 20px;}
-
-        UL LI A{
-            TEXT-DECORATION: NONE;
-            COLOR:WHITE;
-            DISPLAY: BLOCK;
-            TEXT-ALIGN: CENTER;
-            FONT-SIZE: 15PX;
-            }
-            @media(max-width:1000px){
-                body{height:500px;
-                overflow:scroll;
-                }
-                 ::-webkit-scrollbar {
-                     width: 0px;}
-
-                div.div1{
-                width:100%;
-                }
-                div.div2{
-                width:100%;
-                }
-                div.div{
-                width:100%;
-                }
-            }
-    </style>
 </head>
 {% if Designation == 'MANAGER'  and DEPARTMENT == 'TW' and PROCESS == 'IDFC' %}
-<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>
-<br>
+<!--<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>-->
+<!--<br>-->
 <br>
 <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC TW TC INCENTIVE</p3>
 <p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TC_INCENTIVE}}</p3>
@@ -99,8 +60,8 @@
 {% endif %}
 
 {% if Designation == 'MANAGER'  and DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' %}
-<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>
-<br>
+<!--<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>-->
+<!--<br>-->
 <br>
 <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">FULLERTON RECOVERY FIXED COSTING FOS</p3>
 <p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_FOS}}</p3>
@@ -147,8 +108,8 @@
 {% if Designation == 'TL'  and DEPARTMENT == 'CD' and PROCESS == 'BAJAJ' %}
 <div class="div">
     <div class="div1" >
-        <p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>
-        <br>
+<!--        <p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>-->
+<!--        <br>-->
         <br>
         <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BAJAJ CD TC INCENTIVE</p3>
         <p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{TC_INCENTIVE}}</p3>
@@ -220,8 +181,8 @@
 </div>
 {% endif %}
 {% if Designation == 'MANAGER'  and DEPARTMENT == 'HL' and PROCESS == 'IDFC' %}
-<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>
-<br>
+<!--<p3 style="color:red;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{STATUS}}</p3>-->
+<!--<br>-->
 <br>
 <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">IDFC HL FIXED COSTING FOS</p3>
 <p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{FIXED_COSTING_FOS}}</p3>
@@ -266,7 +227,7 @@
 {% endif %}
 
 {% if Designation == 'TL' and DEPARTMENT == 'TW' and PROCESS == 'IDFC' %}
-<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{Status}}</p3>
+<!--<p3 style="color:white;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">{{Status}}</p3>-->
 <div class="center">
     <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">MIS for FOS {{PROCESS}}-{{DEPARTMENT}}</p3>
 </div>
@@ -364,4 +325,3 @@
 <!--{% endif %}-->
 </body>
 </html>
-

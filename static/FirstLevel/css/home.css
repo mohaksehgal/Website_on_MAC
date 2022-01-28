@@ -45,7 +45,7 @@ OL LI A
 {
  TEXT-DECORATION: NONE;
  COLOR:#d3ae6d;
- FONT-SIZE: 13.5PX;
+ FONT-SIZE: 13.4PX;
  padding:8px 1px;
  line-height: 30px;
 }
@@ -73,8 +73,26 @@ OL.block a{
   cursor: pointer;
 
 }
+.frames{
+margin-left: 184px;
+max-width: 1330px;
+width: 100%;
+height: 76vh;
+ position: fixed;
+border: 2px solid rgb(211, 174, 109);
+top: 0px;
+margin-top: 155px ;
+}
 
- @media (max-width:1200px) {
+.frames1{
+width:180px;
+height:76vh;
+border:2px solid #d3ae6d;
+margin-top:128px;
+position:fixed;
+}
+
+@media (max-width:1200px) {
 
 .frames1{
 display:none;
@@ -82,4 +100,59 @@ display:none;
 .hide{
 display:block;
 }
+}
+@media(max-width:1512px){
+iframe.frames{
+ max-width: 1330px;
+width:86%;
+}
+}
+@media(max-width:1496px){
+iframe.frames{
+max-width: 1330px;
+width:84%;
+}
+}
+@media(max-width:1240px){
+iframe.frames{
+max-width: 1330px;
+width:82%;
+}
+}
+@media(max-width:1074px){
+iframe.frames{
+ max-width: 1330px;
+width:79%;
+}
+}
+@media(max-width:890px){
+iframe.frames{
+ max-width: 1330px;
+width:73%;
+}
+}
+@media(max-width:720px){
+iframe.frames{
+ max-width: 1330px;
+width:68%;
+}
+}
+@media(max-width:600px){
+iframe.frames{
+ max-width: 1330px;
+width:58%;
+}
+}
+@media(max-width:300px){
+iframe.frames{
+ max-width: 1330px;
+width:43%;
+}
+}
+@media(max-width:370px){
+iframe.frames{
+ max-width: 1330px;
+width:38%;
+}
+
 }

@@ -4,20 +4,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <link rel="stylesheet" href="{% static 'FirstLevel/css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'FirstLevel/css/home.css'%}">
   <meta charset="utf-8">
   <title></title>
 </head>
-<style>
-
-</style>
 <body>
   <H1 style="margin-bottom:0px;position:fixed;background:black;max-width:415px;width:100%;position:0px;margin-top:95px;">Welcome {{name}},</H1>
-  <HR color= #d3ae6d style="margin-bottom:0px;max-width:1515px;width:100%;position:fixed;margin-top:140px;">
   <br>
   {% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'MANAGER' %}
-  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 120px;margin-right: 1337px;width: 180px;height: 561px; position:fixed;">
-       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px;">
+  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 129px;margin-right: 1337px;width: 180px;height: 76vh; position:fixed;overflow:scroll;">
+       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:500px">
                 <LI>
                     <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
                 </LI>
@@ -41,15 +37,14 @@
                 </OL>
        </OL>
   </div>
-      <iframe  class="frames1"style="width:180px;height:560px;border:2px solid #d3ae6d;margin-top:120px;position:fixed;">
+      <iframe  class="frames1">
       </iframe>
-  <iframe class="frames" src="salary.html" name="AB" style="margin-left: 184px; max-width: 1330px; width: 100%; height: 560px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 146px !important;">
-  </iframe>
+  <iframe class="frames" src="salary.html" name="AB"></iframe>
   {% endif %}
 
   {% if DEPARTMENT == 'HL' and PROCESS == 'IDFC' and Emp_Status == 'MANAGER' %}
-  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 120px;margin-right: 1337px;width: 180px;height: 577px;position:fixed;">
-       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px;">
+  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 129px;margin-right: 1337px;width: 180px;height: 76vh;position:fixed;overflow:scroll;">
+       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:500px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
             </LI>
@@ -73,14 +68,13 @@
             </OL>
        </OL>
   </div>
-      <iframe class="frames1"style="width:180px;height:577px;border:2px solid #d3ae6d;margin-top:120px;position:fixed;">
+      <iframe class="frames1">
       </iframe>
-  <iframe class="frames" src="IDFC-HL_Salary.html" name="AB" style="margin-left: 184px; max-width: 1330px; width: 100%; height: 577px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 146px !important;">
-  </iframe>
+  <iframe class="frames" src="IDFC-HL_Salary.html" name="AB"></iframe>
   {% endif %}
 
 <!--  {% if DEPARTMENT == 'TW' and PROCESS == 'L&T' and Emp_Status == 'TL' %}-->
-<!--  <iframe style="width:180px;height:650px;border:2px solid #d3ae6d;margin-top:120px;">-->
+<!--  <iframe style="width:180px;height:650px;border:2px solid #d3ae6d;margin-top:129px;">-->
 <!--  </iframe>-->
 <!--  <iframe class="frames" src="salary.html" name="AB" style="margin-left: 184px; max-width: 1500px
 ; width: 100%; height: 650px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 147px !important;">-->
@@ -88,8 +82,8 @@
 <!--  {% endif %}-->
 
   {% if DEPARTMENT == 'CD' and PROCESS == 'BAJAJ' and Emp_Status == 'TL' %}
-  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 120px;margin-right: 1337px;width: 180px;height: 567px;position:fixed;">
-       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px;">
+  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 129px;margin-right: 1337px;width: 180px;height: 76vh;position:fixed;overflow:scroll;">
+       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:500px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
             </LI>
@@ -113,15 +107,14 @@
             </OL>
        </OL>
   </div>
-  <iframe class="frames1"style="width:180px;height:565px;border:2px solid #d3ae6d;margin-top:121px;position:fixed;">
+  <iframe class="frames1">
   </iframe>
-  <iframe class="frames" src="bajaj_salary.html" name="AB" style="margin-left: 184px; max-width: 1330px
-; width: 100%; height: 566px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 147px !important;">
+  <iframe class="frames" src="bajaj_salary.html" name="AB">
   </iframe>
   {% endif %}
   {% if DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' and Emp_Status == 'MANAGER' %}
-  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 120px;margin-right: 1337px;width: 180px;height: 577px; position:fixed;">
-       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px;">
+  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 129px;margin-right: 1337px;width: 180px;height: 76vh;position:fixed;overflow:scroll;">
+       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:500px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
             </LI>
@@ -145,16 +138,15 @@
             </OL>
        </OL>
   </div>
-  <iframe class="frames1"style="width:180px;height:570px;border:2px solid #d3ae6d;margin-top:120px;position:fixed;">
+  <iframe class="frames1">
   </iframe>
-  <iframe class="frames" src="FULLERTON_RECOVERY_SALARY.html" name="AB" style="margin-left: 184px; max-width: 1330px
-; width: 100%; height: 571px; position: fixed;overflow:hidden; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 146px !important;">
+  <iframe class="frames" src="FULLERTON_RECOVERY_SALARY.html" name="AB">
   </iframe>
   {% endif %}
 
   {% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TL' %}
-  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 120px;margin-right: 1337px;width: 180px;height: 577px; position:fixed;">
-       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px;">
+  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 129px;margin-right: 1337px;width: 180px;height: 76vh;position:fixed;overflow:scroll;">
+       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:500px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
             </LI>
@@ -169,10 +161,9 @@
             </OL>
        </OL>
   </div>
-  <iframe class="frames1"style="width:180px;height:573px;border:2px solid #d3ae6d;margin-top:120px;position:fixed;">
+  <iframe class="frames1">
   </iframe>
-  <iframe class="frames" src="IDFC_TW_TL_ANALYSIS.html" name="AB" style="margin-left: 184px; max-width: 1330px
-; width: 100%; height: 573px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 146px !important;">
+  <iframe class="frames" src="IDFC_TW_TL_ANALYSIS.html" name="AB">
   </iframe>
   {% endif %}
 
@@ -292,5 +283,3 @@
 </body>
 </html>
 {% endblock %}
-
-<!--HOME?-->
