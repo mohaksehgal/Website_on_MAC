@@ -7,6 +7,18 @@ BODY{
     BACKGROUND-SIZE:600px 550px;
 }
 
+NAV.top{
+margin-top:15px;
+max-width:1523px;
+width:100%;
+height:150px;
+margin-bottom:0px;
+position:fixed;
+background:black;
+top:0px;
+left:0px;
+}
+
 UL LI::after{
     content:'';
     width:0%;
@@ -40,12 +52,13 @@ UL{
 
 /* ----------------------------------------THIS IS FOR LOGO AT NAV BAR ------------------------- */
 
-.IMG{
-    WIDTH:50px;
-    PADDING-LEFT:0px;
-    PADDING-TOP:8px;
+img{
+  top:10px;
+  left:0px;
+  height: auto;
+  max-width: 100px;
+  width:13%;
 }
-
 /* --------------------------------------------------DESIGN OF LOGIN BUTTON------------------------- */
 
 ul.block A{
@@ -83,12 +96,25 @@ nav{
             FONT-SIZE: 15PX;
             }
 
-             body{overflow:hidden;}
+             body{overflow:scroll;}
     ::-webkit-scrollbar {
     width: 0px;}
 
     @media (max-width:1200px){
+    .nav{
+    display:none;
+    }
+    }
 
-    .nav{display:none;
-    }
-    }
+@media(max-width:1462px){
+.top{
+ max-width: 1523px;
+width:84%;
+}
+}
+@media(max-width:1496px){
+.top{
+max-width: 1523px;
+width:82%;
+}
+}

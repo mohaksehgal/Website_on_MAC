@@ -14,25 +14,21 @@
 </head>
 <body>
         <H1 class='gos' style="top:20%;position:fixed;right:50px;left:50px;">COMPANY LOGIN</H1>
-    <div class="container">
 
         <FORM class="boxx" action="{% url 'basic_app:user_login' %}" method="POST">
             {% csrf_token %}
-
             {{login_form.as_p}}
-            <div style=" margin: auto;width: 50%;padding: 10px;">
                 <TABLE>
                     <TH>
                         <STRONG><INPUT type="submit" name="" value="LOGIN"></STRONG>
                     </TH>
-                    <TH></TH>
+
                     <TH>
-                        <A href="{% url 'basic_app:register' %}">New User?</A>
+                        <A href="{% url 'basic_app:register' %}" style="font-size:2vh;">New User?</A>
                     </TH>
                 </TABLE>
-            </div>
         </FORM>
-    </div>
+
     <span class="error" style=" position: fixed;bottom: 5%;width: 100%;text-align:center">
         {{Error}}
         {{re}}
@@ -40,4 +36,3 @@
 </body>
 </html>
 {% endblock %}
-<!--LOGIN?-->

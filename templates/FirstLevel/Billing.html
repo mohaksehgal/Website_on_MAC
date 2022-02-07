@@ -21,19 +21,16 @@
     {% csrf_token %}
     <button class="button1" type="submit">Billing</button>
 </form>
+{% else %}
+<form method="post", enctype="multipart/form-data" style="width: 890px;" >
+    {% csrf_token %}
+    <button class="button1" type="submit">Billing</button>
+</form>
 {% endif %}
-{% if DEPARTMENT != 'CD' %}
-    {% if PROCESS != 'BAJAJ' %}
-        <form method="post", enctype="multipart/form-data" style="width: 890px;" >
-            {% csrf_token %}
-            <button class="button1" type="submit">Billing</button>
-        </form>
-    {% endif %}
-{% endif %}
-    <div class="center">
-         <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">BILLING {{PROCESS}}-{{DEPARTMENT}}</p3>
+    <div class="center" style="margin-left:110px;">
+         <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; margin-left:205px;font-size:15px;">BILLING {{PROCESS}}-{{DEPARTMENT}}</p3>
     </div>
-
+    <BR><BR>
 {% if DEPARTMENT == 'HL' %}
     {% if PROCESS == 'IDFC' %}
     <div class="center>">
@@ -122,6 +119,9 @@
     {% if PROCESS == 'BAJAJ' %}
         {{BAJAJ_PL}}
         {{BAJAJ_CD}}
+          <div class="center" style="margin-left:110px;">
+            <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; margin-left:205px;font-size:15px;">Billing for BAJAJ-CD</p3>
+          </div>
           <div class="center">
             <table class="A4" style="margin-left:-110px;">
             <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
@@ -138,11 +138,11 @@
             {% endfor %}
         </table>
            </div>
-         <div class="center">
-            <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">Billing for BAJAJ-PL</p3>
+         <div class="center" style="margin-left:110px;">
+            <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; margin-left:205px;font-size:15px;">Billing for BAJAJ-PL</p3>
          </div>
         <div class="center" style="margin-right:0px;">
-            <table class="A5" style="margin-left:-110px;WIDTH:59%;">
+            <table class="A5" style="margin-left:148px;WIDTH:59%;">
             <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:50px; height:17px">
             {% for col in columns1 %}
                 <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:50px; height:17px" >{{col}}</th>
@@ -157,14 +157,15 @@
             {% endfor %}
         </table>
         </div>
-        <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">TOTAL PAYOUT BAJAJ-PL :{{com}}{{Total_Payout_PL}}</p3>
+        <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:15px;">TOTAL PAYOUT BAJAJ-PL :{{com}}{{Total_Payout_PL}}</p3>
     {% endif %}
 {% endif %}
 
-<!--<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">TOTAL PAYOUT :{{com}}{{Total_Payout12}}</p3>-->
+<!--<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:15px;">TOTAL PAYOUT :{{com}}{{Total_Payout12}}</p3>-->
 <br>
 <br>
-<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:13px;">TOTAL PAYOUT :{{com2}}{{Total_Payout}}</p3>
+<p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:15px;">TOTAL PAYOUT :{{com2}}{{Total_Payout}}</p3>
+<br>
 <br>
 <br>
 
@@ -206,5 +207,3 @@
 
 </body>
 </html>
-
-<!--CODE-->

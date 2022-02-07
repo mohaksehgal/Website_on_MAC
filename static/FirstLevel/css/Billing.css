@@ -23,7 +23,7 @@ table {
 
 
  .center {
-   margin-left: auto;
+   margin-left: 216px;
    margin-right: auto;
 
    width: 60%;
@@ -73,3 +73,4 @@ table {
    box-shadow: 0 5px BLACK;
    transform: translateY(4px);
  }
+

@@ -15,12 +15,12 @@
 {% if DEPARTMENT == 'RECOVERY' %}
     {% if PROCESS == 'FULLERTON' %}
         <p3 style="color:white;">{{OTR}}</p3>
-        <form method="post", action="{% url 'basic_app:MASTER_SALARY_FULLERTON' %}" enctype="multipart/form-data" style="width:2000px;">
+        <form method="post", action="{% url 'basic_app:MASTER_SALARY_FULLERTON' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <p3 style="color:white;font-family:accidental presidency">FULLERTON_FOS_SALARY</p3>
             <button class="button1" type="submit">Salary-FOS</button>
         </form>
-        <div class="center" style="margin-left:457px;">
+        <div class="center">
             <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">FOS SALARY {{PROCESS}}-{{DEPARTMENT}}</p3>
         </div>
         <br>
@@ -47,7 +47,7 @@
 {% if DEPARTMENT == 'TW' %}
     {% if PROCESS == 'IDFC' %}
         {% if Designation == 'MANAGER' %}
-            <table style="border-color:black;">
+            <table style="border-color:black;margin-left:125px;">
                 <tr>
                     <th>
                         <form method="post", action="{% url 'basic_app:IDFC_TW_SALARY_TC' %}" enctype="multipart/form-data">
@@ -66,7 +66,7 @@
                 </tr>
             </table>
                 <br>
-                <div class="center" style="margin-right:0px;margin-left:507px;">
+                <div class="center">
                 <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">TC SALARY {{PROCESS}}-{{DEPARTMENT}}</p3>
                 </div>
                 <br>
@@ -85,7 +85,7 @@
                     {% endfor %}
                 </table>
                 <br>
-                <div class="center" style="margin-right:0px;margin-left:507px;">
+                <div class="center">
                 <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">FOS INCENTIVE SALARY {{PROCESS}}-{{DEPARTMENT}}</p3>
                 </div>
                 <br>
@@ -105,7 +105,7 @@
                     {% endfor %}
                 </table>
                 <br>
-                <div class="center" style="margin-right:0px;margin-left:507px;">
+                <div class="center">
                 <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">FOS FIXED SALARY {{PROCESS}}-{{DEPARTMENT}} </p3>
                 </div>
                 <br>
@@ -137,15 +137,14 @@
     {% if PROCESS == 'BAJAJ' %}
         <form method="post", action="{% url 'basic_app:BAJAJ_PL_SALARY' %}" enctype="multipart/form-data" style="width: 2300px;">
             {% csrf_token %}
-            <p3 style="color:white;font-family:accidental presidency">BAJAJ_PL_TC_SALARY</p3>
+            <p3 style="color:white;font-family:accidental presidency;">BAJAJ_PL_TC_SALARY</p3>
             <button class="button1" type="submit">BAJAJ-PL TC Salary</button>
         </form>
-        <br>
-        <div class="center" style="margin-right:0px;margin-left:455px;">
+        <div class="center">
             <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">BAJAJ_TC_SALARY</p3>
         </div>
         <br>
-        <table class="T13" style="width:355%;">
+        <table class="T10">
             <tr style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
             {% for col in columns12334 %}
                 <th style="color:black;background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px;" >{{col}}</th>
@@ -160,25 +159,23 @@
             {% endfor %}
         </table>
         <br>
-        <div class="center" style="margin-right:0px;margin-left:455px;">
+        <div class="center">
             <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">BAJAJ_PL_TC_SALARY</p3>
         </div>
-         <div class="center" style="margin-right:0px;margin-left:399px;">
-            <table class="T10">
+        <table class="T10">
+            <tr style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
+            {% for col in columns98 %}
+                <th style="color:black;background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px;" >{{col}}</th>
+            {% endfor %}
+            </tr>
+            {% for row in excel98 %}
                 <tr style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
-                {% for col in columns98 %}
-                    <th style="color:black;background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px;" >{{col}}</th>
+                {% for j in row %}
+                    <td style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">{{j}}</td>
                 {% endfor %}
                 </tr>
-                {% for row in excel98 %}
-                    <tr style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
-                    {% for j in row %}
-                        <td style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">{{j}}</td>
-                    {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-         </div>
+            {% endfor %}
+        </table>
 <br>
     <a class="button" href="{% url 'basic_app:BAJAJ_CD_SALARY_DOWNLOAD' %}">BAJAJ_CD_SALARY_DOWNLOAD</a>
     {% endif %}
@@ -193,12 +190,12 @@
             <button class="button1" type="submit">Salary-FOS</button>
         </form>
         <br>
-        <div class="center" style="margin-left:429px;">
+        <div class="center">
             <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">FOS INCENTIVE SALARY {{PROCESS}}-{{DEPARTMENT}}</p3>
         </div>
         <br>
         <!--IDFC-HL PIVOT SALARY(Incentive)-->
-        <table class="T11" style="margin-left:180px;">
+        <table class="T11" style="margin-left:80px;">
             <tr style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
             {% for col in columns %}
                 <th style="color:black;background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px;" >{{col}}</th>

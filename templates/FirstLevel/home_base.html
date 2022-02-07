@@ -8,14 +8,46 @@
     <title>ESSENCCIA OUTSOURCING</title>
     <link rel="stylesheet" href="{% static 'FirstLevel/css/home_base.css' %}">
     <link rel="icon" href="{% static 'FirstLevel/images/logo.png' %}" type="image/gif">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        UL LI{
+            FLOAT:left;
+            WIDTH:160PX;
+            HEIGHT:33PX;
+            BACKGROUND:NONE;
+            OPACITY:.8;
+            LINE-HEIGHT:31PX;
+            MARGIN-RIGHT: 3PX
+            }
+
+        UL LI A{
+            TEXT-DECORATION: NONE;
+            COLOR:WHITE;
+            DISPLAY: BLOCK;
+            TEXT-ALIGN: CENTER;
+            FONT-SIZE: 15PX;
+            }
+    </style>
 </head>
 <body>
+<style>
+ body{overflow:scroll;}
+    ::-webkit-scrollbar {
+    width: 0px;}
+
+    @media (max-width:850px){
+    .nav{display:none;
+    }
+</style>
 <!--OK SEEN-->
 {% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'MANAGER' %}
-    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
+    <NAV class="top">
+
+        <div class="logo" style="height:0px">
+            <a href="{% url 'basic_app:index' %}">
+                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">
+            </a>
+        </div>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
@@ -39,14 +71,18 @@
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
             </ul>
         </UL>
+
     </NAV>
 
 <!--OK SEEN-->
 {% elif DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' %}
-    <NAV style="margin-top:0px;ma-width:1492px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
+    <NAV class="top">
+
+        <div class="logo" style="height:0px">
+            <a href="{% url 'basic_app:index' %}">
+                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">
+            </a>
+        </div>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
@@ -70,13 +106,17 @@
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
             </ul>
         </UL>
+
     </NAV>
 <!--OK SEEN-->
 {% elif PROCESS == 'IDFC' and DEPARTMENT == 'HL' and Emp_Status == 'MANAGER' %}
-    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
+    <NAV class="top">
+
+        <div class="logo" style="height:0px">
+            <a href="{% url 'basic_app:index' %}">
+                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">
+            </a>
+        </div>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
@@ -100,13 +140,17 @@
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
             </ul>
         </UL>
+
     </NAV>
 <!--OK SEEN-->
 {% elif PROCESS == 'BAJAJ' and DEPARTMENT == 'CD' %}
-    <NAV style="margin-top:0px;max-width:1530px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
+    <NAV class="top">
+
+        <div class="logo" style="height:0px">
+            <a href="{% url 'basic_app:index' %}">
+                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">
+            </a>
+        </div>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
@@ -130,13 +174,17 @@
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
             </ul>
         </UL>
+
     </NAV>
 <!--NOT OK-->
 {% elif PROCESS == 'HERO' and DEPARTMENT == 'RECOVERY' %}
-    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
+    <NAV class="top">
+
+        <div class="logo" style="height:0px">
+            <a href="{% url 'basic_app:index' %}">
+                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">
+            </a>
+        </div>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
@@ -160,13 +208,17 @@
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
             </ul>
         </UL>
+
     </NAV>
 <!--NOT OK-->
 {% elif DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TL' %}
-    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
+    <NAV class="top">
+
+        <div class="logo" style="height:0px">
+            <a href="{% url 'basic_app:index' %}">
+                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">
+            </a>
+        </div>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
@@ -181,13 +233,17 @@
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
             </ul>
         </UL>
+
     </NAV>
 <!--NOT OK-->
 {% elif DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TC' %}
-    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
+    <NAV class="top">
+
+        <div class="logo" style="height:0px">
+            <a href="{% url 'basic_app:index' %}">
+                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">
+            </a>
+        </div>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
@@ -199,13 +255,17 @@
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
             </ul>
         </UL>
+
     </NAV>
 <!--OK SEEN-->
 {% elif Emp_Status == 'FOS' %}
-    <NAV style="margin-top:0px;max-width:1523px;width:100%;height:150px;margin-bottom:0px;position:fixed;background:black;top:0px;left:0px;">
-        <UL class="img1">
-            <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">
-        </UL>
+    <NAV class="top">
+
+        <div class="logo" style="height:0px">
+            <a href="{% url 'basic_app:index' %}">
+                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">
+            </a>
+        </div>
         <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">
             <LI>
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
@@ -217,6 +277,10 @@
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
             </ul>
         </UL>
+<!--             <UL class="img2">-->
+<!--                 <IMG SRC= "{% static 'FirstLevel/images/logo.png' %}" WIDTH= "100">-->
+<!--             </UL>-->
+
     </NAV>
 <!--Checking the change of asw server-->
 
@@ -226,5 +290,3 @@
 {% endblock %}
 </body>
 </html>
-
-<!--HOME BASE?-->
