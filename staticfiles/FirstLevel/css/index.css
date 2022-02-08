@@ -1,12 +1,13 @@
 /* ----------------------------------parameters for 4PS in bottom----------- */
 
 .princ{
-  position: absolute;
-  bottom: 25px;
-  right: 10px;
-  max-width:200px;
-  width:25%;
-  height:auto;
+position: absolute;
+    bottom: 25px;
+    right: 10px;
+    max-width: 200px;
+    width: 10vw;
+    min-width: 63px;
+    height: auto;
 }
 
 /* --------------------------------THIS IS FOR ALIGNMENT OF CENTER TEXT------------------- */
@@ -25,14 +26,16 @@
 
 .hero-btn{
     display: inline-block;
-    text-decoration:none;
-    color:black;
+    text-decoration: none;
+    color: black;
     border: 1px solid black;
     padding: 11px 10px;
     font-size: 0.8vw;
     background: #d3ae6d;
     position: relative;
     cursor: pointer;
+    width: 13vw;
+    height: 2.5vw;
 }
 
  /* ----------------------------------THIS IS VIEW US MORE BUTTON AFTER HOVER----------------------- */
@@ -77,3 +80,5 @@ body{overflow:scroll;}
             color: white;
             font-family:'Arial Narrow', ARIALNB_2 ;
             }
+
+

@@ -13,11 +13,13 @@ ul.nav{
   margin-top: 22px;
 }
 nav img{
-  top:10px;
-  left:0px;
-  height: auto;
-  max-width: 100px;
-  width:13%;
+    top: 10px;
+    left: 0px;
+    height: auto;
+    max-width: 100px;
+    min-width: 50px;
+    width: 7%;
+}
 }
 
 .nav li ul li{
@@ -113,7 +115,7 @@ UL LI :HOVER UL LI {
   DISPLAY: none;
 }
 
-@media all and (max-width:808px) {
+@media all and (max-width:1000px) {
   body{
     overflow: hidden;
   }
@@ -204,3 +206,4 @@ UL LI :HOVER UL LI {
   margin: 6px 0;
 }
 }
+

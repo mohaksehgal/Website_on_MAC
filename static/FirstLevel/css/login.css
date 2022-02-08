@@ -7,6 +7,16 @@
             font-family: Arial Narrow;
             src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
             }
+.princ{
+    position: absolute;
+    bottom: 25px;
+    right: 10px;
+    max-width: 200px;
+    width: 10vw;
+    min-width: 63px;
+    height: auto;
+}
+
 body{
     background: #34495e;
     background-size: cover;
@@ -15,6 +25,8 @@ body{
     height: 700px ;
     color: black;
     opacity:550%;
+    overflow-y:scroll;
+    overflow-x:hidden;
 }
 
 H1{
@@ -23,21 +35,24 @@ H1{
 }
 
 .boxx{
-    color:white;
+    color: white;
+    overflow: scroll;
     width: 22%;
-    height:63vh;
-    max-width:445px;
-    padding:40px;
-    padding-top:30px;
-    padding-bottom:20px;
-    position:fixed;
-    top: 60% ;
-    left:50% ;
-    transform:translate(-50% , -50%);
-    background:#191919;
+    min-height: 457px;
+    height: 60vh;
+    min-width: 172px;
+    max-width: 445px;
+    padding: 40px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    position: relative;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    background: #191919;
     opacity: 50%;
     border-radius: 15px;
-    text-align:center;
+    text-align: center;
 }
 
 .boxx h1{
@@ -72,6 +87,8 @@ font-size:2vh;
     font-size:2.8vw;
     margin-top:0px;
     font-family:Accidental Presidency;
+    top: 26%; position: relative;left: 488px;
+
 }
 
 .boxx input[type="text"]:focus , .boxx input[type="password"]:focus{
@@ -113,7 +130,35 @@ table {
 input::placeholder{
     color:white;
 }
-body{overflow:scroll;}
+
     ::-webkit-scrollbar {
     width: 0px;}
 
+
+@media(max-width:1050px){
+.gos{
+    font-size: 2.8vw;
+    margin-top: 0px;
+    font-family: Accidental Presidency;
+    top: 26%;
+    position: relative;
+    left: -1px;
+}
+}
+@media(max-width:1000px){
+.gos{
+    top: 26%;
+    position: relative;
+    left: 0%;
+}
+}
+@media(max-width:915px){
+.gos{
+font-size:3.5vw;
+}
+}
+@media(max-width:615px){
+.gos{
+font-size:4.5vw;
+}
+}
