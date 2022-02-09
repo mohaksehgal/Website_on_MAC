@@ -118,6 +118,11 @@ max-width: 1330px;
 width:84%;
 height:72vh;
 }
+@media(max-width:1400px){
+h1{
+font-size:2.5vw;
+}
+}
 .frames1,.hide{
 height:72vh;
 }
