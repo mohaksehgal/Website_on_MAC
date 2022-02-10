@@ -1,4 +1,4 @@
-        @font-face {
+          @font-face {
             font-family: Accidental Presidency ;
             src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
             }
@@ -15,6 +15,20 @@
     width: 10vw;
     min-width: 63px;
     height: auto;
+}
+
+.error{
+color: white;
+    overflow: hidden;
+    width: 100%;
+    padding: 0px;
+    position: relative;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    background: #191919;
+    opacity: 50%;
+    text-align: center;
 }
 
 body{
@@ -36,7 +50,6 @@ H1{
 
 .boxx{
     color: white;
-    overflow: scroll;
     width: 22%;
     min-height: 457px;
     height: 60vh;
@@ -46,7 +59,7 @@ H1{
     padding-top: 30px;
     padding-bottom: 20px;
     position: relative;
-    top: 60%;
+    top: 55%;
     left: 50%;
     transform: translate(-50% , -50%);
     background: #191919;
@@ -80,16 +93,21 @@ a{
     border-radius: 24px;
     transition:0.30s;
 }
-label{
-font-size:2vh;
-}
-.gos{
-    font-size:2.8vw;
-    margin-top:0px;
-    font-family:Accidental Presidency;
-    top: 26%; position: relative;left: 488px;
 
+.gos{
+color: white;
+    overflow: hidden;
+    width: 100%;
+    padding: 0px;
+    position: relative;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    background: #191919;
+    opacity: 50%;
+    text-align: center;
 }
+
 
 .boxx input[type="text"]:focus , .boxx input[type="password"]:focus{
     max-width:280px;
@@ -113,14 +131,17 @@ font-size:2vh;
     transition:0.30s;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  max-width: 213px;
-  width:79%;
-  position:fixed;
-  left:50px;
-  right:50px;
-  table-layout:fixed;
+    color: white;
+    width: 100%;
+    min-width: 172px;
+    max-width: 445px;
+    padding: 0px;
+    position: relative;
+    top: 14%;
+    left: 57%;
+    transform: translate(-50% , -50%);
+    border-radius: 15px;
+    text-align: center;
 }
 
 .boxx input[type="submit"]:hover{
@@ -134,38 +155,3 @@ input::placeholder{
     ::-webkit-scrollbar {
     width: 0px;}
 
-
-@media(max-width:1050px){
-.gos{
-    font-size: 2.8vw;
-    margin-top: 0px;
-    font-family: Accidental Presidency;
-    top: 26%;
-    position: relative;
-    left: -1px;
-}
-}
-@media(max-width:1400px){
-.gos{
-    top: 24%;
-    position: relative;
-    left: 0%;
-}
-}
-@media(max-width:1000px){
-.gos{
-    top: 26%;
-    position: relative;
-    left: 0%;
-}
-}
-@media(max-width:915px){
-.gos{
-font-size:3.5vw;
-}
-}
-@media(max-width:615px){
-.gos{
-font-size:4.5vw;
-}
-}
