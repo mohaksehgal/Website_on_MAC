@@ -8,7 +8,8 @@ BODY{
 }
 
 NAV.top{
-margin-top:15px;
+margin-top:0px;
+padding-top:15px;
 max-width:1523px;
 width:100%;
 height:150px;

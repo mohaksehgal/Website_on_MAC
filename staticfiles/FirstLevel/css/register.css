@@ -1,3 +1,21 @@
+        @font-face {
+            font-family: Accidental Presidency ;
+            src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
+            }
+
+        @font-face {
+            font-family: Arial Narrow;
+            src: url("{% static 'FirstLevel/fonts/ARIALNB_2.ttf' %}");
+            }
+.princ{
+    position: fixed;
+    bottom: 25px;
+    right: 10px;
+    max-width: 200px;
+    width: 10vw;
+    min-width: 63px;
+    height: auto;
+}
 body{
     background: #34495e;
     background-size: cover;
@@ -6,20 +24,32 @@ body{
     height: 700px ;
     color: black;
     opacity:550%;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+H1{
+    COLOR:WHITE;
+    text-align: center;
 }
 
 .boxs{
-    width: 600px;
-    padding:40px;
-    position:absolute;
-    top: 54% ;
-    left:50% ;
-    transform:translate(-50% , -50%);
-    background:#191919;
+    color: white;
+    width: 100%;
+    min-height: 457px;
+    height: 60vh;
+    min-width: 112px;
+    max-width: 445px;
+    padding: 40px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    position: relative;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    background: #191919;
     opacity: 50%;
     border-radius: 15px;
-    text-align:left;
-    color:white;
+    text-align: center;
 }
 
 .boxs input[type="submit"]{
@@ -38,10 +68,17 @@ body{
 }
 
 .go{
-    font-family: Accidental Presidency;
-    font-size:40px;
-    color:white;
-    left:50% ;
+color: white;
+    overflow: hidden;
+    width: 100%;
+    padding: 0px;
+    position: relative;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    background: #191919;
+    opacity: 50%;
+    text-align: center;
 }
 
 .boxs input[type="submit"]:hover{
