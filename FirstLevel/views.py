@@ -1705,20 +1705,20 @@ def employee_database(request):
     return render(request, 'FirstLevel/employee_database.html')
 
 
-def L_T_PERFORMANCE_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/L_T/MIS/Performance_L_T.xlsx')
-
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=MIS L&T.xlsx"
-    return response
+# def L_T_PERFORMANCE_DOWNLOAD(request):
+#     # fill these variables with real values
+#     filename = os.path.join(BASE_DIR, 'media/L_T/MIS/Performance_L_T.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=MIS L&T.xlsx"
+#     return response
 
 
 def BAJAJ_CD_PERFORMANCE_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ_PERFORMANCE.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -1729,7 +1729,7 @@ def BAJAJ_CD_PERFORMANCE_DOWNLOAD(request):
 
 def IDFC_TW_PERFORMANCE_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/Performance_IDFC_TW.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -1805,7 +1805,7 @@ def L_T_BILLING_DOWNLOAD(request):
 
 def BAJAJ_CD_BILLING_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/FEB 22/BAJAJ PAYOUT.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -1816,7 +1816,7 @@ def BAJAJ_CD_BILLING_DOWNLOAD(request):
 
 def IDFC_TW_BILLING_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/FEB 22/Final_Billing_IDFC_TW.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -1903,8 +1903,7 @@ def L_T_TC_SALARY_DOWNLOAD(request):
 
 def IDFC_TW_SALARY_FIXED_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR,
-                            'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
+    filename = os.path.join(BASE_DIR,'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -1915,7 +1914,7 @@ def IDFC_TW_SALARY_FIXED_DOWNLOAD(request):
 
 def IDFC_TW_SALARY_INCENTIVE_PIVOT_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) IDFC-TW.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(PIVOT) IDFC-TW.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -1926,7 +1925,7 @@ def IDFC_TW_SALARY_INCENTIVE_PIVOT_DOWNLOAD(request):
 
 def IDFC_TW_SALARY_INCENTIVE_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE IDFC-TW.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE IDFC-TW.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -1937,7 +1936,7 @@ def IDFC_TW_SALARY_INCENTIVE_DOWNLOAD(request):
 
 def IDFC_TW_TC_SALARY_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -1948,7 +1947,7 @@ def IDFC_TW_TC_SALARY_DOWNLOAD(request):
 
 def BAJAJ_CD_SALARY_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ TC-WISE MIS.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
@@ -2617,7 +2616,7 @@ def IDFC_TW_MIS(request):
             else:
                 continue
 
-        fs = FileSystemStorage(location='media/IDFC_TW/MIS')
+        fs = FileSystemStorage(location='media/IDFC_TW/MIS/FEB 22')
         fs.save(Allocation1.name, Allocation1)
         fs.save(Paidfile1.name, Paidfile1)
         print(A.head())
@@ -2772,8 +2771,8 @@ def IDFC_TW_MIS(request):
             F.loc[i, 'TOTAL PAID'] = round(F.loc[i, 'TOTAL PAID'], 2)
 
         print(F)
-        F.to_excel('media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx', index=False)
-        F.to_excel('media/IDFC_TW/Billing/Performance_IDFC_TW.xlsx', index=False)
+        F.to_excel('media/IDFC_TW/MIS/FEB 22/Performance_IDFC_TW.xlsx', index=False)
+        F.to_excel('media/IDFC_TW/Billing/FEB 22/Performance_IDFC_TW.xlsx', index=False)
         F1 = F.copy()
 
         for i in range(0, len(A['AGREEMENTID'])):
@@ -2803,11 +2802,11 @@ def IDFC_TW_MIS(request):
                 if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
                     A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
 
-        F.to_excel(r'media/IDFC_TW/MIS/MIS_IDFC_TW.xlsx', index=False)
+        F.to_excel(r'media/IDFC_TW/MIS/FEB 22/MIS_IDFC_TW.xlsx', index=False)
 
         F.replace(np.nan, 0, inplace=True)
 
-        F.to_excel(r'media/IDFC_TW/Billing/Performance_IDFC_TW.xlsx', index=False)
+        F.to_excel(r'media/IDFC_TW/Billing/FEB 22/Performance_IDFC_TW.xlsx', index=False)
 
         for i in range(0, len(A['AGREEMENTID'])):
             s = 0
@@ -2820,15 +2819,15 @@ def IDFC_TW_MIS(request):
                     s = s + B.loc[j, 'PAID AMOUNT']
             A.loc[i, 'Billing PAID AMT.'] = s
 
-        A.to_excel(r'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx', index=False)
-        A.to_excel(r'media/IDFC_TW/Billing/MASTER FILE IDFC_TW.xlsx', index=False)
-        A.to_excel(r'media/IDFC_TW/TC Performance/MASTER FILE IDFC_TW.xlsx', index=False)
-        A.to_excel(r'media/IDFC_TW/FOS Salary/MASTER FILE IDFC_TW.xlsx', index=False)
-        A.to_excel(r'media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/Billing/FEB 22/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/TC Performance/FEB 22/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/FOS Salary/FEB 22/MASTER FILE IDFC_TW.xlsx', index=False)
+        A.to_excel(r'media/IDFC_TW/TC Incentive/FEB 22/MASTER FILE IDFC_TW.xlsx', index=False)
 
     elif request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')):
-            fs = FileSystemStorage(location='media/IDFC_TW/MIS')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/Performance_IDFC_TW.xlsx')):
+            fs = FileSystemStorage(location='media/IDFC_TW/MIS/FEB 22')
             AA = fs.open('Performance_IDFC_TW.xlsx')
             F1 = pd.read_excel(AA)
         else:
@@ -2851,19 +2850,18 @@ def IDFC_TW_MIS(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/upload_excel.html',
-                  {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process,
-                   'Designation': Designation})
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 def IDFC_TW_BILLING(request):
     excel_data1 = []
     F2 = pd.DataFrame()
     if request.method == 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/MASTER FILE IDFC_TW.xlsx')):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/FEB 22/MASTER FILE IDFC_TW.xlsx')):
             fs = FileSystemStorage(location='media/IDFC_TW/Billing')
-            AA = fs.open('Performance_IDFC_TW.xlsx')
-            AA1 = fs.open('MASTER FILE IDFC_TW.xlsx')
+            fs1 = FileSystemStorage(location='media/IDFC_TW/Billing/FEB 22')
+            AA = fs1.open('Performance_IDFC_TW.xlsx')
+            AA1 = fs1.open('MASTER FILE IDFC_TW.xlsx')
             AA2 = fs.open('BKT0.xlsx')
             AA3 = fs.open('BKT 1.xlsx')
             AA4 = fs.open('BKT 1 Target.xlsx')
@@ -4126,9 +4124,9 @@ def IDFC_TW_BILLING(request):
 
             A.rename({'MOHAK': 'PAYOUT'}, axis=1, inplace=True)
 
-            A.to_excel('media/IDFC_TW/FOS Salary/MASTER FILE IDFC_TW.xlsx', index=False)
+            A.to_excel('media/IDFC_TW/FOS Salary/FEB 22/MASTER FILE IDFC_TW.xlsx', index=False)
 
-            A.to_excel('media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx', index=False)
+            A.to_excel('media/IDFC_TW/Billing/FEB 22/Final_Billing_IDFC_TW.xlsx', index=False)
 
             F = pd.DataFrame(A.groupby('BKT')['PAYOUT'].sum()).reset_index()
 
@@ -4136,7 +4134,7 @@ def IDFC_TW_BILLING(request):
                 F.loc[i, 'PAYOUT'] = round(F.loc[i, 'PAYOUT'], 2)
 
             A['PAYOUT'].fillna(0, inplace=True)
-            F.to_excel('media/IDFC_TW/Billing/BKT_Billing_IDFC_TW.xlsx', index=False)
+            F.to_excel('media/IDFC_TW/Billing/FEB 22/BKT_Billing_IDFC_TW.xlsx', index=False)
             F2 = F.copy()
 
             Total_Payout = round(sum(A['PAYOUT']), 2)
@@ -4145,8 +4143,8 @@ def IDFC_TW_BILLING(request):
             return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
 
     elif request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx')):
-            fs = FileSystemStorage(location='media/IDFC_TW/Billing')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/FEB 22/Final_Billing_IDFC_TW.xlsx')):
+            fs = FileSystemStorage(location='media/IDFC_TW/Billing/FEB 22')
             AA = fs.open('BKT_Billing_IDFC_TW.xlsx')
             F2 = pd.read_excel(AA)
             Total_Payout = round(sum(F2['PAYOUT']), 2)
@@ -4171,8 +4169,7 @@ def IDFC_TW_BILLING(request):
     Designation = Employee_Designation()
 
     return render(request, 'FirstLevel/Billing.html',
-                  {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep,
-                   'PROCESS': final_process, 'Designation': Designation})
+                  {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 def IDFC_HL_MIS(request):
@@ -10100,10 +10097,10 @@ def MASTER_SALARY_TW(request):
     a = 0
 
     if request.method == 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx')):
             # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/MIS/MASTER FILE L_T.xlsx'))
             # fs = FileSystemStorage(location='media/L_T/MIS')
-            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
+            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS/FEB 22')
             fs2 = FileSystemStorage(location='media/Employees')
             # fs3 = FileSystemStorage(location='media/IDFC_HL/MIS')
             # AA = fs.open('MASTER FILE L_T.xlsx')
@@ -10111,8 +10108,8 @@ def MASTER_SALARY_TW(request):
             E = fs2.open('Employee_Database.xlsx')
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')):
-                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')
+                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/IDFC_TW PAID FILE ' + str(i) + ' FEB 2022.xlsx')):
+                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' FEB 2022.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
                     continue
@@ -10132,8 +10129,8 @@ def MASTER_SALARY_TW(request):
             #         continue
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW ALLOCATION ' + str(i) + ' OCT 21.xlsx')):
-                    AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' OCT 21.xlsx')
+                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/IDFC_TW ALLOCATION ' + str(i) + ' FEB 2022.xlsx')):
+                    AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' FEB 22.xlsx')
                     IDFCTW = pd.read_excel(AA125)
                 else:
                     continue
@@ -10348,7 +10345,7 @@ def MASTER_SALARY_TW(request):
                 F.loc[i, 'PERFORMANCE'] = round(F.loc[i, 'PERFORMANCE'], 2)
                 F.loc[i, 'Additional_Performance'] = round(F.loc[i, 'Additional_Performance'], 2)
 
-            F.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/Performance.xlsx', index=False)
+            F.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/Performance.xlsx', index=False)
 
             #
             # FINAL TABLE COPY CREATION
@@ -10832,7 +10829,7 @@ def MASTER_SALARY_TW(request):
             for i in range(0, len(sy)):
                 FINAL_COPY.loc[sy[i], 'PER PAID CASE'] = 0
 
-            FINAL_COPY.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE.xlsx', index=False)
+            FINAL_COPY.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE.xlsx', index=False)
 
             FINAL_COPY1 = pd.DataFrame(
                 FINAL_COPY.groupby(['PRODUCT', 'FINAL PAID FOS'])['PER PAID CASE'].sum()).reset_index()
@@ -10853,13 +10850,13 @@ def MASTER_SALARY_TW(request):
                 ['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'SALARY', 'TYPE_OF_SALARY',
                  'MANAGEMENT_LEVEL', 'NAMES', 'DATE_OF_BIRTH'], axis=1, inplace=True)
 
-            FINAL_COPY1.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT).xlsx', index=False)
+            FINAL_COPY1.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(PIVOT).xlsx', index=False)
 
             FF = pd.DataFrame(FINAL_COPY[FINAL_COPY['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
             FF1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
 
-            FF.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE IDFC-TW.xlsx', index=False)
-            FF1.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) IDFC-TW.xlsx', index=False)
+            FF.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE IDFC-TW.xlsx', index=False)
+            FF1.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(PIVOT) IDFC-TW.xlsx', index=False)
 
             # FF2 = pd.DataFrame(FINAL_COPY[FINAL_COPY['PRODUCT']=='L&T']).reset_index(drop=True)
             # FF3 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT']=='L&T']).reset_index(drop=True)
@@ -10903,17 +10900,17 @@ def MASTER_SALARY_TW(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary).xlsx',
+            F.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(Including Fixed Salary).xlsx',
                        index=False)
 
             FF4 = pd.DataFrame(F[F['PRODUCT'] == 'IDFC-TW']).reset_index(drop=True)
-            FF4.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx',
+            FF4.to_excel(r'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx',
                          index=False)
 
             # FF5 = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
             # FF5.to_excel(r'/Users/mohaksehgal/Website_Deployment/media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx',index=False)
 
-            if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx')):
                 # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
                 final_dep = DEP()
                 final_process = COMPANY_PROCESS()
@@ -10927,7 +10924,7 @@ def MASTER_SALARY_TW(request):
                 #     FINAL_COPY1 = pd.DataFrame(FINAL_COPY1[FINAL_COPY1['PRODUCT'] == 'L&T']).reset_index(drop=True)
                 #     F = pd.DataFrame(F[F['PRODUCT'] == 'L&T']).reset_index(drop=True)
 
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
 
@@ -10935,8 +10932,8 @@ def MASTER_SALARY_TW(request):
                 # AA1233 = fs1233.open('TC Performance L_T.xlsx')
                 # F123 = pd.read_excel(AA1233)
 
-            elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx')):
+                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
 
@@ -11060,7 +11057,7 @@ def MASTER_SALARY_TW(request):
                               {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11,
                                'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -11086,19 +11083,19 @@ def MASTER_SALARY_TW(request):
                            'Designation': Designation})
 
     elif request.method != 'POST':
-        if (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))):
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE.xlsx'))) and (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx'))):
             # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
             if (final_dep == 'TW') and (final_process == 'IDFC'):
-                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
                 AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
                 AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
                 FINAL_COPY1 = pd.read_excel(AA)
                 F = pd.read_excel(AA2)
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
                 # fs1233 = FileSystemStorage(location='media/L_T/TC Incentive')
@@ -11222,13 +11219,13 @@ def MASTER_SALARY_TW(request):
         #         excel_data1233.append(row_data223)
         #
         #     return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel1233': excel_data1233, 'columns1233': C1233, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
             if (final_dep == 'TW') and (final_process == 'IDFC'):
-                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+                fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
                 AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
                 AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
                 FINAL_COPY1 = pd.read_excel(AA)
@@ -11261,11 +11258,11 @@ def MASTER_SALARY_TW(request):
             return render(request, 'FirstLevel/salary.html',
                           {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11,
                            'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/MASTER FILE IDFC_TW.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/MASTER FILE IDFC_TW.xlsx')):
             # and (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/MASTER FILE L_T.xlsx'))
-            if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx')):
                 # (os.path.exists(r'/Users/mohaksehgal/Website_Deployment/media/L_T/TC Incentive/TC Performance L_T.xlsx'))
-                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+                fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
                 AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
                 F12 = pd.read_excel(AA123)
                 C123 = list(F12.columns)  # TC_Incentive
@@ -11338,7 +11335,7 @@ def MASTER_SALARY_TW(request):
                 #     else:
                 #         return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
                 if final_process == 'IDFC':
-                    if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
+                    if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx')):
                         final_dep = DEP()
                         final_process = COMPANY_PROCESS()
                         Designation = Employee_Designation()
@@ -11348,7 +11345,7 @@ def MASTER_SALARY_TW(request):
                                        'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
                     else:
                         return HttpResponseRedirect(reverse('basic_app:IDFC_TW_MIS'))
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx')):
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
@@ -11356,7 +11353,7 @@ def MASTER_SALARY_TW(request):
             # if (final_process == 'L&T') and (final_dep == 'TW'):
             #     return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
             # else:
-            fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
             AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
             F12 = pd.read_excel(AA123)
             C123 = list(F12.columns)  # TC_Incentive
@@ -11409,7 +11406,7 @@ def MASTER_SALARY_TW(request):
             #     else:
             #         return HttpResponseRedirect(reverse('basic_app:L_T_MIS'))
             if final_process == 'IDFC':
-                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx')):
                     final_dep = DEP()
                     final_process = COMPANY_PROCESS()
                     Designation = Employee_Designation()
@@ -11453,9 +11450,7 @@ def MASTER_SALARY_TW(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/salary.html',
-                  {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123,
-                   'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 # 'excel1233': excel_data1233, 'columns1233': C1233
@@ -12319,7 +12314,7 @@ def BAJAJ_MIS(request):
         A = pd.read_excel(Allocation1)
         B = pd.read_excel(Paidfile1)
 
-        fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+        fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
         fs.save(Allocation1.name, Allocation1)
         fs.save(Paidfile1.name, Paidfile1)
 
@@ -12375,7 +12370,7 @@ def BAJAJ_MIS(request):
 
         A.rename({'MOHAK STATUS': 'STATUS'}, axis=1, inplace=True)
 
-        A.to_excel(r'media/BAJAJ-CD/MIS/MASTER_FILE_BAJAJ.xlsx', index=False)
+        A.to_excel(r'media/BAJAJ-CD/MIS/FEB 22/MASTER_FILE_BAJAJ.xlsx', index=False)
 
         MIS = pd.DataFrame(A.groupby(['TC NAME'])['POS'].sum().reset_index())
 
@@ -12540,20 +12535,20 @@ def BAJAJ_MIS(request):
         for i in range(0, len(SS['PERFORMANCE'])):
             SS.loc[i, 'PERFORMANCE'] = round(SS.loc[i, 'PERFORMANCE'], 2)
 
-        MIS.to_excel(r'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx', index=False)
+        MIS.to_excel(r'media/BAJAJ-CD/MIS/FEB 22/BAJAJ TC-WISE MIS.xlsx', index=False)
 
-        SS.to_excel(r'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx', index=False)
+        SS.to_excel(r'media/BAJAJ-CD/Billing/FEB 22/BAJAJ PAYOUT.xlsx', index=False)
 
         SS1 = SS.copy()
 
         SS1.drop(["PAYOUT PERCENTAGE", "PAYOUT"], axis=1, inplace=True)
 
-        SS1.to_excel(r'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx', index=False)
+        SS1.to_excel(r'media/BAJAJ-CD/MIS/FEB 22/BAJAJ_PERFORMANCE.xlsx', index=False)
 
         BAJAJ_CD = 'yes there is data for BAJAJ-CD'
 
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
-            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/FEB 22/BAJAJ-PL MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS/FEB 22')
             AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
             AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
             SS2 = pd.read_excel(AA1)
@@ -12564,10 +12559,10 @@ def BAJAJ_MIS(request):
             QQ1 = 'Please Upload file for BAJAJ-PL'
 
     elif request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
-            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
-                fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
-                fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ_PERFORMANCE.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/FEB 22/BAJAJ-PL MIS.xlsx')):
+                fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
+                fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS/FEB 22')
                 AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
                 AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
                 AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
@@ -12577,8 +12572,8 @@ def BAJAJ_MIS(request):
                 BAJAJ_CD = 'yes there is data for BAJAJ-CD'
                 BAJAJ_PL = 'yes there is data for BAJAJ-PL'
 
-            elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
-                fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+            elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ_PERFORMANCE.xlsx')):
+                fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
                 AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
                 SS1 = pd.read_excel(AA)
 
@@ -12599,8 +12594,8 @@ def BAJAJ_MIS(request):
                                'Designation': Designation, 'BAJAJ_PL': 'Please Upload file for BAJAJ-PL'})
 
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
-            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ_PERFORMANCE.xlsx')):
+            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
             AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
             SS1 = pd.read_excel(AA)
 
@@ -12620,8 +12615,8 @@ def BAJAJ_MIS(request):
                           {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process,
                            'Designation': Designation, 'BAJAJ_PL': 'Please Upload file for BAJAJ-PL'})
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
-            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/FEB 22/BAJAJ-PL MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS/FEB 22')
             AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
             AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
             SS2 = pd.read_excel(AA1)
@@ -12692,10 +12687,7 @@ def BAJAJ_MIS(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/upload_excel.html',
-                  {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2,
-                   'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
-                   'BAJAJ_PL': BAJAJPL})
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_PL': BAJAJPL})
 
 
 def BAJAJ_PL_MIS(request):
@@ -12711,7 +12703,7 @@ def BAJAJ_PL_MIS(request):
         A = pd.read_excel(Allocation1)
         B = pd.read_excel(Paidfile1)
 
-        fs = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+        fs = FileSystemStorage(location='media/BAJAJ-PL/MIS/FEB 22')
         fs.save(Allocation1.name, Allocation1)
         fs.save(Paidfile1.name, Paidfile1)
 
@@ -12807,7 +12799,7 @@ def BAJAJ_PL_MIS(request):
             else:
                 A.loc[i, 'PAID FEEDBACK'] = 'UNPAID'
 
-        A.to_excel(r'media/BAJAJ-PL/MIS/MASTER_FILE_BAJAJ-PL.xlsx', index=False)
+        A.to_excel(r'media/BAJAJ-PL/MIS/FEB 22/MASTER_FILE_BAJAJ-PL.xlsx', index=False)
 
         for i in range(0, len(A['LOAN AGREEMENT NO'])):
             if A.loc[i, 'STATUS'] == 'PAID':
@@ -12870,7 +12862,7 @@ def BAJAJ_PL_MIS(request):
 
         P
 
-        P.to_excel(r'media/BAJAJ-PL/MIS/BAJAJ-PL TC MIS.xlsx', index=False)
+        P.to_excel(r'media/BAJAJ-PL/MIS/FEB 22/BAJAJ-PL TC MIS.xlsx', index=False)
 
         A.head()
 
@@ -12887,7 +12879,7 @@ def BAJAJ_PL_MIS(request):
 
         SS.head()
 
-        SS.to_excel(r'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx', index=False)
+        SS.to_excel(r'media/BAJAJ-PL/MIS/FEB 22/BAJAJ-PL MIS.xlsx', index=False)
 
         A.head(1)
 
@@ -12914,18 +12906,18 @@ def BAJAJ_PL_MIS(request):
                     A.loc[i, 'BILLING%'] = '17%'
                     A.loc[i, 'PAYOUT'] = (A.loc[i, 'PAID AMOUNT'] * 17) / 100
 
-        A.to_excel(r'media/BAJAJ-PL/Billing/BAJAJ-PL Billing.xlsx', index=False)
+        A.to_excel(r'media/BAJAJ-PL/Billing/FEB 22/BAJAJ-PL Billing.xlsx', index=False)
 
         A23 = pd.DataFrame(A.groupby(['BOM_BUCKET', 'BILLING%'])['PAYOUT'].sum()).reset_index()
 
         A23['PAYOUT'] = round(A23['PAYOUT'], 2)
 
-        A23.to_excel(r'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx', index=False)
+        A23.to_excel(r'media/BAJAJ-PL/Billing/FEB 22/BAJAJ-PL Billing MIS.xlsx', index=False)
 
         BAJAJ_PL = 'yes there is data for BAJAJ-PL'
 
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
-            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ_PERFORMANCE.xlsx')):
+            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
             AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
             SS1 = pd.read_excel(AA)
             BAJAJ_CD = 'yes there is data for BAJAJ-CD'
@@ -12934,10 +12926,10 @@ def BAJAJ_PL_MIS(request):
             QQ2 = 'Please Upload file for BAJAJ-CD'
 
     elif request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
-            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
-                fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
-                fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ_PERFORMANCE.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/FEB 22/BAJAJ-PL MIS.xlsx')):
+                fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
+                fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS/FEB 22')
                 AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
                 AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
                 AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
@@ -12947,8 +12939,8 @@ def BAJAJ_PL_MIS(request):
                 BAJAJ_CD = 'yes there is data for BAJAJ-CD'
                 BAJAJ_PL = 'yes there is data for BAJAJ-PL'
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ_PERFORMANCE.xlsx')):
-            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ_PERFORMANCE.xlsx')):
+            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
             AA = fs.open('BAJAJ_PERFORMANCE.xlsx')
             SS1 = pd.read_excel(AA)
 
@@ -12968,8 +12960,8 @@ def BAJAJ_PL_MIS(request):
                           {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process,
                            'Designation': Designation, 'BAJAJ_PL': 'Please Upload file for BAJAJ-PL'})
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx')):
-            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/FEB 22/BAJAJ-PL MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-PL/MIS/FEB 22')
             AA1 = fs1.open('BAJAJ-PL MIS.xlsx')
             AA2 = fs1.open('BAJAJ-PL TC MIS.xlsx')
             SS2 = pd.read_excel(AA1)
@@ -13036,10 +13028,7 @@ def BAJAJ_PL_MIS(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/upload_excel.html',
-                  {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2,
-                   'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
-                   'BAJAJ_CD': QQ2})
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'BAJAJ_CD': QQ2})
 
 
 def BAJAJ_BILLING(request):
@@ -13048,10 +13037,10 @@ def BAJAJ_BILLING(request):
     Total_Payout = 0
     Total_Payout_PL = 0
     if request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')):
-            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx')):
-                fs = FileSystemStorage(location='media/BAJAJ-CD/Billing')
-                fs1 = FileSystemStorage(location='media/BAJAJ-PL/Billing')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/FEB 22/BAJAJ PAYOUT.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/FEB 22/BAJAJ-PL Billing MIS.xlsx')):
+                fs = FileSystemStorage(location='media/BAJAJ-CD/Billing/FEB 22')
+                fs1 = FileSystemStorage(location='media/BAJAJ-PL/Billing/FEB 22')
                 AA = fs.open('BAJAJ PAYOUT.xlsx')
                 AA1 = fs1.open('BAJAJ-PL Billing MIS.xlsx')
                 F1 = pd.read_excel(AA)
@@ -13061,8 +13050,8 @@ def BAJAJ_BILLING(request):
                 Total_Payout = round(sum(F1['PAYOUT']), 2)
                 Total_Payout_PL = round(sum(F2['PAYOUT']), 2)
 
-            elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')):
-                fs = FileSystemStorage(location='media/BAJAJ-CD/Billing')
+            elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/FEB 22/BAJAJ PAYOUT.xlsx')):
+                fs = FileSystemStorage(location='media/BAJAJ-CD/Billing/FEB 22')
                 AA = fs.open('BAJAJ PAYOUT.xlsx')
                 F1 = pd.read_excel(AA)
                 F1.fillna(0, inplace=True)
@@ -13085,8 +13074,8 @@ def BAJAJ_BILLING(request):
                                'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
                                'BAJAJ_CD': 'Please Upload Files for BAJAJ-CD'})
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx')):
-            fs1 = FileSystemStorage(location='media/BAJAJ-PL/Billing')
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/FEB 22/BAJAJ-PL Billing MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-PL/Billing/FEB 22')
             AA1 = fs1.open('BAJAJ-PL Billing MIS.xlsx')
             F2 = pd.read_excel(AA1)
             F2.fillna(0, inplace=True)
@@ -13136,26 +13125,23 @@ def BAJAJ_BILLING(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/Billing.html',
-                  {'Billing': excel_data, 'columns': C, 'Total_Payout': Total_Payout, 'Billing1': excel_data1,
-                   'columns1': C1, 'Total_Payout_PL': Total_Payout_PL, 'DEPARTMENT': final_dep,
-                   'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data, 'columns': C, 'Total_Payout': Total_Payout, 'Billing1': excel_data1, 'columns1': C1, 'Total_Payout_PL': Total_Payout_PL, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 def BAJAJ_SALARY(request):
     excel_data = []
     excel_data1 = []
     if request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/BAJAJ-PL TC Incentive Group.xlsx')):
-            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
-                fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS')
-                fs = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/FEB 22/BAJAJ-PL TC Incentive Group.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ TC-WISE MIS.xlsx')):
+                fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
+                fs = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive/FEB 22')
                 AA = fs1.open('BAJAJ TC-WISE MIS.xlsx')
                 AA1 = fs.open('BAJAJ-PL TC Incentive Group.xlsx')
                 FINAL_COPY1 = pd.read_excel(AA)
                 WW = pd.read_excel(AA1)
             else:
-                fs = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive')
+                fs = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive/FEB 22')
                 AA1 = fs.open('BAJAJ-PL TC Incentive Group.xlsx')
                 WW = pd.read_excel(AA1)
                 C = list(WW.columns)
@@ -13173,8 +13159,8 @@ def BAJAJ_SALARY(request):
                 return render(request, 'FirstLevel/salary.html',
                               {'excel98': excel_data, 'columns98': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process,
                                'Designation': Designation})
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
-            fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ TC-WISE MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
             AA = fs1.open('BAJAJ TC-WISE MIS.xlsx')
             FINAL_COPY1 = pd.read_excel(AA)
 
@@ -13193,7 +13179,7 @@ def BAJAJ_SALARY(request):
             return render(request, 'FirstLevel/salary.html',
                           {'excel12334': excel_data1, 'columns12334': C1, 'DEPARTMENT': final_dep,
                            'PROCESS': final_process, 'Designation': Designation})
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/MASTER_FILE_BAJAJ-PL.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/FEB 22/MASTER_FILE_BAJAJ-PL.xlsx')):
 
             final_dep = DEP()
             final_process = COMPANY_PROCESS()
@@ -13223,9 +13209,7 @@ def BAJAJ_SALARY(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/salary.html',
-                  {'excel98': excel_data, 'columns98': C, 'excel12334': excel_data1, 'columns12334': C1,
-                   'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/salary.html', {'excel98': excel_data, 'columns98': C, 'excel12334': excel_data1, 'columns12334': C1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 def BAJAJ_PL_SALARY(request):
@@ -13234,8 +13218,8 @@ def BAJAJ_PL_SALARY(request):
     C1 = []
     BAJAJ_CD = ''
     if request.method == 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/MASTER_FILE_BAJAJ-PL.xlsx')):
-            fs = FileSystemStorage(location='media/BAJAJ-PL/MIS')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/MIS/FEB 22/MASTER_FILE_BAJAJ-PL.xlsx')):
+            fs = FileSystemStorage(location='media/BAJAJ-PL/MIS/FEB 22')
             fs1 = FileSystemStorage(location='media/Employees')
 
             A1 = fs.open('MASTER_FILE_BAJAJ-PL.xlsx')
@@ -13303,16 +13287,16 @@ def BAJAJ_PL_SALARY(request):
             F.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'SALARY', 'TYPE_OF_SALARY',
                     'MANAGEMENT_LEVEL', 'NAMES'], axis=1, inplace=True)
 
-            F.to_excel(r'media/BAJAJ-PL/TC Incentive/BAJAJ-PL TC Incentive.xlsx', index=False)
+            F.to_excel(r'media/BAJAJ-PL/TC Incentive/FEB 22/BAJAJ-PL TC Incentive.xlsx', index=False)
 
             WW = pd.DataFrame(F.groupby(['TC NAME', 'PAID FEEDBACK', 'PAYOUT%'])['TC PAYOUT'].sum()).reset_index()
 
             WW['TC PAYOUT'] = round(WW['TC PAYOUT'], 2)
 
-            WW.to_excel(r'media/BAJAJ-PL/TC Incentive/BAJAJ-PL TC Incentive Group.xlsx', index=False)
+            WW.to_excel(r'media/BAJAJ-PL/TC Incentive/FEB 22/BAJAJ-PL TC Incentive Group.xlsx', index=False)
 
-            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
-                fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ TC-WISE MIS.xlsx')):
+                fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
                 AA = fs1.open('BAJAJ TC-WISE MIS.xlsx')
                 FINAL_COPY1 = pd.read_excel(AA)
                 BAJAJ_CD = 'Yes there is data'
@@ -13322,16 +13306,16 @@ def BAJAJ_PL_SALARY(request):
 
 
     elif request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/BAJAJ-PL TC Incentive Group.xlsx')):
-            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
-                fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS')
-                fs = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/FEB 22/BAJAJ-PL TC Incentive Group.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ TC-WISE MIS.xlsx')):
+                fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
+                fs = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive/FEB 22')
                 AA = fs1.open('BAJAJ TC-WISE MIS.xlsx')
                 AA1 = fs.open('BAJAJ-PL TC Incentive Group.xlsx')
                 FINAL_COPY1 = pd.read_excel(AA)
                 WW = pd.read_excel(AA1)
             else:
-                fs = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive')
+                fs = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive/FEB 22')
                 AA1 = fs.open('BAJAJ-PL TC Incentive Group.xlsx')
                 WW = pd.read_excel(AA1)
                 C = list(WW.columns)
@@ -13349,8 +13333,8 @@ def BAJAJ_PL_SALARY(request):
                 return render(request, 'FirstLevel/salary.html',
                               {'excel98': excel_data, 'columns98': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process,
                                'Designation': Designation})
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
-            fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS')
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ TC-WISE MIS.xlsx')):
+            fs1 = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
             AA = fs1.open('BAJAJ TC-WISE MIS.xlsx')
             FINAL_COPY1 = pd.read_excel(AA)
 
@@ -13366,9 +13350,7 @@ def BAJAJ_PL_SALARY(request):
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
-            return render(request, 'FirstLevel/salary.html',
-                          {'excel12334': excel_data1, 'columns12334': C1, 'DEPARTMENT': final_dep,
-                           'PROCESS': final_process, 'Designation': Designation})
+            return render(request, 'FirstLevel/salary.html', {'excel12334': excel_data1, 'columns12334': C1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
         else:
             return HttpResponseRedirect(reverse('basic_app:BAJAJ_MIS'))
@@ -13394,9 +13376,7 @@ def BAJAJ_PL_SALARY(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/salary.html',
-                  {'excel98': excel_data, 'columns98': C, 'excel12334': excel_data1, 'columns12334': C1,
-                   'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/salary.html', {'excel98': excel_data, 'columns98': C, 'excel12334': excel_data1, 'columns12334': C1, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 def IDFC_TW_SALARY_TC(request):
@@ -13407,18 +13387,18 @@ def IDFC_TW_SALARY_TC(request):
     a = 0
 
     if request.method == 'POST':
-        if (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx'))) and (
-        os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'))):
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx'))) and (
+        os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/Per PAID CASE.xlsx'))):
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')):
-                    fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
-                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')
+                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/IDFC_TW PAID FILE ' + str(i) + ' FEB 22.xlsx')):
+                    fs1 = FileSystemStorage(location='media/IDFC_TW/MIS/FEB 22')
+                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' FEB 22.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
                     continue
 
-            fs1 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            fs1 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
             fs2 = FileSystemStorage(location='media/Employees')
             AA1 = fs1.open('MASTER FILE IDFC_TW.xlsx')
             E = fs2.open('Employee_Database.xlsx')
@@ -13684,12 +13664,12 @@ def IDFC_TW_SALARY_TC(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx',
+            F.to_excel(r'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx',
                        index=False)
 
             F12 = F.copy()
 
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
             AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
             FINAL_COPY1 = pd.read_excel(AA)
@@ -13725,17 +13705,17 @@ def IDFC_TW_SALARY_TC(request):
                            'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep,
                            'PROCESS': final_process, 'Designation': Designation})
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx')):
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')):
-                    fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
-                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' OCT 21.xlsx')
+                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/IDFC_TW PAID FILE ' + str(i) + ' FEB 22.xlsx')):
+                    fs1 = FileSystemStorage(location='media/IDFC_TW/MIS/FEB 22')
+                    AA122 = fs1.open('IDFC_TW PAID FILE ' + str(i) + ' FEB 22.xlsx')
                     PAID_FILE_IDFC_TW = pd.read_excel(AA122)
                 else:
                     continue
 
-            fs1 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            fs1 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
 
             fs2 = FileSystemStorage(location='media/Employees')
 
@@ -14046,25 +14026,25 @@ def IDFC_TW_SALARY_TC(request):
 
             F = F.reset_index(drop=True)
 
-            F.to_excel(r'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx', index=False)
+            F.to_excel(r'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx', index=False)
 
             F12 = F.copy()
 
 
     elif request.method != 'POST':
-        if (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx'))) and (
-        os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))):
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/Per PAID CASE.xlsx'))) and (
+        os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx'))):
+            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
             AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
             FINAL_COPY1 = pd.read_excel(AA)
             F = pd.read_excel(AA2)
-            fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            fs123 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
             AA123 = fs123.open('IDFC_TW TC Incentive.xlsx')
             F12 = pd.read_excel(AA123)
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/Per PAID CASE.xlsx')):
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/Per PAID CASE.xlsx')):
+            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
             AA = fs.open('PER PAID CASE(PIVOT) IDFC-TW.xlsx')
             AA2 = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
             FINAL_COPY1 = pd.read_excel(AA)
@@ -14106,9 +14086,7 @@ def IDFC_TW_SALARY_TC(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/salary.html',
-                  {'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process,
-                   'Designation': Designation})
+    return render(request, 'FirstLevel/salary.html', {'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 # def L_T_TW_SALARY_TC(request):
@@ -14545,13 +14523,13 @@ def IDFC_TW_TL_ANALYSIS(request):
     a = 0
 
     if request.method != 'POST':
-        if (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'))) and (
-        os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))) and (
+        if (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/Performance_IDFC_TW.xlsx'))) and (
+        os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx'))) and (
         os.path.exists(os.path.join(BASE_DIR,
-                                    'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
-            fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+                                    'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
+            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
+            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS/FEB 22')
+            fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
             AA = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
             AA1 = fs1.open('Performance_IDFC_TW.xlsx')
             AA2 = fs2.open('IDFC_TW TC Incentive.xlsx')
@@ -14587,11 +14565,11 @@ def IDFC_TW_TL_ANALYSIS(request):
                     row_data2.append(str(AA2.loc[j, C2[col1]]))
                 excel_data2.append(row_data2)
 
-        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'))) and (
-        os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))):
+        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/Performance_IDFC_TW.xlsx'))) and (
+        os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx'))):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
-            fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS/FEB 22')
+            fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
             # AA = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
             AA1 = fs1.open('Performance_IDFC_TW.xlsx')
             AA2 = fs2.open('IDFC_TW TC Incentive.xlsx')
@@ -14635,10 +14613,10 @@ def IDFC_TW_TL_ANALYSIS(request):
                            'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel': excel_data, 'columns': C
 
-        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx'))) and (os.path.exists(
+        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/Performance_IDFC_TW.xlsx'))) and (os.path.exists(
                 os.path.join(BASE_DIR,
-                             'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+                             'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
+            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
             fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
             AA = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
@@ -14684,12 +14662,12 @@ def IDFC_TW_TL_ANALYSIS(request):
                            'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel2': excel_data2, 'columns2': C2
 
-        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx'))) and (
+        elif (os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx'))) and (
         os.path.exists(os.path.join(BASE_DIR,
-                                    'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+                                    'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx'))):
+            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
-            fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
             AA = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
             # AA1 = fs1.open('Performance_IDFC_TW.xlsx')
             AA2 = fs2.open('IDFC_TW TC Incentive.xlsx')
@@ -14735,8 +14713,8 @@ def IDFC_TW_TL_ANALYSIS(request):
             # 'excel1': excel_data1, 'columns1': C1
 
         elif os.path.exists(os.path.join(BASE_DIR,
-                                         'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
-            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
+                                         'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+            fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
             AA = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
@@ -14782,10 +14760,10 @@ def IDFC_TW_TL_ANALYSIS(request):
                            'Designation': Designation})
             # 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx')):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
             # fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
-            fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
+            fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
             # AA = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
             # AA1 = fs1.open('Performance_IDFC_TW.xlsx')
             AA2 = fs2.open('IDFC_TW TC Incentive.xlsx')
@@ -14824,14 +14802,12 @@ def IDFC_TW_TL_ANALYSIS(request):
             final_process = COMPANY_PROCESS()
             Designation = Employee_Designation()
 
-            return render(request, 'FirstLevel/analysis.html',
-                          {'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process,
-                           'Designation': Designation})
+            return render(request, 'FirstLevel/analysis.html', {'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
             # 'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1,
 
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/Performance_IDFC_TW.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/Performance_IDFC_TW.xlsx')):
             # fs = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS')
+            fs1 = FileSystemStorage(location='media/IDFC_TW/MIS/FEB 22')
             # fs2 = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
             # AA = fs.open('PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')
             AA1 = fs1.open('Performance_IDFC_TW.xlsx')
@@ -14888,9 +14864,7 @@ def IDFC_TW_TL_ANALYSIS(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/analysis.html',
-                  {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2,
-                   'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/analysis.html', {'excel': excel_data, 'columns': C, 'excel1': excel_data1, 'columns1': C1, 'excel2': excel_data2, 'columns2': C2, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 def IDFC_TW_TL_SALARY(request):
@@ -14899,9 +14873,7 @@ def IDFC_TW_TL_SALARY(request):
     Designation = Employee_Designation()
     TL_SALARY = SALARY()
 
-    return render(request, 'FirstLevel/salary.html',
-                  {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
-                   'TL_SALARY': TL_SALARY})
+    return render(request, 'FirstLevel/salary.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'TL_SALARY': TL_SALARY})
 
 
 def IDFC_TW_EMPLOYEES(request):
@@ -14936,9 +14908,7 @@ def IDFC_TW_EMPLOYEES(request):
                 row_data.append(str(A3.loc[j, C[col]]))
             excel_data.append(row_data)
 
-        return render(request, 'FirstLevel/employee_views.html',
-                      {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
-                       'excel': excel_data, 'columns': C})
+        return render(request, 'FirstLevel/employee_views.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'excel': excel_data, 'columns': C})
 
 
 def BAJAJ_CD_EMPLOYEES(request):
@@ -15055,14 +15025,14 @@ def IDFC_TW_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/IDFC_TW TC Incentive.xlsx')):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/TC Incentive/FEB 22/IDFC_TW TC Incentive.xlsx')):
             if os.path.exists(os.path.join(BASE_DIR,
-                                           'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
-                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/Final_Billing_IDFC_TW.xlsx')):
+                                           'media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22/PER PAID CASE(Including Fixed Salary) IDFC-TW.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/IDFC_TW/Billing/FEB 22/Final_Billing_IDFC_TW.xlsx')):
                     if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
-                        fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive')
-                        fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW')
-                        fs2 = FileSystemStorage(location='media/IDFC_TW/Billing')
+                        fs = FileSystemStorage(location='media/IDFC_TW/TC Incentive/FEB 22')
+                        fs1 = FileSystemStorage(location='media/COMBINED SALARY OF L_T AND IDFC TW/FEB 22')
+                        fs2 = FileSystemStorage(location='media/IDFC_TW/Billing/FEB 22')
                         fs3 = FileSystemStorage(location='media/Employees')
 
                         AA = fs.open('IDFC_TW TC Incentive.xlsx')
@@ -15163,17 +15133,17 @@ def BAJAJ_CD_ANALYSIS(request):
     Designation = Employee_Designation()
 
     if request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/BAJAJ TC-WISE MIS.xlsx')):
-            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/Billing/BAJAJ PAYOUT.xlsx')):
-                if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx')):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/MIS/FEB 22/BAJAJ TC-WISE MIS.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-CD/FEB 22/Billing/BAJAJ PAYOUT.xlsx')):
+                if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/FEB 22/BAJAJ-PL Billing MIS.xlsx')):
                     if os.path.exists(
-                            os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/BAJAJ-PL TC Incentive Group.xlsx')):
+                            os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/FEB 22/BAJAJ-PL TC Incentive Group.xlsx')):
                         if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
-                            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
-                            fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
+                            fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
+                            fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing/FEB 22')
                             fs3 = FileSystemStorage(location='media/Employees')
-                            fs4 = FileSystemStorage(location='media/BAJAJ-PL/Billing')
-                            fs5 = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive')
+                            fs4 = FileSystemStorage(location='media/BAJAJ-PL/Billing/FEB 22')
+                            fs5 = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive/FEB 22')
 
                             AA1 = fs.open('BAJAJ TC-WISE MIS.xlsx')
                             AA2 = fs2.open('BAJAJ PAYOUT.xlsx')
@@ -15222,8 +15192,8 @@ def BAJAJ_CD_ANALYSIS(request):
                                            'FINAL_COSTING_PL': FINAL_COSTING_PL, 'P_L_BAJAJ_PL': P_L_BAJAJ_PL,
                                            'P_L_BAJAJ_PL_PERCENTAGE': P_L_BAJAJ_PL_PERCENTAGE})
                     else:
-                        fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
-                        fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
+                        fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
+                        fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing/FEB 22')
                         fs3 = FileSystemStorage(location='media/Employees')
 
                         AA1 = fs.open('BAJAJ TC-WISE MIS.xlsx')
@@ -15254,8 +15224,8 @@ def BAJAJ_CD_ANALYSIS(request):
                                        'P_L_BAJAJ_CD': P_L_BAJAJ_CD, 'P_L_BAJAJ_CD_PERCENTAGE': P_L_BAJAJ_CD_PERCENTAGE,
                                        'STATUS': 'Please Refresh TC Salary Data for BAJAJ-PL'})
                 else:
-                    fs = FileSystemStorage(location='media/BAJAJ-CD/MIS')
-                    fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing')
+                    fs = FileSystemStorage(location='media/BAJAJ-CD/MIS/FEB 22')
+                    fs2 = FileSystemStorage(location='media/BAJAJ-CD/Billing/FEB 22')
                     fs3 = FileSystemStorage(location='media/Employees')
 
                     AA1 = fs.open('BAJAJ TC-WISE MIS.xlsx')
@@ -15289,12 +15259,12 @@ def BAJAJ_CD_ANALYSIS(request):
                 return render(request, 'FirstLevel/analysis.html',
                               {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
                                'STATUS': 'Please Refresh Billing Data'})
-        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/BAJAJ-PL Billing MIS.xlsx')):
-            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/BAJAJ-PL TC Incentive Group.xlsx')):
+        elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/FEB 22/BAJAJ-PL Billing MIS.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/FEB 22/BAJAJ-PL TC Incentive Group.xlsx')):
                 if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
-                    fs3 = FileSystemStorage(location='media/Employees')
-                    fs4 = FileSystemStorage(location='media/BAJAJ-PL/Billing')
-                    fs5 = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive')
+                    fs3 = FileSystemStorage(location='media/Employees/FEB 22')
+                    fs4 = FileSystemStorage(location='media/BAJAJ-PL/Billing/FEB 22')
+                    fs5 = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive/FEB 22')
 
                     AA3 = fs3.open('Employee_Database.xlsx')
                     AA4 = fs4.open('BAJAJ-PL Billing MIS.xlsx')
