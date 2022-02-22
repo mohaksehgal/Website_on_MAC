@@ -180,7 +180,8 @@
 
 {% if DEPARTMENT == 'TW' %}
     {% if PROCESS == 'IDFC' %}
-        <a class="button"href="{% url 'basic_app:IDFC_TW_DOWNLOAD' %}">DOWNLOAD</a>
+        <a class="button"href="{% url 'basic_app:IDFC_TW_DOWNLOAD' %}">MIS_DOWNLOAD</a>
+        <a class="button"href="{% url 'basic_app:IDFC_TW_MASTER_DOWNLOAD' %}">MASTER_DOWNLOAD</a>
     {% endif %}
 {% endif %}
 

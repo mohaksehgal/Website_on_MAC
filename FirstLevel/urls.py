@@ -42,6 +42,7 @@ urlpatterns = [
     path('Employee_database/', views.employee_database, name='employee_database'),
     # path('down/', views.L_T_PERFORMANCE_DOWNLOAD, name='L_T_DOWNLOAD'),
     path('down1/', views.IDFC_TW_PERFORMANCE_DOWNLOAD, name='IDFC_TW_DOWNLOAD'),
+    path('down99/', views.IDFC_TW_MASTER_DOWNLOAD, name='IDFC_TW_MASTER_DOWNLOAD'),
     path('down2/', views.IDFC_HL_PERFORMANCE_DOWNLOAD, name='IDFC_HL_DOWNLOAD'),
     # path('down3/', views.FULLERTON_OTR_PERFORMANCE_DOWNLOAD, name='FULLERTON_OTR_DOWNLOAD'),
     # path('down4/', views.FULLERTON_RECOVERY_PERFORMANCE_DOWNLOAD, name='FULLERTON_RECOVERY_DOWNLOAD'),

@@ -1737,6 +1737,16 @@ def IDFC_TW_PERFORMANCE_DOWNLOAD(request):
     response['Content-Disposition'] = "attachment; filename=MIS IDFC-TW.xlsx"
     return response
 
+def IDFC_TW_MASTER_DOWNLOAD(request):
+    # fill these variables with real values
+    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')
+
+    excel = open(filename, 'rb')
+    response = HttpResponse(excel,
+                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = "attachment; filename=MASTER IDFC-TW.xlsx"
+    return response
+
 
 def IDFC_HL_PERFORMANCE_DOWNLOAD(request):
     # fill these variables with real values
