@@ -21,7 +21,7 @@
     {% csrf_token %}
     <button class="button1" type="submit">Billing</button>
 </form>
-{% else %}
+{% elif DEPARTMENT != 'CD' %}
 <form method="post", enctype="multipart/form-data" style="width: 890px;" >
     {% csrf_token %}
     <button class="button1" type="submit">Billing</button>
