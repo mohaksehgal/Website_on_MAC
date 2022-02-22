@@ -2786,10 +2786,7 @@ def IDFC_TW_MIS(request):
         for i in range(0, len(A['AGREEMENTID'])):
             s = 0
             for j in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and (
-                        A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
-                    i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'RB' or A.loc[i, 'STATUS'] == 'SB') and (
-                        B.loc[j, 'MODE'] != 'ECS'):
+                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'RB' or A.loc[i, 'STATUS'] == 'SB') and (B.loc[j, 'MODE'] != 'ECS'):
                     s = s + B.loc[j, 'PAID AMOUNT']
             A.loc[i, 'Billing PAID AMT.'] = s
             if A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[i, 'STATUS'] == 'FORECLOSE':
@@ -12764,7 +12761,7 @@ def BAJAJ_PL_MIS(request):
 
         for i in range(0, len(A['PAID AMOUNT'])):
             if A.loc[i, 'STATUS'] == 'PAID':
-                if A.loc[i, 'PAID AMOUNT'] < A.loc[i, 'OD AMOUNT']:
+                if A.loc[i, 'PAID AMOUNT'] <= A.loc[i, 'OD AMOUNT']:
                     A.loc[i, 'PAID FEEDBACK'] = 'LESS THAN DEMAND'
                 else:
                     A.loc[i, 'PAID FEEDBACK'] = 'MORE THAN DEMAND'
@@ -12844,10 +12841,6 @@ def BAJAJ_PL_MIS(request):
 
         for i in range(0, len(SS['BOM_BUCKET'])):
             SS.loc[i, 'PERFORMANCE'] = (SS.loc[i, 'PAID AMOUNT'] / SS.loc[i, 'POS']) * 100
-
-        for i in range(0, len(SS['BOM_BUCKET'])):
-            SS.loc[i, 'PERFORMANCE'] = round(SS.loc[i, 'PERFORMANCE'], 2)
-            SS.loc[i, 'POS'] = round(SS.loc[i, 'POS'], 2)
 
         SS.head()
 
