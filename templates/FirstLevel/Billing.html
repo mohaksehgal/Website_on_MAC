@@ -30,7 +30,6 @@
     <div class="center" style="margin-left:110px;">
          <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; margin-left:205px;font-size:15px;">BILLING {{PROCESS}}-{{DEPARTMENT}}</p3>
     </div>
-    <BR><BR>
 {% if DEPARTMENT == 'HL' %}
     {% if PROCESS == 'IDFC' %}
     <div class="center>">
@@ -119,9 +118,6 @@
     {% if PROCESS == 'BAJAJ' %}
         {{BAJAJ_PL}}
         {{BAJAJ_CD}}
-          <div class="center" style="margin-left:110px;">
-            <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; margin-left:205px;font-size:15px;">Billing for BAJAJ-CD</p3>
-          </div>
           <div class="center">
             <table class="A4" style="margin-left:-110px;">
             <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:100px; height:17px">
@@ -136,7 +132,7 @@
                 {% endfor %}
                 </tr>
             {% endfor %}
-        </table>
+            </table>
            </div>
          <div class="center" style="margin-left:110px;">
             <p3 style="color:white;border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; margin-left:205px;font-size:15px;">Billing for BAJAJ-PL</p3>
