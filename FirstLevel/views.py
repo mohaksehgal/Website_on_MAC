@@ -10251,8 +10251,7 @@ def MASTER_SALARY_TW(request):
             for i in range(0, len(R1['PRODUCT'])):
                 for j in range(0, len(P['PRODUCT'])):
                     for k in range(0, len(COL)):
-                        if ((R1.loc[i, ['PRODUCT', 'ALLOCATED FOS', 'BKT']] == P.loc[
-                            j, ['PRODUCT', 'ALLOCATED FOS', 'BKT']]).all()) and R1.loc[i, 'STATUS'] == COL[k]:
+                        if ((R1.loc[i, ['PRODUCT', 'ALLOCATED FOS', 'BKT']] == P.loc[j, ['PRODUCT', 'ALLOCATED FOS', 'BKT']]).all()) and R1.loc[i, 'STATUS'] == COL[k]:
                             P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
 
             F = F.merge(P, how='outer')
@@ -10268,8 +10267,7 @@ def MASTER_SALARY_TW(request):
             for i in range(0, len(R2['PRODUCT'])):
                 for j in range(0, len(P['PRODUCT'])):
                     for k in range(0, len(COL)):
-                        if ((R2.loc[i, ['PRODUCT', 'ALLOCATED FOS', 'BKT']] == P.loc[
-                            j, ['PRODUCT', 'ALLOCATED FOS', 'BKT']]).all()) and R2.loc[i, 'STATUS'] == COL[k]:
+                        if ((R2.loc[i, ['PRODUCT', 'ALLOCATED FOS', 'BKT']] == P.loc[j, ['PRODUCT', 'ALLOCATED FOS', 'BKT']]).all()) and R2.loc[i, 'STATUS'] == COL[k]:
                             P.loc[j, COL[k]] = R2.loc[i, 'POS']
 
             F = F.merge(P, how='outer')
@@ -10404,18 +10402,7 @@ def MASTER_SALARY_TW(request):
                                         FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
                                 elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'RB') or (
                                         FINAL_COPY.loc[blank4[j], 'STATUS'] == 'NM'):
-                                    if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                       blank4[
-                                                                                                           j], 'Billing PAID AMT.'] /
-                                                                                                   FINAL_COPY.loc[
-                                                                                                       blank4[
-                                                                                                           j], 'EMI'] >= 1) and (
-                                                                                                          FINAL_COPY.loc[
-                                                                                                              blank4[
-                                                                                                                  j], 'Billing PAID AMT.'] /
-                                                                                                          FINAL_COPY.loc[
-                                                                                                              blank4[
-                                                                                                                  j], 'EMI'] < 2)):
+                                    if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 1) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 2)):
                                         if F.loc[i, 'PERFORMANCE'] < 70:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
                                         elif (F.loc[i, 'PERFORMANCE'] >= 70) and (F.loc[i, 'PERFORMANCE'] < 75):
@@ -10430,18 +10417,7 @@ def MASTER_SALARY_TW(request):
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
                                         elif (F.loc[i, 'PERFORMANCE'] >= 95):
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
-                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'Billing PAID AMT.'] /
-                                                                                                     FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'EMI'] >= 2) and (
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'Billing PAID AMT.'] /
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'EMI'] < 3)):
+                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 2) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 3)):
                                         if F.loc[i, 'PERFORMANCE'] < 70:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
                                         elif (F.loc[i, 'PERFORMANCE'] >= 70) and (F.loc[i, 'PERFORMANCE'] < 75):
@@ -10483,9 +10459,7 @@ def MASTER_SALARY_TW(request):
                                 FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] != 0):
                             if (F.loc[i, ['PRODUCT', 'ALLOCATED FOS']] == FINAL_COPY.loc[
                                 blank4[j], ['PRODUCT', 'ALLOCATED FOS']]).all():
-                                if (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SB') or (
-                                        FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SETTLEMENT') or (
-                                        FINAL_COPY.loc[blank4[j], 'STATUS'] == 'FORECLOSE'):
+                                if FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SB':
                                     if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0):
                                         if F.loc[i, 'PERFORMANCE'] < 50:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
@@ -10503,20 +10477,11 @@ def MASTER_SALARY_TW(request):
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
                                     elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
                                         FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                elif FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SETTLEMENT':
+                                    FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] * 5) / 100
                                 elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'RB') or (
                                         FINAL_COPY.loc[blank4[j], 'STATUS'] == 'NM'):
-                                    if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                       blank4[
-                                                                                                           j], 'Billing PAID AMT.'] /
-                                                                                                   FINAL_COPY.loc[
-                                                                                                       blank4[
-                                                                                                           j], 'EMI'] >= 1) and (
-                                                                                                          FINAL_COPY.loc[
-                                                                                                              blank4[
-                                                                                                                  j], 'Billing PAID AMT.'] /
-                                                                                                          FINAL_COPY.loc[
-                                                                                                              blank4[
-                                                                                                                  j], 'EMI'] < 2)):
+                                    if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 1) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 2)):
                                         if F.loc[i, 'PERFORMANCE'] < 50:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
                                         elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
@@ -10531,18 +10496,7 @@ def MASTER_SALARY_TW(request):
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
                                         elif (F.loc[i, 'PERFORMANCE'] >= 75):
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
-                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'Billing PAID AMT.'] /
-                                                                                                     FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'EMI'] >= 2) and (
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'Billing PAID AMT.'] /
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'EMI'] < 3)):
+                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 2) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 3)):
                                         if F.loc[i, 'PERFORMANCE'] < 50:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
                                         elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
@@ -10557,18 +10511,7 @@ def MASTER_SALARY_TW(request):
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 2
                                         elif (F.loc[i, 'PERFORMANCE'] >= 75):
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 2
-                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'Billing PAID AMT.'] /
-                                                                                                     FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'EMI'] >= 3) and (
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'Billing PAID AMT.'] /
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'EMI'] < 4)):
+                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 3) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 4)):
                                         if F.loc[i, 'PERFORMANCE'] < 50:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
                                         elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
@@ -10589,145 +10532,341 @@ def MASTER_SALARY_TW(request):
                                         FINAL_COPY.loc[blank4[j], 'STATUS'] == 'FLOW'):
                                     FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
 
+            l6 = list(FINAL_COPY['PER PAID CASE'].unique())
+
+            l6
+
+            for i in range(0, len(l6)):
+                if math.isnan(l6[i]):
+                    a = i
+
+            l6.pop(a)
+
+            blank4 = []
+            for i in range(0, len(FINAL_COPY['BKT'])):
+                if FINAL_COPY.loc[i, 'PER PAID CASE'] not in l6:
+                    blank4.append(i)
+
             # BKT-3
             for i in range(0, len(F['ALLOCATED FOS'])):
-                if F.loc[i, 'BKT'] == 3:
+                if (F.loc[i, 'BKT'] == 3) or (F.loc[i, 'BKT'] == 4) or (F.loc[i, 'BKT'] == 5) or (F.loc[i, 'BKT'] == 6):
                     for j in range(0, len(blank4)):
-                        if (FINAL_COPY.loc[blank4[j], 'BKT'] == 3) and (
+                        if ((FINAL_COPY.loc[blank4[j], 'BKT'] == 3) or (FINAL_COPY.loc[blank4[j], 'BKT'] == 5) or (
+                                FINAL_COPY.loc[blank4[j], 'BKT'] == 6)) and (
                                 FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] != 0):
-                            if (F.loc[i, ['PRODUCT', 'ALLOCATED FOS']] == FINAL_COPY.loc[
-                                blank4[j], ['PRODUCT', 'ALLOCATED FOS']]).all():
-                                if (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SB') or (
-                                        FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SETTLEMENT') or (
-                                        FINAL_COPY.loc[blank4[j], 'STATUS'] == 'FORECLOSE'):
-                                    if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0):
-                                        if F.loc[i, 'PERFORMANCE'] < 45:
+                            if ((F.loc[i, 'BKT'] != 4) and (F.loc[i, 'TOTAL_CASES'] > 0)):
+                                if (F.loc[i, ['PRODUCT', 'ALLOCATED FOS']] == FINAL_COPY.loc[
+                                    blank4[j], ['PRODUCT', 'ALLOCATED FOS']]).all():
+                                    if FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SB':
+                                        if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
+                                        elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
-                                    elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
+                                    elif FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SETTLEMENT':
+                                        FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] * 5) / 100
+                                    elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'RB') or (
+                                            FINAL_COPY.loc[blank4[j], 'STATUS'] == 'NM'):
+                                        if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 1) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 2)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] / FINAL_COPY.loc[blank4[j], 'EMI'] >= 2) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 3)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 2
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 3) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 4)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 3
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 4) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 5)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 4
+                                        elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
+                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                    elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'PART PAID') or (
+                                            FINAL_COPY.loc[blank4[j], 'STATUS'] == 'FLOW'):
                                         FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
-                                elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'RB') or (
-                                        FINAL_COPY.loc[blank4[j], 'STATUS'] == 'NM'):
-                                    if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                       blank4[
-                                                                                                           j], 'Billing PAID AMT.'] /
-                                                                                                   FINAL_COPY.loc[
-                                                                                                       blank4[
-                                                                                                           j], 'EMI'] >= 1) and (
-                                                                                                          FINAL_COPY.loc[
-                                                                                                              blank4[
-                                                                                                                  j], 'Billing PAID AMT.'] /
-                                                                                                          FINAL_COPY.loc[
-                                                                                                              blank4[
-                                                                                                                  j], 'EMI'] < 2)):
-                                        if F.loc[i, 'PERFORMANCE'] < 45:
+                        elif (FINAL_COPY.loc[blank4[j], 'BKT'] == 4) and (
+                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] != 0):
+                            if ((F.loc[i, 'BKT'] == 4) and (F.loc[i, 'TOTAL_CASES'] < 35)):
+                                if (F.loc[i, ['PRODUCT', 'ALLOCATED FOS']] == FINAL_COPY.loc[
+                                    blank4[j], ['PRODUCT', 'ALLOCATED FOS']]).all():
+                                    if FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SB':
+                                        if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
+                                        elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
-                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'Billing PAID AMT.'] /
-                                                                                                     FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'EMI'] >= 2) and (
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'Billing PAID AMT.'] /
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'EMI'] < 3)):
-                                        if F.loc[i, 'PERFORMANCE'] < 45:
+                                    elif FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SETTLEMENT':
+                                        FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] * 5) / 100
+                                    elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'RB') or (
+                                            FINAL_COPY.loc[blank4[j], 'STATUS'] == 'NM'):
+                                        if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 1) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 2)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 2) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 3)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 2
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 3) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 4)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 3
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 4) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 5)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 4
+                                        elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
                                             FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 2
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 2
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 2
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 2
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 2
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 2
-                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'Billing PAID AMT.'] /
-                                                                                                     FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'EMI'] >= 3) and (
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'Billing PAID AMT.'] /
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'EMI'] < 4)):
-                                        if F.loc[i, 'PERFORMANCE'] < 45:
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 3
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 3
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 3
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 3
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 3
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 3
-                                    elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'Billing PAID AMT.'] /
-                                                                                                     FINAL_COPY.loc[
-                                                                                                         blank4[
-                                                                                                             j], 'EMI'] >= 4) and (
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'Billing PAID AMT.'] /
-                                                                                                            FINAL_COPY.loc[
-                                                                                                                blank4[
-                                                                                                                    j], 'EMI'] < 5)):
-                                        if F.loc[i, 'PERFORMANCE'] < 45:
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 50):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 75 * 4
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 50) and (F.loc[i, 'PERFORMANCE'] < 55):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 4
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 55) and (F.loc[i, 'PERFORMANCE'] < 60):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 4
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 60) and (F.loc[i, 'PERFORMANCE'] < 65):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 4
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 65) and (F.loc[i, 'PERFORMANCE'] < 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 4
-                                        elif (F.loc[i, 'PERFORMANCE'] >= 70):
-                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 4
-                                    elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
+                                    elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'PART PAID') or (
+                                            FINAL_COPY.loc[blank4[j], 'STATUS'] == 'FLOW'):
                                         FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
-                                elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'PART PAID') or (
-                                        FINAL_COPY.loc[blank4[j], 'STATUS'] == 'FLOW'):
-                                    FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+
+            l6 = list(FINAL_COPY['PER PAID CASE'].unique())
+
+            l6
+
+            for i in range(0, len(l6)):
+                if math.isnan(l6[i]):
+                    a = i
+
+            l6.pop(a)
+
+            blank4 = []
+            for i in range(0, len(FINAL_COPY['BKT'])):
+                if FINAL_COPY.loc[i, 'PER PAID CASE'] not in l6:
+                    blank4.append(i)
+
+            # BKT-4(Special Incentive)
+            for i in range(0, len(F['ALLOCATED FOS'])):
+                if F.loc[i, 'BKT'] == 4:
+                    for j in range(0, len(blank4)):
+                        if (FINAL_COPY.loc[blank4[j], 'BKT'] == 4) and (
+                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] != 0):
+                            if ((F.loc[i, 'BKT'] == 4) and (F.loc[i, 'TOTAL_CASES'] >= 35)):
+                                if (F.loc[i, ['PRODUCT', 'ALLOCATED FOS']] == FINAL_COPY.loc[blank4[j], ['PRODUCT', 'ALLOCATED FOS']]).all():
+                                    if FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SB':
+                                        if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 48):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 48) and (F.loc[i, 'PERFORMANCE'] < 51):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 51) and (F.loc[i, 'PERFORMANCE'] < 56):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 56) and (F.loc[i, 'PERFORMANCE'] < 61):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 61) and (F.loc[i, 'PERFORMANCE'] < 66):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 66) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 225
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70) and (F.loc[i, 'PERFORMANCE'] < 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 250
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 300
+                                        elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
+                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                    elif FINAL_COPY.loc[blank4[j], 'STATUS'] == 'SETTLEMENT':
+                                        FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] * 5) / 100
+                                    elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'RB') or (
+                                            FINAL_COPY.loc[blank4[j], 'STATUS'] == 'NM'):
+                                        if (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 1) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 2)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 48):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 48) and (F.loc[i, 'PERFORMANCE'] < 51):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 51) and (F.loc[i, 'PERFORMANCE'] < 56):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 56) and (F.loc[i, 'PERFORMANCE'] < 61):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 61) and (F.loc[i, 'PERFORMANCE'] < 66):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 66) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 225
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70) and (F.loc[i, 'PERFORMANCE'] < 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 250
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 300
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 2) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 3)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 48):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 48) and (F.loc[i, 'PERFORMANCE'] < 51):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 51) and (F.loc[i, 'PERFORMANCE'] < 56):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 56) and (F.loc[i, 'PERFORMANCE'] < 61):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 61) and (F.loc[i, 'PERFORMANCE'] < 66):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 66) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 225 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70) and (F.loc[i, 'PERFORMANCE'] < 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 250 * 2
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 300 * 2
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 3) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 4)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 48):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 48) and (F.loc[i, 'PERFORMANCE'] < 51):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 51) and (F.loc[i, 'PERFORMANCE'] < 56):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 56) and (F.loc[i, 'PERFORMANCE'] < 61):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 61) and (F.loc[i, 'PERFORMANCE'] < 66):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 66) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 225 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70) and (F.loc[i, 'PERFORMANCE'] < 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 250 * 3
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 300 * 3
+                                        elif (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] != 0) and ((FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] >= 4) and (FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] /FINAL_COPY.loc[blank4[j], 'EMI'] < 5)):
+                                            if F.loc[i, 'PERFORMANCE'] < 45:
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 45) and (F.loc[i, 'PERFORMANCE'] < 48):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 100 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 48) and (F.loc[i, 'PERFORMANCE'] < 51):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 125 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 51) and (F.loc[i, 'PERFORMANCE'] < 56):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 150 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 56) and (F.loc[i, 'PERFORMANCE'] < 61):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 175 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 61) and (F.loc[i, 'PERFORMANCE'] < 66):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 200 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 66) and (F.loc[i, 'PERFORMANCE'] < 70):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 225 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 70) and (F.loc[i, 'PERFORMANCE'] < 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 250 * 4
+                                            elif (F.loc[i, 'PERFORMANCE'] >= 75):
+                                                FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 300 * 4
+                                        elif FINAL_COPY.loc[blank4[j], 'Billing PAID AMT.'] == 0:
+                                            FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
+                                    elif (FINAL_COPY.loc[blank4[j], 'STATUS'] == 'PART PAID') or (
+                                            FINAL_COPY.loc[blank4[j], 'STATUS'] == 'FLOW'):
+                                        FINAL_COPY.loc[blank4[j], 'PER PAID CASE'] = 0
 
             l = list(FINAL_COPY['PER PAID CASE'].unique())
 
@@ -11414,9 +11553,7 @@ def MASTER_SALARY_TW(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/salary.html',
-                  {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123,
-                   'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/salary.html', {'excel': excel_data, 'excel2': excel_data1, 'columns': C, 'columns2': C11, 'excel123': excel_data123, 'columns123': C123, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 # 'excel1233': excel_data1233, 'columns1233': C1233
