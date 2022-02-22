@@ -1759,48 +1759,48 @@ def IDFC_HL_PERFORMANCE_DOWNLOAD(request):
 #     response['Content-Disposition'] = "attachment; filename=a.xlsx"
 #     return response
 
-def FULLERTON_RECOVERY_PERFORMANCE_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx')
-
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=MIS FULLERTON-RECOVERY.xlsx"
-    return response
-
-
-def FULLERTON_RECOVERY_BILLING_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/BILLING/PAYOUT_FULLERTON_RECOVERY.xlsx')
-
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=FULLERTON_BILLING.xlsx"
-    return response
+# def FULLERTON_RECOVERY_PERFORMANCE_DOWNLOAD(request):
+#     # fill these variables with real values
+#     filename = os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/MIS/MIS_FULLERTON_RECOVERY.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=MIS FULLERTON-RECOVERY.xlsx"
+#     return response
 
 
-def FULLERTON_RECOVERY_SALARY_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx')
-
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=FULLERTON_FOS_SALARY.xlsx"
-    return response
-
-
-def L_T_BILLING_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/L_T/Billing/Final_Billing_L_T.xlsx')
-
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=Final Billing L&T.xlsx"
-    return response
+# def FULLERTON_RECOVERY_BILLING_DOWNLOAD(request):
+#     # fill these variables with real values
+#     filename = os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/BILLING/PAYOUT_FULLERTON_RECOVERY.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=FULLERTON_BILLING.xlsx"
+#     return response
+#
+#
+# def FULLERTON_RECOVERY_SALARY_DOWNLOAD(request):
+#     # fill these variables with real values
+#     filename = os.path.join(BASE_DIR, 'media/FULLERTON_RECOVERY/FOS Salary/FOS_SALARY_FULLERTON_RECOVERY.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=FULLERTON_FOS_SALARY.xlsx"
+#     return response
+#
+#
+# def L_T_BILLING_DOWNLOAD(request):
+#     # fill these variables with real values
+#     filename = os.path.join(BASE_DIR, 'media/L_T/Billing/Final_Billing_L_T.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=Final Billing L&T.xlsx"
+#     return response
 
 
 def BAJAJ_CD_BILLING_DOWNLOAD(request):
@@ -1856,7 +1856,7 @@ def IDFC_HL_BILLING_DOWNLOAD(request):
 #     response['Content-Disposition'] = "attachment; filename=a.xlsx"
 #     return response
 
-def L_T_SALARY_FIXED_DOWNLOAD(request):
+# def L_T_SALARY_FIXED_DOWNLOAD(request):
     # fill these variables with real values
     filename = os.path.join(BASE_DIR,
                             'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx')
@@ -1868,37 +1868,37 @@ def L_T_SALARY_FIXED_DOWNLOAD(request):
     return response
 
 
-def L_T_SALARY_INCENTIVE_PIVOT_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) L&T.xlsx')
-
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=PER PAID CASE(PIVOT) L&T.xlsx"
-    return response
-
-
-def L_T_SALARY_INCENTIVE_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE L&T.xlsx')
-
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=PER PAID CASE L&T.xlsx"
-    return response
+# # def L_T_SALARY_INCENTIVE_PIVOT_DOWNLOAD(request):
+#     fill these variables with real values
+#     filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) L&T.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=PER PAID CASE(PIVOT) L&T.xlsx"
+#     return response
 
 
-def L_T_TC_SALARY_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/L_T/TC Incentive/TC Performance L_T.xlsx')
+# def L_T_SALARY_INCENTIVE_DOWNLOAD(request):
+#     # fill these variables with real values
+#     filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE L&T.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=PER PAID CASE L&T.xlsx"
+#     return response
 
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=TC Incentive L&T.xlsx"
-    return response
+
+# def L_T_TC_SALARY_DOWNLOAD(request):
+#     # fill these variables with real values
+#     filename = os.path.join(BASE_DIR, 'media/L_T/TC Incentive/TC Performance L_T.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=TC Incentive L&T.xlsx"
+#     return response
 
 
 def IDFC_TW_SALARY_FIXED_DOWNLOAD(request):
@@ -2625,8 +2625,7 @@ def IDFC_TW_MIS(request):
 
         for i in range(0, len(A['AGREEMENTID'])):
             for k in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID']) and (
-                        (B.loc[k, 'AGAINST'] != 'FORECLOSE') and (B.loc[k, 'AGAINST'] != 'SETTLEMENT')):
+                if A.loc[i, 'AGREEMENTID'] == B.loc[k, 'AGREEMENTID'] and B.loc[k, 'AGAINST'] != 'FORECLOSE' and B.loc[k, 'AGAINST'] != 'SETTLEMENT':
                     for j in range(0, len(B1['AGREEMENTID'])):
                         if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
                             if A.loc[i, 'BKT'] == 0:
@@ -2775,33 +2774,6 @@ def IDFC_TW_MIS(request):
         F.to_excel('media/IDFC_TW/Billing/FEB 22/Performance_IDFC_TW.xlsx', index=False)
         F1 = F.copy()
 
-        for i in range(0, len(A['AGREEMENTID'])):
-            s = 0
-            for j in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and (
-                        (A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                        A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                A.loc[i, 'STATUS'] == 'SB')) and (
-                        (B.loc[j, 'MODE'] != 'ECS') and (B.loc[j, 'MODE'] != 'ADJUSTED')):
-                    s = s + B.loc[j, 'PAID AMOUNT']
-            A.loc[i, 'Billing PAID AMT.'] = s
-        for i in range(0, len(A['STATE'])):
-            if A.loc[i, 'STATUS'] == 'SB':
-                if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
-                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
-        for i in range(0, len(A['AGREEMENTID'])):
-            if A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[i, 'STATUS'] == 'FORECLOSE':
-                A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'TOTAL PAID']
-            elif (A.loc[i, 'BKT'] == 1) and (A.loc[i, 'STATUS'] == 'RB'):
-                if A.loc[i, 'Billing PAID AMT.'] > ((A.loc[i, 'EMI']) * 2):
-                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
-                else:
-                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'TOTAL PAID']
-        for i in range(0, len(A['STATE'])):
-            if A.loc[i, 'STATUS'] == 'SB':
-                if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
-                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
-
         F.to_excel(r'media/IDFC_TW/MIS/FEB 22/MIS_IDFC_TW.xlsx', index=False)
 
         F.replace(np.nan, 0, inplace=True)
@@ -2811,13 +2783,16 @@ def IDFC_TW_MIS(request):
         for i in range(0, len(A['AGREEMENTID'])):
             s = 0
             for j in range(0, len(B['AGREEMENTID'])):
-                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and (
-                        (A.loc[i, 'STATUS'] == 'FORECLOSE') or (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                        A.loc[i, 'STATUS'] == 'NM') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                A.loc[i, 'STATUS'] == 'SB')) and (
-                        (B.loc[j, 'MODE'] != 'ECS') and (B.loc[j, 'MODE'] != 'ADJUSTED')):
+                if (A.loc[i, 'AGREEMENTID'] == B.loc[j, 'AGREEMENTID']) and (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'RB' or A.loc[i, 'STATUS'] == 'SB') and (B.loc[j, 'MODE'] != 'ECS'):
                     s = s + B.loc[j, 'PAID AMOUNT']
             A.loc[i, 'Billing PAID AMT.'] = s
+            if A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[i, 'STATUS'] == 'FORECLOSE':
+                A.loc[i, 'Billing PAID AMT.'] = s
+            elif (A.loc[i, 'BKT'] == 1) and (A.loc[i, 'STATUS'] == 'RB'):
+                if A.loc[i, 'Billing PAID AMT.'] > ((A.loc[i, 'EMI']) * 2):
+                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
+                else:
+                    A.loc[i, 'Billing PAID AMT.'] = s
 
         A.to_excel(r'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx', index=False)
         A.to_excel(r'media/IDFC_TW/Billing/FEB 22/MASTER FILE IDFC_TW.xlsx', index=False)
@@ -2910,31 +2885,31 @@ def IDFC_TW_BILLING(request):
                                 if l == 0:
                                     if A.loc[i, 'STATUS'] == 'RT':
                                         A.loc[i, 'MOHAK'] = 0
-                                    elif (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'NM') or (
-                                            A.loc[i, 'STATUS'] == 'RB'):
+                                    elif A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'NM' or A.loc[
+                                        i, 'STATUS'] == 'RB':
                                         if P.loc[j, 'POS_RES%'] <= BKT0.loc[l, 'TARGET']:
                                             a = A.loc[i, 'Billing PAID AMT.'] * BKT0.loc[l, 'CAT C'] / 100
                                             A.loc[i, 'percentage'] = str(BKT0.loc[l, 'CAT C']) + '%'
                                             A.loc[i, 'MOHAK'] = a
                                             print(A.loc[i, 'AGREEMENTID'], BKT0.loc[l, 'CAT C'], A.loc[i, 'MOHAK'])
-                                        elif l > 0:
-                                            if (P.loc[j, 'POS_RES%'] >= BKT0.loc[l - 1, 'TARGET']) and (
-                                                    P.loc[j, 'POS_RES%'] < BKT0.loc[l, 'TARGET']):
-                                                a = A.loc[i, 'Billing PAID AMT.'] * BKT0.loc[l - 1, 'CAT C'] / 100
-                                                A.loc[i, 'percentage'] = str(BKT0.loc[l - 1, 'CAT C']) + '%'
-                                                A.loc[i, 'MOHAK'] = a
-                                                print(A.loc[i, 'AGREEMENTID'], BKT0.loc[l, 'CAT C'], A.loc[i, 'MOHAK'])
-                                        elif l == 9:
-                                            if P.loc[j, 'POS_RES%'] >= BKT0.loc[l, 'TARGET']:
-                                                a = A.loc[i, 'Billing PAID AMT.'] * BKT0.loc[l, 'CAT C'] / 100
-                                                A.loc[i, 'percentage'] = str(BKT0.loc[l, 'CAT C']) + '%'
-                                                A.loc[i, 'MOHAK'] = a
-                                                print(A.loc[i, 'AGREEMENTID'], BKT0.loc[l, 'CAT C'], A.loc[i, 'MOHAK'])
+                                elif l > 0:
+                                    if P.loc[j, 'POS_RES%'] >= BKT0.loc[l - 1, 'TARGET'] and P.loc[j, 'POS_RES%'] < \
+                                            BKT0.loc[l, 'TARGET']:
+                                        a = A.loc[i, 'Billing PAID AMT.'] * BKT0.loc[l, 'CAT C'] / 100
+                                        A.loc[i, 'percentage'] = str(BKT0.loc[l, 'CAT C']) + '%'
+                                        A.loc[i, 'MOHAK'] = a
+                                        print(A.loc[i, 'AGREEMENTID'], BKT0.loc[l, 'CAT C'], A.loc[i, 'MOHAK'])
+                                elif l == 11:
+                                    if P.loc[j, 'POS_RES%'] >= BKT0.loc[l, 'TARGET']:
+                                        a = A.loc[i, 'Billing PAID AMT.'] * BKT0.loc[l, 'CAT C'] / 100
+                                        A.loc[i, 'percentage'] = str(BKT0.loc[l, 'CAT C']) + '%'
+                                        A.loc[i, 'MOHAK'] = a
+                                        print(A.loc[i, 'AGREEMENTID'], BKT0.loc[l, 'CAT C'], A.loc[i, 'MOHAK'])
                                     else:
                                         A.loc[i, 'percentage'] = str(BKT0.loc[l, 'CAT C']) + '%'
                                         A.loc[i, 'MOHAK'] = 0
 
-            # BKT 1
+                # BKT 1
 
             for j in range(0, len(P['BKT'])):
                 if P.loc[j, 'BKT'] == 1:
@@ -2942,15 +2917,14 @@ def IDFC_TW_BILLING(request):
                         if A.loc[i, 'BKT'] == 1:
                             for k in range(0, len(l1)):
                                 for l in range(0, len(BKT1)):
-                                    if (k == 0) and (l == 0):
+                                    if k == 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 0
-                                        elif (P.loc[j, 'Additional_Performance'] < l1[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT1T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                        elif P.loc[j, 'Additional_Performance'] < l1[k] and P.loc[j, 'POS_RES%'] <= \
+                                                BKT1T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 a = A.loc[i, 'Billing PAID AMT.'] * BKT1.loc[l, l1[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = a
@@ -2959,15 +2933,14 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT1.loc[l, l1[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 7) and (l == 0):
+                                    elif k == 7 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 0
                                         elif (P.loc[j, 'Additional_Performance'] >= l1[k - 1]) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT1T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT1.loc[l, l1[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -2976,16 +2949,15 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT1.loc[l, l1[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 0) and (l > 0):
+                                    elif k == 0 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 0
                                         elif (P.loc[j, 'Additional_Performance'] < l1[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT1T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT1T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT1.loc[l, l1[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -2994,16 +2966,15 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT1.loc[l, l1[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 7) and (l > 0):
+                                    elif k == 7 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 0
                                         elif (P.loc[j, 'Additional_Performance'] >= l1[k - 1]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT1T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT1T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT1.loc[l - 1, l1[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l - 1, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3013,15 +2984,14 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT1.loc[l, l1[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 7) and (l == 9):
+                                    elif k == 7 and l == 8:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 0
-                                        elif (P.loc[j, 'Additional_Performance'] >= l1[k]) and (
-                                                P.loc[j, 'POS_RES%'] >= BKT1T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l1[k]) and P.loc[j, 'POS_RES%'] >= \
+                                                BKT1T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT1.loc[l, l1[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3030,16 +3000,15 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT1.loc[l, l1[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l == 0):
+                                    elif k > 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 0
-                                        elif ((P.loc[j, 'Additional_Performance'] >= l1[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] < l1[k])) and (
+                                        elif (P.loc[j, 'Additional_Performance'] >= l1[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] < l1[k]) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT1T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT1.loc[l, l1[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3048,15 +3017,14 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT1.loc[l, l1[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l > 0):
-                                        if ((P.loc[j, 'Additional_Performance'] >= l1[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] < l1[k])) and (
-                                                (P.loc[j, 'POS_RES%'] > BKT1T.loc[l - 1, 'TARGET']) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT1T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                                    elif k > 0 and l > 0:
+                                        if (P.loc[j, 'Additional_Performance'] >= l1[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] < l1[k]) and (
+                                                P.loc[j, 'POS_RES%'] > BKT1T.loc[l - 1, 'TARGET'] and P.loc[
+                                            j, 'POS_RES%'] <= BKT1T.loc[l, 'TARGET']):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT1.loc[l, l1[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT1.loc[l, l1[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3066,9 +3034,9 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT1.loc[l, l1[k]], A.loc[i, 'MOHAK'])
 
-            # =============================================================================
-            # BKT-2
-            # =============================================================================
+                # =============================================================================
+                # BKT-2
+                # =============================================================================
 
             for j in range(0, len(P['BKT'])):
                 if P.loc[j, 'BKT'] == 2:
@@ -3076,15 +3044,14 @@ def IDFC_TW_BILLING(request):
                         if A.loc[i, 'BKT'] == 2:
                             for k in range(0, len(l2)):
                                 for l in range(0, len(BKT2)):
-                                    if (k == 0) and (l == 0):
+                                    if k == 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 250
-                                        elif (P.loc[j, 'Additional_Performance'] <= l2[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT2T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                        elif P.loc[j, 'Additional_Performance'] <= l2[k] and P.loc[j, 'POS_RES%'] <= \
+                                                BKT2T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 a = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l, l2[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = a
@@ -3093,16 +3060,15 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT2.loc[l, l2[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 7) and (l == 0):
+                                    elif k == 7 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 250
                                         elif ((P.loc[j, 'Additional_Performance'] >= l2[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] < l2[k])) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT2T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                                P.loc[j, 'Additional_Performance'] < l2[k])) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT2T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l, l2[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3125,16 +3091,15 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT2.loc[l, l2[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 0) and (l > 0):
+                                    elif k == 0 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 250
                                         elif (P.loc[j, 'Additional_Performance'] <= l2[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT2T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT2T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l, l2[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3143,12 +3108,11 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT2.loc[l, l2[k]], A.loc[i, 'MOHAK'])
-                                        elif (P.loc[j, 'Additional_Performance'] >= l2[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT2T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l2[k]) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT2T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l, l2[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3157,17 +3121,16 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT2.loc[l, l2[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 7) and (l > 0):
+                                    elif k == 7 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 250
                                         elif ((P.loc[j, 'Additional_Performance'] >= l2[k - 1]) and (
                                                 P.loc[j, 'Additional_Performance'] < l2[k])) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT2T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT2T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l - 1, l2[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l - 1, l2[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3180,10 +3143,9 @@ def IDFC_TW_BILLING(request):
                                         elif (P.loc[j, 'Additional_Performance'] >= l2[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT2T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT2T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == "FORECLOSE") or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == "FORECLOSE" or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l - 1, l2[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l - 1, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3193,15 +3155,14 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT2.loc[l, l2[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 7) and (l == 9):
+                                    elif k == 7 and l == 9:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 250
-                                        elif (P.loc[j, 'Additional_Performance'] >= l2[k]) and (
-                                                P.loc[j, 'POS_RES%'] >= BKT2T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l2[k]) and P.loc[j, 'POS_RES%'] >= \
+                                                BKT2T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l, l2[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3210,16 +3171,15 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT2.loc[l, l2[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l == 0):
+                                    elif k > 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 250
-                                        elif ((P.loc[j, 'Additional_Performance'] > float(l2[k - 1])) and (
-                                                P.loc[j, 'Additional_Performance'] <= l2[k])) and (
+                                        elif (P.loc[j, 'Additional_Performance'] > float(l2[k - 1]) and P.loc[
+                                            j, 'Additional_Performance'] <= l2[k]) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT2T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l, l2[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3229,15 +3189,14 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT2.loc[l, l2[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l > 0):
-                                        if ((P.loc[j, 'Additional_Performance'] > l2[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l2[k])) and (
-                                                (P.loc[j, 'POS_RES%'] > BKT2T.loc[l - 1, 'TARGET']) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT2T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                                    elif k > 0 and l > 0:
+                                        if (P.loc[j, 'Additional_Performance'] > l2[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l2[k]) and (
+                                                P.loc[j, 'POS_RES%'] > BKT2T.loc[l - 1, 'TARGET'] and P.loc[
+                                            j, 'POS_RES%'] <= BKT2T.loc[l, 'TARGET']):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM' or A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT2.loc[l, l2[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT2.loc[l, l2[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3247,9 +3206,9 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT2.loc[l, l2[k]], A.loc[i, 'MOHAK'])
 
-            # =============================================================================
-            # BKT-3
-            # =============================================================================
+                # =============================================================================
+                # BKT-3
+                # =============================================================================
 
             for j in range(0, len(P['BKT'])):
                 if P.loc[j, 'BKT'] == 3:
@@ -3257,129 +3216,128 @@ def IDFC_TW_BILLING(request):
                         if A.loc[i, 'BKT'] == 3:
                             for k in range(0, len(l3)):
                                 for l in range(0, len(BKT3)):
-                                    if (k == 0) and (l == 0):
+                                    if k == 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif (P.loc[j, 'Additional_Performance'] <= l3[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT3T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif P.loc[j, 'Additional_Performance'] <= l3[k] and P.loc[j, 'POS_RES%'] <= \
+                                                BKT3T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 a = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = a
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                a = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = a
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(12.35), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l == 0):
+                                    elif k == 6 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif ((P.loc[j, 'Additional_Performance'] >= l3[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] < l3[k])) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT3T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                                P.loc[j, 'Additional_Performance'] < l3[k])) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT3T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k - 1]] / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(12.35), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
                                         elif (P.loc[j, 'Additional_Performance'] >= int(l3[k])) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT3T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k]] / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], 12.35, A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 0) and (l > 0):
+                                    elif k == 0 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif (P.loc[j, 'Additional_Performance'] <= l3[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT3T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT3T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(12.35), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                        elif (P.loc[j, 'Additional_Performance'] >= l3[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT3T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l3[k]) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT3T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(12.35), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l > 0):
+                                    elif k == 6 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif ((P.loc[j, 'Additional_Performance'] >= l3[k - 1]) and (
                                                 P.loc[j, 'Additional_Performance'] < l3[k])) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT3T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT3T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l - 1, l3[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l - 1, l3[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l - 1, l3[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l - 1, l3[k - 1]] / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l - 1, l3[k - 1]],
-                                                      A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], 12.35, A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
@@ -3387,116 +3345,115 @@ def IDFC_TW_BILLING(request):
                                         elif (P.loc[j, 'Additional_Performance'] >= l3[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT3T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT3T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l - 1, l3[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l - 1, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l - 1, l3[k]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == "FORECLOSE") or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == "FORECLOSE" or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l - 1, l3[k]],
-                                                      A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], 12.35, A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l == 9):
+                                    elif k == 6 and l == 9:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif (P.loc[j, 'Additional_Performance'] >= l3[k]) and (
-                                                P.loc[j, 'POS_RES%'] >= BKT3T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l3[k]) and P.loc[j, 'POS_RES%'] >= \
+                                                BKT3T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(12.35), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 0) and (l == 7):
+                                    elif k == 0 and l == 7:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif (P.loc[j, 'Additional_Performance'] <= l3[k]) and (
                                                 P.loc[j, 'POS_RES%'] >= BKT3T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(12.35), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l == 0):
+                                    elif k > 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif ((P.loc[j, 'Additional_Performance'] > l3[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l3[k])) and (
+                                        elif (P.loc[j, 'Additional_Performance'] > l3[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l3[k]) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT3T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(12.35), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l > 0):
-                                        if ((P.loc[j, 'Additional_Performance'] > l3[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l3[k])) and (
-                                                (P.loc[j, 'POS_RES%'] > BKT3T.loc[l - 1, 'TARGET']) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT3T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                    elif k > 0 and l > 0:
+                                        if (P.loc[j, 'Additional_Performance'] > l3[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l3[k]) and (
+                                                P.loc[j, 'POS_RES%'] > BKT3T.loc[l - 1, 'TARGET'] and P.loc[
+                                            j, 'POS_RES%'] <= BKT3T.loc[l, 'TARGET']):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT3.loc[l, l3[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 12.35 / 100
+                                                A.loc[i, 'percentage'] = str(12.35) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(12.35), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT3.loc[l, l3[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT3.loc[l, l3[k]], A.loc[i, 'MOHAK'])
 
-            # =============================================================================
-            # BKT-4
-            # =============================================================================
+                # =============================================================================
+                # BKT-4
+                # =============================================================================
 
-            # CHECKING
+                # CHECKING
 
             for j in range(0, len(P['BKT'])):
                 if P.loc[j, 'BKT'] == 4:
@@ -3504,129 +3461,128 @@ def IDFC_TW_BILLING(request):
                         if A.loc[i, 'BKT'] == 4:
                             for k in range(0, len(l4)):
                                 for l in range(0, len(BKT4)):
-                                    if (k == 0) and (l == 0):
+                                    if k == 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif (P.loc[j, 'Additional_Performance'] <= l4[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT4T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif P.loc[j, 'Additional_Performance'] <= l4[k] and P.loc[j, 'POS_RES%'] <= \
+                                                BKT4T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 a = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = a
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                a = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = a
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(13.2), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l == 0):
+                                    elif k == 6 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif ((P.loc[j, 'Additional_Performance'] >= l4[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] < l4[k])) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT4T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                                P.loc[j, 'Additional_Performance'] < l4[k])) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT4T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k - 1]] / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(13.2), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
                                         elif (P.loc[j, 'Additional_Performance'] >= int(l4[k])) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT4T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k]] / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], 13.2, A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 0) and (l > 0):
+                                    elif k == 0 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif (P.loc[j, 'Additional_Performance'] <= l4[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT4T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT4T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(13.2), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                        elif (P.loc[j, 'Additional_Performance'] >= l4[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT4T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l4[k]) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT4T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(13.2), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l > 0):
+                                    elif k == 6 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif ((P.loc[j, 'Additional_Performance'] >= l4[k - 1]) and (
                                                 P.loc[j, 'Additional_Performance'] < l4[k])) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT4T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT4T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l - 1, l4[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l - 1, l4[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l - 1, l4[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l - 1, l4[k - 1]] / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l - 1, l4[k - 1]],
-                                                      A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], 13.2, A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
@@ -3634,93 +3590,92 @@ def IDFC_TW_BILLING(request):
                                         elif (P.loc[j, 'Additional_Performance'] >= l4[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT4T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT4T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l - 1, l4[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l - 1, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l - 1, l4[k]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == "FORECLOSE") or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == "FORECLOSE" or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l - 1, l4[k]],
-                                                      A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], 13.2, A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l == 9):
+                                    elif k == 6 and l == 9:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif (P.loc[j, 'Additional_Performance'] >= l4[k]) and (
-                                                P.loc[j, 'POS_RES%'] >= BKT4T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l4[k]) and P.loc[j, 'POS_RES%'] >= \
+                                                BKT4T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(13.2), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l == 0):
+                                    elif k > 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif ((P.loc[j, 'Additional_Performance'] > l4[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l4[k])) and (
+                                        elif (P.loc[j, 'Additional_Performance'] > l4[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l4[k]) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT4T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(13.2), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l > 0):
-                                        if ((P.loc[j, 'Additional_Performance'] > l4[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l4[k])) and (
-                                                (P.loc[j, 'POS_RES%'] > BKT4T.loc[l - 1, 'TARGET']) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT4T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                    elif k > 0 and l > 0:
+                                        if (P.loc[j, 'Additional_Performance'] > l4[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l4[k]) and (
+                                                P.loc[j, 'POS_RES%'] > BKT4T.loc[l - 1, 'TARGET'] and P.loc[
+                                            j, 'POS_RES%'] <= BKT4T.loc[l, 'TARGET']):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT4.loc[l, l4[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
-                                                c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
-                                                A.loc[i, 'percentage'] = str(15) + '%'
+                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
+                                                c = A.loc[i, 'Billing PAID AMT.'] * 13.2 / 100
+                                                A.loc[i, 'percentage'] = str(13.2) + '%'
                                                 A.loc[i, 'MOHAK'] = c
-                                                print(A.loc[i, 'AGREEMENTID'], str(15), A.loc[i, 'MOHAK'])
+                                                print(A.loc[i, 'AGREEMENTID'], str(13.2), A.loc[i, 'MOHAK'])
                                             else:
                                                 A.loc[i, 'percentage'] = str(BKT4.loc[l, l4[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT4.loc[l, l4[k]], A.loc[i, 'MOHAK'])
 
-            # =============================================================================
-            # BKT-5
-            # =============================================================================
+                # =============================================================================
+                # BKT-5
+                # =============================================================================
 
             for j in range(0, len(P['BKT'])):
                 if P.loc[j, 'BKT'] == 5:
@@ -3728,19 +3683,19 @@ def IDFC_TW_BILLING(request):
                         if A.loc[i, 'BKT'] == 5:
                             for k in range(0, len(l5)):
                                 for l in range(0, len(BKT5)):
-                                    if (k == 0) and (l == 0):
+                                    if k == 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif (P.loc[j, 'Additional_Performance'] <= l5[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT5T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif P.loc[j, 'Additional_Performance'] <= l5[k] and P.loc[j, 'POS_RES%'] <= \
+                                                BKT5T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 a = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = a
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 a = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = a
@@ -3749,21 +3704,21 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l == 0):
+                                    elif k == 6 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif ((P.loc[j, 'Additional_Performance'] >= l5[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] < l5[k])) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT5T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                                P.loc[j, 'Additional_Performance'] < l5[k])) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT5T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3774,14 +3729,14 @@ def IDFC_TW_BILLING(request):
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
                                         elif (P.loc[j, 'Additional_Performance'] >= int(l5[k])) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT5T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k]] / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3790,20 +3745,20 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 0) and (l > 0):
+                                    elif k == 0 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif (P.loc[j, 'Additional_Performance'] <= l5[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT5T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT5T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3812,16 +3767,16 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                        elif (P.loc[j, 'Additional_Performance'] >= l5[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT5T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l5[k]) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT5T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3830,22 +3785,22 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l > 0):
+                                    elif k == 6 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif ((P.loc[j, 'Additional_Performance'] >= l5[k - 1]) and (
                                                 P.loc[j, 'Additional_Performance'] < l5[k])) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT5T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT5T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l - 1, l5[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l - 1, l5[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l - 1, l5[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l - 1, l5[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3858,15 +3813,15 @@ def IDFC_TW_BILLING(request):
                                         elif (P.loc[j, 'Additional_Performance'] >= l5[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT5T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT5T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l - 1, l4[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l - 1, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l - 1, l5[k]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == "FORECLOSE") or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == "FORECLOSE" or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3876,19 +3831,19 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l == 9):
+                                    elif k == 6 and l == 9:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif (P.loc[j, 'Additional_Performance'] >= l5[k]) and (
-                                                P.loc[j, 'POS_RES%'] >= BKT5T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l5[k]) and P.loc[j, 'POS_RES%'] >= \
+                                                BKT5T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3897,21 +3852,21 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l == 0):
+                                    elif k > 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif ((P.loc[j, 'Additional_Performance'] > l5[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l5[k])) and (
+                                        elif (P.loc[j, 'Additional_Performance'] > l5[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l5[k]) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT5T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3920,19 +3875,19 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l > 0):
-                                        if ((P.loc[j, 'Additional_Performance'] > l5[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l5[k])) and (
-                                                (P.loc[j, 'POS_RES%'] > BKT5T.loc[l - 1, 'TARGET']) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT5T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                    elif k > 0 and l > 0:
+                                        if (P.loc[j, 'Additional_Performance'] > l5[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l5[k]) and (
+                                                P.loc[j, 'POS_RES%'] > BKT5T.loc[l - 1, 'TARGET'] and P.loc[
+                                            j, 'POS_RES%'] <= BKT5T.loc[l, 'TARGET']):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT5.loc[l, l5[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT5.loc[l, l5[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 15 / 100
                                                 A.loc[i, 'percentage'] = str(15) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3942,9 +3897,9 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT5.loc[l, l5[k]], A.loc[i, 'MOHAK'])
 
-            # =============================================================================
-            # BKT-6
-            # =============================================================================
+                # =============================================================================
+                # BKT-6
+                # =============================================================================
 
             for j in range(0, len(P['BKT'])):
                 if P.loc[j, 'BKT'] == 6:
@@ -3952,19 +3907,19 @@ def IDFC_TW_BILLING(request):
                         if A.loc[i, 'BKT'] == 6:
                             for k in range(0, len(l6)):
                                 for l in range(0, len(BKT6)):
-                                    if (k == 0) and (l == 0):
+                                    if k == 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif (P.loc[j, 'Additional_Performance'] <= l6[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT6T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif P.loc[j, 'Additional_Performance'] <= l6[k] and P.loc[j, 'POS_RES%'] <= \
+                                                BKT6T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 a = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l, l6[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = a
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 a = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
                                                 A.loc[i, 'percentage'] = str(20) + '%'
                                                 A.loc[i, 'MOHAK'] = a
@@ -3973,21 +3928,21 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l == 0):
+                                    elif k == 6 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif ((P.loc[j, 'Additional_Performance'] >= l6[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] < l6[k])) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT6T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                                P.loc[j, 'Additional_Performance'] < l6[k])) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT6T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l, l6[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
                                                 A.loc[i, 'percentage'] = str(20) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -3996,16 +3951,16 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'Percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                        elif (P.loc[j, 'Additional_Performance'] >= l1[k]) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT6T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l1[k]) and P.loc[j, 'POS_RES%'] <= \
+                                                BKT6T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l, l6[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
                                                 A.loc[i, 'percentage'] = str(20) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -4014,22 +3969,22 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l > 0):
+                                    elif k == 6 and l > 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
                                         elif ((P.loc[j, 'Additional_Performance'] >= l6[k - 1]) and (
                                                 P.loc[j, 'Additional_Performance'] < l6[k])) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT6T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT6T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l - 1, l6[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l - 1, l6[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l - 1, l6[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
                                                 A.loc[i, 'percentage'] = str(20) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -4041,15 +3996,15 @@ def IDFC_TW_BILLING(request):
                                         elif (P.loc[j, 'Additional_Performance'] >= l6[k]) and (
                                                 (P.loc[j, 'POS_RES%'] >= BKT6T.loc[l - 1, 'TARGET']) and (
                                                 P.loc[j, 'POS_RES%'] < BKT6T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l - 1, l6[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l - 1, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l - 1, l6[k]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == "FORECLOSE") or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == "FORECLOSE" or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
                                                 A.loc[i, 'percentage'] = str(20) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -4058,19 +4013,19 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                    elif (k == 6) and (l == 6):
+                                    elif k == 6 and l == 6:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif (P.loc[j, 'Additional_Performance'] >= l6[k]) and (
-                                                P.loc[j, 'POS_RES%'] >= BKT6T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                        elif (P.loc[j, 'Additional_Performance'] >= l6[k]) and P.loc[j, 'POS_RES%'] >= \
+                                                BKT6T.loc[l, 'TARGET']:
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l, l6[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
                                                 A.loc[i, 'percentage'] = str(20) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -4079,21 +4034,21 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l == 0):
+                                    elif k > 0 and l == 0:
                                         if A.loc[i, 'STATUS'] == 'RT':
                                             A.loc[i, 'MOHAK'] = 150
-                                        elif ((P.loc[j, 'Additional_Performance'] > l6[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l6[k])) and (
+                                        elif (P.loc[j, 'Additional_Performance'] > l6[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l6[k]) and (
                                                 P.loc[j, 'POS_RES%'] <= BKT6T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l, l6[k - 1]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k - 1]]) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k - 1]],
                                                       A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE') or (
-                                                    A.loc[i, 'STATUS'] == 'SETTLEMENT'):
+                                            elif (A.loc[i, 'STATUS'] == 'FORECLOSE' or A.loc[
+                                                i, 'STATUS'] == 'SETTLEMENT'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
                                                 A.loc[i, 'percentage'] = str(20) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -4102,19 +4057,20 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                    elif (k > 0) and (l > 0):
-                                        if ((P.loc[j, 'Additional_Performance'] > l6[k - 1]) and (
-                                                P.loc[j, 'Additional_Performance'] <= l1[k])) and (
-                                                (P.loc[j, 'POS_RES%'] > BKT6T.loc[l - 1, 'TARGET']) and (
-                                                P.loc[j, 'POS_RES%'] <= BKT6T.loc[l, 'TARGET'])):
-                                            if (A.loc[i, 'STATUS'] == 'SB') or (A.loc[i, 'STATUS'] == 'RB') or (
-                                                    A.loc[i, 'STATUS'] == 'NM'):
+                                    elif k > 0 and l > 0:
+                                        if (P.loc[j, 'Additional_Performance'] > l6[k - 1] and P.loc[
+                                            j, 'Additional_Performance'] <= l1[k]) and (
+                                                P.loc[j, 'POS_RES%'] > BKT6T.loc[l - 1, 'TARGET'] and P.loc[
+                                            j, 'POS_RES%'] <= BKT6T.loc[l, 'TARGET']):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
+                                                i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l, l6[k]] / 100
-                                                A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]) + '%'
+                                                A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]
+                                                                             ) + '%'
                                                 A.loc[i, 'MOHAK'] = c
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
-                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT') or (
-                                                    A.loc[i, 'STATUS'] == 'FORECLOSE'):
+                                            elif (A.loc[i, 'STATUS'] == 'SETTLEMENT' or A.loc[
+                                                i, 'STATUS'] == 'FORECLOSE'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * 20 / 100
                                                 A.loc[i, 'percentage'] = str(20) + '%'
                                                 A.loc[i, 'MOHAK'] = c
@@ -4170,8 +4126,7 @@ def IDFC_TW_BILLING(request):
     final_process = COMPANY_PROCESS()
     Designation = Employee_Designation()
 
-    return render(request, 'FirstLevel/Billing.html',
-                  {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/Billing.html', {'Billing': excel_data1, 'columns': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
 
 def IDFC_HL_MIS(request):
