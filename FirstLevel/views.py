@@ -3496,6 +3496,8 @@ def IDFC_TW_BILLING(request):
             # BKT-4
             # =============================================================================
 
+            # CHECKING
+
             for j in range(0, len(P['BKT'])):
                 if P.loc[j, 'BKT'] == 4:
                     for i in range(0, len(A['BKT'])):
