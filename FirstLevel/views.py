@@ -12749,7 +12749,7 @@ def BAJAJ_PL_MIS(request):
 
         for i in range(0, len(A['PAID AMOUNT'])):
             if A.loc[i, 'STATUS'] == 'PAID':
-                if A.loc[i, 'PAID AMOUNT'] < A.loc[i, 'OD AMOUNT']:
+                if A.loc[i, 'PAID AMOUNT'] <= A.loc[i, 'OD AMOUNT']:
                     A.loc[i, 'PAID FEEDBACK'] = 'LESS THAN DEMAND'
                 else:
                     A.loc[i, 'PAID FEEDBACK'] = 'MORE THAN DEMAND'
@@ -12829,10 +12829,6 @@ def BAJAJ_PL_MIS(request):
 
         for i in range(0, len(SS['BOM_BUCKET'])):
             SS.loc[i, 'PERFORMANCE'] = (SS.loc[i, 'PAID AMOUNT'] / SS.loc[i, 'POS']) * 100
-
-        for i in range(0, len(SS['BOM_BUCKET'])):
-            SS.loc[i, 'PERFORMANCE'] = round(SS.loc[i, 'PERFORMANCE'], 2)
-            SS.loc[i, 'POS'] = round(SS.loc[i, 'POS'], 2)
 
         SS.head()
 
