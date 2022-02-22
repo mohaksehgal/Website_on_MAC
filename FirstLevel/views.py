@@ -10096,7 +10096,7 @@ def MASTER_SALARY_TW(request):
             #         continue
             for i in range(31, 0, -1):
                 if os.path.exists(
-                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/IDFC_TW ALLOCATION ' + str(i) + ' FEB 2022.xlsx')):
+                        os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/IDFC_TW ALLOCATION ' + str(i) + ' FEB 22.xlsx')):
                     AA125 = fs1.open('IDFC_TW ALLOCATION ' + str(i) + ' FEB 22.xlsx')
                     IDFCTW = pd.read_excel(AA125)
                 else:
