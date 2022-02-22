@@ -1739,7 +1739,7 @@ def IDFC_TW_PERFORMANCE_DOWNLOAD(request):
 
 def IDFC_TW_MASTER_DOWNLOAD(request):
     # fill these variables with real values
-    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/MASTER FILE IDFC_TW.xlsx')
+    filename = os.path.join(BASE_DIR, 'media/IDFC_TW/MIS/FEB 22/MASTER FILE IDFC_TW.xlsx')
 
     excel = open(filename, 'rb')
     response = HttpResponse(excel,
