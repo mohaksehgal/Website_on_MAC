@@ -7,7 +7,7 @@ body{
 }
 h1{
     font-family: Accidental Presidency;
-    font-size: 6vw;
+    font-size: 2.8vw;
     margin-bottom:0px;
     position:fixed;
     background:black;
@@ -100,8 +100,8 @@ OL.block a{
 }
 .frames{
 margin-left: 184px;
-max-width: 1330px;
-width: 100%;
+/*max-width: 1330px;*/
+width: 90%;
 height: 76vh;
  position: fixed;
 border: 2px solid rgb(211, 174, 109);
@@ -119,10 +119,11 @@ position:fixed;
 @media(max-width:1536px){
 h1{
     font-family: Accidental Presidency;
-    font-size: 3vw;
+    font-size: 2.8vw;
+}
 }
 @media(max-width:1512px){
-iframe.frames{
+.frames{
  max-width: 1330px;
 width:86%;
 height:73vh;
@@ -131,29 +132,36 @@ height:73vh;
 height:73vh;
 }
 }
-@media(max-width:1496px){
-iframe.frames{
+@media(max-width:1500px){
+.frames{
 max-width: 1330px;
 width:84%;
-height:72vh;
+height:73vh;
+}
+.frames1,.hide{
+height:73vh;
+}
+h1{
+font-size:2.9vw;
+}
 }
 @media(max-width:1400px){
 h1{
-font-size:2.5vw;
+font-size:2.8vw;
 }
-}
-.frames1,.hide{
-height:72vh;
+
+.frames1,.frames,.hide{
+height:74vh;
 }
 }
 @media(max-width:1240px){
 iframe.frames{
 max-width: 1330px;
 width:82%;
-height:71vh;
+height:74vh;
 }
 .hide,.frames1{
-height:71vh;
+height:74vh;
 }
 }
 @media (max-width:1200px) {
@@ -181,10 +189,10 @@ margin-top:111px;
 iframe.frames{
  max-width: 1330px;
 width:79%;
-height:69vh;
+height:74vh;
 }
 .hide{
-height:69vh;
+height:74vh;
 
 }
 h1{
@@ -195,10 +203,10 @@ font-size:4vw;
 iframe.frames{
  max-width: 1330px;
 width:73%;
-height:67vh;
+height:76vh;
 }
 .hide{
-height:67vh;
+height:76vh;
 }
 h1{
 font-size:4vw;
@@ -208,10 +216,10 @@ font-size:4vw;
 iframe.frames{
  max-width: 1330px;
 width:68%;
-height:65vh;
+height:76vh;
 }
 .hide{
-height:65vh;
+height:76vh;
 }
 h1{
 font-size:5vw;
@@ -221,10 +229,10 @@ font-size:5vw;
 iframe.frames{
  max-width: 1330px;
 width:58%;
-height:60vh;
+height:76vh;
 }
 .hide{
-height:60vh;
+height:76vh;
 }
 h1{
 font-size:5vw;
@@ -234,10 +242,10 @@ font-size:5vw;
 iframe.frames{
  max-width: 1330px;
 width:58%;
-height:58vh;
+height:76vh;
 }
 .hide{
-height:58vh;
+height:76vh;
 }
 h1{
 font-size:5vw;
@@ -247,10 +255,10 @@ font-size:5vw;
 iframe.frames{
  max-width: 1330px;
 width:43%;
-height:62vh;
+height:77vh;
 }
 .hide{
-height:62vh;
+height:77vh;
 }
 h1{
 font-size:5vw;
@@ -260,10 +268,10 @@ font-size:5vw;
 iframe.frames{
  max-width: 1330px;
 width:38%;
-height:61vh
+height:77vh
 }
 .hide{
-height:61vh;
+height:77vh;
 }
 h1{
 font-size:5vw;
