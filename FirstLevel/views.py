@@ -15901,3 +15901,32 @@ def SLICE_MIS(request):
     Designation = Employee_Designation()
 
     return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+
+def SLICE_BILLING(request):
+    excel_data = []
+    excel_data1 = []
+    Total_Payout = 0
+    Total_Payout_PL = 0
+    if request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/SLICE/Billing/SLICE BILLING.xlsx')):
+            fs1 = FileSystemStorage(location='media/SLICE/Billing')
+            AA1 = fs1.open('SLICE BILLING.xlsx')
+            F2 = pd.read_excel(AA1)
+            F2=pd.DataFrame(F2.groupby(['Currentbucket', 'PAYOUT%'])['PAYOUT'].sum().reset_index())
+            for i in range(0,len(F2['PAYOUT'])):
+                F2.loc[i,'PAYOUT']=round(F2.loc[i,'PAYOUT'],2)
+            Total_Payout = round(sum(F2['PAYOUT']), 2)
+
+    C1 = list(F2.columns)
+
+    for j in range(0, len(F2[C1[0]])):
+        row_data = list()
+        for col in range(0, len(C1)):
+            row_data.append(str(F2.loc[j, C1[col]]))
+        excel_data1.append(row_data)
+
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
+    return render(request, 'FirstLevel/Billing.html', {'Billing1': excel_data1, 'columns1': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})

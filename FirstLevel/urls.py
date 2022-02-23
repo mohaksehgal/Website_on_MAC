@@ -39,6 +39,7 @@ urlpatterns = [
     path('login/BAJAJ_MIS.html', views.BAJAJ_MIS, name='BAJAJ_MIS'),
     path('BAJAJ_PL_MIS/', views.BAJAJ_PL_MIS, name='BAJAJ_PL_MIS'),
     path('BAJAJ_CD_BILLING/', views.BAJAJ_BILLING, name='BAJAJ_BILLING'),
+    path('SLICE_CC_BILLING/', views.SLICE_BILLING, name='SLICE_BILLING'),
     # path('BAJAJ_CD_SALARY/', views.BAJAJ_SALARY, name='BAJAJ_SALARY'),
     path('Employee_database/', views.employee_database, name='employee_database'),
     # path('down/', views.L_T_PERFORMANCE_DOWNLOAD, name='L_T_DOWNLOAD'),
