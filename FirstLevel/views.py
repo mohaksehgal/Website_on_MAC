@@ -12979,6 +12979,11 @@ def BAJAJ_PL_MIS(request):
         for i in range(0, len(SS['BOM_BUCKET'])):
             SS.loc[i, 'PERFORMANCE'] = (SS.loc[i, 'PAID AMOUNT'] / SS.loc[i, 'POS']) * 100
 
+        for i in range(0,len(SS['PERFORMANCE'])):
+            SS.loc[i,'PERFORMANCE']=round(SS.loc[i,'PERFORMANCE'], 2)
+            SS.loc[i, 'PAID AMOUNT'] = round(SS.loc[i, 'PAID AMOUNT'], 2)
+            SS.loc[i, 'POS'] = round(SS.loc[i, 'POS'], 2)
+
         SS.head()
 
         SS.to_excel(r'media/BAJAJ-PL/MIS/FEB 22/BAJAJ-PL MIS.xlsx', index=False)
