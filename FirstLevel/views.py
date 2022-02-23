@@ -15845,8 +15845,8 @@ def SLICE_MIS(request):
         A.to_excel(r'media/SLICE/Billing/FEB 22/SLICE BILLING.xlsx', index=False)
 
     elif request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/SLICE/MIS/SLICE PERFORMANCE.xlsx')):
-            fs = FileSystemStorage(location='media/SLICE/MIS')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/SLICE/MIS/FEB 22/SLICE PERFORMANCE.xlsx')):
+            fs = FileSystemStorage(location='media/SLICE/MIS/FEB 22')
             AA = fs.open('SLICE PERFORMANCE.xlsx')
             SS1 = pd.read_excel(AA)
         else:
@@ -15876,8 +15876,8 @@ def SLICE_BILLING(request):
     Total_Payout = 0
     Total_Payout_PL = 0
     if request.method != 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, 'media/SLICE/Billing/SLICE BILLING.xlsx')):
-            fs1 = FileSystemStorage(location='media/SLICE/Billing')
+        if os.path.exists(os.path.join(BASE_DIR, 'media/SLICE/Billing/FEB 22/SLICE BILLING.xlsx')):
+            fs1 = FileSystemStorage(location='media/SLICE/Billing/FEB 22')
             AA1 = fs1.open('SLICE BILLING.xlsx')
             F2 = pd.read_excel(AA1)
             F2=pd.DataFrame(F2.groupby(['Currentbucket', 'PAYOUT%'])['PAYOUT'].sum().reset_index())
