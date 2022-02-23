@@ -1,4 +1,3 @@
-
         UL LI{
             FLOAT:left;
             WIDTH:160PX;
@@ -10,7 +9,7 @@
             }
 
             .div1{width: 64%;float: left;padding: 20px;}
-            .div2{width: 29%;float: left;padding: 20px;}
+            .div2{width: 31%;float: left;padding: 20px;}
 
         UL LI A{
             TEXT-DECORATION: NONE;
@@ -19,8 +18,16 @@
             TEXT-ALIGN: CENTER;
             FONT-SIZE: 15PX;
             }
+
+            body{
+                overflow:scroll;
+                height:1500PX;
+                WIDTH:1200PX
+                }
+                 ::-webkit-scrollbar {
+                     width: 0px;}
             @media(max-width:1000px){
-                body{height:500px;
+                body{
                 overflow:scroll;
                 }
                  ::-webkit-scrollbar {
@@ -36,6 +43,7 @@
                 width:100%;
                 }
             }
+
 table {
    border-collapse: collapse;
    border-spacing: 0;

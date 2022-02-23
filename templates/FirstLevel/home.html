@@ -39,7 +39,7 @@
   </div>
       <iframe  class="frames1">
       </iframe>
-  <iframe class="frames" src="salary.html" name="AB"></iframe>
+  <iframe class="frames" src="IDFC_TW_MIS.html" name="AB"></iframe>
   {% endif %}
 
   {% if DEPARTMENT == 'HL' and PROCESS == 'IDFC' and Emp_Status == 'MANAGER' %}
@@ -70,16 +70,40 @@
   </div>
       <iframe class="frames1">
       </iframe>
-  <iframe class="frames" src="IDFC-HL_Salary.html" name="AB"></iframe>
+  <iframe class="frames" src="IDFC_HL_MIS.html" name="AB"></iframe>
   {% endif %}
 
-<!--  {% if DEPARTMENT == 'TW' and PROCESS == 'L&T' and Emp_Status == 'TL' %}-->
-<!--  <iframe style="width:180px;height:650px;border:2px solid #d3ae6d;margin-top:129px;">-->
-<!--  </iframe>-->
-<!--  <iframe class="frames" src="salary.html" name="AB" style="margin-left: 184px; max-width: 1600PX
-; width: 100%; height: 650px; position: fixed; border: 2px solid rgb(211, 174, 109); top: 0px !important; margin-top: 147px !important;">-->
-<!--  </iframe>-->
-<!--  {% endif %}-->
+{% if DEPARTMENT == 'CC' and PROCESS == 'SLICE' and Emp_Status == 'TL' %}
+  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 85px;margin-right: 1337px;width: 180px; position:fixed;overflow:scroll;">
+       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:600PX">
+           <LI>
+                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF="#" target="AB"><STRONG>SALARIES</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "#" target="AB"><STRONG>BILLING</STRONG></A>
+            </LI>
+            <LI>
+                <A href="#" target="AB"><STRONG>ANALYSIS</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "{% url 'basic_app:SLICE_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
+            </LI>
+            <LI>
+                <A HREF= "#" target="AB"><STRONG>EMPLOYEES</STRONG></A>
+            </LI>
+                <OL class="block" style="margin-left:28px;">
+                    <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
+                </OL>
+       </OL>
+  </div>
+      <iframe  class="frames1">
+      </iframe>
+  <iframe class="frames" src="SLICE_CC_MIS.html" name="AB"></iframe>
+  {% endif %}
+
 
   {% if DEPARTMENT == 'CD' and PROCESS == 'BAJAJ' and Emp_Status == 'TL' %}
   <div class="hide">
@@ -109,40 +133,40 @@
   </div>
   <iframe class="frames1">
   </iframe>
-  <iframe class="frames" src="bajaj_salary.html" name="AB">
+   <iframe class="frames" src="BAJAJ_MIS.html" name="AB">
   </iframe>
   {% endif %}
-  {% if DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' and Emp_Status == 'MANAGER' %}
-  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 85px;margin-right: 1337px;width: 180px;position:fixed;overflow:scroll;">
-       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:600PX">
-            <LI>
-                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF="{% url 'basic_app:MASTER_SALARY_FULLERTON' %}" target="AB"><STRONG>SALARIES</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
-            </LI>
-            <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>
-            </LI>
-            <OL class="block">
-                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
-            </OL>
-       </OL>
-  </div>
-  <iframe class="frames1">
-  </iframe>
-  <iframe class="frames" src="FULLERTON_RECOVERY_SALARY.html" name="AB">
-  </iframe>
-  {% endif %}
+<!--  {% if DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' and Emp_Status == 'MANAGER' %}-->
+<!--  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 85px;margin-right: 1337px;width: 180px;position:fixed;overflow:scroll;">-->
+<!--       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:600PX">-->
+<!--            <LI>-->
+<!--                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF="{% url 'basic_app:MASTER_SALARY_FULLERTON' %}" target="AB"><STRONG>SALARIES</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>-->
+<!--            </LI>-->
+<!--            <OL class="block">-->
+<!--                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>-->
+<!--            </OL>-->
+<!--       </OL>-->
+<!--  </div>-->
+<!--  <iframe class="frames1">-->
+<!--  </iframe>-->
+<!--  <iframe class="frames" src="FULLERTON_RECOVERY_SALARY.html" name="AB">-->
+<!--  </iframe>-->
+<!--  {% endif %}-->
 
   {% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TL' %}
   <div class="hide" style="border:2px solid #d3ae6d;margin-top: 85px;margin-right: 1337px;width: 180px;position:fixed;overflow:scroll;">

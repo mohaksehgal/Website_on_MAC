@@ -1,4 +1,4 @@
-          @font-face {
+        @font-face {
             font-family: Accidental Presidency ;
             src: url("{% static 'FirstLevel/fonts/accid_.ttf' %}");
             }
@@ -23,11 +23,10 @@ color: white;
     width: 100%;
     padding: 0px;
     position: relative;
-    top: 17%;
+    top: 19%;
     left: 50%;
     transform: translate(-50% , -50%);
-    background: #191919;
-    opacity: 50%;
+    background: none;
     text-align: center;
 }
 
@@ -59,7 +58,7 @@ H1{
     padding-top: 30px;
     padding-bottom: 20px;
     position: relative;
-    top: 55%;
+    top: 53%;
     left: 50%;
     transform: translate(-50% , -50%);
     background: #191919;
@@ -103,8 +102,7 @@ color: white;
     top: 17%;
     left: 50%;
     transform: translate(-50% , -50%);
-    background: #191919;
-    opacity: 50%;
+    background: none;
     text-align: center;
 }
 

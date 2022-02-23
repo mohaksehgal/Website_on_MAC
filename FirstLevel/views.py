@@ -15470,3 +15470,402 @@ def NAV(request):
     final_process=COMPANY_PROCESS()
     Designation=Employee_Designation()
     return render(request, 'FirstLevel/home_base.html', {'DEPARTMENT':final_dep, 'PROCESS':final_process,'Emp_Status':Designation})
+
+
+def SLICE_MIS(request):
+    excel_data = []
+    F1 = pd.DataFrame()
+    if request.method == 'POST':
+        Allocation1 = request.FILES['Allocation']
+        Paidfile1 = request.FILES['Paid_File']
+        A = pd.read_excel(Allocation1)
+        B = pd.read_excel(Paidfile1)
+
+        fs = FileSystemStorage(location='media/SLICE/MIS/FEB 22')
+        fs.save(Allocation1.name, Allocation1)
+        fs.save(Paidfile1.name, Paidfile1)
+
+        print(A.head())
+
+        B1 = pd.DataFrame(B.groupby(['uuid'])['PAID AMOUNT'].sum()).reset_index()
+
+        B1.head(1)
+
+        for i in range(0, len(A['uuid'])):
+            for j in range(0, len(B1['uuid'])):
+                if A.loc[i, 'uuid'] == B1.loc[j, 'uuid']:
+                    A.loc[i, 'PAID AMOUNT'] = B1.loc[j, 'PAID AMOUNT']
+
+        A.head(2)
+
+        A['Currentbucket'].unique()
+
+        for i in range(0, len(A['uuid'])):
+            if A.loc[i, 'Currentbucket'] == 'BKT0':
+                if A.loc[i, 'PAID AMOUNT'] < A.loc[i, 'total_pending_emi_amount']:
+                    A.loc[i, 'STATUS'] = 'PART PAID'
+                elif A.loc[i, 'PAID AMOUNT'] >= A.loc[i, 'total_pending_emi_amount']:
+                    A.loc[i, 'STATUS'] = 'SB'
+                else:
+                    A.loc[i, 'STATUS'] = 'FLOW'
+            elif A.loc[i, 'Currentbucket'] == 'BKT1':
+                if A.loc[i, 'PAID AMOUNT'] < A.loc[i, 'total_pending_emi_amount']:
+                    A.loc[i, 'STATUS'] = 'PART PAID'
+                elif (A.loc[i, 'PAID AMOUNT'] >= round(A.loc[i, 'total_pending_emi_amount'] / 2)) and (
+                        A.loc[i, 'PAID AMOUNT'] < A.loc[i, 'total_pending_emi_amount']):
+                    A.loc[i, 'STATUS'] = 'SB'
+                elif A.loc[i, 'PAID AMOUNT'] >= A.loc[i, 'total_pending_emi_amount']:
+                    A.loc[i, 'STATUS'] = 'NM'
+                else:
+                    A.loc[i, 'STATUS'] = 'FLOW'
+            elif A.loc[i, 'Currentbucket'] == 'BKT2':
+                if A.loc[i, 'PAID AMOUNT'] < A.loc[i, 'total_pending_emi_amount'] / 3:
+                    A.loc[i, 'STATUS'] = 'PART PAID'
+                elif A.loc[i, 'PAID AMOUNT'] >= round(A.loc[i, 'total_pending_emi_amount'] / 3) and (
+                        A.loc[i, 'PAID AMOUNT'] < round((A.loc[i, 'total_pending_emi_amount'] / 3) * 2)):
+                    A.loc[i, 'STATUS'] = 'SB'
+                elif (A.loc[i, 'PAID AMOUNT'] >= round((A.loc[i, 'total_pending_emi_amount'] / 3) * 2)) and (
+                        A.loc[i, 'PAID AMOUNT'] < A.loc[i, 'total_pending_emi_amount']):
+                    A.loc[i, 'STATUS'] = 'RB'
+                elif A.loc[i, 'PAID AMOUNT'] >= A.loc[i, 'total_pending_emi_amount'] / 3:
+                    A.loc[i, 'STATUS'] = 'NM'
+                else:
+                    A.loc[i, 'STATUS'] = 'FLOW'
+            elif A.loc[i, 'Currentbucket'] == 'BKT3':
+                if A.loc[i, 'PAID AMOUNT'] < round(A.loc[i, 'total_pending_emi_amount'] / 4):
+                    A.loc[i, 'STATUS'] = 'PART PAID'
+                elif (A.loc[i, 'PAID AMOUNT'] >= round(A.loc[i, 'total_pending_emi_amount'] / 4)) and (
+                        A.loc[i, 'PAID AMOUNT'] < round((A.loc[i, 'total_pending_emi_amount'] / 4) * 2)):
+                    A.loc[i, 'STATUS'] = 'SB'
+                elif (A.loc[i, 'PAID AMOUNT'] >= (round(A.loc[i, 'total_pending_emi_amount'] / 4) * 2)) and (
+                        A.loc[i, 'PAID AMOUNT'] < round((A.loc[i, 'total_pending_emi_amount'] / 4) * 3)):
+                    A.loc[i, 'STATUS'] = 'RB'
+                elif A.loc[i, 'PAID AMOUNT'] >= A.loc[i, 'total_pending_emi_amount']:
+                    A.loc[i, 'STATUS'] = 'NM'
+                else:
+                    A.loc[i, 'STATUS'] = 'FLOW'
+
+        A.head(2)
+
+        A['STATUS'].unique()
+
+        M = pd.DataFrame(A.groupby(['Currentbucket'])['pos'].sum()).reset_index()
+
+        M.head()
+
+        M.rename({'pos': 'TOTAL_POS', 'Currentbucket': 'BKT'}, axis=1, inplace=True)
+
+        M.head()
+
+        R = pd.DataFrame(A.groupby(['Currentbucket'])['uuid'].count()).reset_index()
+
+        R.rename({'Currentbucket': 'BKT', 'uuid': 'TOTAL_CASES'}, axis=1, inplace=True)
+
+        R.head()
+
+        F = M.merge(R, how='outer')
+
+        F.head()
+
+        R1 = pd.DataFrame(A.groupby(['Currentbucket', 'STATUS'])['uuid'].count()).reset_index()
+
+        P = F.copy()
+
+        P.head()
+
+        P = pd.DataFrame(P.iloc[:, 0])
+
+        P['FLOW'] = np.nan
+        P['SB'] = np.nan
+        P['RB'] = np.nan
+        P['NM'] = np.nan
+        P['PART PAID'] = np.nan
+
+        COL = P.columns
+
+        R1.head(1)
+
+        for i in range(0, len(R1['Currentbucket'])):
+            for j in range(0, len(P['BKT'])):
+                for k in range(0, len(COL)):
+                    if (R1.loc[i, 'Currentbucket'] == P.loc[j, 'BKT']) and R1.loc[i, 'STATUS'] == COL[k]:
+                        P.loc[j, COL[k]] = R1.loc[i, 'uuid']
+
+        P
+
+        F = F.merge(P, how='outer')
+
+        F
+
+        F.rename({'FLOW': 'FLOW_CASES', 'SB': 'SB_CASES', 'RB': 'RB_CASES', 'NM': 'NM_CASES',
+                  'PART PAID': 'PART_PAID_CASES'}, axis=1, inplace=True)
+
+        F.head()
+
+        R2 = pd.DataFrame(A.groupby(['Currentbucket', 'STATUS'])['pos'].sum()).reset_index()
+
+        for i in range(0, len(R2['Currentbucket'])):
+            for j in range(0, len(P['BKT'])):
+                for k in range(0, len(COL)):
+                    if (R2.loc[i, 'Currentbucket'] == P.loc[j, 'BKT']) and (R2.loc[i, 'STATUS'] == COL[k]):
+                        P.loc[j, COL[k]] = R2.loc[i, 'pos']
+
+        F
+
+        F = F.merge(P, how='outer')
+
+        F
+
+        F.rename({'FLOW': 'FLOW_POS', 'SB': 'SB_POS', 'RB': 'RB_POS', 'NM': 'NM_POS', 'PART PAID': 'PART_PAID_POS'},
+                 axis=1, inplace=True)
+
+        F
+
+        for i in range(0, len(F['FLOW_CASES'])):
+            F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'SB_POS%'] = round((F.loc[i, 'SB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'RB_POS%'] = round((F.loc[i, 'RB_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'NM_POS%'] = round((F.loc[i, 'NM_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'PART_PAID_POS%'] = round((F.loc[i, 'PART_PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+
+        F
+
+        F.fillna(0, inplace=True)
+
+        for i in range(0, len(F['BKT'])):
+            F.loc[i, 'Performance'] = F.loc[i, 'SB_POS%'] + F.loc[i, 'RB_POS%'] + F.loc[i, 'NM_POS%']
+            F.loc[i, 'Additional_Performance'] = F.loc[i, 'RB_POS%'] + F.loc[i, 'NM_POS%']
+
+        TP = pd.DataFrame(A.groupby(['Currentbucket'])['PAID AMOUNT'].sum()).reset_index()
+
+        TP.rename({'Currentbucket': 'BKT'}, axis=1, inplace=True)
+
+        F = F.merge(TP, how='outer')
+
+        F
+
+        A.head(1)
+
+        A.to_excel(r'media/SLICE/MIS/FEB 22/SLICE MASTER FILE.xlsx', index=False)
+
+        F.to_excel(r'media/SLICE/MIS/FEB 22/SLICE PERFORMANCE.xlsx', index=False)
+
+        SS1=F.copy()
+
+        F.head(1)
+
+        for i in range(0, len(F['BKT'])):
+            for j in range(0, len(A['uuid'])):
+                if (A.loc[j, 'STATUS'] == 'SB') and (A.loc[j, 'Currentbucket'] == 'BKT0') and (
+                        F.loc[i, 'BKT'] == 'BKT0'):
+                    if F.loc[i, 'Performance'] <= 50:
+                        A.loc[j, 'PAYOUT%'] = '8%'
+                        A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 8 / 100
+                    elif F.loc[i, 'Performance'] > 50 and F.loc[i, 'Performance'] <= 55:
+                        A.loc[j, 'PAYOUT%'] = '9%'
+                        A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 9 / 100
+                    elif F.loc[i, 'Performance'] > 55 and F.loc[i, 'Performance'] <= 60:
+                        A.loc[j, 'PAYOUT%'] = '10%'
+                        A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 10 / 100
+                    elif F.loc[i, 'Performance'] > 60 and F.loc[i, 'Performance'] <= 65:
+                        A.loc[j, 'PAYOUT%'] = '12%'
+                        A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 12 / 100
+                    elif F.loc[i, 'Performance'] > 65 and F.loc[i, 'Performance'] <= 70:
+                        A.loc[j, 'PAYOUT%'] = '13%'
+                        A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 13 / 100
+                    elif F.loc[i, 'Performance'] > 70:
+                        A.loc[j, 'PAYOUT%'] = '15%'
+                        A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 15 / 100
+                elif ((A.loc[j, 'STATUS'] == 'SB') or (A.loc[j, 'STATUS'] == 'NM')) and (
+                        A.loc[j, 'Currentbucket'] == 'BKT1') and (F.loc[i, 'BKT'] == 'BKT1'):
+                    if F.loc[i, 'Additional_Performance'] <= 15:
+                        if F.loc[i, 'Performance'] <= 40:
+                            A.loc[j, 'PAYOUT%'] = '7%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 7 / 100
+                        elif F.loc[i, 'Performance'] > 40 and F.loc[i, 'Performance'] <= 45:
+                            A.loc[j, 'PAYOUT%'] = '9%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 9 / 100
+                        elif F.loc[i, 'Performance'] > 45 and F.loc[i, 'Performance'] <= 50:
+                            A.loc[j, 'PAYOUT%'] = '10%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 10 / 100
+                        elif F.loc[i, 'Performance'] > 50 and F.loc[i, 'Performance'] <= 55:
+                            A.loc[j, 'PAYOUT%'] = '12%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 12 / 100
+                        elif F.loc[i, 'Performance'] > 55 and F.loc[i, 'Performance'] <= 60:
+                            A.loc[j, 'PAYOUT%'] = '15%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 15 / 100
+                        elif F.loc[i, 'Performance'] > 60:
+                            A.loc[j, 'PAYOUT%'] = '17%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 17 / 100
+                    elif (F.loc[i, 'Additional_Performance'] > 15) and (F.loc[i, 'Additional_Performance'] <= 20):
+                        if F.loc[i, 'Performance'] <= 40:
+                            A.loc[j, 'PAYOUT%'] = '8%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 8 / 100
+                        elif F.loc[i, 'Performance'] > 40 and F.loc[i, 'Performance'] <= 45:
+                            A.loc[j, 'PAYOUT%'] = '10%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 10 / 100
+                        elif F.loc[i, 'Performance'] > 45 and F.loc[i, 'Performance'] <= 50:
+                            A.loc[j, 'PAYOUT%'] = '11%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 11 / 100
+                        elif F.loc[i, 'Performance'] > 50 and F.loc[i, 'Performance'] <= 55:
+                            A.loc[j, 'PAYOUT%'] = '14%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 14 / 100
+                        elif F.loc[i, 'Performance'] > 55 and F.loc[i, 'Performance'] <= 60:
+                            A.loc[j, 'PAYOUT%'] = '16%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 16 / 100
+                        elif F.loc[i, 'Performance'] > 60:
+                            A.loc[j, 'PAYOUT%'] = '18%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 18 / 100
+                    elif F.loc[i, 'Additional_Performance'] > 20:
+                        if F.loc[i, 'Performance'] <= 40:
+                            A.loc[j, 'PAYOUT%'] = '9%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 9 / 100
+                        elif F.loc[i, 'Performance'] > 40 and F.loc[i, 'Performance'] <= 45:
+                            A.loc[j, 'PAYOUT%'] = '11%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 11 / 100
+                        elif F.loc[i, 'Performance'] > 45 and F.loc[i, 'Performance'] <= 50:
+                            A.loc[j, 'PAYOUT%'] = '12%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 12 / 100
+                        elif F.loc[i, 'Performance'] > 50 and F.loc[i, 'Performance'] <= 55:
+                            A.loc[j, 'PAYOUT%'] = '15%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 15 / 100
+                        elif F.loc[i, 'Performance'] > 55 and F.loc[i, 'Performance'] <= 60:
+                            A.loc[j, 'PAYOUT%'] = '17%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 17 / 100
+                        elif F.loc[i, 'Performance'] > 60:
+                            A.loc[j, 'PAYOUT%'] = '19%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 19 / 100
+                elif ((A.loc[j, 'STATUS'] == 'SB') or (A.loc[j, 'STATUS'] == 'NM') or (
+                        A.loc[j, 'STATUS'] == 'RB')) and (A.loc[j, 'Currentbucket'] == 'BKT2') and (
+                        F.loc[i, 'BKT'] == 'BKT2'):
+                    if F.loc[i, 'Additional_Performance'] <= 9:
+                        if F.loc[i, 'Performance'] <= 30:
+                            A.loc[j, 'PAYOUT%'] = '8%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 8 / 100
+                        elif F.loc[i, 'Performance'] > 30 and F.loc[i, 'Performance'] <= 35:
+                            A.loc[j, 'PAYOUT%'] = '9%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 9 / 100
+                        elif F.loc[i, 'Performance'] > 35 and F.loc[i, 'Performance'] <= 40:
+                            A.loc[j, 'PAYOUT%'] = '11%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 11 / 100
+                        elif F.loc[i, 'Performance'] > 40 and F.loc[i, 'Performance'] <= 45:
+                            A.loc[j, 'PAYOUT%'] = '13%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 13 / 100
+                        elif F.loc[i, 'Performance'] > 45 and F.loc[i, 'Performance'] <= 50:
+                            A.loc[j, 'PAYOUT%'] = '15%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 15 / 100
+                        elif F.loc[i, 'Performance'] > 50:
+                            A.loc[j, 'PAYOUT%'] = '18%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 18 / 100
+                    elif (F.loc[i, 'Additional_Performance'] > 9) and (F.loc[i, 'Additional_Performance'] <= 15):
+                        if F.loc[i, 'Performance'] <= 30:
+                            A.loc[j, 'PAYOUT%'] = '9%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 9 / 100
+                        elif F.loc[i, 'Performance'] > 30 and F.loc[i, 'Performance'] <= 35:
+                            A.loc[j, 'PAYOUT%'] = '10%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 10 / 100
+                        elif F.loc[i, 'Performance'] > 35 and F.loc[i, 'Performance'] <= 40:
+                            A.loc[j, 'PAYOUT%'] = '12%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 12 / 100
+                        elif F.loc[i, 'Performance'] > 40 and F.loc[i, 'Performance'] <= 45:
+                            A.loc[j, 'PAYOUT%'] = '14%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 14 / 100
+                        elif F.loc[i, 'Performance'] > 45 and F.loc[i, 'Performance'] <= 50:
+                            A.loc[j, 'PAYOUT%'] = '16%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 16 / 100
+                        elif F.loc[i, 'Performance'] > 50:
+                            A.loc[j, 'PAYOUT%'] = '19%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 19 / 100
+                    elif F.loc[i, 'Additional_Performance'] > 15:
+                        if F.loc[i, 'Performance'] <= 30:
+                            A.loc[j, 'PAYOUT%'] = '10%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 10 / 100
+                        elif F.loc[i, 'Performance'] > 30 and F.loc[i, 'Performance'] <= 35:
+                            A.loc[j, 'PAYOUT%'] = '11%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 11 / 100
+                        elif F.loc[i, 'Performance'] > 35 and F.loc[i, 'Performance'] <= 40:
+                            A.loc[j, 'PAYOUT%'] = '13%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 13 / 100
+                        elif F.loc[i, 'Performance'] > 40 and F.loc[i, 'Performance'] <= 45:
+                            A.loc[j, 'PAYOUT%'] = '15%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 15 / 100
+                        elif F.loc[i, 'Performance'] > 45 and F.loc[i, 'Performance'] <= 50:
+                            A.loc[j, 'PAYOUT%'] = '17%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 17 / 100
+                        elif F.loc[i, 'Performance'] > 50:
+                            A.loc[j, 'PAYOUT%'] = '20%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 20 / 100
+                elif ((A.loc[j, 'STATUS'] == 'SB') or (A.loc[j, 'STATUS'] == 'NM') or (
+                        A.loc[j, 'STATUS'] == 'RB')) and (A.loc[j, 'Currentbucket'] == 'BKT3') and (
+                        F.loc[i, 'BKT'] == 'BKT3'):
+                    if F.loc[i, 'Additional_Performance'] <= 5:
+                        if (F.loc[i, 'Performance'] > 4.5) and (F.loc[i, 'Performance'] <= 5.25):
+                            A.loc[j, 'PAYOUT%'] = '17%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 17 / 100
+                        elif F.loc[i, 'Performance'] > 5.25 and F.loc[i, 'Performance'] <= 6:
+                            A.loc[j, 'PAYOUT%'] = '18%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 18 / 100
+                        elif F.loc[i, 'Performance'] > 6 and F.loc[i, 'Performance'] <= 6.75:
+                            A.loc[j, 'PAYOUT%'] = '19%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 19 / 100
+                        elif F.loc[i, 'Performance'] > 6.75:
+                            A.loc[j, 'PAYOUT%'] = '20%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 20 / 100
+                    elif (F.loc[i, 'Additional_Performance'] > 5) and (F.loc[i, 'Additional_Performance'] <= 7):
+                        if (F.loc[i, 'Performance'] > 4.5) and (F.loc[i, 'Performance'] < 5.25):
+                            A.loc[j, 'PAYOUT%'] = '18%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 18 / 100
+                        elif F.loc[i, 'Performance'] > 5.25 and F.loc[i, 'Performance'] <= 6:
+                            A.loc[j, 'PAYOUT%'] = '19%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 19 / 100
+                        elif F.loc[i, 'Performance'] > 6 and F.loc[i, 'Performance'] <= 6.75:
+                            A.loc[j, 'PAYOUT%'] = '20%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 20 / 100
+                        elif F.loc[i, 'Performance'] > 6.75:
+                            A.loc[j, 'PAYOUT%'] = '21%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 21 / 100
+                    elif F.loc[i, 'Additional_Performance'] > 7:
+                        if (F.loc[i, 'Performance'] > 4.5) and (F.loc[i, 'Performance'] < 5.25):
+                            A.loc[j, 'PAYOUT%'] = '19%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 19 / 100
+                        elif F.loc[i, 'Performance'] > 5.25 and F.loc[i, 'Performance'] <= 6:
+                            A.loc[j, 'PAYOUT%'] = '20%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 20 / 100
+                        elif F.loc[i, 'Performance'] > 6 and F.loc[i, 'Performance'] <= 6.75:
+                            A.loc[j, 'PAYOUT%'] = '21%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 21 / 100
+                        elif F.loc[i, 'Performance'] > 6.75:
+                            A.loc[j, 'PAYOUT%'] = '22%'
+                            A.loc[j, 'PAYOUT'] = A.loc[j, 'PAID AMOUNT'] * 22 / 100
+
+        A.head()
+
+        A['PAYOUT'].fillna(0, inplace=True)
+
+        A.to_excel(r'media/SLICE/Billing/FEB 22/SLICE BILLING.xlsx', index=False)
+
+    elif request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/SLICE/MIS/SLICE PERFORMANCE.xlsx')):
+            fs = FileSystemStorage(location='media/SLICE/MIS')
+            AA = fs.open('SLICE PERFORMANCE.xlsx')
+            SS1 = pd.read_excel(AA)
+        else:
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+
+    C = list(SS1.columns)
+
+    for j in range(0, len(SS1[C[0]])):
+        row_data = list()
+        for col in range(0, len(C)):
+            row_data.append(str(SS1.loc[j, C[col]]))
+        excel_data.append(row_data)
+
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
