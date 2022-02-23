@@ -139,21 +139,42 @@
          </div>
         <div class="center" style="margin-right:0px;">
             <table class="A5" style="margin-left:148px;WIDTH:59%;">
-            <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:50px; height:17px">
-            {% for col in columns1 %}
-                <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:50px; height:17px" >{{col}}</th>
-            {% endfor %}
-            </tr>
-            {% for row in Billing1 %}
-                <tr style="background-color:white;border:2px solid black;">
-                {% for j in row %}
-                    <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:500px; height:17px">{{j}}</td>
+                <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:50px; height:17px">
+                {% for col in columns1 %}
+                    <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:50px; height:17px" >{{col}}</th>
                 {% endfor %}
                 </tr>
-            {% endfor %}
-        </table>
+                {% for row in Billing1 %}
+                    <tr style="background-color:white;border:2px solid black;">
+                    {% for j in row %}
+                        <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:500px; height:17px">{{j}}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
         <p3 style="color:white; border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px; font-size:15px;">TOTAL PAYOUT BAJAJ-PL :{{com}}{{Total_Payout_PL}}</p3>
+    {% endif %}
+{% endif %}
+
+{% if DEPARTMENT == 'CC' %}
+    {% if PROCESS == 'SLICE' %}
+        <div class="center" style="margin-right:0px;">
+            <table class="A5" style="margin-left:148px;WIDTH:59%;">
+                <tr style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:50px; height:17px">
+                {% for col in columns1 %}
+                    <th style="background-color:white;border:1px solid black;border-right:none;font-size:12px;border-top-width:3px;border-bottom-width:3px; width:50px; height:17px" >{{col}}</th>
+                {% endfor %}
+                </tr>
+                {% for row in Billing1 %}
+                    <tr style="background-color:white;border:2px solid black;">
+                    {% for j in row %}
+                        <td style="background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none; border-right:none; width:500px; height:17px">{{j}}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     {% endif %}
 {% endif %}
 
