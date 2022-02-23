@@ -12991,6 +12991,11 @@ def BAJAJ_PL_MIS(request):
 
         SS.head()
 
+        for i in range(0,len(SS['PERFORMANCE'])):
+            SS.loc[i,'PERFORMANCE']=round(SS.loc[i,'PERFORMANCE'], 2)
+            SS.loc[i, 'PAID AMOUNT'] = round(SS.loc[i, 'PAID AMOUNT'], 2)
+            SS.loc[i, 'POS'] = round(SS.loc[i, 'POS'], 2)
+
         SS.to_excel(r'media/BAJAJ-PL/MIS/BAJAJ-PL MIS.xlsx', index=False)
 
         A.head(1)
