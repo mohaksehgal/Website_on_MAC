@@ -167,37 +167,6 @@
    <iframe class="frames" src="BAJAJ_MIS.html" name="AB">
   </iframe>
   {% endif %}
-<!--  {% if DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' and Emp_Status == 'MANAGER' %}-->
-<!--  <div class="hide" style="border:2px solid #d3ae6d;margin-top: 85px;margin-right: 1337px;width: 180px;position:fixed;overflow:scroll;">-->
-<!--       <OL class="dash" style="float:right;margin-left:0px;margin-top:22px;width: 145px;padding-left: 0px; height:600PX">-->
-<!--            <LI>-->
-<!--                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>-->
-<!--            </LI>-->
-<!--            <LI>-->
-<!--                <A HREF="{% url 'basic_app:MASTER_SALARY_FULLERTON' %}" target="AB"><STRONG>SALARIES</STRONG></A>-->
-<!--            </LI>-->
-<!--            <LI>-->
-<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>-->
-<!--            </LI>-->
-<!--            <LI>-->
-<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>-->
-<!--            </LI>-->
-<!--            <LI>-->
-<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>-->
-<!--            </LI>-->
-<!--            <LI>-->
-<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>-->
-<!--            </LI>-->
-<!--            <OL class="block">-->
-<!--                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>-->
-<!--            </OL>-->
-<!--       </OL>-->
-<!--  </div>-->
-<!--  <iframe class="frames1">-->
-<!--  </iframe>-->
-<!--  <iframe class="frames" src="FULLERTON_RECOVERY_SALARY.html" name="AB">-->
-<!--  </iframe>-->
-<!--  {% endif %}-->
 
   {% if DEPARTMENT == 'TW' and PROCESS == 'IDFC' and Emp_Status == 'TL' %}
   <div class="hide" style="border:2px solid #d3ae6d;margin-top: 85px;margin-right: 1337px;width: 180px;position:fixed;overflow:scroll;">
@@ -223,12 +192,12 @@
   {% endif %}
 
   {% if Emp_Status == 'TC' %}
-  <br>
-  <p style="  border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">Your Fixed Salary is: </p>{{Emp_Salary}}
-  <p style="  border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;" >Your Incentive is: </p>{{Incentive}}
-  <p style="  border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;" >Your Total Salary is: </p>{{Final_Salary}}
-  <br>
-  <br>
+      <br>
+      <p style="  border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">Your Fixed Salary is: </p>{{Emp_Salary}}
+      <p style="  border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;" >Your Incentive is: </p>{{Incentive}}
+      <p style="  border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;" >Your Total Salary is: </p>{{Final_Salary}}
+      <br>
+      <br>
       <table>
         <tr style="color:black;background-color:white;border:1px solid black;font-size:11px;font-weight:normal;text-align:center;border-top:none;border-right:none;">
         {% for col in columns %}
@@ -243,9 +212,9 @@
             </tr>
         {% endfor %}
       </table>
-      {% endif %}
+  {% endif %}
 
-      {% if Emp_Status == 'FOS' %}
+  {% if Emp_Status == 'FOS' %}
       <br><br><br><br><br><br><br>
       <p class="like" style="  border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:190px;">Your Fixed Salary for TW is: </p>{{Fixed_Payout_FOS}}
       <p class="like" style="  border: 2px solid #d3ae6d;  border-radius: 12px;   padding: 5px; width:170px;">Your Incentive for TW is: </p>{{Incentive_Payout_FOS}}
@@ -334,7 +303,7 @@
             </tr>
         {% endfor %}
       </table>
-      {% endif %}
+  {% endif %}
 </body>
 </html>
 {% endblock %}
