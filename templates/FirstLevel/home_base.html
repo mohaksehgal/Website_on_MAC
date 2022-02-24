@@ -108,8 +108,7 @@
 
     </NAV>
 
-<!--OK SEEN-->
-{% elif DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' %}
+{% elif DEPARTMENT == 'AUTO' and PROCESS == 'MAGMA' and Emp_Status == 'MANAGER' %}
     <NAV class="top">
 
         <div class="logo" style="height:0px">
@@ -122,19 +121,19 @@
                 <A HREF="#"><STRONG>DASHBOARD</STRONG></A>
             </LI>
             <LI>
-                <A HREF="{% url 'basic_app:MASTER_SALARY_FULLERTON' %}" target="AB"><STRONG>SALARIES</STRONG></A>
+                <A HREF="#" target="AB"><STRONG>SALARIES</STRONG></A>
             </LI>
             <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
+                <A HREF= "{% url 'basic_app:MAGMA_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>
             </LI>
             <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>
+                <A href="#" target="AB"><STRONG>ANALYSIS</STRONG></A>
             </LI>
             <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
+                <A HREF= "{% url 'basic_app:MAGMA_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>
             </LI>
             <LI>
-                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>
+                <A HREF= "#" target="AB"><STRONG>EMPLOYEES</STRONG></A>
             </LI>
             <ul class="block">
                 <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>
@@ -142,6 +141,7 @@
         </UL>
 
     </NAV>
+
 <!--OK SEEN-->
 {% elif PROCESS == 'IDFC' and DEPARTMENT == 'HL' and Emp_Status == 'MANAGER' %}
     <NAV class="top">
@@ -317,6 +317,41 @@
 
     </NAV>
 <!--Checking the change of asw server-->
+
+<!--OK SEEN-->
+<!--{% elif DEPARTMENT == 'RECOVERY' and PROCESS == 'FULLERTON' %}-->
+<!--    <NAV class="top">-->
+
+<!--        <div class="logo" style="height:0px">-->
+<!--            <a href="{% url 'basic_app:index' %}">-->
+<!--                <IMG SRC="{% static 'FirstLevel/images/logo.png' %}">-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <UL class="nav" style="float:right; margin-left:0px;margin-top:22px">-->
+<!--            <LI>-->
+<!--                <A HREF="#"><STRONG>DASHBOARD</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF="{% url 'basic_app:MASTER_SALARY_FULLERTON' %}" target="AB"><STRONG>SALARIES</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_BILLING' %}" target="AB"><STRONG>BILLING</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_ANALYSIS' %}" target="AB"><STRONG>ANALYSIS</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_MIS' %}" target="AB"><STRONG>FILE MANAGEMENT</STRONG></A>-->
+<!--            </LI>-->
+<!--            <LI>-->
+<!--                <A HREF= "{% url 'basic_app:FULLERTON_RECOVERY_EMPLOYEES' %}" target="AB"><STRONG>EMPLOYEES</STRONG></A>-->
+<!--            </LI>-->
+<!--            <ul class="block">-->
+<!--                <A href="{% url 'basic_app:index' %}"><STRONG>LOGOUT</STRONG></A>-->
+<!--            </ul>-->
+<!--        </UL>-->
+
+<!--    </NAV>-->
 
 {% endif %}
 {% block body_block %}

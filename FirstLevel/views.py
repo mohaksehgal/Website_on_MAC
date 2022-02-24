@@ -13217,14 +13217,9 @@ def BAJAJ_BILLING(request):
                           {'Billing1': excel_data1, 'columns1': C1, 'Total_Payout_PL': Total_Payout_PL,
                            'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-        else:
-            final_dep = DEP()
-            final_process = COMPANY_PROCESS()
-            Designation = Employee_Designation()
 
-            return render(request, 'FirstLevel/upload_excel.html',
-                          {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
-                           'Overall': 'Please Upload Files for both the process'})
+        else:
+            return HttpResponseRedirect(reverse('basic_app:BAJAJ_MIS'))
 
     C = list(F1.columns)
     C1 = list(F2.columns)
@@ -15902,6 +15897,7 @@ def SLICE_MIS(request):
 
     return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
+
 def SLICE_BILLING(request):
     excel_data = []
     excel_data1 = []
@@ -15916,6 +15912,1285 @@ def SLICE_BILLING(request):
             for i in range(0,len(F2['PAYOUT'])):
                 F2.loc[i,'PAYOUT']=round(F2.loc[i,'PAYOUT'],2)
             Total_Payout = round(sum(F2['PAYOUT']), 2)
+        else:
+            return HttpResponseRedirect(reverse('basic_app:SLICE_MIS'))
+
+    C1 = list(F2.columns)
+
+    for j in range(0, len(F2[C1[0]])):
+        row_data = list()
+        for col in range(0, len(C1)):
+            row_data.append(str(F2.loc[j, C1[col]]))
+        excel_data1.append(row_data)
+
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
+    return render(request, 'FirstLevel/Billing.html', {'Billing1': excel_data1, 'columns1': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+
+
+def MAGMA_MIS(request):
+    excel_data = []
+    F1 = pd.DataFrame()
+    if request.method == 'POST':
+        Allocation1 = request.FILES['Allocation']
+        Paidfile1 = request.FILES['Paid_File']
+        A = pd.read_excel(Allocation1)
+        B = pd.read_excel(Paidfile1)
+
+        fs = FileSystemStorage(location='media/MAGMA/MIS')
+        fs.save(Allocation1.name, Allocation1)
+        fs.save(Paidfile1.name, Paidfile1)
+
+        ECS = B[B['MODE'] == 'ECS']
+
+        dr = list(B[B['MODE'] == 'ECS'].index)
+
+        B.drop(dr, axis=0, inplace=True)
+
+        B = B.reset_index(drop=True)
+
+        B1 = pd.DataFrame(B.groupby('AGREEMENTID')['PAID AMOUNT'].sum()).reset_index()
+
+        for i in range(0, len(A['AGREEMENTID'])):
+            for j in range(0, len(B1['PAID AMOUNT'])):
+                if A.loc[i, 'AGREEMENTID'] == B1.loc[j, 'AGREEMENTID']:
+                    A.loc[i, 'TOTAL PAID'] = B1.loc[j, 'PAID AMOUNT']
+
+        for i in range(0, len(A['AGREEMENTID'])):
+            if A.loc[i, 'TOTAL PAID'] > 0:
+                A.loc[i, 'STATUS'] = 'PAID'
+            else:
+                A.loc[i, 'STATUS'] = 'FLOW'
+
+        A.head()
+
+        type(A.loc[0, 'OD+POS.'])
+
+        M = pd.DataFrame(A.groupby(['COMPANY', 'MOHAK DPD GRP'])['OD+POS.'].sum()).reset_index()
+
+        M
+
+        M.rename({'OD+POS.': 'TOTAL_POS'}, axis=1, inplace=True)
+
+        M.head()
+
+        R = pd.DataFrame(A.groupby(['COMPANY', 'MOHAK DPD GRP'])['AGREEMENTID'].count()).reset_index()
+
+        R.head()
+
+        F = M.merge(R, how='outer')
+
+        F.rename({'AGREEMENTID': 'TOTAL_CASES'}, axis=1, inplace=True)
+
+        R1 = pd.DataFrame(A.groupby(['COMPANY', 'MOHAK DPD GRP', 'STATUS'])['AGREEMENTID'].count()).reset_index()
+        R2 = pd.DataFrame(A.groupby(['COMPANY', 'MOHAK DPD GRP', 'STATUS'])['OD+POS.'].sum()).reset_index()
+
+        P = F.copy()
+
+        P.drop(['TOTAL_POS', 'TOTAL_CASES'], axis=1, inplace=True)
+
+        P['FLOW'] = np.nan
+        P['PAID'] = np.nan
+
+        COL = P.columns
+
+        for i in range(0, len(R1['COMPANY'])):
+            for j in range(0, len(P['FLOW'])):
+                for k in range(0, len(COL)):
+                    if ((R1.loc[i, ['COMPANY', 'MOHAK DPD GRP']] == P.loc[j, ['COMPANY', 'MOHAK DPD GRP']]).all()) and \
+                            R1.loc[i, 'STATUS'] == COL[k]:
+                        P.loc[j, COL[k]] = R1.loc[i, 'AGREEMENTID']
+
+        F = F.merge(P, how='outer')
+
+        F.fillna(0, inplace=True)
+
+        F.rename({'FLOW': 'FLOW_CASES', 'PAID': 'PAID_CASES'}, axis=1, inplace=True)
+
+        for i in range(0, len(R2['COMPANY'])):
+            for j in range(0, len(P['FLOW'])):
+                for k in range(0, len(COL)):
+                    if ((R2.loc[i, ['COMPANY', 'MOHAK DPD GRP']] == P.loc[j, ['COMPANY', 'MOHAK DPD GRP']]).all()) and \
+                            R2.loc[i, 'STATUS'] == COL[k]:
+                        P.loc[j, COL[k]] = R2.loc[i, 'OD+POS.']
+
+        F = F.merge(P, how='outer')
+
+        F.head()
+
+        F.rename({'FLOW': 'FLOW_POS', 'PAID': 'PAID_POS'}, axis=1, inplace=True)
+
+        F.fillna(0, inplace=True)
+
+        for i in range(0, len(F['FLOW_CASES'])):
+            F.loc[i, 'FLOW_POS%'] = round((F.loc[i, 'FLOW_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+            F.loc[i, 'PAID_POS%'] = round((F.loc[i, 'PAID_POS'] / F.loc[i, 'TOTAL_POS']) * 100, 2)
+
+        F.rename({'PAID_POS%': 'PERFORMANCE'}, axis=1, inplace=True)
+
+        F.drop(['FLOW_POS%', 'FLOW_POS'], axis=1, inplace=True)
+
+        for i in range(0,len(F['COMPANY'])):
+            F.loc[i,'TOTAL_POS']=round(F.loc[i,'TOTAL_POS'],2)
+            F.loc[i, 'PAID_POS'] = round(F.loc[i, 'PAID_POS'], 2)
+
+        F.to_excel(r'media/MAGMA/MIS/MIS_MAGMA_RECOVERY.xlsx', index=False)
+
+        F
+
+        F['MOHAK DPD GRP'].unique()
+
+        A['DPD BRACKET'].unique()
+
+        A.head(1)
+
+        F
+
+        A.head(1)
+
+        A['COMPANY'].unique()
+
+        for j in range(0, len(F['COMPANY'])):
+            for i in range(0, len(A['COMPANY'])):
+                if (F.loc[j, 'COMPANY'] == 'LOSS ON SALE') and (A.loc[i, 'COMPANY'] == 'LOSS ON SALE'):
+                    if F.loc[j, 'PERFORMANCE'] <= 0.5:
+                        if (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 25:
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 12) / 100
+                            A.loc[i, 'PERCENTAGE'] = '12%'
+                        elif ((A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 25) and (
+                                (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 35):
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 16) / 100
+                            A.loc[i, 'PERCENTAGE'] = '16%'
+                        elif ((A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 35) and (
+                                (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 45):
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 20) / 100
+                            A.loc[i, 'PERCENTAGE'] = '20%'
+                        elif (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 45:
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 22) / 100
+                            A.loc[i, 'PERCENTAGE'] = '22%'
+                    elif (F.loc[j, 'PERFORMANCE'] > 0.5) and (F.loc[j, 'PERFORMANCE'] <= 0.75):
+                        if (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 25:
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 14) / 100
+                            A.loc[i, 'PERCENTAGE'] = '14%'
+                        elif ((A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 25) and (
+                                (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 35):
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 18) / 100
+                            A.loc[i, 'PERCENTAGE'] = '18%'
+                        elif ((A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 35) and (
+                                (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 45):
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 22) / 100
+                            A.loc[i, 'PERCENTAGE'] = '22%'
+                        elif (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 45:
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 25) / 100
+                            A.loc[i, 'PERCENTAGE'] = '25%'
+                    elif F.loc[j, 'PERFORMANCE'] > 0.75:
+                        if (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 25:
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 20) / 100
+                            A.loc[i, 'PERCENTAGE'] = '20%'
+                        elif ((A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 25) and (
+                                (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 35):
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 25) / 100
+                            A.loc[i, 'PERCENTAGE'] = '25%'
+                        elif ((A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 35) and (
+                                (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 <= 45):
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 30) / 100
+                            A.loc[i, 'PERCENTAGE'] = '30%'
+                        elif (A.loc[i, 'TOTAL PAID'] / A.loc[i, 'OD+POS.']) * 100 > 45:
+                            A.loc[i, 'PAYOUT'] = (A.loc[i, 'TOTAL PAID'] * 35) / 100
+                            A.loc[i, 'PERCENTAGE'] = '35%'
+
+        # BL 180-365
+        for i in range(0, len(F['COMPANY'])):
+            for j in range(0, len(A['AGREEMENTID'])):
+                if A.loc[j, 'COMPANY'] == F.loc[i, 'COMPANY']:
+                    if (A.loc[j, 'MOHAK DPD GRP'] == F.loc[i, 'MOHAK DPD GRP']):
+                        if (F.loc[i, 'MOHAK DPD GRP'] == '180-365'):
+                            if (A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 < 55:
+                                if F.loc[i, 'PERFORMANCE'] <= 4.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 15) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '15%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 16) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '16%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 5.5) and (F.loc[i, 'PERFORMANCE'] <= 6.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 17) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '17%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '18%'
+                                elif F.loc[i, 'PERFORMANCE'] > 7.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 19) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '19%'
+                            elif ((A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 >= 55) and ((A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 <= 60):
+                                if F.loc[i, 'PERFORMANCE'] <= 4.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 16) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '16%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 17) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '17%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 5.5) and (F.loc[i, 'PERFORMANCE'] <= 6.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '18%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 19) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '19%'
+                                elif F.loc[i, 'PERFORMANCE'] > 7.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '20%'
+                            elif ((A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 > 60) and ((A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 <= 65):
+                                if F.loc[i, 'PERFORMANCE'] <= 4.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 17) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '17%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '18%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 5.5) and (F.loc[i, 'PERFORMANCE'] <= 6.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 19) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '19%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '20%'
+                                elif F.loc[i, 'PERFORMANCE'] > 7.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 21) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '21%'
+                            elif (A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 > 65:
+                                if F.loc[i, 'PERFORMANCE'] <= 4.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '18%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '20%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 5.5) and (F.loc[i, 'PERFORMANCE'] <= 6.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 21) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '21%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 22) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '22%'
+                                elif F.loc[i, 'PERFORMANCE'] > 7.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 23) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '23%'
+
+        for i in range(0, len(F['COMPANY'])):
+            for j in range(0, len(A['AGREEMENTID'])):
+                if A.loc[j, 'COMPANY'] == F.loc[i, 'COMPANY']:
+                    if (A.loc[j, 'MOHAK DPD GRP'] == F.loc[i, 'MOHAK DPD GRP']):
+                        if (F.loc[i, 'MOHAK DPD GRP'] == '365+'):
+                            if (A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 < 40:
+                                if F.loc[i, 'PERFORMANCE'] <= 1.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 17) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '17%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 1.5) and (F.loc[i, 'PERFORMANCE'] <= 2.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '18%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 2.5) and (F.loc[i, 'PERFORMANCE'] <= 3.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 19) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '19%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '20%'
+                                elif F.loc[i, 'PERFORMANCE'] > 4.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 21) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '21%'
+                            elif ((A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 >= 40) and (
+                                    (A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 <= 45):
+                                if F.loc[i, 'PERFORMANCE'] <= 1.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '18%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 1.5) and (F.loc[i, 'PERFORMANCE'] <= 2.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 19) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '19%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 2.5) and (F.loc[i, 'PERFORMANCE'] <= 3.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '20%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 21) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '21%'
+                                elif F.loc[i, 'PERFORMANCE'] > 4.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 22) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '22%'
+                            elif ((A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 > 45) and (
+                                    (A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 <= 50):
+                                if F.loc[i, 'PERFORMANCE'] <= 1.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 19) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '19%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 1.5) and (F.loc[i, 'PERFORMANCE'] <= 2.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '20%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 2.5) and (F.loc[i, 'PERFORMANCE'] <= 3.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 21) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '21%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 22) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '22%'
+                                elif F.loc[i, 'PERFORMANCE'] > 4.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 23) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '23%'
+                            elif (A.loc[j, 'TOTAL PAID'] / A.loc[j, 'OD+POS.']) * 100 > 50:
+                                if F.loc[i, 'PERFORMANCE'] <= 1.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '20%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 1.5) and (F.loc[i, 'PERFORMANCE'] <= 2.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '21%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 2.5) and (F.loc[i, 'PERFORMANCE'] <= 3.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 21) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '22%'
+                                elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 22) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '23%'
+                                elif F.loc[i, 'PERFORMANCE'] > 4.5:
+                                    A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 23) / 100
+                                    A.loc[j, 'PERCENTAGE'] = '24%'
+
+        A.head(1)
+
+        ECS.head(1)
+
+        ECS = pd.DataFrame(ECS.groupby(['AGREEMENTID'])['PAID AMOUNT'].sum()).reset_index()
+
+        ECS.rename({'PAID AMOUNT': 'ECS AMOUNT'}, axis=1, inplace=True)
+
+        A = A.merge(ECS, how='left')
+
+        A['ECS AMOUNT'].fillna(0, inplace=True)
+
+        A.head()
+
+        for i in range(0, len(F['COMPANY'])):
+            for j in range(0, len(A['AGREEMENTID'])):
+                if A.loc[j, 'COMPANY'] == F.loc[i, 'COMPANY']:
+                    if (A.loc[j, 'MOHAK DPD GRP'] == F.loc[i, 'MOHAK DPD GRP']):
+                        if (F.loc[i, 'MOHAK DPD GRP'] == '366 TO 730'):
+                            if A.loc[j, 'OD+POS.'] <= 50000:
+                                if A.loc[j, 'TOTAL PAID'] + A.loc[j, 'ECS AMOUNT'] >= (A.loc[j, 'OD+POS.'] * 115) / 100:
+                                    if F.loc[i, 'PERFORMANCE'] <= 10:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 7) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '7%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            if A.loc[j, 'DPD BRACKET'] == '<365':
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                            else:
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[i, 'PENALTY PAYOUT'] = 0
+                                            A.loc[i, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 10) and (F.loc[i, 'PERFORMANCE'] <= 11):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 10.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '10.15%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            if A.loc[j, 'DPD BRACKET'] == '<365':
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                            else:
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 11) and (F.loc[i, 'PERFORMANCE'] <= 12):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 12.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '12.2%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            if A.loc[j, 'DPD BRACKET'] == '<365':
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                            else:
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 12) and (F.loc[i, 'PERFORMANCE'] <= 13):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 14.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.25%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            if A.loc[j, 'DPD BRACKET'] == '<365':
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                            else:
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 13:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 16.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.3%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            if A.loc[j, 'DPD BRACKET'] == '<365':
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                            else:
+                                                A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                                A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    A.loc[j, 'PAYOUT'] = 0
+                                    A.loc[j, 'PERCENTAGE'] = 0
+                            elif (A.loc[j, 'OD+POS.'] > 50000) and (A.loc[j, 'OD+POS.'] <= 500000):
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 10:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 7) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '7%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 10) and (F.loc[i, 'PERFORMANCE'] <= 11):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 10.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '10.15%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 11) and (F.loc[i, 'PERFORMANCE'] <= 12):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 12.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '12.2%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 12) and (F.loc[i, 'PERFORMANCE'] <= 13):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 14.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.25%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 13:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 16.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.3%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 10:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 7) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '7%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 10) and (F.loc[i, 'PERFORMANCE'] <= 11):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 10.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '10.15%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 11) and (F.loc[i, 'PERFORMANCE'] <= 12):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 12.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '12.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 12) and (F.loc[i, 'PERFORMANCE'] <= 13):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 14.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.25%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 13:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 16.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                            elif (A.loc[j, 'OD+POS.'] > 500000) and (A.loc[j, 'OD+POS.'] <= 1000000):
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 10:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 7) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '7%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 10) and (F.loc[i, 'PERFORMANCE'] <= 11):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 10.65) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '10.65%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 11) and (F.loc[i, 'PERFORMANCE'] <= 12):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 13.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '13.2%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 12) and (F.loc[i, 'PERFORMANCE'] <= 13):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 15.75) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '15.75%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 13:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 16.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.3%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 10:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 7) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '7%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 10) and (F.loc[i, 'PERFORMANCE'] <= 11):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 10.65) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '10.65%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 11) and (F.loc[i, 'PERFORMANCE'] <= 12):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 13.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '13.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 12) and (F.loc[i, 'PERFORMANCE'] <= 13):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 15.75) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '15.75%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 13:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 16.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                            elif A.loc[j, 'OD+POS.'] > 1000000:
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 10:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 7) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '7%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 10) and (F.loc[i, 'PERFORMANCE'] <= 11):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 11.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11.15%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 11) and (F.loc[i, 'PERFORMANCE'] <= 12):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 14.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.2%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 12) and (F.loc[i, 'PERFORMANCE'] <= 13):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 17.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '17.25%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 13:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 20.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '20.3%'
+                                        if A.loc[j, 'DPD BRACKET'] == '<365':
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 15) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '15%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 10:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 7) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '7%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 10) and (F.loc[i, 'PERFORMANCE'] <= 11):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 11.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11.15%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 11) and (F.loc[i, 'PERFORMANCE'] <= 12):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 14.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 12) and (F.loc[i, 'PERFORMANCE'] <= 13):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 17.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '17.25%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 13:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '20.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+
+        for i in range(0, len(F['COMPANY'])):
+            for j in range(0, len(A['AGREEMENTID'])):
+                if A.loc[j, 'COMPANY'] == F.loc[i, 'COMPANY']:
+                    if (A.loc[j, 'MOHAK DPD GRP'] == F.loc[i, 'MOHAK DPD GRP']):
+                        if F.loc[i, 'MOHAK DPD GRP'] == '731 TO 1090':
+                            if A.loc[j, 'OD+POS.'] <= 50000:
+                                if A.loc[j, 'TOTAL PAID'] >= (A.loc[j, 'OD+POS.'] * 115) / 100:
+                                    if F.loc[i, 'PERFORMANCE'] <= 6.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 9) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '9%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 12.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '12.15%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 7.5) and (F.loc[i, 'PERFORMANCE'] <= 8.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 14.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.2%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 8.5) and (F.loc[i, 'PERFORMANCE'] <= 9.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 16.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.25%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 9.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 18.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '18.3%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    A.loc[j, 'PAYOUT'] = 0
+                                    A.loc[j, 'PERCENTAGE'] = 0
+                            elif (A.loc[j, 'OD+POS.'] > 50000) and (A.loc[j, 'OD+POS.'] <= 500000):
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 6.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 9) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '9%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 12.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '12.15%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 7.5) and (F.loc[i, 'PERFORMANCE'] <= 8.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 14.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.2%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 8.5) and (F.loc[i, 'PERFORMANCE'] <= 9.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 16.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.25%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 9.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 18.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '18.3%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 6.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 9) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '9%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 12.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '12.15%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 7.5) and (F.loc[i, 'PERFORMANCE'] <= 8.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 14.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 8.5) and (F.loc[i, 'PERFORMANCE'] <= 9.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 16.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.25%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 9.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '18.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                            elif (A.loc[j, 'OD+POS.'] > 500000) and (A.loc[j, 'OD+POS.'] <= 1000000):
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 6.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 9) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '9%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 12.65) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '12.65%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 7.5) and (F.loc[i, 'PERFORMANCE'] <= 8.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 15.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '15.2%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 8.5) and (F.loc[i, 'PERFORMANCE'] <= 9.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 17.75) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '17.75%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 9.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 20.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '20.3%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 6.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 9) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '9%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 12.65) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '12.65%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 7.5) and (F.loc[i, 'PERFORMANCE'] <= 8.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 15.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '15.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 8.5) and (F.loc[i, 'PERFORMANCE'] <= 9.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 17.75) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '17.75%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 9.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '20.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                            elif A.loc[j, 'OD+POS.'] > 1000000:
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 6.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 9) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '9%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 13.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '13.15%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 7.5) and (F.loc[i, 'PERFORMANCE'] <= 8.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 16.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.2%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 8.5) and (F.loc[i, 'PERFORMANCE'] <= 9.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 19.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '19.25%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 9.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 22.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '22.3%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 6.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 9) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '9%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 6.5) and (F.loc[i, 'PERFORMANCE'] <= 7.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 13.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '13.15%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 7.5) and (F.loc[i, 'PERFORMANCE'] <= 8.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 16.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 8.5) and (F.loc[i, 'PERFORMANCE'] <= 9.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 19.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '19.25%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 9.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 22.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '22.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                        elif F.loc[i, 'MOHAK DPD GRP'] == '1090 +':
+                            if A.loc[j, 'OD+POS.'] <= 50000:
+                                if A.loc[j, 'TOTAL PAID'] >= (A.loc[j, 'OD+POS.'] * 115) / 100:
+                                    if F.loc[i, 'PERFORMANCE'] <= 3.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 11) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11%'
+                                        p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 14.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.15%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 16.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.2%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 18.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '18.25%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 20.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '20.3%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    A.loc[j, 'PAYOUT'] = 0
+                                    A.loc[j, 'PERCENTAGE'] = 0
+                            elif (A.loc[j, 'OD+POS.'] > 50000) and (A.loc[j, 'OD+POS.'] <= 500000):
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 3.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 11) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 14.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.15%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 16.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.2%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 18.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '18.25%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 20.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '20.3%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 3.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 11) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 14.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.15%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 16.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '16.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '18.25%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 20.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '20.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                            elif (A.loc[j, 'OD+POS.'] > 500000) and (A.loc[j, 'OD+POS.'] <= 1000000):
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 3.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 11) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 14.65) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.65%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 17.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '17.2%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 19.75) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '19.75%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 22.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '22.3%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 3.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 11) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 14.65) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '14.65%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 17.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '17.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 19.75) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '19.75%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 22.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '22.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                            elif A.loc[j, 'OD+POS.'] > 1000000:
+                                p = A.loc[j, 'TOTAL PAID'] - A.loc[j, 'OD+POS.']
+                                if p > 0:
+                                    if F.loc[i, 'PERFORMANCE'] <= 3.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 11) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 15.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '15.15%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 18.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '18.2%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 21.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '21.25%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'OD+POS.'] * 24.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '24.3%'
+                                        if p > 0:
+                                            A.loc[j, 'PENALTY PAYOUT'] = (p * 20) / 100
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '20%'
+                                        else:
+                                            A.loc[j, 'PENALTY PAYOUT'] = 0
+                                            A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                else:
+                                    if F.loc[i, 'PERFORMANCE'] <= 3.5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 11) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '11%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 3.5) and (F.loc[i, 'PERFORMANCE'] <= 4):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 15.15) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '15.15%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4) and (F.loc[i, 'PERFORMANCE'] <= 4.5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 18.2) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '18.2%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif (F.loc[i, 'PERFORMANCE'] > 4.5) and (F.loc[i, 'PERFORMANCE'] <= 5):
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 21.25) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '21.25%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+                                    elif F.loc[i, 'PERFORMANCE'] > 5:
+                                        A.loc[j, 'PAYOUT'] = (A.loc[j, 'TOTAL PAID'] * 24.3) / 100
+                                        A.loc[j, 'PERCENTAGE'] = '24.3%'
+                                        A.loc[j, 'PENALTY PAYOUT'] = 0
+                                        A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
+
+        A['PENALTY PAYOUT'].fillna(0, inplace=True)
+
+        A[A['STATUS'] == 'PAID']
+
+        for i in range(0, len(A['PAYOUT'])):
+            A.loc[i, 'FINAL PAYOUT'] = A.loc[i, 'PAYOUT'] + A.loc[i, 'PENALTY PAYOUT']
+
+        for i in range(0, len(A['PAYOUT'])):
+            if (A.loc[i, 'COMPANY'] == 'BL') or (A.loc[i, 'COMPANY'] == 'LOSS ON SALE'):
+                A.loc[i, 'FINAL PAYOUT'] = A.loc[i, 'PAYOUT']
+
+        A.to_excel(r'media/MAGMA/Billing/MAGMA BILLING.xlsx', index=False)
+
+        A.to_excel(r'media/MAGMA/MIS/MASTER FILE MAGMA.xlsx', index=False)
+
+        F.to_excel(r'media/MAGMA/Billing/Performance.xlsx', index=False)
+
+        A.to_excel(r'media/MAGMA/FOS Salary/MASTER FILE MAGMA.xlsx', index=False)
+
+        SS1=F.copy()
+
+    elif request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/MIS/MIS_MAGMA_RECOVERY.xlsx')):
+            fs = FileSystemStorage(location='media/MAGMA/MIS')
+            AA = fs.open('MIS_MAGMA_RECOVERY.xlsx')
+            SS1 = pd.read_excel(AA)
+        else:
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
+
+            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+
+    C = list(SS1.columns)
+
+    for j in range(0, len(SS1[C[0]])):
+        row_data = list()
+        for col in range(0, len(C)):
+            row_data.append(str(SS1.loc[j, C[col]]))
+        excel_data.append(row_data)
+
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+
+
+def MAGMA_BILLING(request):
+    excel_data = []
+    excel_data1 = []
+    Total_Payout = 0
+    Total_Payout_PL = 0
+    if request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/Billing/MAGMA BILLING.xlsx')):
+            fs1 = FileSystemStorage(location='media/MAGMA/Billing')
+            AA1 = fs1.open('MAGMA BILLING.xlsx')
+            F2 = pd.read_excel(AA1)
+            F2['FINAL PAYOUT'].fillna(0,inplace=True)
+            li=[]
+            for i in range(0,len(F2['COMPANY'])):
+                if F2.loc[i,'PERCENTAGE']==0:
+                    li.append(i)
+            F2.drop(li,axis=0,inplace=True)
+            F2=pd.DataFrame(F2.groupby(['COMPANY', 'MOHAK DPD GRP','PERCENTAGE'])['PAYOUT','PENALTY PAYOUT','FINAL PAYOUT'].sum().reset_index())
+            for i in range(0,len(F2['PAYOUT'])):
+                F2.loc[i,'PAYOUT']=round(F2.loc[i,'PAYOUT'],2)
+                F2.loc[i, 'PENALTY PAYOUT'] = round(F2.loc[i, 'PENALTY PAYOUT'], 2)
+                F2.loc[i, 'FINAL PAYOUT'] = round(F2.loc[i, 'FINAL PAYOUT'], 2)
+            Total_Payout = round(sum(F2['FINAL PAYOUT']), 2)
+
+        else:
+            return HttpResponseRedirect(reverse('basic_app:MAGMA_MIS'))
 
     C1 = list(F2.columns)
 
