@@ -15899,7 +15899,7 @@ def MAGMA_MIS(request):
         A = pd.read_excel(Allocation1)
         B = pd.read_excel(Paidfile1)
 
-        fs = FileSystemStorage(location='media/MAGMA/MIS')
+        fs = FileSystemStorage(location='media/MAGMA/MIS/FEB 22')
         fs.save(Allocation1.name, Allocation1)
         fs.save(Paidfile1.name, Paidfile1)
 
@@ -15996,7 +15996,7 @@ def MAGMA_MIS(request):
             F.loc[i,'TOTAL_POS']=round(F.loc[i,'TOTAL_POS'],2)
             F.loc[i, 'PAID_POS'] = round(F.loc[i, 'PAID_POS'], 2)
 
-        F.to_excel(r'media/MAGMA/MIS/MIS_MAGMA_RECOVERY.xlsx', index=False)
+        F.to_excel(r'media/MAGMA/MIS/FEB 22/MIS_MAGMA_RECOVERY.xlsx', index=False)
 
         F
 
@@ -17078,97 +17078,90 @@ def MAGMA_MIS(request):
                                         A.loc[j, 'PENALTY PAYOUT'] = 0
                                         A.loc[j, 'PENALTY PERCENTAGE'] = '0%'
 
-                                    A['PENALTY PAYOUT'].fillna(0, inplace=True)
+        A['PENALTY PAYOUT'].fillna(0, inplace=True)
 
-                                    A[A['STATUS'] == 'PAID']
+        A[A['STATUS'] == 'PAID']
 
-                                    for i in range(0, len(A['PAYOUT'])):
-                                        A.loc[i, 'FINAL PAYOUT'] = A.loc[i, 'PAYOUT'] + A.loc[i, 'PENALTY PAYOUT']
+        for i in range(0, len(A['PAYOUT'])):
+            A.loc[i, 'FINAL PAYOUT'] = A.loc[i, 'PAYOUT'] + A.loc[i, 'PENALTY PAYOUT']
 
-                                    for i in range(0, len(A['PAYOUT'])):
-                                        if (A.loc[i, 'COMPANY'] == 'BL') or (A.loc[i, 'COMPANY'] == 'LOSS ON SALE'):
-                                            A.loc[i, 'FINAL PAYOUT'] = A.loc[i, 'PAYOUT']
+        for i in range(0, len(A['PAYOUT'])):
+            if (A.loc[i, 'COMPANY'] == 'BL') or (A.loc[i, 'COMPANY'] == 'LOSS ON SALE'):
+                A.loc[i, 'FINAL PAYOUT'] = A.loc[i, 'PAYOUT']
 
-                                    A.to_excel(r'media/MAGMA/Billing/MAGMA BILLING.xlsx', index=False)
+        A.to_excel(r'media/MAGMA/Billing/FEB 22/MAGMA BILLING.xlsx', index=False)
 
-                                    A.to_excel(r'media/MAGMA/MIS/MASTER FILE MAGMA.xlsx', index=False)
+        A.to_excel(r'media/MAGMA/MIS/FEB 22/MASTER FILE MAGMA.xlsx', index=False)
 
-                                    F.to_excel(r'media/MAGMA/Billing/Performance.xlsx', index=False)
+        F.to_excel(r'media/MAGMA/Billing/FEB 22/Performance.xlsx', index=False)
 
-                                    A.to_excel(r'media/MAGMA/FOS Salary/MASTER FILE MAGMA.xlsx', index=False)
+        A.to_excel(r'media/MAGMA/FOS Salary/FEB 22/MASTER FILE MAGMA.xlsx', index=False)
 
-                                    SS1 = F.copy()
+        SS1=F.copy()
 
-                                elif request.method != 'POST':
-                                if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/MIS/MIS_MAGMA_RECOVERY.xlsx')):
-                                    fs = FileSystemStorage(location='media/MAGMA/MIS')
-                                    AA = fs.open('MIS_MAGMA_RECOVERY.xlsx')
-                                    SS1 = pd.read_excel(AA)
-                                else:
-                                    final_dep = DEP()
-                                    final_process = COMPANY_PROCESS()
-                                    Designation = Employee_Designation()
+    elif request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/MIS/FEB 22/MIS_MAGMA_RECOVERY.xlsx')):
+            fs = FileSystemStorage(location='media/MAGMA/MIS/FEB 22')
+            AA = fs.open('MIS_MAGMA_RECOVERY.xlsx')
+            SS1 = pd.read_excel(AA)
+        else:
+            final_dep = DEP()
+            final_process = COMPANY_PROCESS()
+            Designation = Employee_Designation()
 
-                                    return render(request, 'FirstLevel/upload_excel.html',
-                                                  {'DEPARTMENT': final_dep, 'PROCESS': final_process,
-                                                   'Designation': Designation})
+            return render(request, 'FirstLevel/upload_excel.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-                            C = list(SS1.columns)
+    C = list(SS1.columns)
 
-                            for j in range(0, len(SS1[C[0]])):
-                                row_data = list()
-                                for col in range(0, len(C)):
-                                    row_data.append(str(SS1.loc[j, C[col]]))
-                                excel_data.append(row_data)
+    for j in range(0, len(SS1[C[0]])):
+        row_data = list()
+        for col in range(0, len(C)):
+            row_data.append(str(SS1.loc[j, C[col]]))
+        excel_data.append(row_data)
 
-                            final_dep = DEP()
-                            final_process = COMPANY_PROCESS()
-                            Designation = Employee_Designation()
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
 
-                            return render(request, 'FirstLevel/upload_excel.html',
-                                          {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep,
-                                           'PROCESS': final_process, 'Designation': Designation})
+    return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
-                        def MAGMA_BILLING(request):
-                            excel_data = []
-                            excel_data1 = []
-                            Total_Payout = 0
-                            Total_Payout_PL = 0
-                            if request.method != 'POST':
-                                if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/Billing/MAGMA BILLING.xlsx')):
-                                    fs1 = FileSystemStorage(location='media/MAGMA/Billing')
-                                    AA1 = fs1.open('MAGMA BILLING.xlsx')
-                                    F2 = pd.read_excel(AA1)
-                                    F2['FINAL PAYOUT'].fillna(0, inplace=True)
-                                    li = []
-                                    for i in range(0, len(F2['COMPANY'])):
-                                        if F2.loc[i, 'PERCENTAGE'] == 0:
-                                            li.append(i)
-                                    F2.drop(li, axis=0, inplace=True)
-                                    F2 = pd.DataFrame(F2.groupby(['COMPANY', 'MOHAK DPD GRP', 'PERCENTAGE'])[
-                                                          'PAYOUT', 'PENALTY PAYOUT', 'FINAL PAYOUT'].sum().reset_index())
-                                    for i in range(0, len(F2['PAYOUT'])):
-                                        F2.loc[i, 'PAYOUT'] = round(F2.loc[i, 'PAYOUT'], 2)
-                                        F2.loc[i, 'PENALTY PAYOUT'] = round(F2.loc[i, 'PENALTY PAYOUT'], 2)
-                                        F2.loc[i, 'FINAL PAYOUT'] = round(F2.loc[i, 'FINAL PAYOUT'], 2)
-                                    Total_Payout = round(sum(F2['FINAL PAYOUT']), 2)
 
-                                else:
-                                    return HttpResponseRedirect(reverse('basic_app:MAGMA_MIS'))
+def MAGMA_BILLING(request):
+    excel_data = []
+    excel_data1 = []
+    Total_Payout = 0
+    Total_Payout_PL = 0
+    if request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/Billing/FEB 22/MAGMA BILLING.xlsx')):
+            fs1 = FileSystemStorage(location='media/MAGMA/Billing/FEB 22')
+            AA1 = fs1.open('MAGMA BILLING.xlsx')
+            F2 = pd.read_excel(AA1)
+            F2['FINAL PAYOUT'].fillna(0,inplace=True)
+            li=[]
+            for i in range(0,len(F2['COMPANY'])):
+                if F2.loc[i,'PERCENTAGE']==0:
+                    li.append(i)
+            F2.drop(li,axis=0,inplace=True)
+            F2=pd.DataFrame(F2.groupby(['COMPANY', 'MOHAK DPD GRP','PERCENTAGE'])['PAYOUT','PENALTY PAYOUT','FINAL PAYOUT'].sum().reset_index())
+            for i in range(0,len(F2['PAYOUT'])):
+                F2.loc[i,'PAYOUT']=round(F2.loc[i,'PAYOUT'],2)
+                F2.loc[i, 'PENALTY PAYOUT'] = round(F2.loc[i, 'PENALTY PAYOUT'], 2)
+                F2.loc[i, 'FINAL PAYOUT'] = round(F2.loc[i, 'FINAL PAYOUT'], 2)
+            Total_Payout = round(sum(F2['FINAL PAYOUT']), 2)
 
-                            C1 = list(F2.columns)
+        else:
+            return HttpResponseRedirect(reverse('basic_app:MAGMA_MIS'))
 
-                            for j in range(0, len(F2[C1[0]])):
-                                row_data = list()
-                                for col in range(0, len(C1)):
-                                    row_data.append(str(F2.loc[j, C1[col]]))
-                                excel_data1.append(row_data)
+    C1 = list(F2.columns)
 
-                            final_dep = DEP()
-                            final_process = COMPANY_PROCESS()
-                            Designation = Employee_Designation()
+    for j in range(0, len(F2[C1[0]])):
+        row_data = list()
+        for col in range(0, len(C1)):
+            row_data.append(str(F2.loc[j, C1[col]]))
+        excel_data1.append(row_data)
 
-                            return render(request, 'FirstLevel/Billing.html',
-                                          {'Billing1': excel_data1, 'columns1': C1, 'Total_Payout': Total_Payout,
-                                           'DEPARTMENT': final_dep, 'PROCESS': final_process,
-                                           'Designation': Designation})
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
+    return render(request, 'FirstLevel/Billing.html', {'Billing1': excel_data1, 'columns1': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
