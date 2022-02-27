@@ -1867,19 +1867,19 @@ def IDFC_HL_BILLING_DOWNLOAD(request):
 #     return response
 
 # def L_T_SALARY_FIXED_DOWNLOAD(request):
-    # fill these variables with real values
-    filename = os.path.join(BASE_DIR,
-                            'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+#     # fill these variables with real values
+#     filename = os.path.join(BASE_DIR,
+#                             'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(Including Fixed Salary) L&T.xlsx')
+#
+#     excel = open(filename, 'rb')
+#     response = HttpResponse(excel,
+#                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+#     response['Content-Disposition'] = "attachment; filename=PER PAID CASE(Including Fixed Salary) L&T.xlsx"
+#     return response
 
-    excel = open(filename, 'rb')
-    response = HttpResponse(excel,
-                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = "attachment; filename=PER PAID CASE(Including Fixed Salary) L&T.xlsx"
-    return response
 
-
-# # def L_T_SALARY_INCENTIVE_PIVOT_DOWNLOAD(request):
-#     fill these variables with real values
+# def L_T_SALARY_INCENTIVE_PIVOT_DOWNLOAD(request):
+#     # fill these variables with real values
 #     filename = os.path.join(BASE_DIR, 'media/COMBINED SALARY OF L_T AND IDFC TW/PER PAID CASE(PIVOT) L&T.xlsx')
 #
 #     excel = open(filename, 'rb')
@@ -2784,7 +2784,7 @@ def IDFC_TW_MIS(request):
         F.to_excel('media/IDFC_TW/Billing/FEB 22/Performance_IDFC_TW.xlsx', index=False)
         F1 = F.copy()
 
-        F.to_excel(r'media/IDFC_TW/MIS/FEB 22/MIS_IDFC_TW.xlsx', index=False)
+        F.to_excel(r'media/IDFC_TW/MIS/MIS_IDFC_TW.xlsx', index=False)
 
         F.replace(np.nan, 0, inplace=True)
 
@@ -2801,6 +2801,11 @@ def IDFC_TW_MIS(request):
             elif (A.loc[i, 'BKT'] == 1) and (A.loc[i, 'STATUS'] == 'RB'):
                 if A.loc[i, 'Billing PAID AMT.'] > ((A.loc[i, 'EMI']) * 2):
                     A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI'] + A.loc[i, 'EMI']
+                else:
+                    A.loc[i, 'Billing PAID AMT.'] = s
+            elif A.loc[i, 'STATUS'] == 'SB':
+                if A.loc[i, 'Billing PAID AMT.'] > A.loc[i, 'EMI']:
+                    A.loc[i, 'Billing PAID AMT.'] = A.loc[i, 'EMI']
                 else:
                     A.loc[i, 'Billing PAID AMT.'] = s
 
@@ -4068,12 +4073,8 @@ def IDFC_TW_BILLING(request):
                                                 A.loc[i, 'MOHAK'] = 0
                                                 print(A.loc[i, 'AGREEMENTID'], BKT6.loc[l, l6[k]], A.loc[i, 'MOHAK'])
                                     elif k > 0 and l > 0:
-                                        if (P.loc[j, 'Additional_Performance'] > l6[k - 1] and P.loc[
-                                            j, 'Additional_Performance'] <= l1[k]) and (
-                                                P.loc[j, 'POS_RES%'] > BKT6T.loc[l - 1, 'TARGET'] and P.loc[
-                                            j, 'POS_RES%'] <= BKT6T.loc[l, 'TARGET']):
-                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[
-                                                i, 'STATUS'] == 'NM'):
+                                        if (P.loc[j, 'Additional_Performance'] > l6[k - 1] and P.loc[j, 'Additional_Performance'] <= l1[k]) and (P.loc[j, 'POS_RES%'] > BKT6T.loc[l - 1, 'TARGET'] and P.loc[j, 'POS_RES%'] <= BKT6T.loc[l, 'TARGET']):
+                                            if (A.loc[i, 'STATUS'] == 'SB' or A.loc[i, 'STATUS'] == 'RB' or A.loc[i, 'STATUS'] == 'NM'):
                                                 c = A.loc[i, 'Billing PAID AMT.'] * BKT6.loc[l, l6[k]] / 100
                                                 A.loc[i, 'percentage'] = str(BKT6.loc[l, l6[k]]
                                                                              ) + '%'
@@ -13197,6 +13198,7 @@ def BAJAJ_BILLING(request):
                           {'Billing1': excel_data1, 'columns1': C1, 'Total_Payout_PL': Total_Payout_PL,
                            'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
+
         else:
             return HttpResponseRedirect(reverse('basic_app:BAJAJ_MIS'))
 
@@ -15857,6 +15859,7 @@ def SLICE_MIS(request):
 
     return render(request, 'FirstLevel/upload_excel.html', {'excel': excel_data, 'columns': C, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
 
+
 def SLICE_BILLING(request):
     excel_data = []
     excel_data1 = []
@@ -15871,7 +15874,6 @@ def SLICE_BILLING(request):
             for i in range(0,len(F2['PAYOUT'])):
                 F2.loc[i,'PAYOUT']=round(F2.loc[i,'PAYOUT'],2)
             Total_Payout = round(sum(F2['PAYOUT']), 2)
-
         else:
             return HttpResponseRedirect(reverse('basic_app:SLICE_MIS'))
 
