@@ -15367,7 +15367,7 @@ def BAJAJ_CD_ANALYSIS(request):
             elif os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/Billing/FEB 22/BAJAJ-PL Billing MIS.xlsx')):
                 if os.path.exists(os.path.join(BASE_DIR, 'media/BAJAJ-PL/TC Incentive/FEB 22/BAJAJ-PL TC Incentive Group.xlsx')):
                     if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
-                        fs3 = FileSystemStorage(location='media/Employees/FEB 22')
+                        fs3 = FileSystemStorage(location='media/Employees')
                         fs4 = FileSystemStorage(location='media/BAJAJ-PL/Billing/FEB 22')
                         fs5 = FileSystemStorage(location='media/BAJAJ-PL/TC Incentive/FEB 22')
 
@@ -17224,74 +17224,80 @@ def MASTER_SALARY_MAGMA(request):
     AA1 = pd.DataFrame()
 
     if request.method == 'POST':
-        if os.path.exists(os.path.join(BASE_DIR, '/Users/mohaksehgal/Documents/Website/media/MAGMA/FOS Salary/FEB 22/MASTER FILE MAGMA.xlsx')):
+        if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/FOS Salary/FEB 22/MASTER FILE MAGMA.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
+                fs3 = FileSystemStorage(location='media/Employees')
 
-            A = pd.read_excel(r"media/MAGMA/FOS Salary/FEB 22/MASTER FILE MAGMA.xlsx")
+                A = pd.read_excel(r"media/MAGMA/FOS Salary/FEB 22/MASTER FILE MAGMA.xlsx")
 
-            A1 = list(A[(A['STATUS'] == 'PAID') & (A['FINAL PAYOUT'].isnull())].index)
+                A1 = list(A[(A['STATUS'] == 'PAID') & (A['FINAL PAYOUT'].isnull())].index)
 
-            A1
+                A1
 
-            for i in range(0, len(A1)):
-                A.loc[A1[i], 'TOTAL PAID'] = 0
+                for i in range(0, len(A1)):
+                    A.loc[A1[i], 'TOTAL PAID'] = 0
 
-            F = pd.DataFrame(A.groupby(['FOS', 'COMPANY'])['OD+POS.'].sum()).reset_index()
+                F = pd.DataFrame(A.groupby(['FOS', 'COMPANY'])['OD+POS.'].sum()).reset_index()
 
-            F
+                F
 
-            C = pd.DataFrame(A.groupby(['FOS', 'COMPANY'])['AGREEMENTID'].count()).reset_index()
+                C = pd.DataFrame(A.groupby(['FOS', 'COMPANY'])['AGREEMENTID'].count()).reset_index()
 
-            C.head(1)
+                C.head(1)
 
-            F = F.merge(C, how='outer')
+                F = F.merge(C, how='outer')
 
-            R1 = pd.DataFrame(A.groupby(['FOS', 'COMPANY'])['TOTAL PAID'].sum()).reset_index()
+                R1 = pd.DataFrame(A.groupby(['FOS', 'COMPANY'])['TOTAL PAID'].sum()).reset_index()
 
-            R1
+                R1
 
-            F = F.merge(R1, how='outer')
+                F = F.merge(R1, how='outer')
 
-            F.head(1)
+                F.head(1)
 
-            F.rename({'TOTAL PAID': 'TOTAL_MONEY_COLLECTION'}, axis=1, inplace=True)
+                F.rename({'TOTAL PAID': 'TOTAL_MONEY_COLLECTION'}, axis=1, inplace=True)
 
-            F.shape
+                F.shape
 
-            F.head()
+                F.head()
 
-            for i in range(0, len(F['FOS'])):
-                F.loc[i, 'Performance'] = F.loc[i, 'TOTAL_MONEY_COLLECTION'] / F.loc[i, 'OD+POS.'] * 100
+                for i in range(0, len(F['FOS'])):
+                    F.loc[i, 'Performance'] = F.loc[i, 'TOTAL_MONEY_COLLECTION'] / F.loc[i, 'OD+POS.'] * 100
 
-            F.head()
+                F.head()
 
-            for i in range(0, len(F['FOS'])):
-                if F.loc[i, 'Performance'] <= 8.75:
-                    F.loc[i, 'FOS_PAYOUT'] = F.loc[i, 'TOTAL_MONEY_COLLECTION'] * 3.5 / 100
-                    F.loc[i, 'PAYOUT_PERCENTAGE'] = '3.5%'
-                elif (F.loc[i, 'Performance'] >= 8.76) and (F.loc[i, 'Performance'] <= 9.75):
-                    F.loc[i, 'FOS_PAYOUT'] = F.loc[i, 'TOTAL_MONEY_COLLECTION'] * 4.25 / 100
-                    F.loc[i, 'PAYOUT_PERCENTAGE'] = '4.25%'
-                elif F.loc[i, 'Performance'] >= 9.76:
-                    F.loc[i, 'FOS_PAYOUT'] = F.loc[i, 'TOTAL_MONEY_COLLECTION'] * 5 / 100
-                    F.loc[i, 'PAYOUT_PERCENTAGE'] = '5%'
+                for i in range(0, len(F['FOS'])):
+                    if F.loc[i, 'Performance'] <= 8.75:
+                        F.loc[i, 'FOS_PAYOUT'] = F.loc[i, 'TOTAL_MONEY_COLLECTION'] * 3.5 / 100
+                        F.loc[i, 'PAYOUT_PERCENTAGE'] = '3.5%'
+                    elif (F.loc[i, 'Performance'] >= 8.76) and (F.loc[i, 'Performance'] <= 9.75):
+                        F.loc[i, 'FOS_PAYOUT'] = F.loc[i, 'TOTAL_MONEY_COLLECTION'] * 4.25 / 100
+                        F.loc[i, 'PAYOUT_PERCENTAGE'] = '4.25%'
+                    elif F.loc[i, 'Performance'] >= 9.76:
+                        F.loc[i, 'FOS_PAYOUT'] = F.loc[i, 'TOTAL_MONEY_COLLECTION'] * 5 / 100
+                        F.loc[i, 'PAYOUT_PERCENTAGE'] = '5%'
 
-            F.rename({'AGREEMENTID': 'TOTAL_COUNT'}, axis=1, inplace=True)
+                F.rename({'AGREEMENTID': 'TOTAL_COUNT'}, axis=1, inplace=True)
 
-            for i in range(0, len(F['FOS'])):
-                F.loc[i, 'VISIT_PAYOUT'] = F.loc[i, 'TOTAL_COUNT'] * 100
+                for i in range(0, len(F['FOS'])):
+                    F.loc[i, 'VISIT_PAYOUT'] = F.loc[i, 'TOTAL_COUNT'] * 100
 
-            UNIQUE_NAME = pd.read_excel(r'/Users/mohaksehgal/Documents/Website/media/Employees/Employee_Database.xlsx')
+                fs3 = FileSystemStorage(location='media/Employees')
 
-            UNIQUE_NAME.head()
+                AA3 = fs3.open('Employee_Database.xlsx')
 
-            F = F.merge(UNIQUE_NAME, how='left', left_on='FOS', right_on='NAMES')
+                UNIQUE_NAME = pd.read_excel(AA3)
 
-            F.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'TYPE_OF_SALARY', 'SALARY',
-                    'MANAGEMENT_LEVEL', 'NAMES', 'STAFF'], axis=1, inplace=True)
+                UNIQUE_NAME.head()
 
-            F.to_excel(r'media/MAGMA/FOS Salary/FEB 22/FIXED_PAYOUT_MAGMA.xlsx', index=False)
+                F = F.merge(UNIQUE_NAME, how='left', left_on='FOS', right_on='NAMES')
 
-            FINAL_PAYOUT = F.copy()
+                F.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'TYPE_OF_SALARY', 'SALARY',
+                        'MANAGEMENT_LEVEL', 'NAMES', 'STAFF'], axis=1, inplace=True)
+
+                F.to_excel(r'media/MAGMA/FOS Salary/FEB 22/FIXED_PAYOUT_MAGMA.xlsx', index=False)
+
+                FINAL_PAYOUT = F.copy()
 
         else:
             final_dep = DEP()
@@ -17337,5 +17343,3 @@ def MAGMA_FOS_SALARY_DOWNLOAD(request):
                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = "attachment; filename=MAGMA-AUTO FOS Salary.xlsx"
     return response
-
-
