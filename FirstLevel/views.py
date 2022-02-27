@@ -17205,3 +17205,5 @@ def MAGMA_BILLING(request):
     Designation = Employee_Designation()
 
     return render(request, 'FirstLevel/Billing.html', {'Billing1': excel_data1, 'columns1': C1, 'Total_Payout': Total_Payout, 'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation})
+
+# some changes to check
