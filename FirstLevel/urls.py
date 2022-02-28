@@ -84,6 +84,7 @@ urlpatterns = [
     path('login/bajaj_salary1.html', views.BAJAJ_PL_SALARY, name='BAJAJ_PL_SALARY'),
     # path('login/IDFC-HL_Salary.html', views.MASTER_SALARY_IDFC, name='IDFC_HL_SALARY'),
     path('IDFC-HL_Salary/', views.MASTER_SALARY_IDFC, name='IDFC_HL_SALARY'),
+    path('SLICE-CC_Salary/', views.MASTER_SALARY_SLICE, name='MASTER_SALARY_SLICE'),
     # path('login/FULLERTON_RECOVERY_SALARY.html', views.MASTER_SALARY_FULLERTON, name='MASTER_SALARY_FULLERTON'),
     path('login/IDFC_TW_TL_ANALYSIS.html', views.IDFC_TW_TL_ANALYSIS, name='IDFC_TW_TL_ANALYSIS'),
     path('TL_SALARY/', views.IDFC_TW_TL_SALARY, name='IDFC_TW_TL_SALARY'),
