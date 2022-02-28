@@ -17295,9 +17295,19 @@ def MASTER_SALARY_MAGMA(request):
                 F.drop(['DEPARTMENT_ID', 'END_DATE', 'HIRE_DATE', 'PHONE_NUMBER', 'LOCATION_ID', 'TYPE_OF_SALARY', 'SALARY',
                         'MANAGEMENT_LEVEL', 'NAMES', 'STAFF'], axis=1, inplace=True)
 
-                F.to_excel(r'media/MAGMA/FOS Salary/FEB 22/FIXED_PAYOUT_MAGMA.xlsx', index=False)
+                l1=[]
+                for i in range(0,len(F['FOS'])):
+                    if F.loc[i,'FOS']=='NO FOS':
+                        l1.append(i)
+
+                F.drop(l1,axis=0,inplace=True)
+
+                F=F.reset_index(drop=True)
 
                 FINAL_PAYOUT = F.copy()
+
+                F.to_excel(r'media/MAGMA/FOS Salary/FEB 22/FIXED_PAYOUT_MAGMA.xlsx', index=False)
+
 
         else:
             final_dep = DEP()
@@ -17343,3 +17353,50 @@ def MAGMA_FOS_SALARY_DOWNLOAD(request):
                             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = "attachment; filename=MAGMA-AUTO FOS Salary.xlsx"
     return response
+
+def MAGMA_AUTO_ANALYSIS(request):
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
+    if request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/Billing/FEB 22/MAGMA BILLING.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/MAGMA/FOS Salary/FEB 22/FIXED_PAYOUT_MAGMA.xlsx')):
+                    if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
+                        fs2 = FileSystemStorage(location='media/MAGMA/Billing/FEB 22')
+                        fs3 = FileSystemStorage(location='media/Employees')
+                        fs5 = FileSystemStorage(location='media/MAGMA/FOS Salary/FEB 22')
+
+                        AA2 = fs2.open('MAGMA BILLING.xlsx')
+                        AA3 = fs3.open('Employee_Database.xlsx')
+                        AA5 = fs5.open('FIXED_PAYOUT_MAGMA.xlsx')
+
+                        AA2 = pd.read_excel(AA2)
+                        AA3 = pd.read_excel(AA3)
+                        AA5 = pd.read_excel(AA5)
+
+                        AA6 = AA3[(AA3['DESIGNATION'] != 'FOS') & (AA3['PROCESS'] == 'MAGMA') & (AA3['DEPARTMENT'] == 'AUTO') & (AA3['EMPLOYEE_STATUS'] == 'ACTIVE')]
+
+                        print(AA6)
+
+                        AA6 = AA6.reset_index(drop=True)
+
+                        AA2['FINAL PAYOUT'].fillna(0,inplace=True)
+
+                        TOTAL_BILLING = AA2['FINAL PAYOUT'].sum()
+                        FIXED_COSTING_OFFICE = AA6['SALARY'].sum()
+                        FOS_FIXED_SALARY_MAGMA = AA5['VISIT_PAYOUT'].sum()
+                        FOS_INCENTIVE_SALARY_MAGMA = AA5['FOS_PAYOUT'].sum()
+                        FINAL_FOS_SALARY = FOS_FIXED_SALARY_MAGMA + FOS_INCENTIVE_SALARY_MAGMA
+                        FINAL_COSTING = FIXED_COSTING_OFFICE + FINAL_FOS_SALARY
+                        MAGMA_PROFIT = round(TOTAL_BILLING - FINAL_COSTING, 2)
+                        MAGMA_PROFIT_PERCENTAGE = round((MAGMA_PROFIT / TOTAL_BILLING) * 100, 2)
+
+                        return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'TOTAL_BILLING': TOTAL_BILLING, 'FIXED_COSTING_OFFICE': FIXED_COSTING_OFFICE, 'FOS_FIXED_SALARY_MAGMA': FOS_FIXED_SALARY_MAGMA, 'FOS_INCENTIVE_SALARY_MAGMA': FOS_INCENTIVE_SALARY_MAGMA, 'FINAL_FOS_SALARY': FINAL_FOS_SALARY, 'FINAL_COSTING': FINAL_COSTING, 'MAGMA_PROFIT': MAGMA_PROFIT, 'MAGMA_PROFIT_PERCENTAGE': MAGMA_PROFIT_PERCENTAGE})
+
+            else:
+                return render(request, 'FirstLevel/analysis.html',
+                              {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
+                               'STATUS': 'Please Refresh FOS Data'})
+        else:
+            return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'STATUS': 'Please Refresh BILLING and FOS Salary Data'})
