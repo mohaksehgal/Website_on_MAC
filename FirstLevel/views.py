@@ -17640,6 +17640,26 @@ def MAGMA_FOS_SALARY_DOWNLOAD(request):
     response['Content-Disposition'] = "attachment; filename=MAGMA-AUTO FOS Salary.xlsx"
     return response
 
+def SLICE_FOS_SALARY_DOWNLOAD(request):
+    # fill these variables with real values
+    filename = os.path.join(BASE_DIR, 'media/SLICE/FOS Salary/FEB 22/FOS_SALARY_SLICE_CC.xlsx')
+
+    excel = open(filename, 'rb')
+    response = HttpResponse(excel,
+                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = "attachment; filename=SLICE-CC FOS Salary.xlsx"
+    return response
+
+def SLICE_FOS_SALARY_PER_PAID_CASE_DOWNLOAD(request):
+    # fill these variables with real values
+    filename = os.path.join(BASE_DIR, 'media/SLICE/FOS Salary/FEB 22/PER_CASE_SALARY_SLICE_CC.xlsx')
+
+    excel = open(filename, 'rb')
+    response = HttpResponse(excel,
+                            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = "attachment; filename=SLICE-CC FOS PER PAID Salary.xlsx"
+    return response
+
 def MAGMA_AUTO_ANALYSIS(request):
     final_dep = DEP()
     final_process = COMPANY_PROCESS()
@@ -17684,5 +17704,50 @@ def MAGMA_AUTO_ANALYSIS(request):
                 return render(request, 'FirstLevel/analysis.html',
                               {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation,
                                'STATUS': 'Please Refresh FOS Data'})
+        else:
+            return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'STATUS': 'Please Refresh BILLING and FOS Salary Data'})
+
+def SLICE_AUTO_ANALYSIS(request):
+    final_dep = DEP()
+    final_process = COMPANY_PROCESS()
+    Designation = Employee_Designation()
+
+    if request.method != 'POST':
+        if os.path.exists(os.path.join(BASE_DIR, 'media/SLICE/Billing/FEB 22/SLICE BILLING.xlsx')):
+            if os.path.exists(os.path.join(BASE_DIR, 'media/SLICE/FOS Salary/FEB 22/FOS_SALARY_SLICE_CC.xlsx')):
+                    if os.path.exists(os.path.join(BASE_DIR, 'media/Employees/Employee_Database.xlsx')):
+                        fs2 = FileSystemStorage(location='media/SLICE/Billing/FEB 22')
+                        fs3 = FileSystemStorage(location='media/Employees')
+                        fs5 = FileSystemStorage(location='media/SLICE/FOS Salary/FEB 22')
+
+                        AA2 = fs2.open('SLICE BILLING.xlsx')
+                        AA3 = fs3.open('Employee_Database.xlsx')
+                        AA5 = fs5.open('FOS_SALARY_SLICE_CC.xlsx')
+
+                        AA2 = pd.read_excel(AA2)
+                        AA3 = pd.read_excel(AA3)
+                        AA5 = pd.read_excel(AA5)
+
+                        AA6 = AA3[(AA3['DESIGNATION'] != 'FOS') & (AA3['PROCESS'] == 'SLICE') & (AA3['DEPARTMENT'] == 'CC') & (AA3['EMPLOYEE_STATUS'] == 'ACTIVE')]
+
+                        print(AA6)
+
+                        AA6 = AA6.reset_index(drop=True)
+
+                        AA2['PAYOUT'].fillna(0,inplace=True)
+
+                        TOTAL_BILLING = AA2['PAYOUT'].sum()
+                        FIXED_COSTING_OFFICE = AA6['SALARY'].sum()
+                        FOS_FIXED_SALARY_SLICE = AA5['FIXED_PAYOUT'].sum()
+                        FOS_INCENTIVE_SALARY_SLICE = AA5['FOS PAYOUT'].sum()
+                        FINAL_FOS_SALARY = FOS_FIXED_SALARY_SLICE + FOS_INCENTIVE_SALARY_SLICE
+                        FINAL_COSTING = FIXED_COSTING_OFFICE + FINAL_FOS_SALARY
+                        SLICE_PROFIT = round(TOTAL_BILLING - FINAL_COSTING, 2)
+                        SLICE_PROFIT_PERCENTAGE = round((SLICE_PROFIT / TOTAL_BILLING) * 100, 2)
+
+                        return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'TOTAL_BILLING': TOTAL_BILLING, 'FIXED_COSTING_OFFICE': FIXED_COSTING_OFFICE, 'FOS_FIXED_SALARY_SLICE': FOS_FIXED_SALARY_SLICE, 'FOS_INCENTIVE_SALARY_SLICE': FOS_INCENTIVE_SALARY_SLICE, 'FINAL_FOS_SALARY': FINAL_FOS_SALARY, 'FINAL_COSTING': FINAL_COSTING, 'SLICE_PROFIT': SLICE_PROFIT, 'SLICE_PROFIT_PERCENTAGE': SLICE_PROFIT_PERCENTAGE})
+
+            else:
+                return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'STATUS': 'Please Refresh FOS Data'})
         else:
             return render(request, 'FirstLevel/analysis.html', {'DEPARTMENT': final_dep, 'PROCESS': final_process, 'Designation': Designation, 'STATUS': 'Please Refresh BILLING and FOS Salary Data'})
